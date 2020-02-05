@@ -4,14 +4,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-  <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">AgroBuddy</a>       
         </div>
         <ul class="nav navbar-nav" style="float: right;">
-          <li class="active"><a routerLink="/details" routerLinkActive="active">Home</a></li>
-          <li><a routerLink="/details" routerLinkActive="active"> PlantDetails </a></li>
+          <li class="active"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+          <li><a routerLink="/PlantDetails" routerLinkActive="active"> PlantDetails </a></li>
           <li><a routerLink="/area" routerLinkActive="active"> CultivatedArea </a></li>
           <li><a routerLink="/finder" routerLinkActive="active"> PlantFinder </a></li>
           <li><a routerLink="/about" routerLinkActive="active"> AboutUs </a></li>
@@ -25,7 +25,12 @@
           <h1><i><b>W</b>elcome to <b>A</b>gro<b>B</b>uddy </i></h1>
       </div>
 
-
-
+<hr/>
+<footer>
+  <a href="home/home.component.html">Home | </a>
+  <a href="home/home.component.html">PlantDetails | </a>
+  <a href="home/home.component.html">CultivatedArea | </a>
+  <a href="home/home.component.html">PlantFinder</a>
+</footer>
 </body>
 <router-outlet></router-outlet>
