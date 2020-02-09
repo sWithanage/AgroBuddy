@@ -7,7 +7,7 @@
 <nav class="navbar navbar">
   <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">AgroBuddy</a>       
+          <a class="navbar-brand" href="#">AgroBuddy</a>
         </div>
         <ul class="nav navbar-nav" style="float: right;">
           <li class="active"><a routerLink="/details" routerLinkActive="active" style="color:#9ECF7E;">Home</a></li>
@@ -20,17 +20,44 @@
       </div>
   </nav>
 <body>
+<div class="grid-container">
+  <div class="slider">
+    <ngb-carousel *ngIf="images">
+      <ng-template ngbSlide>
+        <img [src]="images[0]" alt="Random first slide">
+      </ng-template>
+      <ng-template ngbSlide>
+        <img [src]="images[1]" alt="Random second slide">
+      </ng-template>
+      <ng-template ngbSlide>
+        <img [src]="images[2]" alt="Random third slide">
+      </ng-template>
+    </ngb-carousel>
+  </div>
 
-      <div style="text-align: center; color: #906790;">
+  <div class="menu">
+
+  </div>
+
+  <div class="abtus" [ngStyle]="{background: 'url(assets/images/abtus.jpg'}">
+    <h2>About Us</h2>
+    <p>We provide our farmers blah blah blairifkhuk4gkj4kng5uvbt4ivuti4uhn4iuhit4utikih4bit4i5ty4htuvhuthvtiu4kht
+      tjv3gvtu34ygtvu43iytvbi4yiyvitybit4htvi4vht i4htn4tv3r3vyvrg3u4grvby3y33v
+    </p>
+  </div>
+
+  <div class="footr">
+    <footer>
+      <a href="home/home.component.html">Home | </a>
+      <a href="home/home.component.html">PlantDetails | </a>
+      <a href="home/home.component.html">CultivatedArea | </a>
+      <a href="home/home.component.html">PlantFinder</a>
+    </footer>
+  </div>
+
+      <!--<div style="text-align: center; color: #906790;">
           <h1><i><b>W</b>elcome to <b>A</b>gro<b>B</b>uddy </i></h1>
-      </div>
-
-
-<footer>
-  <a href="home/home.component.html">Home | </a>
-  <a href="home/home.component.html">PlantDetails | </a>
-  <a href="home/home.component.html">CultivatedArea | </a>
-  <a href="home/home.component.html">PlantFinder</a>
-</footer>
+      </div>-->
+  </div>
 </body>
 <router-outlet></router-outlet>
