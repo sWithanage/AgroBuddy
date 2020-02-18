@@ -1,4 +1,4 @@
-<meta charset="utf-8">
+<!-- <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
@@ -21,16 +21,25 @@
     </div>
   </nav>
 <body>
-
-    <footer>
-      <a href="home/home.component.html">Home | </a>
-      <a href="home/home.component.html">PlantDetails | </a>
-      <a href="home/home.component.html">CultivatedArea | </a>
-      <a href="home/home.component.html">PlantFinder</a>
-    </footer>
-      <!--<div style="text-align: center; color: #906790;">
+      <div style="text-align: center; color: #906790;">
           <h1><i><b>W</b>elcome to <b>A</b>gro<b>B</b>uddy </i></h1>
-      </div>-->
+      </div>
 
-</body>
+</body> -->
+<app-nav-bar></app-nav-bar>
 <router-outlet></router-outlet>
+<footer>
+  <div class="footer-content">
+    <div class="about">AboutUs</div>
+    <div class="contact">ContactUs</div>
+  </div>
+
+  <a href="home/home.component.html">Home | </a>
+  <a href="home/home.component.html">PlantDetails | </a>
+  <a href="home/home.component.html">CultivatedArea | </a>
+  <a href="home/home.component.html">PlantFinder</a>
+
+  <div class="bottom">
+    &copy; agrobuddy.lk | Designed by runtimeterror
+  </div>
+</footer>

@@ -1,0 +1,74 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="false"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+    >
+    <!--[attr.role]=accessibility reason
+  [mode]=utility function provided by cdk-->
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" 
+        ><mat-icon>house</mat-icon>Home
+      </a>
+      <a mat-list-item routerLink="/details" 
+        ><mat-icon>eco</mat-icon> PlantDetails
+      </a>
+      <a mat-list-item routerLink="/area" >
+        <mat-icon>spa</mat-icon>CultivatedArea
+      </a>
+      <a mat-list-item routerLink="/finder" 
+        ><mat-icon>search</mat-icon> PlantFinder
+      </a>
+      <a mat-list-item routerLink="/about" >
+        <mat-icon>account_circle</mat-icon>AboutUs
+      </a>
+      <a mat-list-item routerLink="/contact" >
+        <mat-icon>mail</mat-icon>ContactUs
+      </a>
+      
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="mat-elevation-z8"> <!--class="mat-elevation-z8 - shadow property for navbar -->
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      
+      <span>AgroBuddy</span>
+
+      <div class="space"></div>
+
+      <a mat-button routerLink="/home" routerLinkActive="active"
+        ><mat-icon>house</mat-icon>Home</a
+      >
+      <a mat-button routerLink="/details" 
+        ><mat-icon>eco</mat-icon> PlantDetails
+      </a>
+      <a mat-button routerLink="/area" >
+        <mat-icon>spa</mat-icon>CultivatedArea
+      </a>
+      <a mat-button routerLink="/finder" 
+        ><mat-icon>search</mat-icon> PlantFinder
+      </a>
+      <a mat-button routerLink="/about" >
+        <mat-icon>account_circle</mat-icon>AboutUs
+      </a>
+      <a mat-button routerLink="/contact" >
+        <mat-icon>mail</mat-icon>ContactUs
+      </a>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
