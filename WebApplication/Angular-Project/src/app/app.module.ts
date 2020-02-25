@@ -12,6 +12,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { RegisterFormOneComponent } from './register-form-one/register-form-one.component';
 import { ContactComponent } from './contact/contact.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
 //import { MatButtonModule } from '@angular/material/button';
 //import { MatSidenavModule } from '@angular/material/sidenav';
 //import { MatIconModule } from '@angular/material/icon';
@@ -27,6 +28,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     RegisterFormComponent,
     RegisterFormOneComponent,
     ContactComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

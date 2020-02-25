@@ -1,0 +1,57 @@
+<div class="containerr">
+    <!-- box 1 -->
+    <div class="box1">
+        <form >
+            <br><span class="heading">LEAVE A MESSAGE</span><br><br>
+           
+            <!-- name -->
+            <mat-form-field appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input matInput required>
+            </mat-form-field>
+            <br>
+                    
+            <!-- email -->
+            <mat-form-field appearance="outline">
+                <mat-label>Enter your email</mat-label>
+                <input matInput [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+                
+            <!-- message -->
+            <mat-form-field appearance="outline">
+                <mat-label>Message</mat-label>
+                <textarea matInput></textarea>
+            </mat-form-field>
+            <br>
+            <!-- button -->
+            <button mat-raised-button>
+                <span>Send Message</span>
+            </button>
+                    
+        </form>
+    </div>
+      
+    <!-- box 2 -->
+    <div class="box2">
+        <span class="heading">GET IN TOUCH</span>
+        <br><br>
+        
+        <div class="section">
+            <h4><mat-icon  aria-label="Example home icon">home</mat-icon> Our Location:</h4>
+            <p>No 57,<br> Ramakrishna Road,  Colombo 06,<br> Sri Lanka.</p>
+            <br>
+        </div>
+        <div class="section">
+            <h4><mat-icon  aria-label="Example home icon">phone</mat-icon> Phone:</h4>
+            <p>+94 112 360 212</p> <br>
+        </div>
+        <div class="section">
+            <h4><mat-icon  aria-label="Example home icon">mail</mat-icon>  Email Address:</h4>
+            <a href="https://www.iit.ac.lk/">agrobuddy@sdkf.com</a>
+        </div>
+
+    </div>
+</div>
+  
