@@ -7,15 +7,17 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule ,MatButtonModule ,MatSidenavModule,MatIconModule ,MatListModule,MatSelectModule,MatFormFieldModule,MatInputModule } from '@angular/material';
+// tslint:disable-next-line:max-line-length
+import { MatToolbarModule , MatButtonModule , MatSidenavModule, MatIconModule , MatListModule , MatSelectModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { RegisterFormOneComponent } from './register-form-one/register-form-one.component';
 import { ContactComponent } from './contact/contact.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-//import { MatButtonModule } from '@angular/material/button';
-//import { MatSidenavModule } from '@angular/material/sidenav';
-//import { MatIconModule } from '@angular/material/icon';
-//import { MatListModule } from '@angular/material/list';
+import { LoginComponent } from './login/login.component';
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatSidenavModule } from '@angular/material/sidenav';
+// import { MatIconModule } from '@angular/material/icon';
+// import { MatListModule } from '@angular/material/list';
 
 /*import { HomeComponent } from './home/home.component';*/
 
@@ -27,6 +29,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     RegisterFormComponent,
     RegisterFormOneComponent,
     ContactComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
