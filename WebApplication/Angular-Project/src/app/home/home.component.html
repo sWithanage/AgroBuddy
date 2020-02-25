@@ -1,20 +1,22 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<body>
-<div class="grid-container">
-    <div class="slider">
-      <ngb-carousel *ngIf="images">
-        <ng-template ngbSlide>
-          <img [src]="images[0]" alt="Random first slide">
-        </ng-template>
-        <ng-template ngbSlide>
-          <img [src]="images[1]" alt="Random second slide">
-        </ng-template>
-        <ng-template ngbSlide>
-          <img [src]="images[2]" alt="Random third slide">
-        </ng-template>
-      </ngb-carousel>
-    </div>
+<div class="container">
+  <h1 class="text">
+    AgroBuddy <mat-icon>eco</mat-icon><br />
+    We plant for future
+  </h1>
+
+  <div class="bird-container bird-container--one">
+    <div class="bird bird-birdone"></div>
   </div>
-</body>
+
+  <div class="bird-container bird-container--two">
+    <div class="bird bird-birdtwo"></div>
+  </div>
+
+  <div class="bird-container bird-container--three">
+    <div class="bird bird-birdthree"></div>
+  </div>
+
+  <div class="bird-container bird-container--four">
+    <div class="bird bird-birdfour"></div>
+  </div>
+</div>
