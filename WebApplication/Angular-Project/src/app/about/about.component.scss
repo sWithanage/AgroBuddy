@@ -1,0 +1,85 @@
+.container{
+    width:85%;
+    text-align: center;
+    font-size: 20px;
+    
+}
+.containerr{
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    border: 1px solid black;
+
+    //adding flexbox
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+}
+
+.box{
+    //border: 1px solid rgb(145, 145, 145);
+    width: 25%;
+    height: auto;
+    margin: 20px;
+    padding-top: 2rem;
+    box-sizing: border-box;
+}
+
+//adding responsive media
+@media screen and (max-width:1200px){
+    .box{
+        width:40%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .box{
+        width:90%;
+    }
+}
+
+//parallax image
+.parallax {
+    position: relative;
+    background-image: url("/assets/images/ab3.jpg");
+  
+    /* Full height */
+    min-height: 590px; 
+    
+    /* the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  //text on image
+  .centered {
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 35px;
+    transform: translate(-50%, -50%);
+  }
+  .centered p{
+      font-size: 20px;
+  }
+
+  h2{
+      text-align: center;
+  }
+
+  .heading{
+      font-size: 17px;
+      text-align: center;
+  }
+
+  .heading img{
+      position: relative;
+      height: 33rem;
+      border-radius: 7px;
+      width:25rem;
+  }

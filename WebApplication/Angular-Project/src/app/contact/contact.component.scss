@@ -1,6 +1,7 @@
 
 .containerr{
     border: 1px solid black;
+    border-radius: 9px;
     width:90%;
     height: auto;
     margin: 5%;
@@ -123,9 +124,9 @@ a:visited {
   .parallax {
     position: relative;
     text-align: center;
-    color: white;
+    //color: white;
     /* The image used */
-    background-image: url('https://img1.goodfon.com/wallpaper/nbig/a/7b/spa-zen-stones-flower-orchid-7609.jpg');
+    background-image: url("/assets/images/c3.jpg");
   
     /* Full height */
     min-height: 500px; 
@@ -140,7 +141,7 @@ a:visited {
   //text on image
   .centered {
     position: absolute;
-    top: 50%;
+    top: 65%;
     left: 50%;
     font-size: 35px;
     transform: translate(-50%, -50%);
