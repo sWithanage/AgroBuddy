@@ -29,8 +29,8 @@ mpl.rcParams['axes.grid'] = False
 
 # Downloading file from the dedicated link & extracting in allocated location.
 zip_path = tf.keras.utils.get_file(
-    origin='https://agrobuddy.tk/DataSet/weatherdata.csv.zip',
-    fname='weatherdata.csv.zip',
+    origin='https://agrobuddy.tk/DataSet/marketprice.csv.zip',
+    fname='marketprice.csv.zip',
     extract=True)
 
 print("Zip File Downloaded Location : "+zip_path)
@@ -46,7 +46,7 @@ df.head()
 print(df.head())
 
 # Set value for training dataset. Number of rows defined in here.
-TRAIN_SPLIT = 5000
+TRAIN_SPLIT = 150
 
 # Make Tensor-flow output more stable. Ensuring reproducibility.
 tf.random.set_seed(13)
@@ -99,10 +99,10 @@ print("---------------------------------------------------------- Multivarate in
 
 # Multivarate prediction
 
-features_considered = ['T (degC)', 'T (degC)']
+features_considered = ['AshPlantain', 'AshPlantain']
 
 features = df[features_considered]
-features.index = df['Date Time']
+features.index = df['Number']
 features.head()
 
 features.plot(subplots=True)
@@ -133,41 +133,37 @@ def multivariate_data(dataset, target, start_index, end_index, history_size,
 
   return np.array(data), np.array(labels)
 
-past_history = 500
-future_target = 90
+past_history = 100
+future_target = 10
 STEP = 1
 
-x_train_single, y_train_single = multivariate_data(dataset, dataset[:, 1], 0,
-                                                   TRAIN_SPLIT, past_history,
-                                                   future_target, STEP,
-                                                   single_step=True)
-x_val_single, y_val_single = multivariate_data(dataset, dataset[:, 1],
-                                               TRAIN_SPLIT, None, past_history,
-                                               future_target, STEP,
-                                               single_step=True)
+# x_train_single, y_train_single = multivariate_data(dataset, dataset[:, 1], 0,
+#                                                    TRAIN_SPLIT, past_history,
+#                                                    future_target, STEP,
+#                                                    single_step=True)
+# x_val_single, y_val_single = multivariate_data(dataset, dataset[:, 1],
+#                                                TRAIN_SPLIT, None, past_history,
+#                                                future_target, STEP,
+#                                                single_step=True)
 
-print ('Single window of past history : {}'.format(x_train_single[0].shape))
+# print ('Single window of past history : {}'.format(x_train_single[0].shape))
+#
+# train_data_single = tf.data.Dataset.from_tensor_slices((x_train_single, y_train_single))
+# train_data_single = train_data_single.cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE).repeat()
+#
+# val_data_single = tf.data.Dataset.from_tensor_slices((x_val_single, y_val_single))
+# val_data_single = val_data_single.batch(BATCH_SIZE).repeat()
+#
+# single_step_model = tf.keras.models.Sequential()
+# single_step_model.add(tf.keras.layers.LSTM(32,input_shape=x_train_single.shape[-2:]))
+# single_step_model.add(tf.keras.layers.Dense(1))
+#
+# single_step_model.compile(optimizer=tf.keras.optimizers.RMSprop(), loss='mae')
+#
+# for x, y in val_data_single.take(1):
+#   print(single_step_model.predict(x).shape)
 
-train_data_single = tf.data.Dataset.from_tensor_slices((x_train_single, y_train_single))
-train_data_single = train_data_single.cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE).repeat()
-
-val_data_single = tf.data.Dataset.from_tensor_slices((x_val_single, y_val_single))
-val_data_single = val_data_single.batch(BATCH_SIZE).repeat()
-
-single_step_model = tf.keras.models.Sequential()
-single_step_model.add(tf.keras.layers.LSTM(32,
-                                           input_shape=x_train_single.shape[-2:]))
-single_step_model.add(tf.keras.layers.Dense(1))
-
-single_step_model.compile(optimizer=tf.keras.optimizers.RMSprop(), loss='mae')
-
-for x, y in val_data_single.take(1):
-  print(single_step_model.predict(x).shape)
-
-single_step_history = single_step_model.fit(train_data_single, epochs=EPOCHS,
-                                            steps_per_epoch=EVALUATION_INTERVAL,
-                                            validation_data=val_data_single,
-                                            validation_steps=50)
+# single_step_history = single_step_model.fit(train_data_single, epochs=EPOCHS,steps_per_epoch=EVALUATION_INTERVAL,validation_data=val_data_single,validation_steps=50)
 
 def plot_train_history(history, title):
   loss = history.history['loss']
@@ -184,17 +180,16 @@ def plot_train_history(history, title):
 
   plt.show()
 
-plot_train_history(single_step_history,'Single Step Training and validation loss')
-
-for x, y in val_data_single.take(3):
-  plot = show_plot([x[0][:, 1].numpy(), y[0].numpy(),
-                    single_step_model.predict(x)[0]], 12,
-                   'Single Step Prediction')
-  plot.show()
+# plot_train_history(single_step_history,'Single Step Training and validation loss')
+#
+# for x, y in val_data_single.take(3):
+#   plot = show_plot([x[0][:, 1].numpy(), y[0].numpy(),
+#                     single_step_model.predict(x)[0]], 12,
+#                    'Single Step Prediction')
+#   plot.show()
 
 
 # multi step model for the users.
-
 future_target = 72
 x_train_multi, y_train_multi = multivariate_data(dataset, dataset[:, 1], 0,
                                                  TRAIN_SPLIT, past_history,
