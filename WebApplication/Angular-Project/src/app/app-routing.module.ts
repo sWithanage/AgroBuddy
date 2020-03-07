@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import {RegisterFormComponent} from './register-form/register-form.component';
+import {RegisterFormOneComponent} from './register-form-one/register-form-one.component';
 import { ContactComponent } from './contact/contact.component';
-
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'register-form', component: RegisterFormComponent },
+  {path: 'login', component: RegisterFormOneComponent },
+  {path: 'about', component: AboutComponent },
   {path:'contact', component: ContactComponent}
 
 ];
@@ -18,4 +19,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponents = [HomeComponent, RegisterFormComponent];
+export const routingComponents = [HomeComponent, RegisterFormOneComponent];

@@ -13,11 +13,12 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { RegisterFormOneComponent } from './register-form-one/register-form-one.component';
 import { ContactComponent } from './contact/contact.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
+//import { MatButtonModule } from '@angular/material/button';
+//import { MatSidenavModule } from '@angular/material/sidenav';
+//import { MatIconModule } from '@angular/material/icon';
+//import { MatListModule } from '@angular/material/list';
 import { LoginComponent } from './login/login.component';
-// import { MatButtonModule } from '@angular/material/button';
-// import { MatSidenavModule } from '@angular/material/sidenav';
-// import { MatIconModule } from '@angular/material/icon';
-// import { MatListModule } from '@angular/material/list';
 
 /*import { HomeComponent } from './home/home.component';*/
 
@@ -29,6 +30,7 @@ import { LoginComponent } from './login/login.component';
     RegisterFormComponent,
     RegisterFormOneComponent,
     ContactComponent,
+    AboutComponent,
     LoginComponent,
   ],
   imports: [
