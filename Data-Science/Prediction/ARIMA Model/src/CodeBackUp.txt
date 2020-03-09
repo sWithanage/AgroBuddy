@@ -25,12 +25,8 @@ series = read_csv('daily-minimum-temperatures.csv', header=0, index_col=0)
 split_point = int(len(series) - (len(series) * 0.2))
 
 dataset, validation = series[0:split_point], series[split_point:]
-
-trainingDataSetSize = len(dataset)
-testingDataSetSize = len(validation)
-
-print('Training Data Set Size : ', trainingDataSetSize, " ( 80% of dataset)")
-print('Testing  Data Set Size : ', testingDataSetSize, " ( 20% of dataset)")
+print('Training Data Set Size : ', len(dataset), " ( 80% of dataset)")
+print('Testing  Data Set Size : ', len(validation), " ( 20% of dataset)")
 
 dataset.to_csv('dataset.csv', index=False)
 validation.to_csv('validation.csv', index=False)
@@ -77,39 +73,28 @@ forecast = inverse_difference(X, forecast, days_in_year)
 print('Forecast for next day : %f' % forecast)
 
 # multi-step out-of-sample forecast
-forecast = model_fit.forecast(steps=testingDataSetSize)[0]
+forecast = model_fit.forecast(steps=7)[0]
 
 # invert the differenced forecast to something usable
 history = [x for x in X]
 day = 1
-
-dataArray=[]
 for yhat in forecast:
     inverted = inverse_difference(history, yhat, days_in_year)
     print('Day %d: %f' % (day, inverted))
-    dataArray.append(inverted)
     history.append(inverted)
     day += 1
 
+# Add 7 days and start forecasting.
+# multi-step out-of-sample forecast
+start_index = len(differenced)
+end_index = start_index + 6
+forecast = model_fit.predict(start=start_index, end=end_index)
 
-accuracyArray =[]
-def accuracyCalculator(true_future,prediction):
-    print("Accuracy is calculating")
-    for x in range(len(true_future)):
-        difference = prediction[x]-true_future[x]
-        if difference<0:
-            difference = difference * -1;
-
-        if true_future[x] != 0:
-            accuracy = 100 - ((difference / true_future[x] ) * 100)
-        else:
-            accuracy = 100 - ((difference / 1) * 100)
-
-        accuracyArray.append(accuracy)
-        print("Difference : "+str(difference)+" | True Future : "+str(true_future[x])+" | Predicted Future : "+str(prediction[x])+" | Accuracy Rate : " + str(accuracy))
-
-series = read_csv('validation.csv', header=None)
-# seasonal difference
-validationData = series.values
-accuracyCalculator(dataArray,validationData)
-print("Prediction Average : ",numpy.mean(accuracyArray))
+# invert the difference forecast to something usable
+history = [x for x in X]
+day = 1
+for yhat in forecast:
+    inverted = inverse_difference(history, yhat, days_in_year)
+    print('Day %d: %f' % (day, inverted))
+    history.append(inverted)
+    day += 1
