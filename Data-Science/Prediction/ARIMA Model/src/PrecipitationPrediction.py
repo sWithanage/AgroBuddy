@@ -150,6 +150,6 @@ print("Prediction Average : ", numpy.mean(accuracyArray))
 # x = sklearn.metrics.accuracy_score(dataArray,validationData)
 # Remove dataset file and the validation data from the downloaded location.
 
-# os.remove('dataset.csv')
-# os.remove('validation.csv')
+os.remove('dataset.csv')
+os.remove('validation.csv')
 print("Dataset Deleted Successfully.")

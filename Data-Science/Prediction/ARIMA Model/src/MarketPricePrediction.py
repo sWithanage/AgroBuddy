@@ -22,7 +22,7 @@ import tensorflow as tf
 # Downloading file from the dedicated link & extracting in allocated location.
 # This will help to keep update dataset properly.
 downloadedFilePath = tf.keras.utils.get_file(
-    origin='https://agrobuddy.tk/getData?type=arima-model-temperature-dataset',
+    origin='https://agrobuddy.tk/getData?type=ash-plantain',
     fname='daily-minimum-temperatures.csv',
     extract=False)
 
@@ -46,8 +46,8 @@ os.remove(downloadedFilePath)
 os.remove(updatedCSVPath)
 print("\n\nDownloaded Dataset Deleted Successfully.")
 
-# split_point = len(series) - 7
-split_point = int(len(series) - (len(series) * 0.2))
+split_point = len(series) - 30
+# split_point = int(len(series) - (len(series) * 0.2))
 
 dataset, validation = series[0:split_point], series[split_point:]
 
@@ -88,7 +88,7 @@ X = series.values
 days_in_year = 365
 differenced = difference(X, days_in_year)
 # fit model
-model = ARIMA(differenced, order=(7, 0, 1))
+model = ARIMA(differenced, order=(2, 0, 0))
 model_fit = model.fit(disp=0)
 
 # print summary of fit model
@@ -117,6 +117,9 @@ def accuracyCalculator(true_future, prediction):
     for x in range(len(true_future)):
         predictedValue = prediction[x][0]
         trueValue = true_future[x][0]
+
+        trueFutureData.append(trueValue)
+        predictionData.append(predictedValue)
 
         if predictedValue>trueValue:
             difference = predictedValue - trueValue
