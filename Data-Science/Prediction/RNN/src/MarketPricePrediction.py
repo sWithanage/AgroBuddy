@@ -46,7 +46,7 @@ df.head()
 print(df.head())
 
 # Set value for training dataset. Number of rows defined in here.
-TRAIN_SPLIT = 150
+TRAIN_SPLIT = 300
 
 # Make Tensor-flow output more stable. Ensuring reproducibility.
 tf.random.set_seed(13)
@@ -133,7 +133,7 @@ def multivariate_data(dataset, target, start_index, end_index, history_size,
 
   return np.array(data), np.array(labels)
 
-past_history = 100
+past_history = 50
 future_target = 10
 STEP = 1
 

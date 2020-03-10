@@ -29,19 +29,27 @@ mpl.rcParams['axes.grid'] = False
 
 # Downloading file from the dedicated link & extracting in allocated location.
 zip_path = tf.keras.utils.get_file(
-    origin='https://agrobuddy.tk/DataSet/weatherdata.csv.zip',
-    fname='weatherdata.csv.zip',
-    extract=True)
+    origin='http://localhost/agrobuddy/data-convert/?type=rnn',
+    fname='weatherdataa.csv',
+    extract=False)
 
 print("Zip File Downloaded Location : "+zip_path)
 
 # split the path name into a pair root and ext.
-csv_path, _ = os.path.splitext(zip_path)
+# csv_path, _ = os.path.splitext(zip_path)
 
 # Read CSV file using pandas library.
-df = pd.read_csv(csv_path)
+df = pd.read_csv(zip_path)
 df.head()
 
+# Delete data set from the downloaded location.
+if os.path.exists(zip_path):
+  os.remove(zip_path)
+  print("Dataset file is deleted successfully. ")
+else:
+  print("Data set file is not found to delete.")
+
+  
 # Check weather data correctly imported or not.
 print(df.head())
 

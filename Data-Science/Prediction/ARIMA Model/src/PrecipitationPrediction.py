@@ -26,7 +26,7 @@ downloadedFilePath = tf.keras.utils.get_file(
     fname='daily-minimum-temperatures.csv',
     extract=False)
 
-updatedCSVPath = 'Daily-Average-Temperature.csv'
+updatedCSVPath = 'Rainfall-Dataset.csv'
 
 # Remove first naming line and set-up the csv to use it.
 with open(downloadedFilePath, 'r') as f:
