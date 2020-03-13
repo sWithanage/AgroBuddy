@@ -1,0 +1,31 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "\"agrobuddy backend\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sWithanage/AgroBuddy.git"
+  },
+  "keywords": [
+    "\"NodeJs\"",
+    "\"MySql\""
+  ],
+  "author": "runtime terror",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sWithanage/AgroBuddy/issues"
+  },
+  "homepage": "https://github.com/sWithanage/AgroBuddy#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6",
+    "mysql": "^2.18.1",
+    "req-flash": "0.0.3"
+  }
+}
