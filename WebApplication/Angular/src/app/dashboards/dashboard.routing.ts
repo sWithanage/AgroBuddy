@@ -13,5 +13,9 @@ export const DashboardRoutes: Routes = [
         { title: 'Dashboard' }
       ]
     }
+  },
+  {
+    path: '**',
+    redirectTo: '/authentication/404'
   }
 ];
