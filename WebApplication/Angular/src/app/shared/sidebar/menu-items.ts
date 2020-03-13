@@ -11,36 +11,11 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '',
-    title: 'Dashboards',
+    title: 'Dashboard',
     icon: 'icon-Car-Wheel',
-    class: 'has-arrow',
+    class: '',
     extralink: false,
-    submenu: [
-      {
-        path: '/dashboard/dashboard1',
-        title: 'Dashboard 1',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      },
-      {
-        path: '/dashboard/dashboard2',
-        title: 'Dashboard 2',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      },
-      {
-        path: '/dashboard/dashboard',
-        title: 'Dashboard 3',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: []
-      }
-    ]
+    submenu: []
   },
   {
     path: '',
@@ -228,13 +203,13 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
       },
       {
-		path: '/component/notifier',
-		title: 'Notifier',
-		icon: 'mdi mdi-bandcamp',
-		class: '',
-		extralink: false,
-		submenu: []
-	  }
+      path: '/component/notifier',
+      title: 'Notifier',
+      icon: 'mdi mdi-bandcamp',
+      class: '',
+      extralink: false,
+      submenu: []
+      }
     ]
   },
   {
@@ -489,7 +464,8 @@ export const ROUTES: RouteInfo[] = [
         extralink: false,
         submenu: []
       },
-	  {
+      // tslint:disable-next-line:indent
+	    {
         path: '/forms/ngx',
         title: 'Form Wizard / Steps',
         icon: 'mdi mdi-attachment',
