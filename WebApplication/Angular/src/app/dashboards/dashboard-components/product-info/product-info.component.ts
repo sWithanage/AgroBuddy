@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class ProductInfoComponent {
   constructor() {}
+
+  totalProduct: any = 5;
+  totalProductBar: any = {
+    'width': '0%'
+  };
+
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnInit() {
+    this.totalProductBar = {
+      'width': this.totalProduct + '%'
+    };
+  }
 }
