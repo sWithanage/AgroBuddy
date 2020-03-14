@@ -14,13 +14,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-import { FullComponent } from './layouts/full/full.component';
-import { BlankComponent } from './layouts/blank/blank.component';
+import { FullComponentClient } from './Client/layouts/full/full.component';
+import { FullComponentAdmin } from './Admin/layouts/full/full.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
-import { NavigationComponent } from './shared/header-navigation/navigation.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
 
 import { Approutes } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +27,12 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import {SignupComponent} from './signup/signup.component';
+import {SidebarComponentAdmin} from './Admin/shared/sidebar/sidebar.component';
+import {NavigationComponentAdmin} from './Admin/shared/header-navigation/navigation.component';
+import {BreadcrumbComponentAdmin} from './Admin/shared/breadcrumb/breadcrumb.component';
+import {SidebarComponentClient} from './Client/shared/sidebar/sidebar.component';
+import {BreadcrumbComponentClient} from './Client/shared/breadcrumb/breadcrumb.component';
+import {NavigationComponentClient} from './Client/shared/header-navigation/navigation.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -43,11 +45,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     SpinnerComponent,
-    FullComponent,
-    BlankComponent,
-    NavigationComponent,
-    BreadcrumbComponent,
-    SidebarComponent,
+    FullComponentClient,
+    SidebarComponentAdmin,
+    NavigationComponentAdmin,
+    BreadcrumbComponentAdmin,
+    SidebarComponentClient,
+    BreadcrumbComponentClient,
+    NavigationComponentClient,
+    FullComponentAdmin,
+    // SidebarComponent,
     LoginComponent,
     SignupComponent
   ],

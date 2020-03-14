@@ -1,18 +1,30 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { FullComponent } from './layouts/full/full.component';
+import { FullComponentAdmin } from './Admin/layouts/full/full.component';
+import { FullComponentClient } from './Client/layouts/full/full.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 
 export const Approutes: Routes = [
   {
-    path: '',
-    component: FullComponent,
+    path: 'admin',
+    component: FullComponentAdmin,
     children: [
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
-        loadChildren: () => import('./dashboards/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () => import('./Admin/dashboards/dashboard.module').then(m => m.DashboardModule)
+        }
+    ]
+  },
+  {
+    path: 'client',
+    component: FullComponentClient,
+    children: [
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./Client/dashboards/dashboard.module').then(m => m.DashboardModule)
         }
     ]
   },
@@ -22,7 +34,7 @@ export const Approutes: Routes = [
   },
   {
     path: 'signup',
-    component: SignupComponent
+    component: SignupComponent,
   },
   {
     path: '**',
