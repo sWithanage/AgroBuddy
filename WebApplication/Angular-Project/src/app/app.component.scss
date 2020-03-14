@@ -1,11 +1,45 @@
-// footer css
+html, body{
+    height: 100%;
+}
 
-.footer{
+h3{
+    color: white;
 }
-.bottom{
-    color: lightseagreen;
-    width: 100%;
-    text-align: center;
-    bottom: 0em;
-    left: 0em;
+.page-wrapper{
+    min-height: 100%;
 }
+
+// FOOTER
+
+footer{
+    background: #303036;
+    color: #d3d3d3;
+    height: 400px;
+    position: relative;
+}
+
+footer .footer-content{
+    border:1px solid red;
+    height:350px;
+}
+
+.mat-nav-list a{
+   color: #F9F9F2;
+  }
+
+  .mat-nav-list a:hover {
+    color: #7BC451;
+  }
+
+  .footer-section links{
+      size: 30px;
+      width: 30%;
+  }
+
+// .bottom{
+//     color: lightseagreen;
+//     width: 100%;
+//     text-align: center;
+//     bottom: 0em;
+//     left: 0em;
+// }
