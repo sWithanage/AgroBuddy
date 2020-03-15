@@ -13,7 +13,7 @@ const diseases = require("./routes/disease");
 
 const app = express();
 
-app.use("/user",users);
+app.use(users);
 app.use(admins);
 app.use(crops);
 app.use(diseases);

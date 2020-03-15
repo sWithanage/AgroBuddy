@@ -5,7 +5,8 @@ var mysqlConnection = mysql.createConnection({
     host : 'sql172.main-hosting.eu',
     user : 'u499244451_agrobackEnd',
     password : 'agrobackEnd',
-    database : 'u499244451_agrobackEnd'
+    database : 'u499244451_agrobackEnd',
+   // multipleStatements: true
 });
 
 //connect
