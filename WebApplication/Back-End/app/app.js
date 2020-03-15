@@ -8,11 +8,15 @@ const PORT = 5000;
 
 const users = require("./routes/user");
 const admins = require("./routes/admin");
+const crops = require("./routes/crop");
+const diseases = require("./routes/disease");
 
 const app = express();
 
 app.use("/user",users);
 app.use(admins);
+app.use(crops);
+app.use(diseases);
 
 //starting the server
 app.listen(PORT , () => {
