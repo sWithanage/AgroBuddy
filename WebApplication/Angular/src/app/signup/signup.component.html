@@ -11,30 +11,37 @@
                     <div class="form-horizontal m-t-20">
 
 
+
                         <div [style.display]="signUpPart1 ? 'block' : 'none'">
                           <div class="form-group row ">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="text" required=" " if="fName" placeholder="First Name">
+                                  <input class="form-control form-control-lg" [(ngModel)]="name" type="text" required=" " if="fName"  placeholder="First Name">
+                                  <div *ngIf="nameEmpty"><span>First Name is required</span></div>
                               </div>
                           </div>
                           <div class="form-group row">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="text" required=" " if="lName" placeholder="Last Name">
+                                  <input class="form-control form-control-lg" [(ngModel)]="lname" type="text" required=" " if="lName" placeholder="Last Name">
+                                  <div *ngIf="lnameEmpty"><span>Last Name is required!</span></div>
                               </div>
                           </div>
                           <div class="form-group row">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="date" required=" " if="dob" placeholder="Date Of Birth">
+                                  <input class="form-control form-control-lg" [(ngModel)]="dob" type="date" required=" " if="dob" placeholder="Date Of Birth">
+                                  <div *ngIf="dobEmpty"><span>Date of birth is required!</span></div>
                               </div>
                           </div>
                           <div class="form-group row">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="text" required=" " if="nic" placeholder="NIC Number">
+                                  <input class="form-control form-control-lg" [(ngModel)]="nic" type="text" required=" " if="nic" placeholder="NIC Number">
+                                  <div *ngIf="nicEmpty"><span>NIC number is required!</span></div>
                               </div>
                           </div>
                           <div class="form-group row">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="email" required=" " if="email" placeholder="Email">
+                                  <input class="form-control form-control-lg" [(ngModel)]="email" type="email" required=" " if="email" placeholder="Email">
+                                  <div *ngIf="emailEmpty"><span>Email is required!</span></div>
+                                  <div *ngIf="emailEmpty"><span>Please include an '@' in the email address.</span></div>
                               </div>
                           </div>
                           <div class="form-group text-center ">
@@ -48,21 +55,27 @@
                         <div [style.display]="signUpPart2 ? 'block' : 'none'">
                           <div class="form-group row ">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="text" required=" " if="user" placeholder="UserName">
+                                  <input class="form-control form-control-lg" [(ngModel)]="uname" type="text" required=" " if="user" placeholder="UserName">
+                                  <div *ngIf="unameEmpty"><span>User Name is required!</span></div>
                               </div>
                           </div>
                           <div class="form-group row">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="password" required=" " if="pass" placeholder="Password">
+                                  <input class="form-control form-control-lg" [(ngModel)]="password" type="password" required=" " if="pass" placeholder="Password">
+                                  <div *ngIf="passwordEmpty"><span>Password is required!</span></div>
+                                  <div *ngIf="passwordEmpty"><span>Please enter at least 8 characters</span></div>
                               </div>
                           </div>
                           <div class="form-group row">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="password" required=" " if="repass" placeholder="Re-type Password">
+                                  <input class="form-control form-control-lg" [(ngModel)]="confirm" type="password" required=" " if="repass" placeholder="Re-type Password">
+                                  <div *ngIf="confirmEmpty"><span>Please re enter your password!</span></div>
+                                <div *ngIf="doesnotsuitEmpty"><span>Invalid password.Try again!</span></div>
                               </div>
                           </div>
                           <div class="form-group text-center ">
                             <div class="col-xs-12 p-b-20 ">
+
                               <button class="btn btn-block btn-lg btn-info " (click)="goToPart3()" >Next</button>
                             </div>
                             <a style="cursor: pointer;" (click)="goToPart1()" >back</a>
@@ -72,29 +85,32 @@
                         <div [style.display]="signUpPart3 ? 'block' : 'none'">
                           <div class="form-group row ">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="number" required=" " if="no" placeholder="No">
+                                  <input class="form-control form-control-lg" [(ngModel)]="no" type="number" required=" " if="no" placeholder="No">
+                                  <div *ngIf="NoEmpty"><span>No is required!</span></div>
                               </div>
                           </div>
                           <div class="form-group row">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="text" required=" " if="streetLine1" placeholder="Street Line 1">
+                                  <input class="form-control form-control-lg" [(ngModel)]="st1" type="text" required=" " if="streetLine1" placeholder="Street Line 1">
+                                <div *ngIf="streetEmpty"><span>street is required!</span></div>
                               </div>
                           </div>
                           <div class="form-group row">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="text" required=" " if="streetLine2" placeholder="Street Line 2">
+                                  <input class="form-control form-control-lg" [(ngModel)]="st2" type="text" required=" " if="streetLine2" placeholder="Street Line 2">
                               </div>
                           </div>
                           <div class="form-group row">
                               <div class="col-12 ">
-                                  <input class="form-control form-control-lg" type="text" required=" " if="city" placeholder="City">
+                                  <input class="form-control form-control-lg" [(ngModel)]="city" type="text" required=" " if="city" placeholder="City">
+                                  <div *ngIf="cityEmpty"><span>city is required!</span></div>
                               </div>
                           </div>
 
 
                           <div class="form-group text-center ">
                             <div class="col-xs-12 p-b-20 ">
-                              <button class="btn btn-block btn-lg btn-info " (click)="goToPart4()" >Next</button>
+                              <button class="btn btn-block btn-lg btn-info "  (click)="goToPart4()" >Next</button>
                             </div>
                             <a style="cursor: pointer;" (click)="goToPart2()" >back</a>
                           </div>
@@ -105,12 +121,15 @@
                       <div [style.display]="signUpPart4 ? 'block' : 'none'">
                         <div class="form-group row ">
                           <div class="col-12 ">
-                            <input class="form-control form-control-lg" type="number" required=" " if="telephoneNo" placeholder="Telephone Number">
+                            <input class="form-control form-control-lg" [(ngModel)]="telno" type="number" required=" " if="telephoneNo" placeholder="Telephone Number">
+                            <div *ngIf="numberEmpty"><span>phone number is Invalid!</span></div>
                           </div>
                         </div>
                         <div class="form-group row">
                           <div class="col-12 ">
-                            <input class="form-control form-control-lg" type="number" required=" " if="phoneNo" placeholder="Phone Number">
+                            <input class="form-control form-control-lg" [(ngModel)]="phoneno" type="number" required=" " if="phoneNo" placeholder="Phone Number">
+                            <div *ngIf="numberEmpty"><span>phone number is required!</span></div>
+                            <div *ngIf="numberEmpty"><span>phone number is Invalid!</span></div>
                           </div>
                         </div>
 
@@ -125,7 +144,7 @@
 
                         <div class="form-group text-center ">
                           <div class="col-xs-12 p-b-20 ">
-                            <button class="btn btn-block btn-lg btn-info " >SIGN UP</button>
+                            <button class="btn btn-block btn-lg btn-info " type="submit">SIGN UP</button>
                           </div>
 
                           <a style="cursor: pointer;" (click)="goToPart3()" >back</a>
@@ -141,6 +160,7 @@
                                 Already have an account? <a href="#/login " class="text-info m-l-5 "><b>Sign In</b></a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
