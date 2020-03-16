@@ -1,7 +1,7 @@
 from flask import Flask
 
 # ML Packages
-from Models.ARIMA import ArimaMarketAccuracy as priceAccuracy_ARIMA, ArimaTemperatureAccuracy as tempAccuracy_ARIMA
+from Models.ARIMA import ARIMA
 
 app = Flask(__name__)
 
@@ -13,12 +13,17 @@ def routeHomePage():
 
 @app.route("/accuracy/arima/temp")
 def getArimaTempPredictionAccuracy():
-    return tempAccuracy_ARIMA.getAccuracy()
+    return ARIMA.getAccuracy("Temperature", "arima-model-temperature-dataset")
+
+
+@app.route("/accuracy/arima/rain")
+def getArimaPrecipitationPredictionAccuracy():
+    return ARIMA.getAccuracy("Precipitation", "arima-model-precipitation-dataset")
 
 
 @app.route("/accuracy/arima/market")
 def getArimaMarketPredictionAccuracy():
-    return priceAccuracy_ARIMA.getAccuracy()
+    return ARIMA.getAccuracy("Market", "ash-plantain", 2, False, 30)
 
 
 @app.errorhandler(404)

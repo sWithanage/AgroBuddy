@@ -1,55 +1,42 @@
-# https://machinelearningmastery.com/make-sample-forecasts-arima-python/
-# line plot of time series
 import os
-
 import numpy
 import tensorflow as tf
 from pandas import read_csv
 from statsmodels.tsa.arima_model import ARIMA
 
 
-# # Checking whether data is loading or not.
-# series = read_csv('daily-minimum-temperatures.csv', header=0, index_col=0)
-# # display first few rows
-# print(series.head(20))
-# # line plot of dataset
-# series.plot()
-# pyplot.show()
-
-def getAccuracy():
-    # Downloading file from the dedicated link & extracting in allocated location.
-    # This will help to keep update dataset properly.
+def getAccuracy(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfTrainingDataSet=7):
+    # Download relevant dataset from the server.
     downloadedFilePath = tf.keras.utils.get_file(
-        origin='https://agrobuddy.tk/getData?type=ash-plantain',
-        fname='daily-minimum-temperatures.csv',
+        origin='https://agrobuddy.tk/getData?type=' + datasetType,
+        fname=predictionName + '.csv',
         extract=False)
 
-    updatedCSVPath = 'Weekly-Market-Price.csv'
+    # Get downloaded path.
     path = os.path.splitext(downloadedFilePath)[0]
     if not os.path.exists(path):
         os.makedirs(path, 0o755)
+
     # Remove first naming line and set-up the csv to use it.
-    fName = path + "/" + updatedCSVPath;
-    # Remove first naming line and set-up the csv to use it.
+    fileName = path + "/" + predictionName + "csv"
     with open(downloadedFilePath, 'r') as f:
-        with open(fName, 'w') as f1:
+        with open(fileName, 'w') as f1:
             next(f)  # skip header line
             for line in f:
                 f1.write(line)
 
-    # Divide data set in 80:20 (training data set: testing data set)
-    # split the dataset in to training data and validation data.
-    # getting 7 days of data for the testing purposes.
-
-    series = read_csv(fName, header=0, index_col=0)
+    # Get csv data into memory.
+    series = read_csv(fileName, header=0, index_col=0)
 
     # Removing downloaded and converted file from the storage.
     os.remove(downloadedFilePath)
-    os.remove(fName)
+    os.remove(fileName)
     print("\n\nDownloaded Dataset Deleted Successfully.")
 
-    split_point = len(series) - 30
-    # split_point = int(len(series) - (len(series) * 0.2))
+    if (defaultRatio):
+        split_point = int(len(series) - (len(series) * 0.2))
+    else:
+        split_point = len(series) - sizeOfTrainingDataSet
 
     dataset, validation = series[0:split_point], series[split_point:]
 
@@ -59,8 +46,8 @@ def getAccuracy():
     print('\n\n\nTraining Data Set Size : ', trainingDataSetSize, " ( 80% of dataset)")
     print('Testing  Data Set Size : ', testingDataSetSize, " ( 20% of dataset)")
 
-    datasetLocation = path + "/" + 'dataset.csv';
-    validationLocation = path + "/" + 'validation.csv';
+    datasetLocation = path + "/" + 'dataset' + predictionName + '.csv';
+    validationLocation = path + "/" + 'validation' + predictionName + '.csv';
     dataset.to_csv(datasetLocation, index=False)
     validation.to_csv(validationLocation, index=False)
 
@@ -88,8 +75,14 @@ def getAccuracy():
     X = series.values
     days_in_year = 365
     differenced = difference(X, days_in_year)
+
     # fit model
-    model = ARIMA(differenced, order=(2, 0, 0))
+    if modelType == 1:
+        model = ARIMA(differenced, order=(7, 0, 1))
+
+    elif modelType == 2:
+        model = ARIMA(differenced, order=(2, 0, 0))
+
     model_fit = model.fit(disp=0)
 
     # print summary of fit model
@@ -115,12 +108,9 @@ def getAccuracy():
     predictionData = []
 
     def accuracyCalculator(true_future, prediction):
-        for x in range(len(true_future)):
-            predictedValue = prediction[x][0]
+        for x in range(len(prediction)):
+            predictedValue = prediction[x]
             trueValue = true_future[x][0]
-
-            trueFutureData.append(trueValue)
-            predictionData.append(predictedValue)
 
             if predictedValue > trueValue:
                 difference = predictedValue - trueValue
@@ -142,7 +132,7 @@ def getAccuracy():
     series = read_csv(validationLocation, header=None)
     # seasonal difference
     validationData = series.values
-    accuracyCalculator(dataArray, validationData)
+    accuracyCalculator(validationData, dataArray)
 
     print("Prediction Average : ", numpy.mean(accuracyArray))
     print(trueFutureData)

@@ -1,9 +1,9 @@
 <?php
 //Database Connection Details.
-$host = 'sql172.main-hosting.eu';
-$user = 'u499244451_agrodata';
-$password = 'u499244451_agrodata123';
-$database = 'u499244451_agrodata';
+$host = 'sql219.main-hosting.eu';
+$user = 'u178617662_agroData';
+$password = 'agroData';
+$database = 'u178617662_agroData';
 
 //Connect to the database using this query.
 $connectionLink = new PDO("mysql:host=$host;dbname=$database", $user, $password);
@@ -19,9 +19,21 @@ if($type=='rnn'){
 }else if($type=='ann'){
     $sql = "SELECT `avgTemp` as 'temp(c)' ,`avgPres` as 'pressure(mb)' ,`avgHumidity` as 'humidity()' , `cloudCover` as 'cloud cover()', `avgWindSpeed` as 'wind speed(mph)' ,`maxWindSpeed` as 'maxWindSpeed', `rainFall` as 'precip.(mm)' FROM `weatherdata` WHERE 1";
     $fileName = 'data1modify.csv';
-}else if($type=='arima'){
-    $sql = "SELECT `date` as 'date', `avgTemp` as 'temp' FROM `weatherdata` WHERE 1";
+}else if($type=='arima-model-temperature-dataset'){
+    $sql = "SELECT `date` as 'date', `avgTemp` as 'temp' FROM `weatherdata` WHERE `date`>'2005-01-01'";
     $fileName = 'daily-minimum-temperatures.csv';
+}else if($type=='arima-model-precipitation-dataset'){
+    $sql = "SELECT `date` as 'date', `rainFall` as 'rainFall' FROM `weatherdata` WHERE `date`>'2017-01-01'";
+    $fileName = 'daily-minimum-temperatures.csv';
+}else if($type=='ash-plantain'){
+    $sql = "SELECT `yearWithWeek`,`AshPlantain` FROM `marketprice` WHERE 1";
+    $fileName = 'daily-minimum-temperatures.csv';
+}else if($type=='time-Series'){
+    $sql = "SELECT `yearWithWeek`,`AshPlantain` FROM `marketprice` WHERE 1";
+    $fileName = 'daily-minimum-temperatures.csv';
+}else if($type=='sarima'){
+    $sql = "SELECT `date` as 'dt' , `avgTemp` as 'AverageTemperature' FROM `weatherdata` WHERE 1";
+    $fileName = 'SarimaModel.csv';
 }
 
 //Prepare our SQL query.
