@@ -12,7 +12,6 @@ declare var $: any;
 // tslint:disable-next-line:component-class-suffix
 export class SidebarComponentAdmin implements OnInit {
   showMenu = '';
-  showSubMenu = '';
   public sidebarnavItems: any[];
   // this is for the open close
   addExpandClass(element: any) {
@@ -22,14 +21,6 @@ export class SidebarComponentAdmin implements OnInit {
       this.showMenu = element;
     }
   }
-  addActiveClass(element: any) {
-    if (element === this.showSubMenu) {
-      this.showSubMenu = '0';
-    } else {
-      this.showSubMenu = element;
-    }
-  }
-
   constructor(
     private modalService: NgbModal,
     private router: Router,
