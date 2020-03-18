@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import { AuthenticationService } from '../authentication.service';
+import * as EmailValidator from 'email-validator';
 
 @Component({
   selector: 'app-signup',
@@ -45,6 +46,8 @@ export class SignupComponent {
   public streetEmpty;
   public cityEmpty;
   public numberEmpty;
+  public passwordError;
+  public emailError;
 
   goToPart1() {
     this.signUpPart1 = true;
@@ -54,13 +57,16 @@ export class SignupComponent {
   }
 
   goToPart2() {
-    console.log(this.name, this.lname, this.email, this.dob, this.nic, String(this.name).length);
+    console.log(this.name, this.lname, this.email, this.dob, this.nic, String(this.name).length, EmailValidator.validate(this.email));
+
     if (!this.validator(this.name)) {
         this.nameEmpty = true;
     } else if (!this.validator(this.lname)) {
         this.lnameEmpty = true;
-    } else if (!this.validator(this.email) && !this.emailValidator(this.email)) {
-        this.emailEmpty = true;
+    } else if (!this.validator(this.email)) {
+      this.emailEmpty = true;
+    } else if (!EmailValidator.validate(this.email)) {
+      this.emailError = true;
     } else if (!this.validator(this.dob)) {
         this.errormassage = 'Date of birth is required!';
         this.dobEmpty = true;
@@ -79,9 +85,11 @@ export class SignupComponent {
     if (!this.validator(this.uname)) {
       this.errormassage = 'User Name is required!';
       this.unameEmpty = true;
-    } else if (!this.validator(this.password) && !this.passwordValidator(this.password)) {
+    } else if (!this.validator(this.password)) {
       this.errormassage = 'Password is required!';
       this.passwordEmpty = true;
+    } else if (!this.passwordValidator(this.password)) {
+      this.passwordError = true;
     } else if (!this.validator(this.confirm)) {
       this.errormassage = 'Confirm your password is required!';
       this.confirmEmpty = true;
@@ -149,16 +157,19 @@ export class SignupComponent {
       if (this.email != /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i) {
         return false;
       }
+      return true;
     }
     passwordValidator(value: any) {
       if (String(this.password).length < 8) {
         return false;
       }
+      return true;
     }
     phonenoValidator(value: any) {
       // tslint:disable-next-line:triple-equals
       if (String(this.phoneno).length != 10 && String(this.telno).length != 10) {
         return false;
       }
+      return true;
     }
   }

@@ -41,7 +41,7 @@
                               <div class="col-12 ">
                                   <input class="form-control form-control-lg" [(ngModel)]="email" type="email" required=" " if="email" placeholder="Email">
                                   <div *ngIf="emailEmpty"><span>Email is required!</span></div>
-                                  <div *ngIf="emailEmpty"><span>Please include an '@' in the email address.</span></div>
+                                  <div *ngIf="emailError"><span>Please include an '@' in the email address.</span></div>
                               </div>
                           </div>
                           <div class="form-group text-center ">
@@ -63,7 +63,7 @@
                               <div class="col-12 ">
                                   <input class="form-control form-control-lg" [(ngModel)]="password" type="password" required=" " if="pass" placeholder="Password">
                                   <div *ngIf="passwordEmpty"><span>Password is required!</span></div>
-                                  <div *ngIf="passwordEmpty"><span>Please enter at least 8 characters</span></div>
+                                  <div *ngIf="passwordError"><span>Please enter at least 8 characters</span></div>
                               </div>
                           </div>
                           <div class="form-group row">
