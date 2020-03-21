@@ -2,10 +2,10 @@ const mysql = require('mysql');
 
 //creating connection configuration
 var mysqlConnection = mysql.createConnection({
-    host : 'sql172.main-hosting.eu',
-    user : 'u499244451_agrobackEnd',
+    host : 'sql219.main-hosting.eu',
+    user : 'u178617662_agrobackEnd',
     password : 'agrobackEnd',
-    database : 'u499244451_agrobackEnd',
+    database : 'u178617662_agrobackEnd',
    // multipleStatements: true
 });
 

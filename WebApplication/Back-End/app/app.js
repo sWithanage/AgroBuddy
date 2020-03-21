@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
 //const mysqlConnection = require("./connection");
-const PORT = 5000;
+const PORT = 8080;
 
 const users = require("./routes/user");
 const admins = require("./routes/admin");
