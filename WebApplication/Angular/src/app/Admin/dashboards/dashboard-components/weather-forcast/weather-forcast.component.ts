@@ -5,7 +5,8 @@ import * as c3 from 'c3';
 
 declare var require: any;
 
-export interface Chart {
+// tslint:disable-next-line:class-name
+export interface chartWeather {
   type: ChartType;
   data: Chartist.IChartistData;
   options?: any;
@@ -14,15 +15,16 @@ export interface Chart {
 }
 
 @Component({
-  selector: 'app-sales',
-  templateUrl: './sales.component.html',
-  styleUrls: ['./sales.component.scss']
+  // tslint:disable-next-line:component-selector
+  selector: 'weather-forcast',
+  templateUrl: './weather-forcast.component.html',
+  styleUrls: ['./weather-forcast.component.scss']
 })
-export class SalesComponent implements AfterViewInit {
+export class WeatherForcastComponent implements AfterViewInit {
   constructor() { }
 
   // Barchart
-  barChart: Chart = {
+  barChart: chartWeather = {
     type: 'Bar',
     data: {
       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
@@ -46,7 +48,7 @@ export class SalesComponent implements AfterViewInit {
   };
 
   // Line chart
-  lineChart: Chart = {
+  lineChart: chartWeather = {
     type: 'Line',
     data: {
       labels: ['1PM', '2PM', '3PM', '4PM', '5PM', '6PM'],
@@ -73,7 +75,7 @@ export class SalesComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const chart2 = c3.generate({
-      bindto: '#product-sales',
+      bindto: '#product-sales1',
       data: {
         columns: [
           ['Iphone', 5, 6, 3, 7, 9, 10, 14, 12, 11, 9, 8, 7, 10, 6, 12, 10, 8],
@@ -110,7 +112,7 @@ export class SalesComponent implements AfterViewInit {
       }
     });
 
-    const chartNewSasaCreated = c3.generate({
+    const chartNewSasaCreated2 = c3.generate({
       bindto: '#product-sales1',
       data: {
         columns: [

@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as shape from 'd3-shape';
 import * as d3 from 'd3';
 import { multi } from './data';
 import { colorSets } from '@swimlane/ngx-charts/release/utils/color-sets';
+import {AdminServiceService} from '../../../../admin-service.service';
+
+
 
 @Component({
   selector: 'app-visitors',
   templateUrl: './visitors.component.html',
   styleUrls: ['./visitors.component.scss']
 })
-export class VisitorsComponent {
-  multi: any[];
+export class VisitorsComponent implements OnInit {
+  model: any[];
   // options
   showXAxis = true;
   showYAxis = true;
@@ -37,14 +40,29 @@ export class VisitorsComponent {
   arcWidth = 0.25;
   rangeFillOpacity = 0;
 
+
+
   colorScheme = {
     domain: ['#2962FF', '#4fc3f7', '#a1aab2']
   };
   schemeType = 'ordinal';
 
-  constructor() {
-    Object.assign(this, {
-      multi
-    });
+
+    constructor(private connectionService: AdminServiceService) {
+    }
+
+  ngOnInit() {
+
   }
+
+  getSelectedModel() {
+    this.connectionService.getSelectedModel().subscribe(
+      data => {
+        this.model = data;
+      });
+  }
+  availability() {
+
+  }
+
 }

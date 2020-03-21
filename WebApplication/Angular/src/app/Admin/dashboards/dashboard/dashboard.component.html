@@ -6,20 +6,32 @@
 <!-- ============================================================== -->
 <!-- Sales Summery -->
 <!-- ============================================================== -->
-<app-product-info></app-product-info>
+<app-visitors></app-visitors>
 <!-- ============================================================== -->
 <!-- place order / Exchange -->
 <!-- ============================================================== -->
-<app-mix-stats></app-mix-stats>
+
+<div class="row">
+  <div class="col-sm-12 col-lg-4">
+    <app-mix-stats></app-mix-stats>
+  </div>
+  <div class="col-sm-12 col-lg-8">
+    <app-sales></app-sales>
+  </div>
+</div>
+
 <!-- ============================================================== -->
 <!-- project of the month -->
+
 <!-- ============================================================== -->
+
+
 <div class="row">
-    <div class="col-sm-12 col-lg-8">
-        <app-project></app-project>
+    <div class="col-sm-12 col-lg-6">
+        <rainfall-forcast></rainfall-forcast>
     </div>
-    <div class="col-sm-12 col-lg-4">
-        <app-weather></app-weather>
+    <div class="col-sm-12 col-lg-6">
+      <weather-forcast></weather-forcast>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -28,18 +40,19 @@
 <div class="row">
     <!-- column -->
     <div class="col-sm-12 col-lg-6">
-        <app-tasklist></app-tasklist>
+      <app-weather></app-weather>
     </div>
     <!-- column -->
     <div class="col-sm-12 col-lg-6">
-        <app-feeds></app-feeds>
+        <app-browser-stats></app-browser-stats>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-8">
-        <app-review></app-review>
+
     </div>
     <div class="col-lg-4">
-        <app-earnings></app-earnings>
+
     </div>
 </div>
+<app-user-details></app-user-details>

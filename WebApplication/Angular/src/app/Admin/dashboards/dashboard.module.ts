@@ -38,6 +38,8 @@ import {
   VisitorsComponent,
   VisitsBounceComponent,
   WeathercardComponent,
+  WeatherForcastComponent,
+  RaifallForcastComponent,
   WelcomeComponent
 } from './dashboard-components';
 
@@ -78,6 +80,8 @@ import {
     VisitorsComponent,
     VisitsBounceComponent,
     WeathercardComponent,
+    WeatherForcastComponent,
+    RaifallForcastComponent,
     WelcomeComponent
   ]
 })

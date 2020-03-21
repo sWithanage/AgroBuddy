@@ -24,4 +24,10 @@ export * from './user-profile/user-profile.component';
 export * from './visitors/visitors.component';
 export * from './visits-bounce/visits-bounce.component';
 export * from './weathercard/weathercard.component';
+export * from './weather-forcast/weather-forcast.component';
+export * from './rainfall-forcast/raifall-forcast.component';
 export * from './welcome/welcome.component';
+
+
+
+
