@@ -109,7 +109,7 @@ export class MixstatsComponent implements AfterViewInit {
     const chart = c3.generate({
       bindto: '#visitor',
       data: {
-        columns: [['Iphone', 60], ['Samsung', 12], ['One+', 28]],
+        columns: [['Brinjal', 60], ['Ash Plantain', 8], ['Ladies Fingers', 6], ['Cucumber', 2], ['Red Pumkin', 10]],
 
         type: 'donut'
       },

@@ -33,6 +33,9 @@ import {BreadcrumbComponentAdmin} from './Admin/shared/breadcrumb/breadcrumb.com
 import {SidebarComponentClient} from './Client/shared/sidebar/sidebar.component';
 import {BreadcrumbComponentClient} from './Client/shared/breadcrumb/breadcrumb.component';
 import {NavigationComponentClient} from './Client/shared/header-navigation/navigation.component';
+import { PlantDetailsComponent } from './Admin/plant-details/plant-details.component';
+import { UserManagementComponent } from './Admin/user-management/user-management.component';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -55,7 +58,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FullComponentAdmin,
     // SidebarComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PlantDetailsComponent,
+    UserManagementComponent,
+
   ],
   imports: [
     CommonModule,
