@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();    //router object for express
-const mysqlConnection = require("../weatherConnection");
+const mysqlConnection = require("../agroDataConnection");
 
 //get all weather details
 Router.get("/weather", (req, res) => {
