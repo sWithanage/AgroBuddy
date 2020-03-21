@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import { AuthenticationService } from '../authentication.service';
-import * as EmailValidator from 'email-validator';
+// tslint:disable-next-line:comment-format
+//import * as EmailValidator from 'email-validator';
 
 @Component({
   selector: 'app-signup',
@@ -57,7 +58,8 @@ export class SignupComponent {
   }
 
   goToPart2() {
-    console.log(this.name, this.lname, this.email, this.dob, this.nic, String(this.name).length, EmailValidator.validate(this.email));
+    // tslint:disable-next-line:comment-format
+    //console.log(this.name, this.lname, this.email, this.dob, this.nic, String(this.name).length, EmailValidator.validate(this.email));
 
     if (!this.validator(this.name)) {
         this.nameEmpty = true;
@@ -65,7 +67,7 @@ export class SignupComponent {
         this.lnameEmpty = true;
     } else if (!this.validator(this.email)) {
       this.emailEmpty = true;
-    } else if (!EmailValidator.validate(this.email)) {
+  //  } else if (!EmailValidator.validate(this.email)) {
       this.emailError = true;
     } else if (!this.validator(this.dob)) {
         this.errormassage = 'Date of birth is required!';

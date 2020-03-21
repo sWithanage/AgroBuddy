@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {PredictionModel} from './prediction-model.model';
-import { WeatherDtails } from './weathercard.model';
+import { WeatherDetails } from './weathercard.model';
 
 
 @Injectable({
@@ -16,8 +16,8 @@ export class AdminServiceService {
     return this.serviceHttp.get<PredictionModel[]>('http://localhost:8080/selectedModel');
   }
 
-  getVehicleList(): Observable<WeatherDtails[]> {
-    return this.serviceHttp.get<WeatherDtails[]>('http://localhost:8080/weatherData');
+  getVehicleList(): Observable<WeatherDetails[]> {
+    return this.serviceHttp.get<WeatherDetails[]>('http://localhost:8080/weatherData');
   }
 
 }

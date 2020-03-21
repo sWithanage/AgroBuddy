@@ -1,179 +1,111 @@
-import { Component, AfterViewInit } from '@angular/core';
-import * as c3 from 'c3';
+import {Component, AfterViewInit, OnInit} from '@angular/core';
+import { Chart } from 'chart.js';
+import { HttpClient } from '@angular/common/http';
+import {MarketPriceData} from '../../../../market-price-data.model';
 
 @Component({
   selector: 'app-mix-stats',
   templateUrl: './mix-stats.component.html'
 })
 export class MixstatsComponent implements AfterViewInit {
-  constructor() { }
+  marketPrice: MarketPriceData[];
+  url = 'http://localhost:58617/API/Charts/GetCharts';
+  Week = ['2011/01', '2011/02', '2011/03'];
+  AshPlantain = ['10', '20', '30'];
+  Brinjals = ['40', '50', '60'];
+  Cucumber = ['40', '50', '60'];
+  LadiesFingers = ['40', '50', '60'];
+  RedPumpkin = ['40', '50', '100'];
+  barchart = [];
+  constructor(private http: HttpClient) { }
 
-	// bar chart
-  public barChartData: Array<any> = [
-    { data: [1.1, 1.4, 1.1, 0.9, 1.9, 1, 0.3, 1.1, 1.4, 1.1, 0.9, 1.9, 1, 0.3, 1.1], label: 'Cost' }
-  ];
-  public barChartLabels: Array<any> = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15'
-  ];
-  public barChartOptions: any = {
-    maintainAspectRatio: false,
-    legend: {
-      display: false
-    },
-    tooltips: {
-      enabled: false
-    },
-    scales: {
-      xAxes: [{
-        display: false,
-        barPercentage: 0.3,
-        categoryPercentage: 0.7
-      }],
-      yAxes: [{
-        display: false
-      }]
-    }
-  };
-  public barChartColors: Array<any> = [
-    {
-      backgroundColor: 'rgba(255, 255, 255, 0.5)',
-      hoverBackgroundColor: 'rgba(255, 255, 255, 0.5)',
-      hoverBorderWidth: 2,
-      hoverBorderColor: 'rgba(255, 255, 255, 0.5)'
-    }
-  ];
-  public barChartLegend = false;
-  public barChartType = 'bar';
-
-
-  public lineChartData1: Array<any> = [
-    { data: [22, 20, 26, 25, 19, 12, 15, 18, 16, 20], label: 'Bounce %' }
-  ];
-  public lineChartLabels1: Array<any> = ['1', '5', '10', '3', '8', '2', '6', '7', '9', '4'];
-  public lineChartOptions1: any = {
-    maintainAspectRatio: false,
-    animation: {
-      easing: 'easeInOutQuad',
-      duration: 520
-    },
-    scales: {
-      xAxes: [{
-        display: false
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          min: 0,
-          max: 30,
-          stepSize: 10,
-          beginAtZero: true
-        }
-      }]
-    },
-    elements: {
-      line: {
-        tension: 0
-      }
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChartColors1: Array<any> = [
-    {
-      backgroundColor: 'transparent',
-      pointRadius: 2,
-      borderWidth: 2,
-      borderColor: '#fff',
-    }
-  ];
-  public lineChartLegend1 = false;
-  public lineChartType1 = 'line';
-
-  ngAfterViewInit() {
-
-    const chart = c3.generate({
-      bindto: '#visitor',
+  ngAfterViewInit () {
+    /*this.http.get(this.url).subscribe((result: MarketPriceData[]) => {
+      result.forEach(x => {
+        this.Week.push(x.Week);
+        this.AshPlantain.push(x.AshPlantain);
+        this.Brinjals.push(x.Brinjals);
+        this.Cucumber.push(x.Cucumber);
+        this.LadiesFingers.push(x.LadiesFingers);
+        this.RedPumpkin.push(x.RedPumpkin);
+      });
+      // tslint:disable-next-line:no-unused-expression
+      this;*/
+    // @ts-ignore
+    this.barchart = new Chart('canvas', {
+      type: 'bar',
       data: {
-        columns: [['Iphone', 60], ['Samsung', 12], ['One+', 28]],
-
-        type: 'donut'
-      },
-      donut: {
-        label: {
-          show: false
-        },
-        title: 'Sales',
-        width: 20
-      },
-
-      legend: {
-        hide: true
-        // or hide: 'data1'
-        // or hide: ['data1', 'data2']
-      },
-      color: {
-        pattern: ['#4798e8', '#01c0c8', '#f6f6f6']
-      }
-    });
-    // ==============================================================
-    // Sales income
-    // ==============================================================
-    const chart2 = c3.generate({
-      bindto: '#income',
-      data: {
-        columns: [
-          ['Growth Income', 250, 200, 100, 250, 300],
-          ['Net Income', 190, 100, 140, 200, 190]
-        ],
-        type: 'bar'
-      },
-      bar: {
-        space: 0.2,
-        // or
-        width: 15 // this makes bar width 100px
-      },
-      axis: {
-        y: {
-          tick: {
-            count: 4,
-
-            outer: false
+        labels: this.Week,
+        datasets: [
+          {
+            data: this.AshPlantain, label: 'Ash Plantain',
+            borderColor: '#b8e0b8',
+            backgroundColor: 'rgb(184, 224, 184)',
+            fill: true,
+            bar: {
+              space: 0.2,
+              // or
+              width: 20 // this makes bar width 100px
+            },
+          },
+          {
+            data: this.Brinjals, label: 'Brinjal',
+            borderColor: '#6b2e6b',
+            backgroundColor: 'rgb(204, 168, 240)',
+            fill: true,
+            bar: {
+              space: 50,
+              // or
+              width: 50 // this makes bar width 100px
+            },
+          },
+          {
+            data: this.Cucumber, label: 'Cucumber',
+            borderColor: '#c9f76e',
+            backgroundColor: 'rgb(201, 247, 110)',
+            fill: true,
+            bar: {
+              space: 0.2,
+              // or
+              width: 20 // this makes bar width 100px
+            },
+          },
+          {
+            data: this.LadiesFingers, label: 'Ladies-Fingers',
+            borderColor: '#2dd22d',
+            backgroundColor: 'rgb(45, 210, 45)',
+            fill: true,
+            bar: {
+              space: 0.2,
+              // or
+              width: 20 // this makes bar width 100px
+            },
+          },
+          {
+            data: this.RedPumpkin, label: 'Red-Pumpkin',
+            borderColor: '#ec9513',
+            backgroundColor: 'rgb(236, 149, 19)',
+            fill: true,
+            bar: {
+              space: 0.2,
+              // or
+              width: 20 // this makes bar width 100px
+            },
           }
-        }
+        ]
       },
-      legend: {
-        hide: true
-        // or hide: 'data1'
-        // or hide: ['data1', 'data2']
-      },
-      grid: {
-        x: {
-          show: false
+      options: {
+        legend: {
+          display: false
         },
-        y: {
-          show: true
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }],
         }
-      },
-      size: {
-        height: 300
-      },
-      color: {
-        pattern: ['#4798e8', '#01c0c8']
       }
     });
   }

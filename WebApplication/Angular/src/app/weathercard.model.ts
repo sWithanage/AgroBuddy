@@ -1,4 +1,4 @@
-export class WeatherDtails {
+export class WeatherDetails {
   date: String;
   temp: string;
   wind_speed: string;
