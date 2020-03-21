@@ -10,7 +10,7 @@ const users = require("./routes/user");
 const admins = require("./routes/admin");
 const crops = require("./routes/crop");
 const diseases = require("./routes/disease");
-const weather = require("./routes/weather");
+const predictions = require("./routes/prediction");
 
 
 const app = express();
@@ -19,7 +19,7 @@ app.use(users);
 app.use(admins);
 app.use(crops);
 app.use(diseases);
-app.use(weather);
+app.use(predictions);
 
 
 
