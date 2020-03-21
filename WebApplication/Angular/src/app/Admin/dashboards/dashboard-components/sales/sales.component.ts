@@ -76,8 +76,11 @@ export class SalesComponent implements AfterViewInit {
       bindto: '#product-sales',
       data: {
         columns: [
-          ['Iphone', 5, 6, 3, 7, 9, 10, 14, 12, 11, 9, 8, 7, 10, 6, 12, 10, 8],
-          ['Ipad', 1, 2, 8, 3, 4, 5, 7, 6, 5, 6, 4, 3, 3, 12, 5, 6, 3]
+          ['Brinjal', 5, 6, 3, 7, 9, 10, 14, 12, 11, 9, 8, 7, 10, 6, 12, 10, 8],
+          ['Ash Plantain', 1, 2, 8, 3, 4, 5, 7, 6, 5, 6, 4, 3, 3, 12, 5, 6, 3],
+          ['Red Pumkin', 3, 7, 2, 4, 1, 7, 9 ],
+          ['Cucumber' , 4, 2, 5, 1, 1, 2, 4, 3, 5, 6, 2, 8],
+          ['Ladies Fingers' , 5, 3, 2, 4, 2, 2, 2, 5, 6, 2, 3, 1]
         ],
         type: 'spline'
       },

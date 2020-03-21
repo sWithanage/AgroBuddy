@@ -51,8 +51,8 @@ export class RaifallForcastComponent implements AfterViewInit {
   lineChart: chartRainfall = {
     type: 'Line',
     data: {
-      labels: ['1PM', '2PM', '3PM', '4PM', '5PM', '6PM'],
-      series: [[2, 0, 5, 2, 5, 2]]
+      labels: ['Jan1', 'Jan2', 'Jan3', 'jan4', 'Feb1', 'Feb3', 'Feb4', 'Mar1', 'Mar2'],
+      series: [[2, 0, 5, 2, 5, 2, 3, 1, 6]]
     },
     options: {
       showArea: true,
