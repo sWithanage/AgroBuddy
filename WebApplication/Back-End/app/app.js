@@ -11,6 +11,7 @@ const admins = require("./routes/admin");
 const crops = require("./routes/crop");
 const diseases = require("./routes/disease");
 const predictions = require("./routes/prediction");
+const accuracy = require("./routes/accuracy");
 
 
 const app = express();
@@ -20,7 +21,7 @@ app.use(admins);
 app.use(crops);
 app.use(diseases);
 app.use(predictions);
-
+app.use(accuracy);
 
 
 //starting the server
