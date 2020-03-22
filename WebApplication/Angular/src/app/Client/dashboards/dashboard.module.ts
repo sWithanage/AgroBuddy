@@ -16,27 +16,11 @@ import { DashboardRoutes } from './dashboard.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import {
-  InfocardComponent,
-  ChatComponent,
-  CommentComponent,
-  TopsellComponent,
-  ActivityComponent,
-  BrowserStatsComponent,
-  DeviceVisitsComponent,
-  EarningsComponent,
-  FeedsComponent,
-  InfoBoxComponent,
-  MixstatsComponent,
-  ProductInfoComponent,
-  ProjectComponent,
-  ReviewComponent,
-  SalesComponent,
-  SalesIncomeComponent,
-  TasklistComponent,
+  AreaChartComponent,
+  PriceVariationComponent,
   UserProfileComponent,
   UserDetailsComponent,
-  VisitorsComponent,
-  VisitsBounceComponent,
+  VegMenuComponent,
   WeathercardComponent,
   WelcomeComponent
 } from './dashboard-components';
@@ -56,29 +40,13 @@ import {
   ],
   declarations: [
     DashboardComponent,
-    InfocardComponent,
-    ChatComponent,
-    CommentComponent,
-    TopsellComponent,
-    ActivityComponent,
-    BrowserStatsComponent,
-    DeviceVisitsComponent,
-    EarningsComponent,
-    FeedsComponent,
-    InfoBoxComponent,
-    MixstatsComponent,
-    ProductInfoComponent,
-    ProjectComponent,
-    ReviewComponent,
-    SalesComponent,
-    SalesIncomeComponent,
-    TasklistComponent,
     UserProfileComponent,
     UserDetailsComponent,
-    VisitorsComponent,
-    VisitsBounceComponent,
     WeathercardComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PriceVariationComponent,
+    AreaChartComponent,
+    VegMenuComponent
   ]
 })
 export class DashboardModule {}
