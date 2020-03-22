@@ -33,8 +33,11 @@ import {BreadcrumbComponentAdmin} from './Admin/shared/breadcrumb/breadcrumb.com
 import {SidebarComponentClient} from './Client/shared/sidebar/sidebar.component';
 import {BreadcrumbComponentClient} from './Client/shared/breadcrumb/breadcrumb.component';
 import {NavigationComponentClient} from './Client/shared/header-navigation/navigation.component';
-import { PlantDetailsComponent } from './Admin/plant-details/plant-details.component';
+
 import { UserManagementComponent } from './Admin/user-management/user-management.component';
+import {AllPlantsComponent} from './Admin/all-plants/all-plants.component';
+import {PlantDetailsComponent} from './Admin/plant-details/plant-details.component';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -43,6 +46,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true,
   minScrollbarLength: 20
 };
+const routes: Routes = [ {
+  path: 'example-params/:first/:second',
+  component: PlantDetailsComponent,
+} ]
 
 @NgModule({
   declarations: [
@@ -59,8 +66,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // SidebarComponent,
     LoginComponent,
     SignupComponent,
-    PlantDetailsComponent,
     UserManagementComponent,
+    AllPlantsComponent,
+    PlantDetailsComponent,
 
   ],
   imports: [
@@ -74,7 +82,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RouterModule.forRoot(Approutes, { useHash: false }),
     PerfectScrollbarModule,
     NgMultiSelectDropDownModule.forRoot(),
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBUb3jDWJQ28vDJhuQZxkC0NXr_zycm8D0' })
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBUb3jDWJQ28vDJhuQZxkC0NXr_zycm8D0' }),
+    RouterModule.forRoot( routes ),
   ],
   providers: [
     {

@@ -4,6 +4,10 @@ import { FullComponentAdmin } from './Admin/layouts/full/full.component';
 import { FullComponentClient } from './Client/layouts/full/full.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
+import { BlankComponent } from './Admin/layouts/blank/blank.component';
+import {AllPlantsComponent} from './Admin/all-plants/all-plants.component';
+import {PlantDetailsComponent} from './Admin/plant-details/plant-details.component';
+
 
 export const Approutes: Routes = [
   {
@@ -14,7 +18,15 @@ export const Approutes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./Admin/dashboards/dashboard.module').then(m => m.DashboardModule)
-        }
+      },
+       {
+         path: 'plant',
+         component: AllPlantsComponent
+       },
+      {
+        path: 'details',
+        component: PlantDetailsComponent
+      }
     ]
   },
   {
