@@ -12,13 +12,13 @@ export class AuthenticationService {
   private Customer: any[];
 
   private url = 'http://localhost:8080/';
-  addcustomer(value: any) {
-    return this.serviceHttp.post<any> ('http://localhost:8080/auth', value);
+  users(value: any) {
+    console.log(value);
+    return this.serviceHttp.post<boolean> ('http://localhost:8080/users', value);
   }
   addcustomerLogin(value: any) {
     console.log(value);
-    return this.serviceHttp.post<boolean>('http://localhost:8080/auth', value);
-    // return this.serviceHttp.get<any>( 'http://localhost:8080/authentication', value);
+    return this.serviceHttp.post<boolean>('http://localhost:8080/authentication', value);
   }
 }
 

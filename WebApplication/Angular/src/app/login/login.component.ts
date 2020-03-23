@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {AuthenticationService} from '../authentication.service';
+import {Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -38,16 +41,15 @@ export class LoginComponent {
 
   onSubmit(value: any) {
     console.log(value);
-    this.connectionService.addcustomer(value);
     // tslint:disable-next-line:max-line-length
-    this.connectionService.addcustomer(value).subscribe(data => this.authenticateUser(data, value), error => alert('There is a error in login. please try again later.'));
+    this.connectionService.addcustomerLogin(value).subscribe(data => this.authenticateUser(data, value), error => alert('There is a error in login. please try again later.'));
   }
 
   authenticateUser(authenticated: boolean, value: any) {
     if (authenticated) {
-      console.log('Authenticated the user. its working.');
+      console.log('Successfully Log In!.....');
     } else {
-
+    console.log('Invalid password!..Try again');
     }
   }
 }

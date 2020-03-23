@@ -23,9 +23,14 @@ router.use((cli, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept")
   next()
 })
-
-router.post('/auth', function (req, res) {
-  console.log("Methantaa enawa")
+//post login details
+router.post('/authentication', function (req, res) {
+  console.log(req.body.name)
+  res.send(true)
+})
+//post sign up details
+router.post('/users', function (req, res) {
+  console.log(req.body.name)
   res.send(true)
 })
 
@@ -108,19 +113,18 @@ router.post('/sasa', function (req, res) {
 //   )
 // });
 
-router.post("/users", function(req, res) {
-  var user = req.body;
-  mysqlConnection.query("INSERT INTO user SET ?", user, function(err, rows) {
-    if (err) {
-      console.error(err);
-      return res.send(err);
-    } else {
-      res.send(rows);
-      return res.send("user details added successfully!");
-    }
-  });
-});
-
+// router.post("/users", function(req, res) {
+//   var user = req.body;
+//   mysqlConnection.query("INSERT INTO user SET ?", user, function(err, rows) {
+//     if (err) {
+//       console.error(err);
+//       return res.send(err);
+//     } else {
+//       res.send(rows);
+//       return res.send("user details added successfully!");
+//     }
+//   });
+// });
 // update user details
 // router.post("/user/update", (req, res) => {
 //   const userId = req.body.id;

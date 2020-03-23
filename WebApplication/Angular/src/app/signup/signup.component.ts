@@ -125,11 +125,11 @@ export class SignupComponent {
     }
   }
 
-  sendCustomerDetails(value: any) {
-    this.connectionService.addcustomer(value).subscribe(data => {
-      this.Customer = data;
-    });
-  }
+  // sendCustomerDetails(value: any) {
+  //   this.connectionService.addcustomer(value).subscribe(data => {
+  //     this.Customer = data;
+  //   });
+  // }
   onSubmit(value: any) {
     console.log(this.phoneno, this.telno);
     // tslint:disable-next-line:triple-equals
@@ -137,9 +137,10 @@ export class SignupComponent {
       this.errormassage = 'You should enter telephone number or phone number!';
       this.numberEmpty = true;
     } else {
-      this.connectionService.addcustomer(value).subscribe(
-        data => console.log(data)
-      );
+
+      this.connectionService.users(value).subscribe(
+        data => console.log(data), error => alert('There is a error in login. please try again later.'
+        ));
     }
   }
 
@@ -174,4 +175,16 @@ export class SignupComponent {
       }
       return true;
     }
+
+  onSubmitForm(value: any) {
+    this.connectionService.users(value).subscribe(data => this.signupProcess(data, value), error => alert('Problem in login. Please check and try agiain..'));
   }
+
+  signupProcess(authenticated: boolean, value: any) {
+    if (authenticated) {
+      console.log('Successfully Sign In...!');
+    } else {
+      console.log('Invalid password!..Try again');
+    }
+  }
+}
