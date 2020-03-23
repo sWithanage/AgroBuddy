@@ -30,33 +30,24 @@ export class LoginComponent {
     }
     return true;
   }
-  sendCustomerLoginDetails(value: any) {
-    // tslint:disable-next-line:max-line-length
-   this.connectionService.addcustomerLogin(value).subscribe(data => this.authenticateUser(value), error => alert('There is a error in login. please try again later.'));
 
-  }
-  authenticateUser(value: any) {
-
-  }
-  // submit(value: any) {
-  //   if (!this.validator(this.username)) {
-  //     this.unameEmpty = true;
-  //   } else if (!this.validator(this.password)) {
-  //     this.passwordEmpty = true;
-  //   } else {
-  //     console.log(this.username, this.password);
-  //     this.connectionService.addcustomerLogin(value).subscribe(
-  //       data => console.log(data)
-  //     );
-  //   }
-  // }
   showRecoverForm() {
     this.loginform = !this.loginform;
     this.recoverform = !this.recoverform;
   }
 
   onSubmit(value: any) {
+    console.log(value);
     this.connectionService.addcustomer(value);
-      // .subscribe(data => this.connectionService(data,value), error => alert('There is a error in login. please try again later.'));
+    // tslint:disable-next-line:max-line-length
+    this.connectionService.addcustomer(value).subscribe(data => this.authenticateUser(data, value), error => alert('There is a error in login. please try again later.'));
+  }
+
+  authenticateUser(authenticated: boolean, value: any) {
+    if (authenticated) {
+      console.log('Authenticated the user. its working.');
+    } else {
+
+    }
   }
 }
