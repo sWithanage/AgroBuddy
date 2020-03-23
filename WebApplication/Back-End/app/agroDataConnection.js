@@ -13,6 +13,7 @@ var connection = mysql.createConnection({
 connection.connect((err) => {
     if(err){
         console.log('Database connection failed \n Error : ' + JSON.stringify(err, undefined, 2));
+        //setTimeout(connection, 2000);
         throw err;
     }
     else{
