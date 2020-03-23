@@ -1,8 +1,23 @@
 const express = require("express");
 // router object for express
-const router = express.Router();
+const router = express();
 // get database connection
 const mysqlConnection = require("../connection");
+
+
+// For POST-Support
+let bodyParser = require('body-parser');
+let multer = require('multer');
+let upload = multer();
+
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true }));
+
+router.post('/authentication', upload.array(), (request, response) => {
+  let name = request.body.username;
+  console.log('Result : '+name);
+  response.send('Result : '+name);
+});
 
 // get all users details
 router.get("/users", (req, res) => {
@@ -44,6 +59,12 @@ router.delete("/users/:id", (req, res) => {
     }
   );
 });
+
+// POST method route
+router.post('/sasa', function (req, res) {
+
+  console.log(req.body.name)
+})
 
 
 // insert an user details
@@ -91,26 +112,26 @@ router.post("/users", function(req, res) {
 });
 
 // update user details
-router.post("/user/update", (req, res) => {
-  const userId = req.body.id;
-  let sql =
-    "update user SET name='" +
-    req.body.name +
-    "',  email='" +
-    req.body.email +
-    "',  phone_no='" +
-    req.body.phone_no +
-    "' where id =" +
-    userId;
-  let query = mysqlConnection.query(sql, (err, rows) => {
-    if (!err) {
-      res.send("user details update successfully");
-    } else {
-      console.error(err);
-      return res.send(err);
-    }
-  });
-});
+// router.post("/user/update", (req, res) => {
+//   const userId = req.body.id;
+//   let sql =
+//     "update user SET name='" +
+//     req.body.name +
+//     "',  email='" +
+//     req.body.email +
+//     "',  phone_no='" +
+//     req.body.phone_no +
+//     "' where id =" +
+//     userId;
+//   let query = mysqlConnection.query(sql, (err, rows) => {
+//     if (!err) {
+//       res.send("user details update successfully");
+//     } else {
+//       console.error(err);
+//       return res.send(err);
+//     }
+//   });
+// });
 
 
 module.exports = router;

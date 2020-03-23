@@ -23,7 +23,6 @@ app.use(diseases);
 app.use(predictions);
 app.use(accuracy);
 
-
 //starting the server
 app.listen(PORT , () => {
     console.log("App has started on Port: "+PORT)
