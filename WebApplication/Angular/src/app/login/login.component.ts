@@ -8,7 +8,8 @@ import {AuthenticationService} from '../authentication.service';
 })
 export class LoginComponent {
   Customer: any[];
-  constructor(private connectionService: AuthenticationService) { }
+  constructor(
+    private connectionService: AuthenticationService) { }
 
   loginform = true;
   recoverform = false;
@@ -30,25 +31,32 @@ export class LoginComponent {
     return true;
   }
   sendCustomerLoginDetails(value: any) {
-    this.connectionService.addcustomer(value).subscribe(data => {
-      this.Customer = data;
-    });
+    // tslint:disable-next-line:max-line-length
+   this.connectionService.addcustomerLogin(value).subscribe(data => this.authenticateUser(value), error => alert('There is a error in login. please try again later.'));
+
   }
-  submit(value: any) {
-    if (!this.validator(this.username)) {
-      this.unameEmpty = true;
-    } else if (!this.validator(this.password)) {
-      this.passwordEmpty = true;
-    } else {
-      console.log(this.username, this.password);
-      this.connectionService.addcustomerLogin(value).subscribe(
-        data => console.log(data)
-      );
-    }
+  authenticateUser(value: any) {
+
   }
+  // submit(value: any) {
+  //   if (!this.validator(this.username)) {
+  //     this.unameEmpty = true;
+  //   } else if (!this.validator(this.password)) {
+  //     this.passwordEmpty = true;
+  //   } else {
+  //     console.log(this.username, this.password);
+  //     this.connectionService.addcustomerLogin(value).subscribe(
+  //       data => console.log(data)
+  //     );
+  //   }
+  // }
   showRecoverForm() {
     this.loginform = !this.loginform;
     this.recoverform = !this.recoverform;
   }
 
+  onSubmit(value: any) {
+    this.connectionService.addcustomer(value);
+      // .subscribe(data => this.connectionService(data,value), error => alert('There is a error in login. please try again later.'));
+  }
 }

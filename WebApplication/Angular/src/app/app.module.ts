@@ -49,7 +49,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 const routes: Routes = [ {
   path: 'example-params/:first/:second',
   component: PlantDetailsComponent,
-} ]
+} ];
 
 @NgModule({
   declarations: [
