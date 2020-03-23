@@ -13,14 +13,24 @@ let upload = multer();
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.post('/authentication', upload.array(), (request, response) => {
-  let name = request.body.username;
-  console.log('Result : '+name);
-  response.send('Result : '+name);
-});
+router.use((cli, res, next) => {
+  res.setHeader('Allow', "*")
+  res.setHeader('Connection', "keep-alive")
+  res.setHeader("Date", Date())
+  res.setHeader("Content-Type", "application/json; charset=utf-8")
+  res.setHeader('Access-Control-Allow-Origin', "*")
+  res.setHeader('Allow-Control-Allow-Methods', "*")
+  res.setHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept")
+  next()
+})
+
+router.post('/auth', function (req, res) {
+  console.log("Methantaa enawa")
+  res.send(true)
+})
 
 // get all users details
-router.get("/users", (req, res) => {
+router.get("/users",  async function (req, res) {
   mysqlConnection.query("SELECT * FROM user", (err, rows, fields) => {
     if (!err) {
       res.send(rows);
