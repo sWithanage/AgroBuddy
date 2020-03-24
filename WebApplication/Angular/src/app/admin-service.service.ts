@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {PredictionModel} from './prediction-model.model';
 import { WeatherDetails } from './weathercard.model';
@@ -22,7 +23,7 @@ export class AdminServiceService {
     return this.serviceHttp.get<WeatherDetails[]>('http://localhost:8080/weatherData');
   }
   getUserList(): Observable<ClientDetails[]> {
-    return this.serviceHttp.get<ClientDetails[]>('http://localhost:8080/users');
+    return this.serviceHttp.get<ClientDetails[]>('http://localhost:8080/usersDetails');
   }
 
 }

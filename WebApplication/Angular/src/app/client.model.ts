@@ -1,7 +1,14 @@
-export class ClientDetails {
-    userId: string;
-    fName: string;
-    username: string;
-    password: any;
+export interface ClientDetails {
+  user_Id: number;
+  user_Type: string;
+  user_Fname: string;
+  user_Lname: string;
+  user_Email: string;
+  user_NIc: string;
+  user_AddressNo: number;
+  user_Street1: string;
+  user_Street2: string;
+  user_City: string;
+  user_PhoneNo: string;
 
 }

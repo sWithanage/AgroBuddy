@@ -40,7 +40,8 @@ import {
   WeathercardComponent,
   WeatherForcastComponent,
   RaifallForcastComponent,
-  WelcomeComponent
+  WelcomeComponent,
+
 } from './dashboard-components';
 
 @NgModule({

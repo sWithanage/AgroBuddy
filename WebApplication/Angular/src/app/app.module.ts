@@ -40,6 +40,7 @@ import {PlantDetailsComponent} from './Admin/plant-details/plant-details.compone
 
 
 
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelSpeed: 1,
