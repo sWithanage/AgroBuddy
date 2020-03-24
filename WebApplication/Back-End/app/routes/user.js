@@ -45,6 +45,8 @@ router.get("/usersDetails",  async function (req, res) {
   });
 });
 
+
+
 // get selected user details
 router.get("/users/:id", (req, res) => {
   mysqlConnection.query(

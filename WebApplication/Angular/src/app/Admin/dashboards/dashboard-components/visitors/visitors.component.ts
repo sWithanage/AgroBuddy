@@ -55,12 +55,12 @@ export class VisitorsComponent implements OnInit {
 
   }
 
-  getSelectedModel() {
-    this.connectionService.getSelectedModel().subscribe(
-      data => {
-        this.model = data;
-      });
-  }
+  // getSelectedModel() {
+  //   this.connectionService.getSelectedModel().subscribe(
+  //     data => {
+  //       this.model = data;
+  //     });
+  // }
   availability() {
 
   }
