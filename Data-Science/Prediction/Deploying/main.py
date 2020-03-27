@@ -1,29 +1,53 @@
-from flask import Flask
+from flask import Flask, request
 
 # ML Packages
 from Models.ARIMA import ARIMA
+from Models.ARMA import ARMA
+from Models.RNN import MultivaratePrediction as RNN
+from Models.SARIMA import SARIMA
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/accuracy")
 def routeHomePage():
-    return "Hello this is AgroBuddy model training section."
+    dataType = request.args.get('type', default='', type=str)
+    model = request.args.get('model', default='', type=str)
+
+    # ======================================== ARIMA Model =====================================================
+
+    if model == "arima" and dataType == "temp":
+        return ARIMA.getAccuracy("Temperature", "arima-model-temperature-dataset")
+
+    elif model == "arima" and dataType == "rainfall":
+        return ARIMA.getAccuracy("Precipitation", "arima-model-precipitation-dataset")
+
+    elif model == "arima" and dataType == "market":
+        return ARIMA.getAccuracy("Market", "ash-plantain", 2, False, 30)
+
+    # ======================================== ARMA Model =====================================================
+
+    elif model == "arma" and dataType == "temp":
+        return ARMA.getAccuracy("Temperature", "arima-model-temperature-dataset")
+
+    elif model == "arma" and dataType == "rain":
+        return ARMA.getAccuracy("Precipitation", "arima-model-precipitation-dataset")
+
+    elif model == "arma" and dataType == "market":
+        return ARMA.getAccuracy("Market", "ash-plantain", 2, False, 30)
+
+    return "Entered parameters " \
+           "are not correct. Please check them and try again."
 
 
-@app.route("/accuracy/arima/temp")
-def getArimaTempPredictionAccuracy():
-    return ARIMA.getAccuracy("Temperature", "arima-model-temperature-dataset")
+@app.route("/multi")
+def getMulti():
+    return RNN.getAccuracy()
 
 
-@app.route("/accuracy/arima/rain")
-def getArimaPrecipitationPredictionAccuracy():
-    return ARIMA.getAccuracy("Precipitation", "arima-model-precipitation-dataset")
-
-
-@app.route("/accuracy/arima/market")
-def getArimaMarketPredictionAccuracy():
-    return ARIMA.getAccuracy("Market", "ash-plantain", 2, False, 30)
+@app.route("/sarima")
+def getSarimaValue():
+    return SARIMA.getAccuracy()
 
 
 @app.errorhandler(404)
