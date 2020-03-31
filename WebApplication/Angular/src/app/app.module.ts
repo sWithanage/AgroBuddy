@@ -38,7 +38,7 @@ import { UserManagementComponent } from './Admin/user-management/user-management
 import {AllPlantsComponent} from './Admin/all-plants/all-plants.component';
 import {PlantDetailsComponent} from './Admin/plant-details/plant-details.component';
 
-
+import { ClientServiceService } from './client-service.service';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -87,6 +87,7 @@ const routes: Routes = [ {
     RouterModule.forRoot( routes ),
   ],
   providers: [
+    ClientServiceService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

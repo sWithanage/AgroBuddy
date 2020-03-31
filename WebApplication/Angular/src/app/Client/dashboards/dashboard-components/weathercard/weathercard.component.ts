@@ -1,12 +1,24 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WeatherDetails} from '../../../../weathercard.model';
+import { ClientServiceService } from 'src/app/client-service.service';
 
 @Component({
   selector: 'app-weather',
   templateUrl: './weathercard.component.html'
 })
-export class WeathercardComponent {
+export class WeathercardComponent implements OnInit{
+
   weather: WeatherDetails;
-  constructor() {}
+
+  public currentWeather = [];
+
+  constructor(private _weatherServiceService: ClientServiceService){ }   //local variable _weatherService, gives an instance of ClientServiceService
+
   today: number = Date.now();
+
+  ngOnInit(){
+    //using the service instance and fetching the weather data
+    this._weatherServiceService.getCurrentWeather()
+      .subscribe(data => this.currentWeather = data);   //assigns the data recieved from the observable into local currentweathr property
+  }
 }
