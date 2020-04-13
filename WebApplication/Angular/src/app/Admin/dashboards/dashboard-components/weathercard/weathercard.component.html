@@ -9,28 +9,36 @@
                 </span>
             </div>
             <div class="m-l-10">
-                <h3 class="m-b-0">{{today | date:'EEEE'}}</h3>
-                <small>Ahmedabad, Sri Lanka</small>
+                <h3 class="m-b-0">{{today | date:'fullDate'}}</h3>
+                <small>Monaragala, Sri Lanka</small>
             </div>
         </div>
         <table class="table no-border mini-table m-t-20">
-            <tbody>
+            <tbody *ngFor = "let cw of currentWeather">
                 <tr>
-                    <td class="text-muted">Wind</td>
-                    <td class="font-medium">ESE 17 mph</td>
+                    <td class="text-muted">Temperature</td>
+                    <td class="font-medium">{{cw.temp}}°</td>
+                  </tr>
+                <tr>
+                    <td class="text-muted">Wind-Speed</td>
+                    <td class="font-medium">{{cw.wind_speed}} km/h</td>
                 </tr>
                 <tr>
                     <td class="text-muted">Humidity</td>
-                    <td class="font-medium">83%</td>
+                    <td class="font-medium">{{cw.humidity}}%</td>
                 </tr>
                 <tr>
                     <td class="text-muted">Pressure</td>
-                    <td class="font-medium">28.56 in</td>
+                    <td class="font-medium">{{cw.pressure}}</td>
                 </tr>
                 <tr>
                     <td class="text-muted">Cloud Cover</td>
-                    <td class="font-medium">78%</td>
+                    <td class="font-medium">{{cw.clouds_all}}%</td>
                 </tr>
+                <tr>
+                    <td class="text-muted">Description</td>
+                    <td class="font-medium">{{cw.weather_description}}</td>
+                  </tr>
             </tbody>
         </table>
         <ul class="row list-style-none text-center m-t-30">
