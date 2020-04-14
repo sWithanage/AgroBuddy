@@ -1,31 +1,33 @@
 const express = require("express");
-const axios = require("axios");
+// get database connection
+const mysqlConnection = require("../connection");
+// router object for express
+const router = express.Router();
 
-const Router = express.Router();
-
-//get all weather details
-Router.get("/arima_accuracy", async (req, res) => {
-  try {
-    const arimaTempAccuracy = await axios.get(
-      "https://agrobuddy-prediction.appspot.com/accuracy?model=arima&type=temp"
-    );
-    const arimaRaiFallAccuracy = await axios.get(
-      "https://agrobuddy-prediction.appspot.com/accuracy?model=arima&type=rainfall"
-    );
-    const arimaMarketPriceAccuracy = await axios.get(
-      "https://agrobuddy-prediction.appspot.com/accuracy?model=arima&type=market"
-    );
-
-    res.send({
-      arima: {
-        temp: arimaTempAccuracy.data,
-        rain: arimaRaiFallAccuracy.data,
-        market: arimaMarketPriceAccuracy.data
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
+// get all users details
+router.get("/accuracy", (req, res) => {
+  mysqlConnection.query("SELECT * FROM accuracy", (err, rows) => {
+    if (!err) {
+      res.send(rows);
+    } else {
+      console.log(err);
+    }
+  });
 });
 
-module.exports = Router;
+// get selected variable accuracy
+router.get("/accuracy/:variables", (req, res) => {
+  mysqlConnection.query(
+    "SELECT * FROM accuracy WHERE variables=?",
+    [req.params.variables],
+    (err, rows) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+module.exports = router;

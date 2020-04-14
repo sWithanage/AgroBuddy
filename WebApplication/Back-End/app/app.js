@@ -28,9 +28,10 @@ app.use(accuracy);
 
 // schedule tasks to be run on the server
 cron.schedule("* 12 * * *", async (req, res) => {
-  // data retreive from api endpoints 3
+  // data retreive from api endpoints 
   // save those data into DB
   try {
+    // arima model accuracy
     const arimaTempAccuracy = await axios.get(
       "https://agrobuddy-prediction.appspot.com/accuracy?model=arima&type=temp"
     );
@@ -41,28 +42,66 @@ cron.schedule("* 12 * * *", async (req, res) => {
       "https://agrobuddy-prediction.appspot.com/accuracy?model=arima&type=market"
     );
 
+    // arma model accuracy
+    const armaTempAccuracy = await axios.get(
+      "https://agrobuddy-prediction.appspot.com/accuracy?model=arma&type=temp"
+    );
+    const armaRaiFallAccuracy = await axios.get(
+      "https://agrobuddy-prediction.appspot.com/accuracy?model=arma&type=rainfall"
+    );
+    const armaMarketPriceAccuracy = await axios.get(
+      "https://agrobuddy-prediction.appspot.com/accuracy?model=arma&type=market"
+    );
+
+    // sarima model accracy
+    const sarimaTempAccuracy = await axios.get(
+      "https://agrobuddy-prediction.appspot.com/accuracy?model=sarima&type=temp"
+    );
+    const sarimaRaiFallAccuracy = await axios.get(
+      "https://agrobuddy-prediction.appspot.com/accuracy?model=sarima&type=rainfall"
+    );
+    const sarimaMarketPriceAccuracy = await axios.get(
+      "https://agrobuddy-prediction.appspot.com/accuracy?model=sarima&type=market"
+    );
+
+    // update data accuracy table temperature row
     mysqlConnection.query(
-      "UPDATE marketprice_prediction SET model_accuracy = ? WHERE model_id = 1",
-      [arimaMarketPriceAccuracy.data],
+      "UPDATE accuracy SET ARIMA = ?, ARMA = ?, SARIMA=? WHERE variables = temperature",
+      [
+        arimaTempAccuracy.data,
+        armaTempAccuracy.data,
+        sarimaTempAccuracy.data
+      ],
       () => {}
     );
 
+    // update data accuracy table rainfall row
     mysqlConnection.query(
-      "UPDATE temperature_prediction SET model_accuracy = ? WHERE model_id = 1",
-      [arimaTempAccuracy.data],
+      "UPDATE accuracy SET ARIMA = ?, ARMA = ?, SARIMA=? WHERE variables = rainfall",
+      [
+        arimaRaiFallAccuracy.data,
+        armaRaiFallAccuracy.data,
+        sarimaRaiFallAccuracy.data
+      ],
       () => {}
     );
 
+    // update data accuracy table marketprice row
     mysqlConnection.query(
-      "UPDATE rainfall_prediction SET model_accuracy = ? WHERE model_id = 1",
-      [arimaRaiFallAccuracy.data],
+      "UPDATE accuracy SET ARIMA = ?, ARMA = ?, SARIMA=? WHERE variables = marketprice",
+      [
+        arimaMarketPriceAccuracy.data,
+        armaMarketPriceAccuracy.data,
+        sarimaMarketPriceAccuracy.data
+      ],
       () => {}
     );
+
     console.log("update accuracy");
   } catch (error) {
     console.log(error);
   }
-  console.log("running a task every minute");
+  console.log("running a task in every day 12pm");
 });
 
 //starting the server
