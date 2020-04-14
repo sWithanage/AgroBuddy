@@ -12,13 +12,13 @@ export class WeathercardComponent implements OnInit{
 
   public currentWeather = [];
 
-  constructor(private _weatherServiceService: ClientServiceService){ }   //local variable _weatherService, gives an instance of ClientServiceService
+  constructor(private _weatherService: ClientServiceService){ }   //local variable _weatherService, gives an instance of ClientServiceService
 
   today: number = Date.now();
 
   ngOnInit(){
     //using the service instance and fetching the weather data
-    this._weatherServiceService.getCurrentWeather()
+    this._weatherService.getCurrentWeather()
       .subscribe(data => this.currentWeather = data);   //assigns the data recieved from the observable into local currentweathr property
   }
 }

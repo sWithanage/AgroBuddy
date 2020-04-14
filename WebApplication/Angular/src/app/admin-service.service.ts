@@ -6,6 +6,7 @@ import {PredictionModel} from './prediction-model.model';
 import { WeatherDetails } from './weathercard.model';
 import {ClientDetails} from './client.model';
 import {CropDetails} from './crop.model';
+import { IcurrentWeather } from './currentWeather';
 
 
 @Injectable({
@@ -34,6 +35,11 @@ export class AdminServiceService {
   }
   getAllPlants(): Observable<CropDetails[]> {
     return this.serviceHttp.get<CropDetails[]>('http://localhost:8080/crops');
+  }
+
+  //method returning the current weather details
+  getCurrentWeather(): Observable<IcurrentWeather[]>{
+    return this.serviceHttp.get<IcurrentWeather[]>('http://localhost:8080/prediction/weather ');
   }
 
 }

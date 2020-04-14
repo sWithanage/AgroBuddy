@@ -39,7 +39,7 @@ import {AllPlantsComponent} from './Admin/all-plants/all-plants.component';
 import {PlantDetailsComponent} from './Admin/plant-details/plant-details.component';
 
 import { ClientServiceService } from './client-service.service';
-
+import { AdminServiceService } from './admin-service.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -88,6 +88,7 @@ const routes: Routes = [ {
   ],
   providers: [
     ClientServiceService,
+    AdminServiceService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

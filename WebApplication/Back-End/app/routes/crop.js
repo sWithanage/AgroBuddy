@@ -13,6 +13,7 @@ Router.get("/crops", (req, res) => {
         }
     })
 });
+
 //get a crop
 Router.get("/crops/:id", (req, res) => {
     mysqlConnection.query("SELECT * from crop WHERE crop_id=?", [req.params.id], (err, rows, fields) => {
