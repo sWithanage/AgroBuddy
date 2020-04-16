@@ -40,6 +40,8 @@ import {PlantDetailsComponent} from './Admin/plant-details/plant-details.compone
 
 import { ClientServiceService } from './client-service.service';
 import { AdminServiceService } from './admin-service.service';
+import { PlantsComponent } from './Client/plants/plants.component';
+import { ClientPlantDetailsComponent } from './Client/client-plant-details/client-plant-details.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -70,6 +72,8 @@ const routes: Routes = [ {
     UserManagementComponent,
     AllPlantsComponent,
     PlantDetailsComponent,
+    PlantsComponent,
+    ClientPlantDetailsComponent,
 
   ],
   imports: [
