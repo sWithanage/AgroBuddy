@@ -59,6 +59,20 @@ router.post("/authentication", function(req, res) {
   res.send(true);
 });
 
+//update user type
+router.post("/users/edit/type", async (req, res) => {
+  
+  mysqlConnection.query("Update user SET user_Type= ?",req.body.user_Id," where user_Id= ?",req.body.user_Type,
+   (err, rows) => {
+    if (!err) {
+      res.send(true);
+    } else {
+      console.error(err);
+      res.send(err);
+    }
+  });
+});
+
 // get all users details
 router.get("/usersDetails", (req, res) => {
   mysqlConnection.query("SELECT * FROM user", (err, rows, fields) => {
@@ -73,8 +87,7 @@ router.get("/usersDetails", (req, res) => {
 // get selected user details
 router.get("/users/:id", (req, res) => {
   mysqlConnection.query(
-    "SELECT * FROM user WHERE user_Id=?",
-    [req.params.id],
+    "SELECT * FROM user WHERE user_Id=?",[req.params.id],
     (err, rows, fields) => {
       if (!err) {
         res.send(rows);

@@ -8,7 +8,6 @@ import {CropDetails} from './crop.model';
   providedIn: 'root'
 })
 export class ClientServiceService {
-  private _url = 'http://localhost:8080/prediction/weather ';
 
   // to use http in this service class,
   // declaring http in the constructor
@@ -16,7 +15,7 @@ export class ClientServiceService {
 
   // method returning the current weather data
   getCurrentWeather(): Observable<IcurrentWeather[]> {
-    return this.http.get<IcurrentWeather[]>(this._url);
+    return this.http.get<IcurrentWeather[]>('http://localhost:8080/prediction/weather');
   }
   getPlantDetails(plantName: any): Observable<CropDetails[]> {
     return this.http.get<CropDetails[]>('http://localhost:8080/crops/' + plantName);
