@@ -11,6 +11,9 @@ import {ChangeModelComponent} from './Admin/ChangeModel/ChangeModel.component';
 import {PredictiveDetailsComponent} from './Admin/predictiveDetails/predictiveDetails.component';
 import {UserManagementComponent} from './Admin/user-management/user-management.component';
 import {CultivatedAreasComponent} from './Admin/cultivated-areas/cultivated-areas.component';
+import {PlantsComponent} from './Client/plants/plants.component';
+import {ClientPlantDetailsComponent} from './Client/client-plant-details/client-plant-details.component';
+import {CultivatedAreaComponent} from './Client/cultivated-area/cultivated-area.component';
 
 
 export const Approutes: Routes = [
@@ -60,7 +63,20 @@ export const Approutes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./Client/dashboards/dashboard.module').then(m => m.DashboardModule)
-        }
+      },
+      {
+        path: 'plants',
+        component: PlantsComponent
+
+      },
+      {
+        path: 'plantDetails',
+        component: ClientPlantDetailsComponent
+      },
+      {
+        path: 'cultivatedArea',
+        component: CultivatedAreaComponent
+      }
     ]
   },
 

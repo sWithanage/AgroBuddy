@@ -42,6 +42,9 @@ import { ClientServiceService } from './client-service.service';
 import { AdminServiceService } from './admin-service.service';
 import {CultivatedAreasComponent} from './Admin/cultivated-areas/cultivated-areas.component';
 import {ChartsModule} from 'ng2-charts';
+import {CultivatedAreaComponent} from './Client/cultivated-area/cultivated-area.component';
+import {PlantsComponent} from './Client/plants/plants.component';
+import {ClientPlantDetailsComponent} from './Client/client-plant-details/client-plant-details.component';
 
 
 
@@ -78,7 +81,9 @@ const routes: Routes = [ {
     PredictiveDetailsComponent,
     UserManagementComponent,
     CultivatedAreasComponent,
-
+    CultivatedAreaComponent,
+    PlantsComponent,
+    ClientPlantDetailsComponent,
 
   ],
   imports: [
