@@ -20,5 +20,8 @@ export class UserManagementComponent implements OnInit {
 
   update(userIdToChange: any, userTypeToChange: any) {
     console.log(userIdToChange + ' ' + userTypeToChange);
+    this.connectionService.updateUserType(userIdToChange, userTypeToChange).subscribe(
+      data => console.log(userIdToChange + ' ' + userTypeToChange)
+    );
   }
 }

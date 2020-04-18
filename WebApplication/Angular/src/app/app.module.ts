@@ -40,6 +40,9 @@ import {PredictiveDetailsComponent} from './Admin/predictiveDetails/predictiveDe
 import {UserManagementComponent} from './Admin/user-management/user-management.component';
 import { ClientServiceService } from './client-service.service';
 import { AdminServiceService } from './admin-service.service';
+import {CultivatedAreasComponent} from './Admin/cultivated-areas/cultivated-areas.component';
+import {ChartsModule} from 'ng2-charts';
+
 
 
 
@@ -74,6 +77,7 @@ const routes: Routes = [ {
     ChangeModelComponent,
     PredictiveDetailsComponent,
     UserManagementComponent,
+    CultivatedAreasComponent,
 
 
   ],
@@ -85,11 +89,12 @@ const routes: Routes = [ {
     HttpClientModule,
     NgbModule.forRoot(),
     SlimLoadingBarModule.forRoot(),
-    RouterModule.forRoot(Approutes, { useHash: false }),
+    RouterModule.forRoot(Approutes, {useHash: false}),
     PerfectScrollbarModule,
     NgMultiSelectDropDownModule.forRoot(),
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBUb3jDWJQ28vDJhuQZxkC0NXr_zycm8D0' }),
-    RouterModule.forRoot( routes ),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyBUb3jDWJQ28vDJhuQZxkC0NXr_zycm8D0'}),
+    RouterModule.forRoot(routes),
+    ChartsModule,
   ],
   providers: [
     ClientServiceService,

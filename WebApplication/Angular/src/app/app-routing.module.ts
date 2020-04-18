@@ -10,6 +10,7 @@ import {PlantDetailsComponent} from './Admin/plant-details/plant-details.compone
 import {ChangeModelComponent} from './Admin/ChangeModel/ChangeModel.component';
 import {PredictiveDetailsComponent} from './Admin/predictiveDetails/predictiveDetails.component';
 import {UserManagementComponent} from './Admin/user-management/user-management.component';
+import {CultivatedAreasComponent} from './Admin/cultivated-areas/cultivated-areas.component';
 
 
 export const Approutes: Routes = [
@@ -42,6 +43,11 @@ export const Approutes: Routes = [
       {
         path: 'userManagement',
         component: UserManagementComponent
+
+      },
+      {
+        path: 'cultivatedAreas',
+        component: CultivatedAreasComponent
 
       },
     ]

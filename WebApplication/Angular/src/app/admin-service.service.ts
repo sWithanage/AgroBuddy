@@ -46,6 +46,11 @@ export class AdminServiceService {
     return this.serviceHttp.post<boolean> ('http://localhost:8080/availableModel', activeModel);
   }
 
+  updateUserType(userIdToChange: any , userTypeToChange: any) {
+    console.log(userIdToChange + '' + userTypeToChange);
+    return this.serviceHttp.post<boolean> ('http://localhost:8080/users/', userIdToChange + '' + userTypeToChange);
+  }
+
   //method returning the current weather details
   getCurrentWeather(): Observable<IcurrentWeather[]>{
     return this.serviceHttp.get<IcurrentWeather[]>('http://localhost:8080/prediction/weather ');
