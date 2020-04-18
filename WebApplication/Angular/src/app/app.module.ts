@@ -45,6 +45,7 @@ import {ChartsModule} from 'ng2-charts';
 import {CultivatedAreaComponent} from './Client/cultivated-area/cultivated-area.component';
 import {PlantsComponent} from './Client/plants/plants.component';
 import {ClientPlantDetailsComponent} from './Client/client-plant-details/client-plant-details.component';
+import { ContactUsComponent } from './Client/contact-us/contact-us.component';
 
 
 
@@ -84,6 +85,7 @@ const routes: Routes = [ {
     CultivatedAreaComponent,
     PlantsComponent,
     ClientPlantDetailsComponent,
+    ContactUsComponent,
 
   ],
   imports: [

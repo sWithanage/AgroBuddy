@@ -14,6 +14,7 @@ import {CultivatedAreasComponent} from './Admin/cultivated-areas/cultivated-area
 import {PlantsComponent} from './Client/plants/plants.component';
 import {ClientPlantDetailsComponent} from './Client/client-plant-details/client-plant-details.component';
 import {CultivatedAreaComponent} from './Client/cultivated-area/cultivated-area.component';
+import {ContactUsComponent} from './Client/contact-us/contact-us.component';
 
 
 export const Approutes: Routes = [
@@ -76,6 +77,10 @@ export const Approutes: Routes = [
       {
         path: 'cultivatedArea',
         component: CultivatedAreaComponent
+      },
+      {
+        path: 'contactUs',
+        component: ContactUsComponent
       }
     ]
   },
