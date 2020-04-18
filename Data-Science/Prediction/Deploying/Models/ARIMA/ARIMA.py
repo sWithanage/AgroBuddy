@@ -1,65 +1,102 @@
+import os
+import sys
 import numpy
 from statsmodels.tsa.arima_model import ARIMA
-
 from Models.Components import AccurancyCalculator
 from Models.Components import FileDownloader
+from Models.Components import CustomLogger as logger
 
 
-def getAccuracy(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfTrainingDataSet=7):
-    series = FileDownloader.getFileData(datasetType)
+def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfTrainingDataSet=7, getAccuracy=True):
+    try:
+        if getAccuracy:
+            print("Client requested for ARIMA accuracy")
+            logger.log("Client requested for ARIMA accuracy")
+        else:
+            print("Client requested for ARIMA Forecast")
+            logger.log("Client requested for ARIMA Forecast")
 
-    if defaultRatio:
-        split_point = int(len(series) - (len(series) * 0.2))
-    else:
-        split_point = len(series) - sizeOfTrainingDataSet
+        series = FileDownloader.getFileData(datasetType)
+        logger.log("Dataset retrieved successfully")
 
-    dataset, validation = series[0:split_point], series[split_point:]
+        logger.log("Splitting dataset into training and testing")
+        if defaultRatio:
+            split_point = int(len(series) - (len(series) * 0.2))
+        elif not getAccuracy:
+            split_point = int(len(series))
+        else:
+            split_point = len(series) - sizeOfTrainingDataSet
 
-    trainingDataSetSize = len(dataset)
-    testingDataSetSize = len(validation)
+        dataset, validation = series[0:split_point], series[split_point:]
 
-    print('\n\n\nTraining Data Set Size : ', trainingDataSetSize, " ( 80% of dataset)")
-    print('Testing  Data Set Size : ', testingDataSetSize, " ( 20% of dataset)")
+        trainingDataSetSize = len(dataset)
+        testingDataSetSize = len(validation)
 
-    def difference(dataset, interval=1):
-        diff = list()
-        for i in range(interval, len(dataset)):
-            value = dataset[i] - dataset[i - interval]
-            diff.append(value)
-        return numpy.array(diff)
+        if not getAccuracy:
+            testingDataSetSize = sizeOfTrainingDataSet
 
-    def inverse_difference(history, yhat, interval=1):
-        return yhat + history[-interval]
+        trainingDataSetSizeString = 'Training Data Set Size : ' + str(len(dataset))
+        testingDataSetSizeString = 'Testing  Data Set Size : ' + str(len(validation))
 
-    X = dataset.values
-    days_in_year = 365
-    differenced = difference(X, days_in_year)
+        logger.log(trainingDataSetSizeString)
+        logger.log(testingDataSetSizeString)
 
-    if modelType == 1:
-        model = ARIMA(differenced, order=(7, 0, 1))
+        def difference(dataset, interval=1):
+            diff = list()
+            for i in range(interval, len(dataset)):
+                value = dataset[i] - dataset[i - interval]
+                diff.append(value)
+            return numpy.array(diff)
 
-    elif modelType == 2:
-        model = ARIMA(differenced, order=(2, 0, 0))
+        def inverse_difference(history, yhat, interval=1):
+            return yhat + history[-interval]
 
-    model_fit = model.fit(disp=0)
+        datasetValues = dataset.values
 
-    print(model_fit.summary())
+        # fit model
+        if modelType == 1:
+            days_in_year = 365
+            differenced = difference(datasetValues, days_in_year)
+            model = ARIMA(differenced, order=(7, 0, 1))
 
-    forecast = model_fit.forecast(steps=testingDataSetSize)[0]
+        elif modelType == 2:
+            days_in_year = 48
+            differenced = difference(datasetValues, days_in_year)
+            model = ARIMA(differenced, order=(2, 0, 0))
 
-    history = [x for x in X]
-    day = 1
+        logger.log("Training model")
 
-    dataArray = []
-    for yhat in forecast:
-        inverted = inverse_difference(history, yhat, days_in_year)
-        dataArray.append(inverted)
-        history.append(inverted)
-        day += 1
+        model_fit = model.fit(disp=0)
 
-    validationData = validation.values
+        logger.log(model_fit.summary())
 
-    accuracy = AccurancyCalculator.calculate(validationData, dataArray)
+        forecast = model_fit.forecast(steps=testingDataSetSize)[0]
+        history = [x for x in datasetValues]
+        day = 1
 
-    print("Accuracy : ",accuracy)
-    return str(accuracy)
+        dataArray = []
+        for yhat in forecast:
+            inverted = inverse_difference(history, yhat, days_in_year)
+            dataArray.append(inverted)
+            history.append(inverted)
+            day += 1
+
+        validationData = validation.values
+
+        if(getAccuracy):
+            accuracy = AccurancyCalculator.calculate(validationData, dataArray)
+            logger.log("Accuracy Percentage : " + str(accuracy))
+            return str(accuracy)
+        else:
+            jsonArray = AccurancyCalculator.jsonConverter(dataArray)
+            logger.log("JSON Array is : " + str(jsonArray))
+            return str(jsonArray)
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        exceptionDetails = str(exc_type) + " error occurred in '" + str(
+            exc_tb.tb_frame.f_code.co_filename) + "' Line : " + str(exc_tb.tb_lineno)
+        logger.log(exceptionDetails, "ERROR")
+        return "Error occurred in the source code"
+
+
+# print(predict("Temperature", "arima-model-temperature-dataset",defaultRatio = False,getAccuracy=False,sizeOfTrainingDataSet=90))

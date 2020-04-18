@@ -1,13 +1,16 @@
 import os
-
 import tensorflow as tf
 from pandas import read_csv
+from Models.Components import CustomLogger as logger
 
 
 def getFileData(datasetType):
+    downloadingFilePath = "https://agrobuddy.tk/getData?type=" + datasetType
+    logger.log("Downloading data set file from : " + str(downloadingFilePath))
+
     # Download relevant dataset from the server.
     downloadedFilePath = tf.keras.utils.get_file(
-        origin='https://agrobuddy.tk/getData?type=' + datasetType,
+        origin = downloadingFilePath,
         fname=datasetType + '.csv',
         extract=False)
 

@@ -15,23 +15,55 @@ $sql = "";
 $type =  $_GET['type'];
 if($type=='rnn'){
     $sql = "SELECT `date` AS 'Date Time', `avgTemp` AS 'T (degC)', `minTemp`, `maxTemp`, `avgPres`, `minPres`, `maxPres`, `avgHumidity`, `minHumidity`, `maxHumidity`, `avgWindSpeed`, `minWindSpeed`, `maxWindSpeed`, `rainFall`, `cloudCover`, `mainWeather`, `weatherDescription` FROM `weatherdata` WHERE 1";           //Sql query that want to retrieve from the database.
-    $fileName = 'weatherdataa.csv';
-}else if($type=='ann'){
+    $fileName = 'weatherData.csv';
+}
+
+else if($type=='ann'){
     $sql = "SELECT `avgTemp` as 'temp(c)' ,`avgPres` as 'pressure(mb)' ,`avgHumidity` as 'humidity()' , `cloudCover` as 'cloud cover()', `avgWindSpeed` as 'wind speed(mph)' ,`maxWindSpeed` as 'maxWindSpeed', `rainFall` as 'precip.(mm)' FROM `weatherdata` WHERE 1";
-    $fileName = 'data1modify.csv';
-}else if($type=='arima-model-temperature-dataset'){
+    $fileName = 'modifiedWeatherData.csv';
+}
+
+else if($type=='arima-model-temperature-dataset'){
     $sql = "SELECT `date` as 'date', `avgTemp` as 'temp' FROM `weatherdata` WHERE `date`>'2005-01-01'";
-    $fileName = 'daily-minimum-temperatures.csv';
-}else if($type=='arima-model-precipitation-dataset'){
+    $fileName = 'temperature&Date.csv';
+}
+
+else if($type=='arima-model-precipitation-dataset'){
     $sql = "SELECT `date` as 'date', `rainFall` as 'rainFall' FROM `weatherdata` WHERE `date`>'2017-01-01'";
-    $fileName = 'daily-minimum-temperatures.csv';
-}else if($type=='ash-plantain'){
+    $fileName = 'rainfall&Date.csv';
+}
+
+else if($type=='market'){
+    $sql = "SELECT * FROM `marketprice` WHERE 1";
+    $fileName = 'AllMarketPriceDetails.csv';
+}
+
+else if($type=='AshPlantain'){
     $sql = "SELECT `yearWithWeek`,`AshPlantain` FROM `marketprice` WHERE 1";
-    $fileName = 'daily-minimum-temperatures.csv';
-}else if($type=='time-Series'){
-    $sql = "SELECT `yearWithWeek`,`AshPlantain` FROM `marketprice` WHERE 1";
-    $fileName = 'daily-minimum-temperatures.csv';
-}else if($type=='sarima'){
+    $fileName = 'AshPlantain_Price&Date.csv';
+}
+
+else if($type=='Brinjal'){
+    $sql = "SELECT `yearWithWeek`,`Brinjal` FROM `marketprice` WHERE 1";
+    $fileName = 'Brinjal_Price&Date.csv';
+}
+
+else if($type=='Cucumber'){
+    $sql = "SELECT `yearWithWeek`,`Cucumber` FROM `marketprice` WHERE 1";
+    $fileName = 'Cucumber_Price&Date.csv';
+}
+
+else if($type=='LadiesFinger'){
+    $sql = "SELECT `yearWithWeek`,`LadiesFinger` FROM `marketprice` WHERE 1";
+    $fileName = 'LadiesFinger_Price&Date.csv';
+}
+
+else if($type=='RedPumpkin'){
+    $sql = "SELECT `yearWithWeek`,`RedPumpkin` FROM `marketprice` WHERE 1";
+    $fileName = 'RedPumpkin_Price&Date.csv';
+}
+
+else if($type=='sarima'){
     $sql = "SELECT `date` as 'dt' , `avgTemp` as 'AverageTemperature' FROM `weatherdata` WHERE 1";
     $fileName = 'SarimaModel.csv';
 }

@@ -1,7 +1,8 @@
+pytz
 tensorflow == 2.0.0a0
 Flask==1.1.1
 gunicorn==20.0.4
-pandas==1.0.2
+pandas
 numpy==1.18.1
 scipy==1.4.1
 scikit-learn>=0.22.2.post1
