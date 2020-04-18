@@ -1,0 +1,111 @@
+<div class="card">
+    <div class="card-body">
+        <!-- title -->
+        <div class="d-md-flex align-items-center">
+            <div>
+                <h4 class="card-title">{{variable}} Prediction</h4>
+                <h5 class="card-subtitle">Overview of Top Selling Items</h5>
+            </div>
+
+        </div>
+        <!-- title -->
+    </div>
+  <div>
+    <select id="select-type-basic" [(ngModel)]="status">
+      <option *ngFor="let status_item of status_values">
+        {{status_item}}
+      </option>
+    </select>
+  </div>
+    <div class="table-responsive">
+        <table class="table v-middle">
+            <thead>
+                <tr class="bg-light">
+                    <th class="border-top-0">Models</th>
+                    <th class="border-top-0">Model Id</th>
+                    <th class="border-top-0">Accuracy</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+
+                            <div class="">
+                                <h4 class="m-b-0 font-16">ARIMA</h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{id}}</td>
+                    <td>{{ARIMAmodel}}</td>
+                    <td>
+
+                    </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="">
+                        <h4 class="m-b-0 font-16">ARMA</h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{id}}</td>
+                  <td>{{ARMAmodel}}</td>
+                  <td>
+
+                  </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+
+                            <div class="">
+                                <h4 class="m-b-0 font-16">SARIMA</h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{id}}</td>
+                    <td>{{SARIMAmodel}}</td>
+                    <td>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="">
+                                <h4 class="m-b-0 font-16">RNN</h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{id}}</td>
+                    <td>{{RNNmodel}}</td>
+                    <td>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="">
+                                <h4 class="m-b-0 font-16">ANN</h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{id}}</td>
+                    <td>{{ANNmodel}}</td>
+                    <td>
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

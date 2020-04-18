@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {PredictionModel} from './prediction-model.model';
+import {modelDetails} from './prediction-model.model';
 import { WeatherDetails } from './weathercard.model';
 import {ClientDetails} from './client.model';
 import {CropDetails} from './crop.model';
@@ -17,9 +17,7 @@ export class AdminServiceService {
   constructor(private serviceHttp: HttpClient) { }
   private url = 'http://localhost:8080/';
 
-  // getSelectedModel(): Observable<PredictionModel[]> {
-  //   return this.serviceHttp.get<PredictionModel[]>('http://localhost:8080/selectedModel');
-  // }
+
   //
   // getVehicleList(): Observable<WeatherDetails[]> {
   //   return this.serviceHttp.get<WeatherDetails[]>('http://localhost:8080/weatherData');
@@ -35,6 +33,17 @@ export class AdminServiceService {
   }
   getAllPlants(): Observable<CropDetails[]> {
     return this.serviceHttp.get<CropDetails[]>('http://localhost:8080/crops');
+  }
+  getAllModels(): Observable<modelDetails[]> {
+    return this.serviceHttp.get<modelDetails[]>('http://localhost:8080/accuracy');
+  }
+  getModelDetails(variables: string): Observable<modelDetails[]> {
+    return this.serviceHttp.get<modelDetails[]>('http://localhost:8080/accuracy/' + variables);
+  }
+
+  availability(activeModel: any) {
+    console.log(activeModel);
+    return this.serviceHttp.post<boolean> ('http://localhost:8080/availableModel', activeModel);
   }
 
   //method returning the current weather details

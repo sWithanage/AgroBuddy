@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-
+import {AdminServiceService} from '../../admin-service.service';
 @Component({
-  selector: 'app-user-management',
-  templateUrl: './user-management.component.html',
-  styleUrls: ['./user-management.component.css']
+  templateUrl: './user-management.component.html'
 })
 export class UserManagementComponent implements OnInit {
+  user: any[];
+  status_values: any = ['Admin', 'User'];
+  statusDetails: any;
+  constructor(private connectionService: AdminServiceService ) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
+    this.connectionService.getUserList().subscribe(
+      data => {
+        this.user = data;
+        console.log(data);
+        this.statusDetails = data[0].user_Type;
+      });
   }
 
+  update(userIdToChange: any, userTypeToChange: any) {
+    console.log(userIdToChange + ' ' + userTypeToChange);
+  }
 }

@@ -1,7 +1,7 @@
-import { PredictionModel } from './prediction-model.model';
+import { modelDetails } from './prediction-model.model';
 
 describe('PredictionModel', () => {
   it('should create an instance', () => {
-    expect(new PredictionModel()).toBeTruthy();
+    expect(new modelDetails()).toBeTruthy();
   });
 });

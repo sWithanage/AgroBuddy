@@ -33,15 +33,15 @@ import {BreadcrumbComponentAdmin} from './Admin/shared/breadcrumb/breadcrumb.com
 import {SidebarComponentClient} from './Client/shared/sidebar/sidebar.component';
 import {BreadcrumbComponentClient} from './Client/shared/breadcrumb/breadcrumb.component';
 import {NavigationComponentClient} from './Client/shared/header-navigation/navigation.component';
-
-import { UserManagementComponent } from './Admin/user-management/user-management.component';
 import {AllPlantsComponent} from './Admin/all-plants/all-plants.component';
 import {PlantDetailsComponent} from './Admin/plant-details/plant-details.component';
-
+import {ChangeModelComponent} from './Admin/ChangeModel/ChangeModel.component';
+import {PredictiveDetailsComponent} from './Admin/predictiveDetails/predictiveDetails.component';
+import {UserManagementComponent} from './Admin/user-management/user-management.component';
 import { ClientServiceService } from './client-service.service';
 import { AdminServiceService } from './admin-service.service';
-import { PlantsComponent } from './Client/plants/plants.component';
-import { ClientPlantDetailsComponent } from './Client/client-plant-details/client-plant-details.component';
+
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -69,11 +69,12 @@ const routes: Routes = [ {
     // SidebarComponent,
     LoginComponent,
     SignupComponent,
-    UserManagementComponent,
     AllPlantsComponent,
     PlantDetailsComponent,
-    PlantsComponent,
-    ClientPlantDetailsComponent,
+    ChangeModelComponent,
+    PredictiveDetailsComponent,
+    UserManagementComponent,
+
 
   ],
   imports: [

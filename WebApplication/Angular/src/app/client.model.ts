@@ -10,5 +10,6 @@ export interface ClientDetails {
   user_Street2: string;
   user_City: string;
   user_PhoneNo: string;
+  user_Username: string;
 
 }

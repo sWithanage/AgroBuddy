@@ -7,8 +7,9 @@ import {SignupComponent} from './signup/signup.component';
 import { BlankComponent } from './Admin/layouts/blank/blank.component';
 import {AllPlantsComponent} from './Admin/all-plants/all-plants.component';
 import {PlantDetailsComponent} from './Admin/plant-details/plant-details.component';
-import {PlantsComponent} from './Client/plants/plants.component';
-import {ClientPlantDetailsComponent} from './Client/client-plant-details/client-plant-details.component';
+import {ChangeModelComponent} from './Admin/ChangeModel/ChangeModel.component';
+import {PredictiveDetailsComponent} from './Admin/predictiveDetails/predictiveDetails.component';
+import {UserManagementComponent} from './Admin/user-management/user-management.component';
 
 
 export const Approutes: Routes = [
@@ -28,7 +29,21 @@ export const Approutes: Routes = [
       {
         path: 'details',
         component: PlantDetailsComponent
-      }
+      },
+      {
+        path: 'ModelDetails',
+        component: PredictiveDetailsComponent
+      },
+      {
+        path: 'ChangeModel',
+        component: ChangeModelComponent
+
+      },
+      {
+        path: 'userManagement',
+        component: UserManagementComponent
+
+      },
     ]
   },
   {
@@ -39,17 +54,10 @@ export const Approutes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./Client/dashboards/dashboard.module').then(m => m.DashboardModule)
-      },
-      {
-        path: 'plants',
-        component: PlantsComponent
-      },
-      {
-        path: 'plantDetails',
-        component: ClientPlantDetailsComponent
-      }
+        }
     ]
   },
+
   {
     path: 'login',
     component: LoginComponent

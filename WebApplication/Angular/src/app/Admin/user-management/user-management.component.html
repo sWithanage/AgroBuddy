@@ -1,1 +1,61 @@
-<p>user-management works!</p>
+<script src="user-management.component.ts"></script>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card bg-light">
+      <div class="card-body">
+        <div class="d-flex no-block align-items-center m-b-10">
+          <h4 class="card-title">User Details</h4>
+        </div>
+        <div class="table-responsive">
+          <table class="table bg-white table-bordered nowrap display">
+            <thead>
+            <tr>
+              <th> </th>
+              <th>User Id</th>
+              <th>UserType</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>NIC</th>
+              <th>Address</th>
+              <th>PhoneNo</th>
+              <th>User name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let users of user">
+              <td>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customControlValidation2" required>
+                  <label class="custom-control-label" for="customControlValidation2"></label>
+                </div>
+              </td>
+              <td>{{users.user_Id}}</td>
+              <td>
+                <span class="label label-danger">
+                  <select   *ngIf="users.user_Type == 'admin'" (change)="update(users.user_Id, 'user')">
+                      <option selected>Admin</option>
+                      <option>User</option>
+                  </select>
+
+                  <select   *ngIf="users.user_Type == 'user'" (change)="update(users.user_Id, 'admin')">
+                      <option>Admin</option>
+                      <option selected>User</option>
+                  </select>
+                </span>
+              </td>
+              <td>{{users.user_Fname}}{{users.user_Lname}}</td>
+
+              <td>{{users.user_Email}}</td>
+              <td>{{users.user_NIC}}</td>
+              <td>{{users.user_AddressNo}},{{users.user_Street1}},{{users.user_Street2}},{{users.user_City}}</td>
+              <td>{{users.user_PhoneNo}}</td>
+              <td>{{users.user_Username}}</td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
