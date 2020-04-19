@@ -7,6 +7,7 @@ import { filter, map, mergeMap } from 'rxjs/operators';
   selector: 'app-breadcrumb-client',
   templateUrl: './breadcrumb.component.html'
 })
+// tslint:disable-next-line:component-class-suffix
 export class BreadcrumbComponentClient implements OnInit {
   @Input() layout;
   pageInfo;

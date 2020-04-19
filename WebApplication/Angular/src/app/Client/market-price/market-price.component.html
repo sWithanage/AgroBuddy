@@ -1,0 +1,57 @@
+    <ngb-carousel>
+      <ng-template ngbSlide>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Ash Plantain Prices</h4>
+            <h6 class="card-subtitle">Market price variation of last month</h6>
+            <canvas baseChart [datasets]="ashPlantaindata" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                    [chartType]="barChartType"  [colors]="ashPlantainColors" >
+            </canvas>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Brinjals Prices</h4>
+            <h6 class="card-subtitle">Market price variation of last month</h6>
+            <canvas baseChart [datasets]="brinjalsdata" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                    [chartType]="barChartType"  [colors]="brinjalsColors" >
+            </canvas>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Cucumber Prices</h4>
+            <h6 class="card-subtitle">Market price variation of last month</h6>
+            <canvas baseChart [datasets]="cucumberdata" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                    [chartType]="barChartType"  [colors]="cucumberColors" >
+            </canvas>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Ladies-Fingers Prices</h4>
+            <h6 class="card-subtitle">Market price variation of last month</h6>
+            <canvas baseChart [datasets]="ladiesFingersdata" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                    [chartType]="barChartType"  [colors]="ladiesFingersColors" >
+            </canvas>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Red Pumpkin Prices</h4>
+            <h6 class="card-subtitle">Market price variation of last month</h6>
+            <canvas baseChart [datasets]="redPumpkindata" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                    [chartType]="barChartType"  [colors]="redPumpkinColors" >
+            </canvas>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>

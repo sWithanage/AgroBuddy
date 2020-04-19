@@ -9,7 +9,7 @@ export const DashboardRoutes: Routes = [
     data: {
       title: 'Dashboard - AgroBuddy',
       urls: [
-        { title: 'Dashboard', url: '' },
+        { title: 'Dashboard', url: '/client/dashboard' },
         { title: 'Admin Panel' }
       ]
     }

@@ -35,6 +35,14 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
+    path: '/client/marketPrice',
+    title: 'MarketPrice',
+    icon: 'icon-Bar-Chart',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
     path: '/client/contactUs',
     title: 'Contact Us',
     icon: 'icon-Phone',

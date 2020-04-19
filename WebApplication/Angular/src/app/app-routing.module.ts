@@ -15,6 +15,7 @@ import {PlantsComponent} from './Client/plants/plants.component';
 import {ClientPlantDetailsComponent} from './Client/client-plant-details/client-plant-details.component';
 import {CultivatedAreaComponent} from './Client/cultivated-area/cultivated-area.component';
 import {ContactUsComponent} from './Client/contact-us/contact-us.component';
+import {MarketPriceComponent} from './Client/market-price/market-price.component';
 
 
 export const Approutes: Routes = [
@@ -67,20 +68,58 @@ export const Approutes: Routes = [
       },
       {
         path: 'plants',
-        component: PlantsComponent
-
+        component: PlantsComponent,
+        data: {
+          title: 'Plants - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/client/dashboard' },
+            { title: 'Plants' }
+          ]
+        }
       },
       {
         path: 'plantDetails',
-        component: ClientPlantDetailsComponent
+        component: ClientPlantDetailsComponent,
+        data: {
+          title: 'Plant Details - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/client/dashboard' },
+            { title: 'Plants Details' }
+          ]
+        }
       },
       {
         path: 'cultivatedArea',
-        component: CultivatedAreaComponent
+        component: CultivatedAreaComponent,
+        data: {
+          title: 'Cultivated Area - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/client/dashboard' },
+            { title: 'Cultivated Area' }
+          ]
+        }
       },
       {
         path: 'contactUs',
-        component: ContactUsComponent
+        component: ContactUsComponent,
+        data: {
+          title: 'Contact Us - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/client/dashboard' },
+            { title: 'Contact Us' }
+          ]
+        }
+      },
+      {
+        path: 'marketPrice',
+        component: MarketPriceComponent,
+        data: {
+          title: 'Market Prices - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/client/dashboard' },
+            { title: 'Market Prices' }
+          ]
+        }
       }
     ]
   },

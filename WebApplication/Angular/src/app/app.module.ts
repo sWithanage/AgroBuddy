@@ -46,6 +46,7 @@ import {CultivatedAreaComponent} from './Client/cultivated-area/cultivated-area.
 import {PlantsComponent} from './Client/plants/plants.component';
 import {ClientPlantDetailsComponent} from './Client/client-plant-details/client-plant-details.component';
 import { ContactUsComponent } from './Client/contact-us/contact-us.component';
+import { MarketPriceComponent } from './Client/market-price/market-price.component';
 
 
 
@@ -86,6 +87,7 @@ const routes: Routes = [ {
     PlantsComponent,
     ClientPlantDetailsComponent,
     ContactUsComponent,
+    MarketPriceComponent,
 
   ],
   imports: [
