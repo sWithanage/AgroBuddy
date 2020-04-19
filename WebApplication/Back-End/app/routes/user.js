@@ -41,7 +41,7 @@ router.post("/users", async (req, res) => {
     user_Street2: req.body.st2,
     user_City: req.body.city,
     user_TelNo: req.body.telephoneNo,
-    user_PhoneNo: req.body.phoneNo
+    user_PhoneNo: req.body.phoneNo,
   };
   mysqlConnection.query("INSERT INTO user SET ?", data, (err, rows) => {
     if (!err) {
@@ -54,23 +54,9 @@ router.post("/users", async (req, res) => {
 });
 
 //post login details
-router.post("/authentication", function(req, res) {
+router.post("/authentication", function (req, res) {
   console.log(req.body.name);
   res.send(true);
-});
-
-//update user type
-router.post("/users/edit/type", async (req, res) => {
-  
-  mysqlConnection.query("Update user SET user_Type= ?",req.body.user_Id," where user_Id= ?",req.body.user_Type,
-   (err, rows) => {
-    if (!err) {
-      res.send(true);
-    } else {
-      console.error(err);
-      res.send(err);
-    }
-  });
 });
 
 // get all users details
@@ -84,10 +70,27 @@ router.get("/usersDetails", (req, res) => {
   });
 });
 
+//update only user type
+router.put("/users", async (req, res) => {
+  mysqlConnection.query(
+    "UPDATE user SET user_Type= ?  where user_Id= ?",
+    [req.body.user_Type, req.body.user_Id],
+    (err, rows) => {
+      if (!err) {
+        res.send(true);
+      } else {
+        console.error(err);
+        res.send(err);
+      }
+    }
+  );
+});
+
 // get selected user details
 router.get("/users/:id", (req, res) => {
   mysqlConnection.query(
-    "SELECT * FROM user WHERE user_Id=?",[req.params.id],
+    "SELECT * FROM user WHERE user_Id=?",
+    [req.params.id],
     (err, rows, fields) => {
       if (!err) {
         res.send(rows);
