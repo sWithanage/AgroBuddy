@@ -27,8 +27,8 @@ Router.get("/crops/:id", (req, res) => {
 });
 
 //delete a crop
-Router.delete("/crops/:id", (req, res) => {
-    mysqlConnection.query("DELETE FROM crop WHERE crop_id=?", [req.params.id], (err, rows, fields) => {
+Router.delete("/crops", (req, res) => {
+    mysqlConnection.query("DELETE FROM crop WHERE crop_id=?", [req.body.cropId], (err, rows, fields) => {
         if(!err){
             res.send("Crop deleted successfully");
         }

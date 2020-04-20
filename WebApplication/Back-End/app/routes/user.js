@@ -3,6 +3,7 @@ const express = require("express");
 const router = express();
 // get database connection
 const mysqlConnection = require("../connection");
+const session = require("express-session");
 
 // for POST-Support
 let bodyParser = require("body-parser");
@@ -79,7 +80,6 @@ router.put("/users", async (req, res) => {
       if (!err) {
         res.send(true);
       } else {
-        console.error(err);
         res.send(err);
       }
     }
@@ -102,10 +102,10 @@ router.get("/users/:id", (req, res) => {
 });
 
 // delete selected user details
-router.delete("/users/:id", (req, res) => {
+router.delete("/usersDetails", (req, res) => {
   mysqlConnection.query(
     "DELETE FROM user WHERE user_Id=?",
-    [req.params.id],
+    [req.body.user_Id],
     (err, rows, fields) => {
       if (!err) {
         res.send("user deleted successfully");
@@ -117,21 +117,70 @@ router.delete("/users/:id", (req, res) => {
 });
 
 //rest api to update record into mysql database
+router.put("/users/:id", async (req, res) => {
+  let data = {
+    user_Type: req.body.userType,
+    user_Fname: req.body.firstName,
+    user_Lname: req.body.lastName,
+    user_Username: req.body.userName,
+    user_Email: req.body.email,
+    user_NIC: req.body.nic,
+    user_Dob: req.body.dob,
+    user_Password: req.body.pass,
+    user_AddressNo: req.body.address,
+    user_Street1: req.body.str1,
+    user_Street2: req.body.str2,
+    user_City: req.body.city,
+    user_PhoneNo: req.body.phone,
+    user_TelNo: req.body.tele
+  };
+  mysqlConnection.query(
+    "UPDATE user SET user_Type= ?, user_Fname=?, user_Lname=?, user_Username=?, user_Email=?, user_NIC=?, user_Dob=?, user_Password=?, user_AddressNo=?, user_Street1=?, user_Street2=?, user_City=?, user_PhoneNo=?, user_TelNo=? where user_Id= ?",
+    [data, req.params.id],
+    (err, rows) => {
+      if (!err) {
+        res.send(true);
+      } else {
+        res.send(err);
+      }
+    }
+  );
+});
 
-// router.put("/update/user", function(req, res) {
-//   connection.query(
-//     "UPDATE user SET user_Fname=?, user_Lname=?, user_Email=? where user_Id=?",
-//     [
-//       req.body.user_Fname,
-//       req.body.user_Lname,
-//       req.body.user_Email,
-//       req.body.user_Id
-//     ],
-//     function(error, results, fields) {
-//       if (error) throw error;
-//       res.end(JSON.stringify(results));
-//     }
-//   );
-// });
+router.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+router.post("/authentication", (req, res) => {
+  let data = {
+    user_Username: req.body.username,
+    user_Password: req.body.password,
+  };
+  if (username && password) {
+    connection.query(
+      "SELECT * FROM user WHERE user_Username = ? AND user_Password = ?",
+      data,
+      function (error, results, fields) {
+        if (results.length > 0) {
+          req.session.loggedin = true;
+          req.session.username = username;
+          //console.error(err);
+          //console.log("login successful");
+          //res.redirect("http://localhost:4200");
+        } else {
+          res.send("Incorrect Username and/or Password!");
+        }
+        res.end();
+      }
+    );
+  } else {
+    response.send("Please enter Username and Password!");
+    response.end();
+  }
+});
 
 module.exports = router;
