@@ -1,8 +1,8 @@
 export class WeatherDetails {
-  date: String;
-  temp: string;
-  wind_speed: string;
-  humidity: string;
-  pressure: string;
-  clouds_all: string;
+  date: string;
+  temp: number;
+  wind_speed: number;
+  humidity: number;
+  pressure: number;
+  weather_description: string;
 }

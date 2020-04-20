@@ -1,7 +1,7 @@
 <div class="row el-element-overlay">
 
   <div class="col-lg-3 col-md-6" *ngFor="let plants of plantDetails">
-    <a [routerLink]="['/admin/details']" [queryParams]="{ plant: plants.crop_id}">
+    <a [routerLink]="['/client/plantDetails']" [queryParams]="{ plant: plants.crop_id}">
       <div class="card">
         <div class="el-card-item">
           <div class="el-card-avatar el-overlay-1">

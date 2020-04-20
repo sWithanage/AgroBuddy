@@ -12,9 +12,16 @@ export class ClientPlantDetailsComponent implements OnInit {
   plantDetails: any[];
   plantName: string;
 
+  cropId: string;
   cropName: string;
   cropImage: string;
   cropDescription: string;
+  scientificName: string;
+  temperature: string;
+  nutrition: string;
+  duration: string;
+  cultivatedArea: string;
+
   constructor(private connectionService: ClientServiceService, private route: ActivatedRoute) {}
   ngOnInit(): void {
     // @ts-ignore
@@ -28,16 +35,22 @@ export class ClientPlantDetailsComponent implements OnInit {
       .filter(params => params.plant)
       .subscribe(params => {
 
-        this.plantName = params.plant;
-        console.log(this.plantName);
+        this.cropId = params.plant;
+        console.log(this.cropId);
       });
 
-    this.connectionService.getPlantDetails(this.plantName).subscribe(
+    this.connectionService.getPlantDetails(this.cropId).subscribe(
       data => {
         this.plantDetails = data;
         this.cropName = data[0].crop_name;
         this.cropImage = data[0].crop_image;
         this.cropDescription = data[0].crop_description;
+        this.scientificName = data[0].crop_description;
+        this.cropDescription = data[0].crop_description;
+        this.temperature = data[0].temperature;
+        this.nutrition = data[0].nutrition;
+        this.duration = data[0].duration;
+        this.cultivatedArea = data[0].cultivated_area;
       });
   }
 }

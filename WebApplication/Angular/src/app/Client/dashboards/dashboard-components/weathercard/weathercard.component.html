@@ -14,8 +14,8 @@
       </div>
     </div>
     <table class="table no-border mini-table m-t-20">
-      <tbody *ngFor = "let cw of currentWeather">
-        <tr>
+      <tbody *ngFor = "let cw of weather">
+       <tr>
           <td class="text-muted">Temperature</td>
           <td class="font-medium">{{cw.temp}}°</td>
         </tr>
@@ -31,7 +31,7 @@
         <td class="text-muted">Pressure</td>
         <td class="font-medium">{{cw.pressure}}</td>
       </tr>
-      <tr>
+     <tr>
         <td class="text-muted">Description</td>
         <td class="font-medium">{{cw.weather_description}}</td>
       </tr>
