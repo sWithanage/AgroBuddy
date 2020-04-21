@@ -219,6 +219,33 @@ cron.schedule("30 12 * * *", async (req, res) => {
       ],
       () => {}
     );
+    // update data accuracy table brinjal market price row
+    mysqlConnection.query(
+      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = ladiesFingersMPrice",
+      [
+        arladiesFingers.data,
+        arimaladiesFingers.data,
+        armaladiesFingers.data,
+        sarimaladiesFingers.data,
+        rnnladiesFingers.data,
+        varladiesFingers.data,
+      ],
+      () => {}
+    );
+
+    // update data accuracy table brinjal market price row
+    mysqlConnection.query(
+      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = redPumpkinMPrice",
+      [
+        arRedPumpkin.data,
+        arimaRedPumpkin.data,
+        armaRedPumpkin.data,
+        sarimaRedPumpkin.data,
+        rnnRedPumpkin.data,
+        varRedPumpkin.data,
+      ],
+      () => {}
+    );
 
     console.log("update accuracy");
   } catch (error) {
@@ -227,7 +254,7 @@ cron.schedule("30 12 * * *", async (req, res) => {
   console.log("running a task in every day 12.30pm");
 });
 
-// get all users details
+// get all accuracy details
 router.get("/accuracy", (req, res) => {
   mysqlConnection.query("SELECT * FROM accuracy", (err, rows) => {
     if (!err) {
