@@ -15,4 +15,5 @@ export interface ClientDetails {
   user_Password: string;
   user_TelNo: string;
 
+
 }
