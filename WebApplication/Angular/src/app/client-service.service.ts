@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { IcurrentWeather } from './currentWeather';
 import { Observable } from 'rxjs/Observable';
 import {CropDetails} from './crop.model';
-import {MarketPriceData} from './market-price-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +13,17 @@ export class ClientServiceService {
   // declaring http in the constructor
   constructor(private http: HttpClient) { }
 
+  private url = 'https://agrobuddybackend.nn.r.appspot.com/';
+
   // method returning the current weather data
   getCurrentWeather(): Observable<IcurrentWeather[]> {
-    return this.http.get<IcurrentWeather[]>('https://agrobuddybackend.nn.r.appspot.com/prediction/weather');
+    return this.http.get<IcurrentWeather[]>(this.url + 'prediction/weather');
   }
-  getPlantDetails(cropId: any): Observable<CropDetails[]> {
-    return this.http.get<CropDetails[]>('https://agrobuddybackend.nn.r.appspot.com/crops/' + cropId);
+  getPlantDetails(plantName: any): Observable<CropDetails[]> {
+    return this.http.get<CropDetails[]>(this.url + 'crops/' + plantName);
   }
   getPlants(): Observable<CropDetails[]> {
-    return this.http.get<CropDetails[]>('https://agrobuddybackend.nn.r.appspot.com/crops');
-  }
-  getMarketPrice(): Observable<MarketPriceData[]> {
-    return this.http.get<MarketPriceData[]>('https://agrobuddybackend.nn.r.appspot.com/prediction/marketprice');
+    return this.http.get<CropDetails[]>(this.url + 'crops');
   }
   contact(value: any) {
     console.log(value);

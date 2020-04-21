@@ -47,9 +47,9 @@ export class ClientPlantDetailsComponent implements OnInit {
         this.cropDescription = data[0].crop_description;
         this.scientificName = data[0].crop_description;
         this.cropDescription = data[0].crop_description;
-        this.temperature = data[0].temperature;
+         this.temperature = data[0].temperature;
         this.nutrition = data[0].nutrition;
-        this.duration = data[0].duration;
+         this.duration = data[0].duration;
         this.cultivatedArea = data[0].cultivated_area;
       });
   }

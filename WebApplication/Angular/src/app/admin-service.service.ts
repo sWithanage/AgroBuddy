@@ -53,9 +53,9 @@ export class AdminServiceService {
       user_Id: userIdToChange,
     });
   }
-  updateUserAll(user_Id: number) {
-    console.log(user_Id);
-    return this.serviceHttp.put<boolean>(this.url + 'users/', user_Id  );
+  updateUserAll(user_Id: number, value: any ) {
+    console.log(user_Id , value);
+    return this.serviceHttp.put<boolean>(this.url + 'users/', user_Id, value  );
     console.log(user_Id);
   }
   deleteUserDetails(userIdToChange: any) {

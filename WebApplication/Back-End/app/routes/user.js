@@ -21,8 +21,8 @@ router.use((cli, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Allow-Control-Allow-Methods", "*");
   res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
 });
@@ -74,45 +74,45 @@ router.get("/usersDetails", (req, res) => {
 //update only user type
 router.put("/users", async (req, res) => {
   mysqlConnection.query(
-    "UPDATE user SET user_Type= ?  where user_Id= ?",
-    [req.body.user_Type, req.body.user_Id],
-    (err, rows) => {
-      if (!err) {
-        res.send(true);
-      } else {
-        res.send(err);
+      "UPDATE user SET user_Type= ?  where user_Id= ?",
+      [req.body.user_Type, req.body.user_Id],
+      (err, rows) => {
+        if (!err) {
+          res.send(true);
+        } else {
+          res.send(err);
+        }
       }
-    }
   );
 });
 
 // get selected user details
 router.get("/users/:id", (req, res) => {
   mysqlConnection.query(
-    "SELECT * FROM user WHERE user_Id=?",
-    [req.params.id],
-    (err, rows, fields) => {
-      if (!err) {
-        res.send(rows);
-      } else {
-        console.log(err);
+      "SELECT * FROM user WHERE user_Id=?",
+      [req.params.id],
+      (err, rows, fields) => {
+        if (!err) {
+          res.send(rows);
+        } else {
+          console.log(err);
+        }
       }
-    }
   );
 });
 
 // delete selected user details
 router.delete("/usersDetails", (req, res) => {
   mysqlConnection.query(
-    "DELETE FROM user WHERE user_Id=?",
-    [req.body.user_Id],
-    (err, rows, fields) => {
-      if (!err) {
-        res.send("user deleted successfully");
-      } else {
-        console.log(err);
+      "DELETE FROM user WHERE user_Id=?",
+      [req.body.user_Id],
+      (err, rows, fields) => {
+        if (!err) {
+          res.send("user deleted successfully");
+        } else {
+          console.log(err);
+        }
       }
-    }
   );
 });
 
@@ -135,24 +135,24 @@ router.put("/users/:id", async (req, res) => {
     user_TelNo: req.body.tele
   };
   mysqlConnection.query(
-    "UPDATE user SET user_Type= ?, user_Fname=?, user_Lname=?, user_Username=?, user_Email=?, user_NIC=?, user_Dob=?, user_Password=?, user_AddressNo=?, user_Street1=?, user_Street2=?, user_City=?, user_PhoneNo=?, user_TelNo=? where user_Id= ?",
-    [data, req.params.id],
-    (err, rows) => {
-      if (!err) {
-        res.send(true);
-      } else {
-        res.send(err);
+      "UPDATE user SET user_Type= ?, user_Fname=?, user_Lname=?, user_Username=?, user_Email=?, user_NIC=?, user_Dob=?, user_Password=?, user_AddressNo=?, user_Street1=?, user_Street2=?, user_City=?, user_PhoneNo=?, user_TelNo=? where user_Id= ?",
+      [data, req.params.id],
+      (err, rows) => {
+        if (!err) {
+          res.send(true);
+        } else {
+          res.send(err);
+        }
       }
-    }
   );
 });
 
 router.use(
-  session({
-    secret: "secret",
-    resave: true,
-    saveUninitialized: true,
-  })
+    session({
+      secret: "secret",
+      resave: true,
+      saveUninitialized: true,
+    })
 );
 
 router.post("/authentication", (req, res) => {
@@ -162,20 +162,20 @@ router.post("/authentication", (req, res) => {
   };
   if (username && password) {
     connection.query(
-      "SELECT * FROM user WHERE user_Username = ? AND user_Password = ?",
-      data,
-      function (error, results, fields) {
-        if (results.length > 0) {
-          req.session.loggedin = true;
-          req.session.username = username;
-          //console.error(err);
-          //console.log("login successful");
-          //res.redirect("http://localhost:4200");
-        } else {
-          res.send("Incorrect Username and/or Password!");
+        "SELECT * FROM user WHERE user_Username = ? AND user_Password = ?",
+        data,
+        function (error, results, fields) {
+          if (results.length > 0) {
+            req.session.loggedin = true;
+            req.session.username = username;
+            //console.error(err);
+            //console.log("login successful");
+            //res.redirect("http://localhost:4200");
+          } else {
+            res.send("Incorrect Username and/or Password!");
+          }
+          res.end();
         }
-        res.end();
-      }
     );
   } else {
     response.send("Please enter Username and Password!");

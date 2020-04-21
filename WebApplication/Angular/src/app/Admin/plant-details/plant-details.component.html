@@ -61,9 +61,7 @@
                                       <div class="custom-control custom-checkbox">
                                         <button id="remove" (click)="updateDetails()">Update Plant</button>
                                       </div>
-                                        <div class="custom-control custom-checkbox">
-                                          <button id="remove" (click)="addDetails()">Add Plant</button>
-                                        </div>
+
                                         <div class="custom-control custom-checkbox">
                                           <button id="remove" (click)="deleteDetails(cropId)">Delete Plant</button>
                                         </div>
@@ -141,64 +139,3 @@
 
   </form>
 </div>
-<div [style.display]="part3 ? 'block' : 'none'">
-  <h4 >Add New Plant</h4>
-
-
-  <hr class="m-t-0">
-  <form  #loginForm2="ngForm">
-
-    <h4 >Personal Info</h4>
-    <div class="form-group row p-b-15">
-      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Id</label>
-      <div class="col-sm-9">
-        <input type="text" [(ngModel)]="cropId"  class="form-control" name="userId" id="inputEmail3"  ngModel>
-      </div>
-    </div>
-    <div class="form-group row p-b-15">
-      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Name</label>
-      <div class="col-sm-9">
-        <input type="text" [(ngModel)]="cropName" class="form-control" name="firstName" id="inputEmail3"  ngModel>
-      </div>
-    </div>
-    <div class="form-group row p-b-15">
-      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop image</label>
-      <div class="col-sm-9">
-        <input type="email" [(ngModel)]="cropImage" class="form-control" name="lastName" id="inputEmail3"  ngModel>
-      </div>
-    </div>
-    <div class="form-group row p-b-15">
-      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Description</label>
-      <div class="col-sm-9">
-        <input type="text" [(ngModel)]="cropDescription"  class="form-control" name="cropdescription" id="inputEmail3" ngModel>
-      </div>
-    </div>
-    <div class="form-group row p-b-15">
-      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Scientific Name</label>
-      <div class="col-sm-9">
-        <input type="text" [(ngModel)]="scientificName"  class="form-control" name="scientific name" id="inputEmail3"  ngModel>
-      </div>
-    </div>
-    <div class="form-group row p-b-15">
-      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Nutrition</label>
-      <div class="col-sm-9">
-        <input type="text" [(ngModel)]="nutrition"  class="form-control" name="nutri" id="inputEmail3"  ngModel>
-      </div>
-    </div>
-    <div class="form-group row p-b-15">
-      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Cultivated Areas</label>
-      <div class="col-sm-9">
-        <input type="text" [(ngModel)]="cultivatedArea"  class="form-control" name="cultivated" id="inputEmail3"  ngModel>
-      </div>
-    </div>
-
-    <div class="card-body">
-      <div class="form-group m-b-0 text-right">
-        <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitAddDetails(loginForm2.value)">Save</button>
-        <button type="submit" class="btn btn-dark waves-effect waves-light">Cancel</button>
-      </div>
-    </div>
-
-  </form>
-</div>
-

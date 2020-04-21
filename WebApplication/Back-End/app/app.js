@@ -14,7 +14,7 @@ const crops = require("./routes/crop");
 const diseases = require("./routes/disease");
 const predictions = require("./routes/prediction");
 const accuracy = require("./routes/accuracy");
-
+const forecast = require("./routes/forecast");
 const app = express();
 // enable CORS with various options
 app.use(cors());
@@ -25,6 +25,7 @@ app.use(crops);
 app.use(diseases);
 app.use(predictions);
 app.use(accuracy);
+app.use(forecast);
 
 //starting the server
 app.listen(PORT, () => {
