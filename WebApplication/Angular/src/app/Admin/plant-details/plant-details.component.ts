@@ -69,18 +69,6 @@ export class PlantDetailsComponent implements OnInit {
     );
   }
 
-  addDetails() {
-    this.part1 = false;
-    this.part2 = false;
-    this.part3 = true;
-  }
-
-  submitAddDetails(value: any) {
-    this.connectionService.addPlant(value).subscribe(
-      data => console.log(data), error => alert('There is a error in login. please try again later.'
-      ));
-  }
-
   deleteDetails(cropId: string) {
     console.log(cropId);
     console.log(cropId);
