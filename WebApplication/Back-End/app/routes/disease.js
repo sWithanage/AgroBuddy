@@ -39,5 +39,21 @@ Router.delete("/diseases/:id", (req, res) => {
 });
 
 //inserting a disease
-
+Router.post("/diseases", async (req, res) => {
+    let data = {
+    disease_name: req.body.name,
+    disease_image: req.body.image,
+    disease_description: req.body.desc,
+    disease_timeperiod: req.body.timePeriod,
+    };
+    mysqlConnection.query("INSERT INTO disease SET ?", data, (err, rows) => {
+      if (!err) {
+        res.send(true);
+      } else {
+        console.error(err);
+        res.send(err);
+      }
+    });
+  });
+  
 module.exports = Router;
