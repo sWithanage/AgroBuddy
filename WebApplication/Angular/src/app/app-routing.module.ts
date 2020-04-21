@@ -30,30 +30,69 @@ export const Approutes: Routes = [
       },
        {
          path: 'plant',
-         component: AllPlantsComponent
+         component: AllPlantsComponent,
+         data: {
+           title: 'Plants - AgroBuddy',
+           urls: [
+             { title: 'Dashboard', url: '/admin/dashboard' },
+             { title: 'Plants' }
+           ]
+         }
        },
       {
         path: 'details',
-        component: PlantDetailsComponent
+        component: PlantDetailsComponent,
+        data: {
+          title: 'Plant Details - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/admin/dashboard' },
+            { title: 'Plant Details' }
+          ]
+        }
       },
       {
         path: 'ModelDetails',
-        component: PredictiveDetailsComponent
+        component: PredictiveDetailsComponent,
+        data: {
+          title: 'Predictive Models - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/admin/dashboard' },
+            { title: 'Predictive Models' }
+          ]
+        }
       },
       {
         path: 'ChangeModel',
-        component: ChangeModelComponent
-
+        component: ChangeModelComponent,
+        data: {
+          title: 'Change Models - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/admin/dashboard' },
+            { title: 'Change Models' }
+          ]
+        }
       },
       {
         path: 'userManagement',
-        component: UserManagementComponent
-
+        component: UserManagementComponent,
+        data: {
+          title: 'User Management - AgroBuddy',
+          urls: [
+            {title: 'Dashboard', url: '/admin/dashboard'},
+            {title: 'User Management'}
+          ]
+        }
       },
       {
         path: 'cultivatedAreas',
-        component: CultivatedAreasComponent
-
+        component: CultivatedAreasComponent,
+        data: {
+          title: 'Cultivated Areas - AgroBuddy',
+          urls: [
+            {title: 'Dashboard', url: '/admin/dashboard'},
+            {title: 'Cultivated Areas'}
+          ]
+        }
       },
     ]
   },
