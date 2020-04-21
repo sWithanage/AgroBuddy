@@ -31,22 +31,25 @@
   <div class="col-lg-6">
     <div class="card">
       <div class="card-body">
-        <form class="form-horizontal m-t-30">
+        <form class="form-horizontal m-t-30" #contactUs="ngForm">
           <div class="form-group">
             <label>Name</label>
-            <input type="text" class="form-control" name="name"  placeholder="Name">
+            <input class="form-control" [(ngModel)]="name" type="text" required=" " if="name" placeholder="Name" name="name" ngModel required>
+            <div *ngIf="nameEmpty"><span>Name is required</span></div>
           </div>
           <div class="form-group">
-            <label for="example-email">Email</label>
-            <input type="email" id="example-email" name="email" class="form-control" placeholder="Email">
+            <label>Email</label>
+            <input class="form-control" [(ngModel)]="email" type="email" required=" " if="email" placeholder="Email" name="email" ngModel required>
+            <div *ngIf="mailEmpty"><span>Email is required</span></div>
           </div>
           <div class="form-group">
             <label>Message</label>
-            <textarea class="form-control" rows="5"></textarea>
+            <textarea class="form-control" [(ngModel)]="message" required=" " if="message" placeholder="Enter your message here...." name="message" ngModel required rows="5"></textarea>
+            <div *ngIf="messageEmpty"><span>Message is required</span></div>
           </div>
           <div class="action-form">
             <div class="form-group m-b-0 text-right">
-              <button type="submit" class="btn btn-info waves-effect waves-light">Submit</button>
+              <button type="submit" class="btn btn-info waves-effect waves-light" (click)="onSubmitForm(contactUs.value)">Submit</button>
             </div>
           </div>
         </form>

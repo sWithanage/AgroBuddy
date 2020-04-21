@@ -27,4 +27,8 @@ export class ClientServiceService {
   getMarketPrice(): Observable<MarketPriceData[]> {
     return this.http.get<MarketPriceData[]>('https://agrobuddybackend.nn.r.appspot.com/prediction/marketprice');
   }
+  contact(value: any) {
+    console.log(value);
+    return this.http.post<boolean> ('https://agrobuddybackend.nn.r.appspot.com/contact', value);
+  }
 }
