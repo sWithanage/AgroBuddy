@@ -84,8 +84,8 @@ export class UserManagementComponent implements OnInit {
         this.userTelNo = data[0].user_TelNo;
 
       });
-    //Service class eka data tika ganna form ekata oni.
-    //Form eka fill karanna.
+    // Service class eka data tika ganna form ekata oni.
+    // Form eka fill karanna.
     // Update eka click karama details tika update value ekain sachinthata yawanna.
   }
 
