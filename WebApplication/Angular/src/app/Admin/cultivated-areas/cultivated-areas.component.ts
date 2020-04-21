@@ -1,17 +1,22 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {AdminServiceService} from '../../admin-service.service';
 
 @Component({
   templateUrl: './cultivated-areas.component.html'
 })
-export class CultivatedAreasComponent implements AfterViewInit {
-  constructor() {}
+export class CultivatedAreasComponent implements OnInit {
+  crop: any[];
+
+  constructor(private connectionService: AdminServiceService) {}
   // Doughnut
   public doughnutChartLabels: string[] = [
-    'Download Sales',
-    'In-Store Sales',
-    'Mail-Order Sales'
+    'Brinjal',
+    'Cucumber',
+    'Ladies ingers',
+    'Red pumpkin',
+    'Ash plantain'
   ];
-  public doughnutChartData: number[] = [350, 450, 100];
+  public doughnutChartData: number[] = [10, 20, 30, 30, 10];
   public doughnutChartType = 'doughnut';
   // events
   public chartClicked(e: any): void {
@@ -42,5 +47,7 @@ export class CultivatedAreasComponent implements AfterViewInit {
      */
   }
 
-  ngAfterViewInit() {}
+
+  ngOnInit(): void {
+  }
 }

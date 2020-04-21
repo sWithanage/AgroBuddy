@@ -10,15 +10,15 @@ export class AuthenticationService {
 
   constructor(private serviceHttp: HttpClient) { }
   private Customer: any[];
+  private url = 'https://agrobuddybackend.nn.r.appspot.com/';
 
-  private url = 'http://localhost:8080/';
   users(value: any) {
     console.log(value);
-    return this.serviceHttp.post<boolean> ('http://localhost:8080/users', value);
+    return this.serviceHttp.post<boolean> (this.url + 'users', value);
   }
   addcustomerLogin(value: any) {
     console.log(value);
-    return this.serviceHttp.post<boolean>('http://localhost:8080/authentication', value);
+    return this.serviceHttp.post<boolean>(this.url + 'authentication', value);
   }
 }
 

@@ -11,11 +11,12 @@
         <!-- title -->
     </div>
   <div>
-    <select id="select-type-basic" [(ngModel)]="status">
-      <option *ngFor="let status_item of status_values">
+    <select [(ngModel)]="selectedOption" (change)="setModelData(variable)">
+      <option   [value]="status_item" *ngFor="let status_item of status_values" >
         {{status_item}}
       </option>
     </select>
+
   </div>
     <div class="table-responsive">
         <table class="table v-middle">
@@ -38,10 +39,12 @@
                         </div>
                     </td>
                     <td>{{id}}</td>
-                    <td>{{ARIMAmodel}}</td>
-                    <td>
 
-                    </td>
+                  <td>{{ARIMAmodel}}</td>
+                  <td>
+
+                  </td>
+
 
                 </tr>
                 <tr>

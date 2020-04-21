@@ -9,10 +9,19 @@ export class PlantDetailsComponent implements OnInit {
   crop: any[];
   plantDetails: any[];
   plantName: string;
-
+  part1 = true;
+  part2 = false;
+  part3 = false;
+  cropId: string;
   cropName: string;
   cropImage: string;
   cropDescription: string;
+  scientificName: string;
+  nutrition: string;
+  temperature: string;
+  duration: string;
+  percentage: number;
+  cultivatedArea: string;
   constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) {}
   ngOnInit(): void {
     this.connectionService.getCropDetails().subscribe(
@@ -35,9 +44,48 @@ export class PlantDetailsComponent implements OnInit {
         this.cropName = data[0].crop_name;
         this.cropImage = data[0].crop_image;
         this.cropDescription = data[0].crop_description;
+        this.scientificName = data[0].scientific_name;
+       this.nutrition = data[0].nutrition;
+       this.cultivatedArea = data[0].cultivated_area;
+       this.cropId = data[0].crop_id;
+       this.temperature = data[0].temperature;
+       this.duration = data[0].duration;
+       this.percentage = data[0].percentage;
+
       });
   }
 
 
+  updateDetails() {
+    this.part1 = false;
+    this.part2 = true;
+    this.part3 = false;
+  }
 
+  submitUpdates(value: any) {
+      console.log(value);
+    this.connectionService.updatePlant( value).subscribe(
+      data => console.log(value)
+    );
+  }
+
+  addDetails() {
+    this.part1 = false;
+    this.part2 = false;
+    this.part3 = true;
+  }
+
+  submitAddDetails(value: any) {
+    this.connectionService.addPlant(value).subscribe(
+      data => console.log(data), error => alert('There is a error in login. please try again later.'
+      ));
+  }
+
+  deleteDetails(cropId: string) {
+    console.log(cropId);
+    console.log(cropId);
+    this.connectionService.deletePlant(cropId).subscribe(
+      data => console.log(cropId)
+    );
+  }
 }

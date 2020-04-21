@@ -1,3 +1,4 @@
+<div [style.display]="part1 ? 'block' : 'none'">
 <script src="user-management.component.ts"></script>
 <div class="row">
   <div class="col-lg-12">
@@ -6,6 +7,8 @@
         <div class="d-flex no-block align-items-center m-b-10">
           <h4 class="card-title">User Details</h4>
         </div>
+        <div><button id="remove" ><a routerLink="/signup">Add User</a></button></div>
+
         <div class="table-responsive">
           <table class="table bg-white table-bordered nowrap display">
             <thead>
@@ -25,8 +28,12 @@
             <tr *ngFor="let users of user">
               <td>
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customControlValidation2" required>
-                  <label class="custom-control-label" for="customControlValidation2"></label>
+                  <button id="remove" (click)="updateUser(users.user_Id)">Update</button>
+                </div>
+              </td>
+              <td>
+                <div class="custom-control custom-checkbox">
+                  <button id="remove" (click)="deleteRow(users.user_Id)">DELETE ROW</button>
                 </div>
               </td>
               <td>{{users.user_Id}}</td>
@@ -58,4 +65,117 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+
+
+<div [style.display]="part2 ? 'block' : 'none'">
+
+
+
+        <h4 >Update User Details</h4>
+
+
+      <hr class="m-t-0">
+      <form  #loginForm="ngForm">
+
+          <h4 >Personal Info</h4>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+          <div class="col-sm-9">
+            <input type="text" [(ngModel)]="userId" class="form-control" name="userId" id="inputEmail3" placeholder="{{userFname}}" ngModel>
+          </div>
+        </div>
+          <div class="form-group row p-b-15">
+            <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+            <div class="col-sm-9">
+              <input type="text" [(ngModel)]="userFname" class="form-control" name="firstName" id="inputEmail3" value="{{userFname}}" ngModel>
+            </div>
+          </div>
+          <div class="form-group row p-b-15">
+            <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+            <div class="col-sm-9">
+              <input type="email" [(ngModel)]="userLname" class="form-control" name="lastName" id="inputEmail3"  value="{{userLname}}" ngModel>
+            </div>
+          </div>
+          <div class="form-group row p-b-15">
+            <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input type="text"  [(ngModel)]="userEmail" class="form-control" name="email" id="inputEmail3" value="{{userEmail}}" ngModel>
+            </div>
+          </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">User Type</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userType" class="form-control" name="usertype" id="inputEmail3" value="{{userType}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">User Name</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userUsername" class="form-control" name="userName" id="inputEmail3" value="{{userUsername}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">NIC</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userNIC" class="form-control" name="nic" id="inputEmail3" value="{{userNIC}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Date of Birth</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userDob" class="form-control" name="dob" id="inputEmail3" value="{{userDob}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">User Password</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="user_Password" class="form-control" name="pass" id="inputEmail3" value="{{user_Password}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Address No</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userAddressNo" class="form-control" name="address" id="inputEmail3" value="{{userAddressNo}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label"> Street 1</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userStreet1" class="form-control" name="str1" id="inputEmail3" value="{{userStreet1}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Street 2</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userStreet2" class="form-control" name="str2" id="inputEmail3" value="{{userStreet2}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">City</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userCity" class="form-control" name="city" id="inputEmail3" value="{{userCity}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Phone No</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userPhoneNo" class="form-control" name="phone" id="inputEmail3" value="{{userPhoneNo}}" ngModel>
+          </div>
+        </div>
+        <div class="form-group row p-b-15">
+          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Tele phone No</label>
+          <div class="col-sm-9">
+            <input type="text"  [(ngModel)]="userTelNo" class="form-control" name="tele" id="inputEmail3" value="{{userTelNo}}" ngModel>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group m-b-0 text-right">
+            <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitUpdates(loginForm.value,userId)">Save</button>
+            <button type="submit" class="btn btn-dark waves-effect waves-light">Cancel</button>
+          </div>
+        </div>
+      </form>
 </div>

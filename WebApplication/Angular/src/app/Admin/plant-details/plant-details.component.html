@@ -1,21 +1,20 @@
+<div [style.display]="part1 ? 'block' : 'none'">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title">{{cropName}} Plant</h3>
-                <h6 class="card-subtitle">globe type chair for rest</h6>
+                <h6 class="card-subtitle"></h6>
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-6">
                         <div class="white-box text-center">
                             <img src="assets/images/gallery/{{cropImage}}" class="img-responsive"> </div>
                     </div>
                     <div class="col-lg-9 col-md-9 col-sm-6">
-                        <h4 class="box-title m-t-40">Product description</h4>
+                        <h4 class="box-title m-t-40">Crop description</h4>
                         <p>{{cropDescription}}</p>
-                        <h2 class="m-t-40">$153
-                            <small class="text-success">(36% off)</small>
-                        </h2>
+
 
 
                     </div>
@@ -25,65 +24,52 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td width="390">Brand</td>
-                                        <td> Stellar </td>
+                                        <td width="390">Crop Id</td>
+                                        <td> {{cropId}} </td>
                                     </tr>
                                     <tr>
-                                        <td>Delivery Condition</td>
-                                        <td> Knock Down </td>
+                                        <td>Crop Name</td>
+                                        <td> {{cropName}} </td>
                                     </tr>
                                     <tr>
-                                        <td>Seat Lock Included</td>
-                                        <td> Yes </td>
+                                        <td>Scientific Name</td>
+                                        <td> {{scientificName}} </td>
                                     </tr>
                                     <tr>
-                                        <td>Type</td>
-                                        <td> Office Chair </td>
+                                        <td>Nutrition</td>
+                                        <td> {{nutrition}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Style</td>
-                                        <td> Contemporary &amp; Modern </td>
+                                        <td>Cultivated Area</td>
+                                        <td> {{cultivatedArea}} </td>
                                     </tr>
                                     <tr>
-                                        <td>Wheels Included</td>
-                                        <td> Yes </td>
+                                        <td>Temperature</td>
+                                        <td> {{temperature}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Upholstery Included</td>
-                                        <td> Yes </td>
+                                        <td>Duration of Plant</td>
+                                        <td> {{duration}} </td>
                                     </tr>
                                     <tr>
-                                        <td>Upholstery Type</td>
-                                        <td> Cushion </td>
+                                        <td>Percentage of cultivated area</td>
+                                        <td> {{percentage}} </td>
                                     </tr>
+
                                     <tr>
-                                        <td>Head Support</td>
-                                        <td> No </td>
+                                      <div class="row">
+                                      <div class="custom-control custom-checkbox">
+                                        <button id="remove" (click)="updateDetails()">Update Plant</button>
+                                      </div>
+                                        <div class="custom-control custom-checkbox">
+                                          <button id="remove" (click)="addDetails()">Add Plant</button>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                          <button id="remove" (click)="deleteDetails(cropId)">Delete Plant</button>
+                                        </div>
+                                      </div>
                                     </tr>
-                                    <tr>
-                                        <td>Suitable For</td>
-                                        <td> Study &amp; Home Office </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adjustable Height</td>
-                                        <td> Yes </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Model Number</td>
-                                        <td> F01020701-00HT744A06 </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Armrest Included</td>
-                                        <td> Yes </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Care Instructions</td>
-                                        <td> Handle With Care, Keep In Dry Place, Do Not Apply Any Chemical For Cleaning. </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Finish Type</td>
-                                        <td> Matte </td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -94,3 +80,125 @@
     </div>
     <!-- Column -->
 </div>
+</div>
+<div [style.display]="part2 ? 'block' : 'none'">
+  <h4 >Update Plant Details</h4>
+
+
+  <hr class="m-t-0">
+  <form  #loginForm="ngForm">
+
+    <h4 >Personal Info</h4>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Id</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="cropId"  class="form-control" name="userId" id="inputEmail3" value="{{cropId}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Name</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="cropName" class="form-control" name="firstName" id="inputEmail3" value="{{cropName}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop image</label>
+      <div class="col-sm-9">
+        <input type="email" [(ngModel)]="cropImage" class="form-control" name="lastName" id="inputEmail3"  value="{{cropImage}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Description</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="cropDescription"  class="form-control" name="cropdescription" id="inputEmail3" value="{{cropDescription}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Scientific Name</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="scientificName"  class="form-control" name="scientific name" id="inputEmail3" value="{{scientificName}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Nutrition</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="nutrition"  class="form-control" name="nutri" id="inputEmail3" value="{{nutrition}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Cultivated Areas</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="cultivatedArea"  class="form-control" name="cultivated" id="inputEmail3" value="{{cultivatedArea}}" ngModel>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="form-group m-b-0 text-right">
+        <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitUpdates(loginForm.value)">Save</button>
+        <button type="submit" class="btn btn-dark waves-effect waves-light">Cancel</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div [style.display]="part3 ? 'block' : 'none'">
+  <h4 >Add New Plant</h4>
+
+
+  <hr class="m-t-0">
+  <form  #loginForm2="ngForm">
+
+    <h4 >Personal Info</h4>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Id</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="cropId"  class="form-control" name="userId" id="inputEmail3"  ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Name</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="cropName" class="form-control" name="firstName" id="inputEmail3"  ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop image</label>
+      <div class="col-sm-9">
+        <input type="email" [(ngModel)]="cropImage" class="form-control" name="lastName" id="inputEmail3"  ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Description</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="cropDescription"  class="form-control" name="cropdescription" id="inputEmail3" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Scientific Name</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="scientificName"  class="form-control" name="scientific name" id="inputEmail3"  ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Nutrition</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="nutrition"  class="form-control" name="nutri" id="inputEmail3"  ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Cultivated Areas</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="cultivatedArea"  class="form-control" name="cultivated" id="inputEmail3"  ngModel>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="form-group m-b-0 text-right">
+        <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitAddDetails(loginForm2.value)">Save</button>
+        <button type="submit" class="btn btn-dark waves-effect waves-light">Cancel</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
