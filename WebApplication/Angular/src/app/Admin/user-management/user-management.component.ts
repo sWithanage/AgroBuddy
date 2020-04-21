@@ -89,9 +89,9 @@ export class UserManagementComponent implements OnInit {
     // Update eka click karama details tika update value ekain sachinthata yawanna.
   }
 
-  submitUpdates( values: any) {
+  submitUpdates( values: any, user_Id: number) {
     console.log(this.userFname  );
-    this.connectionService.updateUserAll(values).subscribe(
+    this.connectionService.updateUserAll(values, user_Id).subscribe(
       data => console.log(values)
     );
     // this.connectionService.getUserListById().subscribe(
