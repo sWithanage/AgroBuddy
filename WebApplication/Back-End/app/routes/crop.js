@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express();
-const Router = express.Router();    //router object for express
 const mysqlConnection = require("../connection");
 
 //get all crop details
@@ -62,15 +61,16 @@ router.delete("/crops", (req, res) => {
 //inserting a crop
 router.post("/crops", async (req, res) => {
     let data = {
+    crop_id: req.body.cropId,
       crop_name: req.body.cropName,
       crop_image: req.body.cropImage,
       crop_description: req.body.cropDescription,
       scientific_name: req.body.scientificName,
       nutrition: req.body.nutrition,
       cultivated_area: req.body.cultivatedArea,
-      duration: req.body.duration,
       temperature: req.body.temperature,
-      cultivated_area_percentage: req.body.percentage,
+      duration: req.body.duration,
+      cultivated_area_percentage: req.body.percentage
     };
     mysqlConnection.query("INSERT INTO crop SET ?", data, (err, rows) => {
       if (!err) {
@@ -85,6 +85,7 @@ router.post("/crops", async (req, res) => {
 //update crop details
 router.put("/crops/:id", async (req, res) => {
     let data = {
+        crop_id: req.body.cropId,
         crop_name: req.body.cropName,
         crop_image: req.body.cropImage,
         crop_description: req.body.cropDescription,
@@ -96,7 +97,7 @@ router.put("/crops/:id", async (req, res) => {
         cultivated_area_percentage: req.body.percentage
     };
     mysqlConnection.query(
-        "UPDATE crop SET crop_name= ?, crop_image=?, crop_description=?, scientific_name=?, nutrition=?, cultivated_area=?, duration=?, temperature=?, cultivated_area_percentage=? where crop_Id= ?",
+        "UPDATE crop SET crop_id?, crop_name= ?, crop_image=?, crop_description=?, scientific_name=?, nutrition=?, cultivated_area=?, duration=?, temperature=?, cultivated_area_percentage=? where crop_Id= ?",
         [data, req.params.id],
         (err, rows) => {
           if (!err) {
@@ -106,7 +107,7 @@ router.put("/crops/:id", async (req, res) => {
           }
         }
     );
-  });
+});
   
 
 module.exports = router;
