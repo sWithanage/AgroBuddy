@@ -11,8 +11,8 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/client/plantFinder',
-    title: 'Plant Finder',
+    path: '/client/bestCrop',
+    title: 'Best Crop Finder',
     icon: 'icon-Plant',
     class: '',
     extralink: false,

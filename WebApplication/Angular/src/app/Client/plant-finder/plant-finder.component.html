@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="card">
+    <ngb-carousel>
+      <ng-template ngbSlide>
+        <img src="assets/images/c_field.jpg" alt="Card image cap" style="max-height: 450px">
+        <div class="carousel-caption">
+          <h3 class="text-white font-bold">AgroBuddy</h3>
+          <p>Predict the best crop using ........</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <img src="assets/images/c_weather.jpg" alt="Card image cap" style="max-height: 450px">
+        <div class="carousel-caption">
+          <h3 class="text-white font-bold">Weather</h3>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <img src="assets/images/c_market.jpg" alt="Card image cap" style="max-height: 450px">
+        <div class="carousel-caption">
+          <h3 class="text-white font-bold">Market Price</h3>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
+<div class="row">
+  <div class="card">
+  </div>
+</div>
+<div [style.display]="fullPage ? 'block' : 'none'">
+<div class="row" >
+  <div class="col-lg-6">
+    <div class="card" >
+      <div class="card-body">
+        <form class="form-horizontal m-t-30" #contactUs="ngForm">
+          <div class="form-group">
+            <label>Location</label>
+            <input class="form-control" [(ngModel)]="location" type="text" required=" " if="location" placeholder="Location" name="location" ngModel required>
+            <div *ngIf="locationEmpty"><span>Location is required</span></div>
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input class="form-control" [(ngModel)]="date" type="text" required=" " if="date" placeholder="Date" name="date" ngModel required>
+            <div *ngIf="dateEmpty"><span>Date is required</span></div>
+          </div>
+          <div class="action-form">
+            <div class="form-group m-b-0 text-right">
+              <button type="submit" class="btn btn-info waves-effect waves-light" (click)="onSubmitForm(contactUs.value)">Find Best Crop</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div [style.display]="plantDetails ? 'block' : 'none'">
+    <app-client-plant-details></app-client-plant-details>
+    <div class="action-form">
+      <div class="form-group m-b-0 text-right" mr-2>
+        <button type="submit" class="btn btn-info waves-effect waves-light" (click)="confirm()">Choose to plant</button><p>  </p>
+        <button type="button" class="btn btn-info waves-effect waves-light" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div [style.display]="confirmation ? 'block' : 'none'">
+<div class="row">
+    <div class="col-lg-6">
+      <div class="card" >
+        <div class="card-body">
+          <form class="form-horizontal m-t-30" #contactUs="ngForm">
+            <div class="form-group">
+              <label>Plant Name</label>
+              <input class="form-control" [(ngModel)]="plant" type="text" required=" " if="plant" placeholder="Plant Name" name="plant" ngModel required>
+              <div *ngIf="locationEmpty"><span>Plant Name is required</span></div>
+            </div>
+            <div class="form-group">
+              <label>Area</label>
+              <input class="form-control" [(ngModel)]="area" type="text" required=" " if="area" placeholder="Area" name="area" ngModel required>
+              <div *ngIf="dateEmpty"><span>Area is required</span></div>
+            </div>
+            <div class="action-form">
+              <div class="form-group m-b-0 text-right"  mr-2>
+                  <button type="submit" class="btn btn-info waves-effect waves-light" (click)="onClick()">Find Best Crop</button> <p>  </p>
+                  <button type="submit" class="btn btn-info waves-effect waves-light" (click)="back()">Back</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

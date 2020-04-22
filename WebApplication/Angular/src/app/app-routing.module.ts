@@ -16,6 +16,7 @@ import {ClientPlantDetailsComponent} from './Client/client-plant-details/client-
 import {CultivatedAreaComponent} from './Client/cultivated-area/cultivated-area.component';
 import {ContactUsComponent} from './Client/contact-us/contact-us.component';
 import {MarketPriceComponent} from './Client/market-price/market-price.component';
+import {PlantFinderComponent} from './Client/plant-finder/plant-finder.component';
 
 
 export const Approutes: Routes = [
@@ -157,6 +158,17 @@ export const Approutes: Routes = [
           urls: [
             { title: 'Dashboard', url: '/client/dashboard' },
             { title: 'Market Prices' }
+          ]
+        }
+      },
+      {
+        path: 'bestCrop',
+        component: PlantFinderComponent,
+        data: {
+          title: 'Best Crop - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/client/dashboard' },
+            { title: 'Best Crop' }
           ]
         }
       }
