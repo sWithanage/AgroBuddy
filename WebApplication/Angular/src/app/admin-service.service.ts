@@ -60,7 +60,7 @@ export class AdminServiceService {
   }
   deleteUserDetails(userIdToChange: any) {
     console.log(userIdToChange);
-    return this.serviceHttp.delete<any> (this.url + 'usersDetails' );
+    return this.serviceHttp.delete<any> (this.url + 'usersDetails', userIdToChange );
 
   }
 
