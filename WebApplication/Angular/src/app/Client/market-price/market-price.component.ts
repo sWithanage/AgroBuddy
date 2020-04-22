@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MarketPriceData} from '../../market-price-data.model';
-import {HttpClient} from '@angular/common/http';
+import {ClientServiceService} from '../../client-service.service';
 
 @Component({
   selector: 'app-market-price',
@@ -8,18 +7,14 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./market-price.component.css']
 })
 export class MarketPriceComponent implements OnInit {
-  marketPrice: MarketPriceData[];
-  url = 'http://localhost:58617/API/Charts/GetCharts';
-  Week = ['2020/05', '2020/06', '2020/07', '2020/08'];
-  AshPlantain = ['192.59', '181.05', '185.53', '175.26'];
-  Brinjals = ['178.97', '187.14', '185.83', '179.51'];
-  Cucumber = ['155.41', '140.22', '130.49', '119.00'];
-  LadiesFingers = ['267.03', '252.08', '207.00', '162.59'];
-  RedPumpkin = ['256.30', '263.70', '258.19', '217.58'];
-  area = [50, 40, 30, 60, 40];
-  barchart = [];
-
-  constructor(private http: HttpClient) {
+  prices: any[];
+  week = [];
+  ashPlantainArray = [];
+  brinjals = [];
+  cucumber = [];
+  ladiesFingers = [];
+  redPumpkin = [];
+  constructor(private service: ClientServiceService) {
   }
 
   public barChartOptions: any = {
@@ -28,20 +23,15 @@ export class MarketPriceComponent implements OnInit {
     barThickness: 10
   };
 
-  public barChartLabels: string[] = this.Week;
+  public barChartLabels: string[] = this.week;
   public barChartType = 'bar';
   public barChartLegend = true;
 
-  public ashPlantaindata: any[] = [
-    {data: this.AshPlantain, label: 'Ash Plantain'}];
-  public brinjalsdata: any[] = [
-    {data: this.Brinjals, label: 'Brinjals'}];
-  public cucumberdata: any[] = [
-    {data: this.Cucumber, label: 'Cucumber'}];
-  public ladiesFingersdata: any[] = [
-    {data: this.LadiesFingers, label: 'Ladies-Fingers'}];
-  public redPumpkindata: any[] = [
-    {data: this.RedPumpkin, label: 'Red Pumpkin'}];
+  public ashPlantaindata;
+  public brinjalsdata;
+  public cucumberdata;
+  public ladiesFingersdata;
+  public redPumpkindata;
 
   public ashPlantainColors: Array<any> = [
     {backgroundColor: '#b8e0b8'}];
@@ -53,16 +43,38 @@ export class MarketPriceComponent implements OnInit {
     {backgroundColor: '#2dd22d'}];
   public redPumpkinColors: Array<any> = [
     {backgroundColor: '#ec9513'}];
-  ngOnInit() {
-    /*this.http.get(this.url).subscribe((result: MarketPriceData[]) => {
-      result.forEach(x => {
-        this.Week.push(x.Week);
-        this.AshPlantain.push(x.AshPlantain);
-        this.Brinjals.push(x.Brinjals);
-        this.Cucumber.push(x.Cucumber);
-        this.LadiesFingers.push(x.LadiesFingers);
-        this.RedPumpkin.push(x.RedPumpkin);
-      });*/
+
+
+
+  async ngOnInit() {
+    this.service.getMarketPrice().subscribe(
+      data => {
+        this.prices = data;
+        console.log(data);
+        for (const plant of data) {
+          this.week.push(plant.yearWithWeek);
+          this.ashPlantainArray.push(plant.AshPlantain);
+          this.brinjals.push(plant.Brinjal);
+          this.cucumber.push(plant.Cucumber);
+          this.ladiesFingers.push(plant.LadiesFinger);
+          this.redPumpkin.push(plant.RedPumpkin);
+        }
+      });
+    // @ts-ignore
+    this.delay(1000);
+    this.updateTable();
   }
 
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms));
+  }
+
+  updateTable() {
+    this.barChartLabels = this.week;
+    this.ashPlantaindata = [{data: this.ashPlantainArray, label: 'AshPlantain'}];
+    this.brinjalsdata = [{data: this.brinjals, label: 'Brinjals'}];
+    this.cucumberdata = [{data: this.cucumber, label: 'Cucumber'}];
+    this.ladiesFingersdata = [{data: this.ladiesFingers, label: 'Ladies-Fingers'}];
+    this.redPumpkindata = [{data: this.redPumpkin, label: 'Red Pumpkin'}];
+  }
 }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IcurrentWeather } from './currentWeather';
 import { Observable } from 'rxjs/Observable';
 import {CropDetails} from './crop.model';
+import {MarketPriceData} from './market-price-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,11 @@ export class ClientServiceService {
   getPlants(): Observable<CropDetails[]> {
     return this.http.get<CropDetails[]>(this.url + 'crops');
   }
+  getMarketPrice(): Observable<MarketPriceData[]> {
+    return this.http.get<MarketPriceData[]>(this.url + 'prediction/marketprice');
+  }
   contact(value: any) {
     console.log(value);
-    return this.http.post<boolean> ('https://agrobuddybackend.nn.r.appspot.com/contact', value);
+    return this.http.post<boolean> (this.url + 'contact', value);
   }
 }

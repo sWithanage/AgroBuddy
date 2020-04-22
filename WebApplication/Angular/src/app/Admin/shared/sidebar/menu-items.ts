@@ -3,7 +3,7 @@ import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
 
   {
-    path: '/Admin/dashboard',
+    path: '/admin/dashboard',
     title: 'Dashboard',
     icon: 'icon-Car-Wheel',
     class: '',
@@ -11,7 +11,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/plantDetails',
+    path: '/admin/plant',
     title: 'Plant Details',
     icon: 'icon-Eci-Icon',
     class: '',
@@ -19,7 +19,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/cultivatedArea',
+    path: '/admin/cultivatedAreas',
     title: 'Culrivated Area',
     icon: 'icon-Pie-Chart2',
     class: '',
@@ -27,7 +27,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/userManagement',
+    path: '/admin/userManagement',
     title: 'User management',
     icon: 'icon-User',
     class: '',
@@ -35,7 +35,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/predictiveModels',
+    path: '/admin/ModelDetails',
     title: 'Predictive Models',
     icon: 'icon-Bar-Chart',
     class: '',
