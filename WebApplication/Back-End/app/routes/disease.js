@@ -44,7 +44,7 @@ Router.post("/diseases", async (req, res) => {
     disease_name: req.body.name,
     disease_image: req.body.image,
     disease_description: req.body.desc,
-    disease_timeperiod: req.body.timePeriod,
+    disease_timeperiod: req.body.timePeriod
     };
     mysqlConnection.query("INSERT INTO disease SET ?", data, (err, rows) => {
       if (!err) {
@@ -55,5 +55,26 @@ Router.post("/diseases", async (req, res) => {
       }
     });
   });
-  
+
+//update disease details
+Router.put("/diseases/:id", async (req, res) => {
+    let data = {
+    disease_name: req.body.name,
+    disease_image: req.body.image,
+    disease_description: req.body.desc,
+    disease_timeperiod: req.body.timePeriod
+    };
+    mysqlConnection.query(
+        "UPDATE disease SET disease_name= ?, disease_image=?, disease_description=?, disease_timeperiod=? where disease_id= ?",
+        [data, req.params.id],
+        (err, rows) => {
+          if (!err) {
+            res.send(true);
+          } else {
+            res.send(err);
+          }
+        }
+    );
+  });
+
 module.exports = Router;
