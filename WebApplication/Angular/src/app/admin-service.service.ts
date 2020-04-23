@@ -91,5 +91,13 @@ export class AdminServiceService {
   getMarketPrice(): Observable<MarketPriceData[]> {
     return this.serviceHttp.get<MarketPriceData[]>(this.url + 'prediction/marketprice');
   }
+  updateActivatedModel(variable: any, selectedOption: any) {
+    console.log(variable, selectedOption);
+    return this.serviceHttp.put<boolean>(this.url + 'accuracy', {
+      status: selectedOption,
+      variables: variable,
+    });
+
+  }
 
 }

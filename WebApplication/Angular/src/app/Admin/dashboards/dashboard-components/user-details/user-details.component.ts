@@ -13,7 +13,6 @@ export class UserDetailsComponent implements OnInit {
     this.connectionService.getUserList().subscribe(
       data => {
         this.user = data;
-        console.log(data);
       });
 
   }

@@ -22,31 +22,6 @@ export interface chartRainfall {
 })
 export class RaifallForcastComponent implements AfterViewInit {
   constructor() { }
-
-  // Barchart
-  barChart: chartRainfall = {
-    type: 'Bar',
-    data: {
-      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-      series: [[50, 40, 30, 70, 50, 20, 30]]
-    },
-    options: {
-      chartPadding: {
-        top: 15,
-        left: -25
-      },
-      axisX: {
-        showLabel: true,
-        showGrid: false
-      },
-      axisY: {
-        showLabel: false,
-        showGrid: false
-      },
-      fullWidth: true
-    }
-  };
-
   // Line chart
   lineChart: chartRainfall = {
     type: 'Line',

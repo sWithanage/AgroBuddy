@@ -11,7 +11,7 @@
         <!-- title -->
     </div>
   <div>
-    <select [(ngModel)]="selectedOption" (change)="setModelData(variable)">
+    <select [(ngModel)]="selectedOption" (change)="setModelData(variable,this.selectedOption)">
       <option   [value]="status_item" *ngFor="let status_item of status_values" >
         {{status_item}}
       </option>
@@ -97,15 +97,51 @@
                     <td>
                         <div class="d-flex align-items-center">
                             <div class="">
-                                <h4 class="m-b-0 font-16">ANN</h4>
+                                <h4 class="m-b-0 font-16">AR</h4>
                             </div>
                         </div>
                     </td>
                     <td>{{id}}</td>
-                    <td>{{ANNmodel}}</td>
+                    <td>{{ARmodel}}</td>
                     <td>
 
                     </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+
+                      <div class="">
+                        <h4 class="m-b-0 font-16">VAR</h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{id}}</td>
+
+                  <td>{{VARmodel}}</td>
+                  <td>
+
+                  </td>
+
+
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+
+                      <div class="">
+                        <h4 class="m-b-0 font-16">AUTOARIMA</h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{id}}</td>
+
+                  <td>{{AUTOARIMA}}</td>
+                  <td>
+
+                  </td>
+
 
                 </tr>
             </tbody>

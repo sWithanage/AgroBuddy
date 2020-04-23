@@ -65,42 +65,72 @@ export class VisitorsComponent implements OnInit {
   };
   schemeType = 'ordinal';
   ARPrecipitationAccuracy: any;
+  ARMAPrecipitationAccuracy: any;
+  ARIMAPrecipitationAccuracy: any;
+  RNNPrecipitationAccuracy: any;
+  AUTOARIMAPrecipitationAccuracy: any;
+  VARPrecipitationAccuracy: any;
+  SARIMAPrecipitationAccuracy: any;
+  ARMarketPricePredictionAccuracy: any;
+  ARMAMarketPricePredictionAccuracy: any;
+  ARIMAMarketPricePredictionAccuracy: any;
+  RNNMarketPricePredictionAccuracy: any;
+  VARMarketPricePredictionAccuracy: any;
+  SARIMAMarketPricePredictionAccuracy: any;
+  AUTOARIMAMarketPricePredictonAccuracy: any;
+  ARtemperaturePredictionAccuracy: any;
+  ARMAtemperaturePredictionAccuracy: any;
+  ARIMAtemperaturePredictionAccuracy: any;
+  RNNtemperaturePredictionAccuracy: any;
+  VARtemperaturePredictionAccuracy: any;
+  SARIMAtemperaturePredictionAccuracy: any;
+  AUTOARIMAtemperaturePredictonAccuracy: any;
 
 
     constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) {
     }
 
   ngOnInit() {
-      this.ARPrecipitationAccuracy = 99;
 
-    this.connectionService.getModelDetails(this.variables).subscribe(
+    this.connectionService.getAllModels().subscribe(
       data => {
         console.log(data);
-        if (this.variables = 'temperature') {
-          this.ARIMAmodel = data[0].ARIMA;
-          this.ANNmodel = data[0].ANN;
-          this.ARMAmodel = data[0].ARMA;
-          this.RNNmodel = data[0].RNN;
-          this.SARIMAmodel = data[0].SARIMA;
+
+        for (const dataElement of data) {
+          // tslint:disable-next-line:triple-equals
+          if (dataElement.variables == 'rainfall') {
+            this.ARPrecipitationAccuracy = dataElement.AR;
+            this.ARIMAPrecipitationAccuracy = dataElement.ARIMA;
+            this.ARMAPrecipitationAccuracy = dataElement.ARMA;
+            this.RNNPrecipitationAccuracy = dataElement.RNN;
+            this.AUTOARIMAPrecipitationAccuracy = dataElement.AUTOARIMA;
+            this.SARIMAPrecipitationAccuracy = dataElement.SARIMA;
+            this.VARPrecipitationAccuracy = dataElement.VAR;
+          }
+          // tslint:disable-next-line:triple-equals
+          if (dataElement.variables == 'temperature') {
+            this.ARtemperaturePredictionAccuracy = dataElement.AR;
+            this.ARIMAtemperaturePredictionAccuracy = dataElement.ARIMA;
+            this.ARMAtemperaturePredictionAccuracy = dataElement.ARMA;
+            this.RNNtemperaturePredictionAccuracy = dataElement.RNN;
+            this.AUTOARIMAtemperaturePredictonAccuracy = dataElement.AUTOARIMA;
+            this.SARIMAtemperaturePredictionAccuracy = dataElement.SARIMA;
+            this.VARtemperaturePredictionAccuracy = dataElement.VAR;
+          }
+          // tslint:disable-next-line:triple-equals
+          if (dataElement.variables == 'marketPrice') {
+            this.ARMarketPricePredictionAccuracy = dataElement.AR;
+            this.ARIMAMarketPricePredictionAccuracy = dataElement.ARIMA;
+            this.ARMAMarketPricePredictionAccuracy = dataElement.ARMA;
+            this.AUTOARIMAMarketPricePredictonAccuracy = dataElement.AUTOARIMA;
+            this.RNNMarketPricePredictionAccuracy = dataElement.RNN;
+            this.SARIMAMarketPricePredictionAccuracy = dataElement.SARIMA;
+            this.VARMarketPricePredictionAccuracy = dataElement.VAR;
+          }
         }
+
       }
     );
-    // this.connectionService.getAllModels().subscribe(
-    //   data => {
-    //     console.log(data);
-    //     this.modelDetails = data;
-    //     this.variable = data[0].variables;
-    //     console.log(this.variable);
-    //     this.ARIMAmodel = data[0].ARIMA;
-    //     this.ARMAmodel = data[0].ARMA;
-    //     this.SARIMAmodel = data[0].SARIMA;
-    //     this.RNNmodel = data[0].RNN;
-    //     this.ANNmodel = data[0].ANN;
-    //     this.id = data[0].aID;
-    //     this.status = data[0].activeModel;
-    //     this.selectedOption = data[0].activeModel;
-    //   });
-
   }
 
 
