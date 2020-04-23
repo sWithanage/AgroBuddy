@@ -5,7 +5,7 @@ const mysqlConnection = require("../agroDataConnection");
 //get current market price prediction
 Router.get("/prediction/marketprice", (req, res) => {
   mysqlConnection.query(
-    "SELECT * FROM `marketprice` ORDER BY yearWithWeek DESC limit 1",
+    "SELECT * FROM `marketprice` ORDER BY yearWithWeek DESC limit 5",
     (err, rows, fields) => {
       if (!err) {
         res.send(rows);

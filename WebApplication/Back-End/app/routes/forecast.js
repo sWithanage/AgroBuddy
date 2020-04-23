@@ -8,251 +8,388 @@ const cron = require("node-cron");
 const axios = require("axios");
 
 // schedule tasks to be run on the server
-cron.schedule("59 23 * * *", async (req, res) => {
+cron.schedule("30 23 * * Monday", async (req, res) => {
   // data retreive from api endpoints
   // save those data into DB
+
   try {
     // ar model for forecast
-    const arTemp = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=temp"
+    const arTempForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=ar&type=temp"
     );
-    const arRaiFall = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=rain"
+    const arTemp = JSON.stringify(arTempForecast.data);
+
+    const arRainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=ar&type=rain"
     );
-    const arAshPlantain = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=AshPlantain"
+    const arRain = JSON.stringify(arRainForecast.data);
+
+    const arAshPlantainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=ar&type=market&plant=AshPlantain"
     );
-    const arBrinjal = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=Brinjal"
+    const arAshPlantain = JSON.stringify(arAshPlantainForecast.data);
+
+    const arBrinjalForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=ar&type=market&plant=Brinjal"
     );
-    const arCucumber = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=Cucumber"
+    const arBrinjal = JSON.stringify(arBrinjalForecast.data);
+
+    const arCucumberForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=ar&type=market&plant=Cucumber"
     );
-    const arladiesFingers = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=LadiesFinger"
+    const arCucumber = JSON.stringify(arCucumberForecast.data);
+
+    const arladiesFingersForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=ar&type=market&plant=LadiesFinger"
     );
-    const arRedPumpkin = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=RedPumpkin"
+    const arladiesFingers = JSON.stringify(arladiesFingersForecast.data);
+
+    const arRedPumpkinForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=ar&type=market&plant=RedPumpkin"
     );
+    const arRedPumpkin = JSON.stringify(arRedPumpkinForecast.data);
+
+    console.log("Get AR model forecast data");
+
+    // auto_arima model forecast
+    // const autoarimaTemp = await axios.get(
+    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=temp"
+    // );
+    // const autoarimaRaiFall = await axios.get(
+    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=rain"
+    // );
+    // const autoarimaAshPlantain = await axios.get(
+    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=AshPlantain"
+    // );
+    // const autoarimaBrinjal = await axios.get(
+    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=Brinjal"
+    // );
+    // const autoarimaCucumber = await axios.get(
+    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=Cucumber"
+    // );
+    // const autoarimaladiesFingers = await axios.get(
+    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=LadiesFinger"
+    // );
+    // const autoarimaRedPumpkin = await axios.get(
+    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=RedPumpkin"
+    // );
+    //console.log("Get AUTOARIMA model forecast data");
 
     // arima model
-    const arimaTemp = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arima&type=temp"
+    const arimaTempForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arima&type=temp"
     );
-    const arimaRaiFall = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arima&type=rain"
+    const arimaTemp = JSON.stringify(arimaTempForecast.data);
+
+    const arimaRainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arima&type=rain"
     );
-    const arimaAshPlantain = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arima&type=market&plant=AshPlantain"
+    const arimaRain = JSON.stringify(arimaRainForecast.data);
+
+    const arimaAshPlantainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arima&type=market&plant=AshPlantain"
     );
-    const arimaBrinjal = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arima&type=market&plant=Brinjal"
+    const arimaAshPlantain = JSON.stringify(arimaAshPlantainForecast.data);
+
+    const arimaBrinjalForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arima&type=market&plant=Brinjal"
     );
-    const arimaCucumber = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arima&type=market&plant=Cucumber"
+    const arimaBrinjal = JSON.stringify(arimaBrinjalForecast.data);
+
+    const arimaCucumberForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arima&type=market&plant=Cucumber"
     );
-    const arimaladiesFingers = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arima&type=market&plant=LadiesFinger"
+    const arimaCucumber = JSON.stringify(arimaCucumberForecast.data);
+
+    const arimaladiesFingersForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arima&type=market&plant=LadiesFinger"
     );
-    const arimaRedPumpkin = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arima&type=market&plant=RedPumpkin"
+    const arimaladiesFingers = JSON.stringify(arimaladiesFingersForecast.data);
+
+    const arimaRedPumpkinForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arima&type=market&plant=RedPumpkin"
     );
+    const arimaRedPumpkin = JSON.stringify(arimaRedPumpkinForecast.data);
+
+    console.log("Get ARIMA model forecast data");
 
     // arma model for forecast
-    const armaTemp = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arma&type=temp"
+    const armaTempForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arma&type=temp"
     );
-    const armaRaiFall = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arma&type=rain"
+    const armaTemp = JSON.stringify(armaTempForecast.data);
+
+    const armaRainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arma&type=rain "
     );
-    const armaAshPlantain = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arma&type=market&plant=AshPlantain"
+    const armaRain = JSON.stringify(armaRainForecast.data);
+
+    const armaAshPlantainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arma&type=market&plant=AshPlantain"
     );
-    const armaBrinjal = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arma&type=market&plant=Brinjal"
+    const armaAshPlantain = JSON.stringify(armaAshPlantainForecast.data);
+
+    const armaBrinjalForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arma&type=market&plant=Brinjal"
     );
-    const armaCucumber = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arma&type=market&plant=Cucumber"
+    const armaBrinjal = JSON.stringify(armaBrinjalForecast.data);
+
+    const armaCucumberForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arma&type=market&plant=Cucumber"
     );
-    const armaladiesFingers = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arma&type=market&plant=LadiesFinger"
+    const armaCucumber = JSON.stringify(armaCucumberForecast.data);
+
+    const armaladiesFingersForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arma&type=market&plant=LadiesFinger"
     );
-    const armaRedPumpkin = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=arma&type=market&plant=RedPumpkin"
+    const armaladiesFingers = JSON.stringify(armaladiesFingersForecast.data);
+
+    const armaRedPumpkinForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=arma&type=market&plant=RedPumpkin"
     );
+    const armaRedPumpkin = JSON.stringify(armaRedPumpkinForecast.data);
 
     // sarima model forecast
-    const sarimaTemp = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=sarima&type=temp"
+    const sarimaTempForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=sarima&type=temp"
     );
-    const sarimaRaiFall = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=sarima&type=rain"
+    const sarimaTemp = JSON.stringify(sarimaTempForecast.data);
+
+    const sarimaRainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=sarima&type=rain"
     );
-    const sarimaAshPlantain = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=sarima&type=market&plant=AshPlantain"
+    const sarimaRain = JSON.stringify(sarimaRainForecast.data);
+
+    const sarimaAshPlantainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=sarima&type=market&plant=AshPlantain"
     );
-    const sarimaBrinjal = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=sarima&type=market&plant=Brinjal"
+    const sarimaAshPlantain = JSON.stringify(sarimaAshPlantainForecast.data);
+
+    const sarimaBrinjalForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=sarima&type=market&plant=Brinjal"
     );
-    const sarimaCucumber = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=sarima&type=market&plant=Cucumber"
+    const sarimaBrinjal = JSON.stringify(sarimaBrinjalForecast.data);
+
+    const sarimaCucumberForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=sarima&type=market&plant=Cucumber"
     );
-    const sarimaladiesFingers = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=sarima&type=market&plant=LadiesFinger"
+    const sarimaCucumber = JSON.stringify(sarimaCucumberForecast.data);
+
+    const sarimaladiesFingersForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=sarima&type=market&plant=LadiesFinger"
     );
-    const sarimaRedPumpkin = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=sarima&type=market&plant=RedPumpkin"
+    const sarimaladiesFingers = JSON.stringify(
+      sarimaladiesFingersForecast.data
     );
+
+    const sarimaRedPumpkinForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=sarima&type=market&plant=RedPumpkin"
+    );
+    const sarimaRedPumpkin = JSON.stringify(sarimaRedPumpkinForecast.data);
 
     // rnn model forecast
-    const rnnTemp = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=rnn&type=temp"
+    const rnnTempForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=rnn&type=temp"
     );
-    const rnnRaiFall = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=rnn&type=rain"
+    const rnnTemp = JSON.stringify(rnnTempForecast.data);
+
+    const rnnRainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=rnn&type=rain"
     );
-    const rnnAshPlantain = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=AshPlantain"
+    const rnnRain = JSON.stringify(rnnRainForecast.data);
+
+    const rnnAshPlantainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=rnn&type=market&plant=AshPlantain"
     );
-    const rnnBrinjal = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=Brinjal"
+    const rnnAshPlantain = JSON.stringify(rnnAshPlantainForecast.data);
+
+    const rnnBrinjalForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=rnn&type=market&plant=Brinjal"
     );
-    const rnnCucumber = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=Cucumber"
+    const rnnBrinjal = JSON.stringify(rnnBrinjalForecast.data);
+
+    const rnnCucumberForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=rnn&type=market&plant=Cucumber"
     );
-    const rnnladiesFingers = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=LadiesFinger"
+    const rnnCucumber = JSON.stringify(rnnCucumberForecast.data);
+
+    const rnnladiesFingersForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=rnn&type=market&plant=LadiesFinger"
     );
-    const rnnRedPumpkin = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=ar&type=market&plant=RedPumpkin"
+    const rnnladiesFingers = JSON.stringify(rnnladiesFingersForecast.data);
+
+    const rnnRedPumpkinForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=rnn&type=market&plant=RedPumpkin"
     );
+    const rnnRedPumpkin = JSON.stringify(rnnRedPumpkinForecast.data);
 
     // var model forecast
-    const varTemp = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=var&type=temp"
+    const varTempForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=var&type=temp"
     );
-    const varRaiFall = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=var&type=rain"
+    const varTemp = JSON.stringify(varTempForecast.data);
+
+    const varRainAccuracy = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=var&type=rain"
     );
-    const varAshPlantain = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=var&type=market&plant=AshPlantain"
+    const varRain = JSON.stringify(varRainAccuracy.data);
+
+    const varAshPlantainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=var&type=market&plant=AshPlantain"
     );
-    const varBrinjal = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=var&type=market&plant=Brinjal"
+    const varAshPlantain = JSON.stringify(varAshPlantainForecast.data);
+
+    const varBrinjalForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=var&type=market&plant=Brinjal"
     );
-    const varCucumber = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=var&type=market&plant=Cucumber"
+    const varBrinjal = JSON.stringify(varBrinjalForecast.data);
+
+    const varCucumberForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=var&type=market&plant=Cucumber"
     );
-    const varladiesFingers = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=var&type=market&plant=LadiesFinger"
+    const varCucumber = JSON.stringify(varCucumberForecast.data);
+
+    const varladiesFingersForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=var&type=market&plant=LadiesFinger"
     );
-    const varRedPumpkin = await axios.get(
-      "http://127.0.0.1:8080/forecast?model=var&type=market&plant=RedPumpkin"
+    const varladiesFingers = JSON.stringify(varladiesFingersForecast.data);
+
+    const varRedPumpkinForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=var&type=market&plant=RedPumpkin"
     );
+    const varRedPumpkin = JSON.stringify(varRedPumpkinForecast.data);
 
     // update data forecast table temperature row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = temperature",
-      [
-        arTemp.data,
-        arimaTemp.data,
-        armaTemp.data,
-        sarimaTemp.data,
-        rnnTemp.data,
-        varTemp.data,
-      ],
-      () => {}
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE fID = 1",
+      [arTemp, arimaTemp, armaTemp, sarimaTemp, rnnTemp, varTemp],
+      (err) => {
+        if (!err) {
+          console.log("update forecast temperature row");
+        } else {
+          console.log(err);
+        }
+      }
     );
 
     // update data forecast table rainfall row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = rainfall",
-      [
-        arRaiFall.data,
-        arimaRaiFall.data,
-        armaRaiFall.data,
-        sarimaRaiFall.data,
-        rnnRaiFall.data,
-        varRaiFall.data,
-      ],
-      () => {}
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE fID = 2",
+      [arRain, arimaRain, armaRain, sarimaRain, rnnRain, varRain],
+      (err) => {
+        if (!err) {
+          console.log("update forecast rainfall row");
+        } else {
+          console.log(err);
+        }
+      }
     );
 
     // update data forecast table ashplantain market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = ashPlantainMPrice",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE fID = 3",
       [
-        arAshPlantain.data,
-        arimaAshPlantain.data,
-        armaAshPlantain.data,
-        sarimaAshPlantain.data,
-        rnnAshPlantain.data,
-        varAshPlantain.data,
+        arAshPlantain,
+        arimaAshPlantain,
+        armaAshPlantain,
+        sarimaAshPlantain,
+        rnnAshPlantain,
+        varAshPlantain,
       ],
-      () => {}
+      (err) => {
+        if (!err) {
+          console.log("update forecast ashplantain row");
+        } else {
+          console.log(err);
+        }
+      }
     );
 
     // update data forecast table brinjal market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = brinjalMPrice",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE fID = 4",
       [
-        arBrinjal.data,
-        arimaBrinjal.data,
-        armaBrinjal.data,
-        sarimaBrinjal.data,
-        rnnBrinjal.data,
-        varBrinjal.data,
+        arBrinjal,
+        arimaBrinjal,
+        armaBrinjal,
+        sarimaBrinjal,
+        rnnBrinjal,
+        varBrinjal,
       ],
-      () => {}
+      (err) => {
+        if (!err) {
+          console.log("update forecast brinjal row");
+        } else {
+          console.log(err);
+        }
+      }
     );
 
     // update data forecast table cucumber market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = cucumberMPrice",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = 5",
       [
-        arCucumber.data,
-        arimaCucumber.data,
-        armaCucumber.data,
-        sarimaCucumber.data,
-        rnnCucumber.data,
-        varCucumber.data,
+        arCucumber,
+        arimaCucumber,
+        armaCucumber,
+        sarimaCucumber,
+        rnnCucumber,
+        varCucumber,
       ],
-      () => {}
+      (err) => {
+        if (!err) {
+          console.log("update forecast cucumber row");
+        } else {
+          console.log(err);
+        }
+      }
     );
 
-    // update data forecast table brinjal market price row
+    // update data forecast table ladiesFingers market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = ladiesFingersMPrice",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = 6",
       [
-        arladiesFingers.data,
-        arimaladiesFingers.data,
-        armaladiesFingers.data,
-        sarimaladiesFingers.data,
-        rnnladiesFingers.data,
-        varladiesFingers.data,
+        arladiesFingers,
+        arimaladiesFingers,
+        armaladiesFingers,
+        sarimaladiesFingers,
+        rnnladiesFingers,
+        varladiesFingers,
       ],
-      () => {}
+      (err) => {
+        if (!err) {
+          console.log("update forecast ladies fingers row");
+        } else {
+          console.log(err);
+        }
+      }
     );
 
-    // update data forecast table brinjal market price row
+    // update data forecast table red pumpkin market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = redPumpkinMPrice",
+      "UPDATE forecast SET AR = ?, AUTOARIMA = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = 7",
       [
-        arRedPumpkin.data,
-        arimaRedPumpkin.data,
-        armaRedPumpkin.data,
-        sarimaRedPumpkin.data,
-        rnnRedPumpkin.data,
-        varRedPumpkin.data,
+        arRedPumpkin,
+        arimaRedPumpkin,
+        armaRedPumpkin,
+        sarimaRedPumpkin,
+        rnnRedPumpkin,
+        varRedPumpkin,
       ],
-      () => {}
+      (err) => {
+        if (!err) {
+          console.log("update forecast red pumpkin row");
+        } else {
+          console.log(err);
+        }
+      }
     );
 
     console.log("update forecast");
   } catch (error) {
     console.log(error);
   }
-  console.log("running a task in every day night 11.59pm");
+  console.log("running a task in every Monday night 11.30pm");
 });
 
 // get all forecast details
@@ -270,6 +407,21 @@ router.get("/forecast", (req, res) => {
 router.get("/forecast/:variables", (req, res) => {
   mysqlConnection.query(
     "SELECT * FROM forecast WHERE variables=?",
+    [req.params.variables],
+    (err, rows) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+// get selected variable AR model forecast from forecast table
+router.get("/forecastAR/:variables", (req, res) => {
+  mysqlConnection.query(
+    "SELECT AR FROM forecast WHERE variables=?",
     [req.params.variables],
     (err, rows) => {
       if (!err) {
