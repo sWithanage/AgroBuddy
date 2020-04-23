@@ -64,12 +64,14 @@ export class VisitorsComponent implements OnInit {
     domain: ['#2962FF', '#4fc3f7', '#a1aab2']
   };
   schemeType = 'ordinal';
+  ARPrecipitationAccuracy: any;
 
 
     constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) {
     }
 
   ngOnInit() {
+      this.ARPrecipitationAccuracy = 99;
 
     this.connectionService.getModelDetails(this.variables).subscribe(
       data => {

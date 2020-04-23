@@ -171,7 +171,12 @@
             <input type="text"  [(ngModel)]="userTelNo" class="form-control" name="tele" id="inputEmail3" value="{{userTelNo}}" ngModel>
           </div>
         </div>
-
+        <div class="card-body">
+          <div class="form-group m-b-0 text-right">
+            <button type="submit" class="btn btn-info waves-effect waves-light" (click)="deleteRow(userId)">Delete</button>
+            <button type="submit" class="btn btn-dark waves-effect waves-light">Cancel</button>
+          </div>
+        </div>
         <div class="card-body">
           <div class="form-group m-b-0 text-right">
             <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitUpdates(loginForm.value,userId)">Save</button>

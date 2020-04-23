@@ -36,10 +36,10 @@ export class UserManagementComponent implements OnInit {
         this.statusDetails = data[0].user_Type;
       });
   }
-  deleteRow(userIdToChange: any) {
-      console.log(userIdToChange);
-      this.connectionService.deleteUserDetails(userIdToChange).subscribe(
-        data => console.log(userIdToChange)
+  deleteRow(userId: any) {
+      console.log(userId);
+      this.connectionService.deleteUserDetails(userId).subscribe(
+        data => console.log(userId)
       );
   }
 

@@ -7,6 +7,7 @@ import { WeatherDetails } from './weathercard.model';
 import {ClientDetails} from './client.model';
 import {CropDetails} from './crop.model';
 import { IcurrentWeather } from './currentWeather';
+import {MarketPriceData} from './market-price-data.model';
 
 
 @Injectable({
@@ -86,6 +87,9 @@ export class AdminServiceService {
     console.log(value);
     return this.serviceHttp.put<boolean> ( this.url + 'crops' , value  );
     console.log(value);
+  }
+  getMarketPrice(): Observable<MarketPriceData[]> {
+    return this.serviceHttp.get<MarketPriceData[]>(this.url + 'prediction/marketprice');
   }
 
 }
