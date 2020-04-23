@@ -55,10 +55,10 @@ export const Approutes: Routes = [
         path: 'ModelDetails',
         component: PredictiveDetailsComponent,
         data: {
-          title: 'Predictive Models - AgroBuddy',
+          title: 'Model Details - AgroBuddy',
           urls: [
             { title: 'Dashboard', url: '/admin/dashboard' },
-            { title: 'Predictive Models' }
+            { title: 'Model Details' }
           ]
         }
       },
@@ -66,10 +66,10 @@ export const Approutes: Routes = [
         path: 'ChangeModel',
         component: ChangeModelComponent,
         data: {
-          title: 'Change Models - AgroBuddy',
+          title: 'Predictive Models - AgroBuddy',
           urls: [
             { title: 'Dashboard', url: '/admin/dashboard' },
-            { title: 'Change Models' }
+            { title: 'Predictive Models' }
           ]
         }
       },

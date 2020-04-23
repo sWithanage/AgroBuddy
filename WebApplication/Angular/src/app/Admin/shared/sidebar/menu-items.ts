@@ -35,7 +35,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/admin/ModelDetails',
+    path: '/admin/ChangeModel',
     title: 'Predictive Models',
     icon: 'icon-Bar-Chart',
     class: '',
