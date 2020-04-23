@@ -4,6 +4,9 @@ import { IcurrentWeather } from './currentWeather';
 import { Observable } from 'rxjs/Observable';
 import {CropDetails} from './crop.model';
 import {MarketPriceData} from './market-price-data.model';
+import {BestCrop} from './best-crop.model';
+import {ClientArea} from './client-area.model';
+import {Buyers} from './buyers.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +35,22 @@ export class ClientServiceService {
   contact(value: any) {
     console.log(value);
     return this.http.post<boolean> (this.url + 'contact', value);
+  }
+  predict(value: any) {
+    console.log(value);
+    return this.http.post<boolean> (this.url + 'predict', value);
+  }
+  getBestCrop(): Observable<BestCrop[]> {
+    return this.http.get<BestCrop[]>(this.url + 'bestCrops');
+  }
+  chosenCrop(value: any) {
+    console.log(value);
+    return this.http.post<boolean> (this.url + 'chosenCrop', value);
+  }
+  clientArea(userId: any): Observable<ClientArea[]> {
+    return this.http.get<ClientArea[]>(this.url + 'clientArea');
+  }
+  getBuyers(): Observable<Buyers[]> {
+    return this.http.get<Buyers[]>(this.url + 'buyers');
   }
 }

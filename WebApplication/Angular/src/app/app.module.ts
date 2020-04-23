@@ -48,6 +48,7 @@ import {ClientPlantDetailsComponent} from './Client/client-plant-details/client-
 import { ContactUsComponent } from './Client/contact-us/contact-us.component';
 import { MarketPriceComponent } from './Client/market-price/market-price.component';
 import { PlantFinderComponent } from './Client/plant-finder/plant-finder.component';
+import { BuyersComponent } from './Client/buyers/buyers.component';
 
 
 
@@ -90,6 +91,7 @@ const routes: Routes = [ {
     ContactUsComponent,
     MarketPriceComponent,
     PlantFinderComponent,
+    BuyersComponent,
 
   ],
   imports: [

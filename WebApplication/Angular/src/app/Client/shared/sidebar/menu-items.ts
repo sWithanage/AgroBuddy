@@ -43,6 +43,14 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
+    path: '/client/buyers',
+    title: 'Buyers',
+    icon: 'icon-Business-ManWoman',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
     path: '/client/contactUs',
     title: 'Contact Us',
     icon: 'icon-Phone',
