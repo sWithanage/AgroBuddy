@@ -183,4 +183,27 @@ router.post("/authentication", (req, res) => {
   }
 });
 
+//login authentication
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}))
+
+var sess = req.session;  //initialize session variable
+req.session.userId = results[0].id; //set user id
+req.session.user = results[0];//set user name
+
+//unset session
+req.session.destroy(function(err) {
+  //cal back method
+})
+
+//show message or notification
+var message = '';
+message = 'Wrong Credentials.';
+res.render('index.ejs',{message: message});
+
 module.exports = router;

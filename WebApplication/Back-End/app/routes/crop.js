@@ -28,7 +28,7 @@ router.get("/crops/:id", (req, res) => {
 });
 
 //delete a crop
-router.delete("/crops", (req, res) => {
+router.delete("/crops", async (req, res) => {
     mysqlConnection.query("DELETE FROM crop WHERE crop_id=?", 
     [req.body.cropId], 
     (err, rows, fields) => {
@@ -72,7 +72,9 @@ router.post("/crops", async (req, res) => {
       duration: req.body.duration,
       cultivated_area_percentage: req.body.percentage
     };
-    mysqlConnection.query("INSERT INTO crop SET ?", data, (err, rows) => {
+    mysqlConnection.query("INSERT INTO crop SET ?", 
+    data, 
+    (err, rows) => {
       if (!err) {
         res.send(true);
       } else {

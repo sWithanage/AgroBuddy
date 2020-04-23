@@ -2,6 +2,21 @@ const express = require('express');
 const Router = express.Router();    //router object for express
 const mysqlConnection = require("../connection");
 
+//get all buyers details
+Router.get("/buyers", (req, res) => {
+    mysqlConnection.query("SELECT * from buyers", 
+    (err, rows, fields) => {
+        if(!err)
+        {
+            res.send(rows);
+        }
+        else
+        {
+            console.log(err);
+        }
+    })
+});
+
 //get all disease details
 Router.get("/diseases", (req, res) => {
     mysqlConnection.query("SELECT * from disease", (err, rows, fields) => {
