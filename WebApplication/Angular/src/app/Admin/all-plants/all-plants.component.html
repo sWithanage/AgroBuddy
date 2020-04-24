@@ -1,7 +1,14 @@
-<div class="custom-control custom-checkbox">
-  <button id="remove" (click)="addDetails()">Add Plant</button>
-</div>
+
 <div [style.display]="part1 ? 'block' : 'none'">
+  <div class="col-lg-12 col-xlg-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="button-group">
+          <button type="button" class="btn btn-rounded btn-danger" id="remove" (click)="addDetails()">Add Plant</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <div class="row el-element-overlay">
 
   <div class="col-lg-3 col-md-6" *ngFor="let plants of plantDetails">
@@ -23,13 +30,11 @@
                 <div class="d-flex no-block align-items-center">
                     <div class="m-l-15">
                         <h4 class="m-b-0">{{plants.crop_name}} Plant</h4>
-                        <span class="text-muted">globe type chair for rest</span>
+                        <span class="text-muted"></span>
                     </div>
-                    <div class="ml-auto m-r-15">
-                        <button type="button" class="btn btn-dark btn-circle">$15</button>
-                    </div>
+
                 </div>
-            </div>
+            </div><br>
         </div>
       </a>
     </div>
@@ -42,7 +47,7 @@
   <hr class="m-t-0">
   <form  #loginForm2="ngForm">
 
-    <h4 >Personal Info</h4>
+    <h5 >Fill the information regarding the Crop.</h5><br>
     <div class="form-group row p-b-15">
       <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Id</label>
       <div class="col-sm-9">
@@ -107,7 +112,7 @@
     <div class="card-body">
       <div class="form-group m-b-0 text-right">
         <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitAddDetails(loginForm2.value)">Save</button>
-        <button type="submit" class="btn btn-dark waves-effect waves-light">Cancel</button>
+        <button type="submit" class="btn btn-dark waves-effect waves-light" ><a routerLink="/admin/dashboard">Cancel</a></button>
       </div>
     </div>
 

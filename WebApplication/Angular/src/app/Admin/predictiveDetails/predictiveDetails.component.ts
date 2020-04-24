@@ -49,49 +49,16 @@ export class PredictiveDetailsComponent implements OnInit {
 
         for (const dataElement of data) {
           // tslint:disable-next-line:triple-equals
-          if (dataElement.variables == 'temperature') {
+          if (dataElement.variables == this.variable) {
             this.modelDetails = data;
-            this.variable = data[0].variables;
-            console.log(this.variable);
-            this.ARIMAmodel = data[0].ARIMA;
-            this.ARMAmodel = data[0].ARMA;
-            this.SARIMAmodel = data[0].SARIMA;
-            this.RNNmodel = data[0].RNN;
-            this.AUTOARIMA = data[0].AUTOARIMA;
-            this.ARmodel = data[0].AR;
-            this.VARmodel = data[0].VAR;
-            this.id = data[0].aID;
-            this.status = data[0].activeModel;
-            this.selectedOption = data[0].activeModel;
-          }
-          // tslint:disable-next-line:triple-equals
-          if (dataElement.variables == 'rainfall') {
-            this.modelDetails = data;
-            console.log(this.variable);
             this.variable = dataElement.variables;
             this.ARIMAmodel = dataElement.ARIMA;
             this.ARMAmodel = dataElement.ARMA;
             this.SARIMAmodel = dataElement.SARIMA;
             this.RNNmodel = dataElement.RNN;
-            this.AUTOARIMA = data[0].AUTOARIMA;
-            this.ARmodel = data[0].AR;
-            this.VARmodel = data[0].VAR;
-            this.id = dataElement.aID;
-            this.status = dataElement.activeModel;
-            this.selectedOption = dataElement.activeModel;
-          }
-          // tslint:disable-next-line:triple-equals
-          if (dataElement.variables == 'marketprice') {
-            this.modelDetails = data;
-            console.log(this.variable);
-            this.variable = dataElement.variables;
-            this.ARIMAmodel = dataElement.ARIMA;
-            this.ARMAmodel = dataElement.ARMA;
-            this.SARIMAmodel = dataElement.SARIMA;
-            this.RNNmodel = dataElement.RNN;
-            this.AUTOARIMA = data[0].AUTOARIMA;
-            this.ARmodel = data[0].AR;
-            this.VARmodel = data[0].VAR;
+            this.AUTOARIMA = dataElement.AUTOARIMA;
+            this.ARmodel = dataElement.AR;
+            this.VARmodel = dataElement.VAR;
             this.id = dataElement.aID;
             this.status = dataElement.activeModel;
             this.selectedOption = dataElement.activeModel;

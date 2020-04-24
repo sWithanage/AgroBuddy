@@ -37,6 +37,9 @@ export class UserManagementComponent implements OnInit {
       });
   }
   deleteRow(userId: any) {
+      this.part1 = false;
+      this.part2 = true;
+      this.updateClientDetailsToForm();
       console.log(userId);
       this.connectionService.deleteUserDetails(userId).subscribe(
         data => console.log(userId)
@@ -90,7 +93,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   submitUpdates( values: any, user_Id: number) {
-    console.log(this.userFname  );
+    console.log(values  );
     this.connectionService.updateUserAll(values, user_Id).subscribe(
       data => console.log(values)
     );

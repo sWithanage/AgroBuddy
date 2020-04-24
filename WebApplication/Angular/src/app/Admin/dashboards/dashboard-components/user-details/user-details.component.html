@@ -31,7 +31,7 @@
                               <td>
                                 <span class="label label-danger">{{users.user_Type}}</span>
                               </td>
-                                <td>{{users.user_Fname}} {{users.user_Lname}}</td>
+                              <td><a [routerLink]="['/profile']" [queryParams]="{user_Id:users.user_Id}">{{users.user_Fname}} {{users.user_Lname}}</a></td>
 
                                 <td>{{users.user_Email}}</td>
                                 <td>{{users.user_NIC}}</td>

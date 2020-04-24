@@ -8,6 +8,7 @@ import {ClientDetails} from './client.model';
 import {CropDetails} from './crop.model';
 import { IcurrentWeather } from './currentWeather';
 import {MarketPriceData} from './market-price-data.model';
+import {RainfallData} from './rainfall-data.model';
 
 
 @Injectable({
@@ -23,6 +24,9 @@ export class AdminServiceService {
   // getVehicleList(): Observable<WeatherDetails[]> {
   //   return this.serviceHttp.get<WeatherDetails[]>(this.url + 'weatherData');
   // }
+  getAllUserById(user_Id: any): Observable<ClientDetails[]> {
+    return this.serviceHttp.get<ClientDetails[]>(this.url + 'users/'+ user_Id);
+  }
   getUserList(): Observable<ClientDetails[]> {
     return this.serviceHttp.get<ClientDetails[]>(this.url + 'usersDetails');
   }
@@ -56,7 +60,7 @@ export class AdminServiceService {
   }
   updateUserAll(user_Id: number, value: any ) {
     console.log(user_Id , value);
-    return this.serviceHttp.put<boolean>(this.url + 'users/', user_Id, value  );
+    return this.serviceHttp.put<boolean>(this.url +  'userDetails', value  );
     console.log(user_Id);
   }
   deleteUserDetails(userIdToChange: any) {
@@ -98,6 +102,13 @@ export class AdminServiceService {
       variables: variable,
     });
 
+  }
+  getRainfallData(): Observable<RainfallData[]> {
+    return this.serviceHttp.get<RainfallData[]>(this.url + 'prediction/rainfall');
+  }
+
+  getTemperatureData(): Observable<WeatherDetails[]> {
+    return this.serviceHttp.get<WeatherDetails[]>(this.url + 'prediction/temperature');
   }
 
 }

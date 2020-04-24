@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {ClientDetails} from './client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +22,9 @@ export class AuthenticationService {
     console.log(value);
     return this.serviceHttp.post<boolean>(this.url + 'authentication', value);
   }
+  getUserList(): Observable<ClientDetails[]> {
+    return this.serviceHttp.get<ClientDetails[]>(this.url + 'usersDetails');
+  }
+
 }
 

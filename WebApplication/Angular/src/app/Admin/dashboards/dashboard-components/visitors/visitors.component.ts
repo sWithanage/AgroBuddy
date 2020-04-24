@@ -94,38 +94,37 @@ export class VisitorsComponent implements OnInit {
 
     this.connectionService.getAllModels().subscribe(
       data => {
-        console.log(data);
 
         for (const dataElement of data) {
           // tslint:disable-next-line:triple-equals
-          if (dataElement.variables == 'rainfall') {
-            this.ARPrecipitationAccuracy = dataElement.AR;
-            this.ARIMAPrecipitationAccuracy = dataElement.ARIMA;
-            this.ARMAPrecipitationAccuracy = dataElement.ARMA;
-            this.RNNPrecipitationAccuracy = dataElement.RNN;
-            this.AUTOARIMAPrecipitationAccuracy = dataElement.AUTOARIMA;
-            this.SARIMAPrecipitationAccuracy = dataElement.SARIMA;
-            this.VARPrecipitationAccuracy = dataElement.VAR;
+          if (dataElement.variables == 'brinjalMPrice') {
+            this.ARPrecipitationAccuracy = Math.round(dataElement.AR);
+            this.ARIMAPrecipitationAccuracy = Math.round(dataElement.ARIMA);
+            this.ARMAPrecipitationAccuracy = Math.round(dataElement.ARMA);
+            this.RNNPrecipitationAccuracy = Math.round(dataElement.RNN);
+            this.AUTOARIMAPrecipitationAccuracy = Math.round(dataElement.AUTOARIMA);
+            this.SARIMAPrecipitationAccuracy = Math.round(dataElement.SARIMA);
+            this.VARPrecipitationAccuracy = Math.round(dataElement.VAR);
           }
           // tslint:disable-next-line:triple-equals
           if (dataElement.variables == 'temperature') {
-            this.ARtemperaturePredictionAccuracy = dataElement.AR;
-            this.ARIMAtemperaturePredictionAccuracy = dataElement.ARIMA;
-            this.ARMAtemperaturePredictionAccuracy = dataElement.ARMA;
-            this.RNNtemperaturePredictionAccuracy = dataElement.RNN;
-            this.AUTOARIMAtemperaturePredictonAccuracy = dataElement.AUTOARIMA;
-            this.SARIMAtemperaturePredictionAccuracy = dataElement.SARIMA;
-            this.VARtemperaturePredictionAccuracy = dataElement.VAR;
+            this.ARtemperaturePredictionAccuracy = Math.round(dataElement.AR);
+            this.ARIMAtemperaturePredictionAccuracy = Math.round(dataElement.ARIMA);
+            this.ARMAtemperaturePredictionAccuracy = Math.round( dataElement.ARMA);
+            this.RNNtemperaturePredictionAccuracy = Math.round(dataElement.RNN);
+            this.AUTOARIMAtemperaturePredictonAccuracy = Math.round(dataElement.AUTOARIMA);
+            this.SARIMAtemperaturePredictionAccuracy = Math.round(dataElement.SARIMA);
+            this.VARtemperaturePredictionAccuracy = Math.round(dataElement.VAR);
           }
           // tslint:disable-next-line:triple-equals
-          if (dataElement.variables == 'marketPrice') {
-            this.ARMarketPricePredictionAccuracy = dataElement.AR;
-            this.ARIMAMarketPricePredictionAccuracy = dataElement.ARIMA;
-            this.ARMAMarketPricePredictionAccuracy = dataElement.ARMA;
-            this.AUTOARIMAMarketPricePredictonAccuracy = dataElement.AUTOARIMA;
-            this.RNNMarketPricePredictionAccuracy = dataElement.RNN;
-            this.SARIMAMarketPricePredictionAccuracy = dataElement.SARIMA;
-            this.VARMarketPricePredictionAccuracy = dataElement.VAR;
+          if (dataElement.variables == 'cucumberMPrice') {
+            this.ARMarketPricePredictionAccuracy = Math.round(dataElement.AR);
+            this.ARIMAMarketPricePredictionAccuracy = Math.round(dataElement.ARIMA);
+            this.ARMAMarketPricePredictionAccuracy = Math.round(dataElement.ARMA);
+            this.AUTOARIMAMarketPricePredictonAccuracy = Math.round(dataElement.AUTOARIMA);
+            this.RNNMarketPricePredictionAccuracy = Math.round(dataElement.RNN);
+            this.SARIMAMarketPricePredictionAccuracy = Math.round(dataElement.SARIMA);
+            this.VARMarketPricePredictionAccuracy = Math.round(dataElement.VAR);
           }
         }
 

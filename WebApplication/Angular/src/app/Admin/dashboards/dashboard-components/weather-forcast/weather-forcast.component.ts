@@ -1,7 +1,9 @@
-import { Component, AfterViewInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as Chartist from 'chartist';
 import { ChartType, ChartEvent } from 'ng-chartist/dist/chartist.component';
 import * as c3 from 'c3';
+import {chartRainfall} from '..';
+import {AdminServiceService} from '../../../../admin-service.service';
 
 declare var require: any;
 
@@ -20,39 +22,15 @@ export interface chartWeather {
   templateUrl: './weather-forcast.component.html',
   styleUrls: ['./weather-forcast.component.scss']
 })
-export class WeatherForcastComponent implements AfterViewInit {
-  constructor() { }
+export class WeatherForcastComponent implements OnInit {
+  constructor(private connectionService: AdminServiceService) {
+  }
 
-  // Barchart
-  barChart: chartWeather = {
-    type: 'Bar',
-    data: {
-      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-      series: [[50, 40, 30, 70, 50, 20, 30]]
-    },
-    options: {
-      chartPadding: {
-        top: 15,
-        left: -25
-      },
-      axisX: {
-        showLabel: true,
-        showGrid: false
-      },
-      axisY: {
-        showLabel: false,
-        showGrid: false
-      },
-      fullWidth: true
-    }
-  };
-
-  // Line chart
-  lineChart: chartWeather = {
+  lineChart: chartRainfall = {
     type: 'Line',
     data: {
       labels: ['Jan1', 'Jan2', 'Jan3', 'jan4', 'Feb1', 'Feb3', 'Feb4', 'Mar1', 'Mar2'],
-      series: [[30, 31, 27, 34, 29, 30, 28, 28, 31]]
+      series: [[2, 0, 5, 2, 5, 2, 3, 1, 6]]
     },
     options: {
       showArea: true,
@@ -72,82 +50,15 @@ export class WeatherForcastComponent implements AfterViewInit {
       fullWidth: true
     }
   };
-
-  ngAfterViewInit() {
-    const chart2 = c3.generate({
-      bindto: '#product-sales1',
-      data: {
-        columns: [
-          ['Iphone', 5, 6, 3, 7, 9, 10, 14, 12, 11, 9, 8, 7, 10, 6, 12, 10, 8],
-          ['Ipad', 1, 2, 8, 3, 4, 5, 7, 6, 5, 6, 4, 3, 3, 12, 5, 6, 3]
-        ],
-        type: 'spline'
-      },
-      axis: {
-        y: {
-          show: true,
-          tick: {
-            count: 0,
-            outer: false
-          }
-        },
-        x: {
-          show: true
-        }
-      },
-      padding: {
-        top: 40,
-        right: 10,
-        bottom: 40,
-        left: 20
-      },
-      point: {
-        r: 0
-      },
-      legend: {
-        hide: false
-      },
-      color: {
-        pattern: ['#ccc', '#4798e8']
-      }
-    });
-
-    const chartNewSasaCreated2 = c3.generate({
-      bindto: '#product-sales1',
-      data: {
-        columns: [
-          ['Iphone', 5, 6, 3, 7, 9, 10, 14, 12, 11, 9, 8, 7, 10, 6, 12, 10, 8],
-          ['Ipad', 1, 2, 8, 3, 4, 5, 7, 6, 5, 6, 4, 3, 3, 12, 5, 6, 3]
-        ],
-        type: 'spline'
-      },
-      axis: {
-        y: {
-          show: true,
-          tick: {
-            count: 0,
-            outer: false
-          }
-        },
-        x: {
-          show: true
-        }
-      },
-      padding: {
-        top: 40,
-        right: 10,
-        bottom: 40,
-        left: 20
-      },
-      point: {
-        r: 0
-      },
-      legend: {
-        hide: false
-      },
-      color: {
-        pattern: ['#ccc', '#4798e8']
-      }
-    });
+  date: any;
+  rainfall: any;
+  avgTemp: any;
+  minTemp: any;
+  ngOnInit(): void {
+    this.connectionService.getTemperatureData().subscribe(
+      data => {
+        console.log(data);
+      });
   }
-}
+  }
+
