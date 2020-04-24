@@ -1,7 +1,7 @@
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 const mysql = require("mysql");
 const path = require("path");
 const cors = require("cors");
@@ -13,26 +13,28 @@ const cors = require("cors");
 const PORT = 8080;
 
 const users = require("./routes/user");
-const admins = require("./routes/admin");
+const contact = require("./routes/contact");
 const crops = require("./routes/crop");
 const diseases = require("./routes/disease");
 const predictions = require("./routes/prediction");
 const accuracy = require("./routes/accuracy");
 const forecast = require("./routes/forecast");
+const buyer = require("./routes/buyer");
 const app = express();
 // enable CORS with various options
 app.use(cors());
 
-// initialize cookie-parser to allow us access the cookies stored in the browser. 
+// initialize cookie-parser to allow us access the cookies stored in the browser.
 app.use(cookieParser());
 
 app.use(users);
-app.use(admins);
+app.use(contact);
 app.use(crops);
 app.use(diseases);
 app.use(predictions);
 app.use(accuracy);
 app.use(forecast);
+app.use(buyer);
 
 //starting the server
 app.listen(PORT, () => {
