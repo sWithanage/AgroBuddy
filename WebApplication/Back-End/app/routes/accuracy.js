@@ -44,34 +44,34 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
     console.log("Get AR model accuracy data");
 
     // auto_arima model accuracy
-    // const autoarimaTempAccuracy = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=temp"
-    // );
+    const autoarimaTempAccuracy = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=temp"
+    );
 
-    // const autoarimaRaiFallAccuracy = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=rain"
-    // );
+    const autoarimaRaiFallAccuracy = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=rain"
+    );
 
-    // const autoarimaAshPlantain = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=AshPlantain"
-    // );
+    const autoarimaAshPlantain = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=AshPlantain"
+    );
 
-    // const autoarimaBrinjal = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=Brinjal"
-    // );
+    const autoarimaBrinjal = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=Brinjal"
+    );
 
-    // const autoarimaCucumber = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=Cucumber"
-    // );
+    const autoarimaCucumber = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=Cucumber"
+    );
 
-    // const autoarimaladiesFingers = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=LadiesFinger"
-    // );
+    const autoarimaladiesFingers = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=LadiesFinger"
+    );
 
-    // const autoarimaRedPumpkin = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=RedPumpkin"
-    // );
-    // console.log("Get AUTO ARIMA model accuracy data");
+    const autoarimaRedPumpkin = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=RedPumpkin"
+    );
+    console.log("Get AUTO ARIMA model accuracy data");
 
     // arima model accuracy
     const arimaTempAccuracy = await axios.get(
@@ -133,7 +133,7 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
     );
     console.log("Get ARMA model accuracy data");
 
-    // // sarima model accracy
+    // sarima model accracy
     const sarimaTempAccuracy = await axios.get(
       "https://agrobuddytk.an.r.appspot.com/accuracy?model=sarima&type=temp"
     );
@@ -225,7 +225,7 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
 
     // update data accuracy table temperature row
     mysqlConnection.query(
-      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE aID = 1",
+      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE aID = 1",
       [
         arTempAccuracy.data,
         arimaTempAccuracy.data,
@@ -233,13 +233,14 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
         sarimaTempAccuracy.data,
         rnnTempAccuracy.data,
         varTempAccuracy.data,
+        autoarimaTempAccuracy.data,
       ],
       () => {}
     );
 
     // update data accuracy table rainfall row
     mysqlConnection.query(
-      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE aID = 2",
+      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE aID = 2",
       [
         arRaiFallAccuracy.data,
         arimaRaiFallAccuracy.data,
@@ -247,13 +248,14 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
         sarimaRaiFallAccuracy.data,
         rnnRaiFallAccuracy.data,
         varRaiFallAccuracy.data,
+        autoarimaRaiFallAccuracy.data,
       ],
       () => {}
     );
 
     // update data accuracy table ashplantain market price row
     mysqlConnection.query(
-      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE aID = 3",
+      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE aID = 3",
       [
         arAshPlantain.data,
         arimaAshPlantain.data,
@@ -261,13 +263,14 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
         sarimaAshPlantain.data,
         rnnAshPlantain.data,
         varAshPlantain.data,
+        autoarimaAshPlantain.data,
       ],
       () => {}
     );
 
     // update data accuracy table brinjal market price row
     mysqlConnection.query(
-      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE aID = 4",
+      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE aID = 4",
       [
         arBrinjal.data,
         arimaBrinjal.data,
@@ -275,13 +278,14 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
         sarimaBrinjal.data,
         rnnBrinjal.data,
         varBrinjal.data,
+        autoarimaBrinjal.data,
       ],
       () => {}
     );
 
     // update data accuracy table cucumber market price row
     mysqlConnection.query(
-      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE aID = 5",
+      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE aID = 5",
       [
         arCucumber.data,
         arimaCucumber.data,
@@ -289,12 +293,13 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
         sarimaCucumber.data,
         rnnCucumber.data,
         varCucumber.data,
+        autoarimaCucumber.data,
       ],
       () => {}
     );
     // update data accuracy table brinjal market price row
     mysqlConnection.query(
-      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE aID = 6",
+      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE aID = 6",
       [
         arladiesFingers.data,
         arimaladiesFingers.data,
@@ -302,13 +307,14 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
         sarimaladiesFingers.data,
         rnnladiesFingers.data,
         varladiesFingers.data,
+        autoarimaladiesFingers.data,
       ],
       () => {}
     );
 
     // update data accuracy table brinjal market price row
     mysqlConnection.query(
-      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE aID = 7",
+      "UPDATE accuracy SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE aID = 7",
       [
         arRedPumpkin.data,
         arimaRedPumpkin.data,
@@ -316,6 +322,7 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
         sarimaRedPumpkin.data,
         rnnRedPumpkin.data,
         varRedPumpkin.data,
+        autoarimaRedPumpkin.data,
       ],
       () => {}
     );
@@ -357,6 +364,18 @@ router.get("/accuracy/:variables", (req, res) => {
 router.put("/accuracy", (req, res) => {
   mysqlConnection.query(
     "UPDATE accuracy SET activeModel=? WHERE variables=?",
+    [req.body.status, req.body.variables],
+    (err, rows) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+
+  mysqlConnection.query(
+    "UPDATE forecast SET model=? WHERE variables=?",
     [req.body.status, req.body.variables],
     (err, rows) => {
       if (!err) {

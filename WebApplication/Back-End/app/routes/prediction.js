@@ -19,7 +19,22 @@ Router.get("/prediction/marketprice", (req, res) => {
 //get rainfall prediction
 Router.get("/prediction/rainfall", (req, res) => {
   mysqlConnection.query(
-    "SELECT rainFall FROM weatherdata ORDER BY date DESC limit 1",
+    "SELECT rainFall FROM weatherdata ORDER BY date DESC limit 9",
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+//get current weather details
+Router.get("/prediction/temperature", (req, res) => {
+  mysqlConnection.query(
+    "SELECT avgTemp FROM weatherdata ORDER BY date DESC limit 9",
     [req.params.id],
     (err, rows, fields) => {
       if (!err) {

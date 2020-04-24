@@ -6,6 +6,7 @@ const mysqlConnection = require("../connection");
 const session = require("express-session");
 
 // for POST-Support
+// access inside request body
 let bodyParser = require("body-parser");
 let multer = require("multer");
 let upload = multer();
@@ -118,7 +119,7 @@ router.delete("/usersDetails", (req, res) => {
 });
 
 //rest api to update record into mysql database
-router.put("/users/:id", async (req, res) => {
+router.put("/usersDetails", async (req, res) => {
   let data = {
     user_Type: req.body.userType,
     user_Fname: req.body.firstName,
@@ -137,7 +138,7 @@ router.put("/users/:id", async (req, res) => {
   };
   mysqlConnection.query(
       "UPDATE user SET user_Type= ?, user_Fname=?, user_Lname=?, user_Username=?, user_Email=?, user_NIC=?, user_Dob=?, user_Password=?, user_AddressNo=?, user_Street1=?, user_Street2=?, user_City=?, user_PhoneNo=?, user_TelNo=? where user_Id= ?",
-      [data, req.params.id],
+      [data, req.body.userId],
       (err, rows) => {
         if (!err) {
           res.send(true);

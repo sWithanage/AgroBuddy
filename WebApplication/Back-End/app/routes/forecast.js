@@ -48,32 +48,50 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
       "https://agrobuddytk.an.r.appspot.com/forecast?model=ar&type=market&plant=RedPumpkin"
     );
     const arRedPumpkin = JSON.stringify(arRedPumpkinForecast.data);
-
     console.log("Get AR model forecast data");
 
     // auto_arima model forecast
-    // const autoarimaTemp = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=temp"
-    // );
-    // const autoarimaRaiFall = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=rain"
-    // );
-    // const autoarimaAshPlantain = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=AshPlantain"
-    // );
-    // const autoarimaBrinjal = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=Brinjal"
-    // );
-    // const autoarimaCucumber = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=Cucumber"
-    // );
-    // const autoarimaladiesFingers = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=LadiesFinger"
-    // );
-    // const autoarimaRedPumpkin = await axios.get(
-    //   "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=RedPumpkin"
-    // );
-    //console.log("Get AUTOARIMA model forecast data");
+    const autoarimaTempForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=temp"
+    );
+    const autoarimaTemp = JSON.stringify(autoarimaTempForecast.data);
+
+    const autoarimaRaiFallForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=rain"
+    );
+    const autoarimaRaiFall = JSON.stringify(autoarimaRaiFallForecast.data);
+
+    const autoarimaAshPlantainForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=AshPlantain"
+    );
+    const autoarimaAshPlantain = JSON.stringify(
+      autoarimaAshPlantainForecast.data
+    );
+
+    const autoarimaBrinjalForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=Brinjal"
+    );
+    const autoarimaBrinjal = JSON.stringify(autoarimaBrinjalForecast.data);
+
+    const autoarimaCucumberForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=Cucumber"
+    );
+    const autoarimaCucumber = JSON.stringify(autoarimaCucumberForecast.data);
+
+    const autoarimaladiesFingersForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=LadiesFinger"
+    );
+    const autoarimaladiesFingers = JSON.stringify(
+      autoarimaladiesFingersForecast.data
+    );
+
+    const autoarimaRedPumpkinForecast = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/forecast?model=auto_arima&type=market&plant=RedPumpkin"
+    );
+    const autoarimaRedPumpkin = JSON.stringify(
+      autoarimaRedPumpkinForecast.data
+    );
+    console.log("Get AUTOARIMA model forecast data");
 
     // arima model
     const arimaTempForecast = await axios.get(
@@ -110,7 +128,6 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
       "https://agrobuddytk.an.r.appspot.com/forecast?model=arima&type=market&plant=RedPumpkin"
     );
     const arimaRedPumpkin = JSON.stringify(arimaRedPumpkinForecast.data);
-
     console.log("Get ARIMA model forecast data");
 
     // arma model for forecast
@@ -148,6 +165,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
       "https://agrobuddytk.an.r.appspot.com/forecast?model=arma&type=market&plant=RedPumpkin"
     );
     const armaRedPumpkin = JSON.stringify(armaRedPumpkinForecast.data);
+    console.log("Get ARMA model forecast data");
 
     // sarima model forecast
     const sarimaTempForecast = await axios.get(
@@ -186,6 +204,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
       "https://agrobuddytk.an.r.appspot.com/forecast?model=sarima&type=market&plant=RedPumpkin"
     );
     const sarimaRedPumpkin = JSON.stringify(sarimaRedPumpkinForecast.data);
+    console.log("Get SARIMA model forecast data");
 
     // rnn model forecast
     const rnnTempForecast = await axios.get(
@@ -222,6 +241,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
       "https://agrobuddytk.an.r.appspot.com/forecast?model=rnn&type=market&plant=RedPumpkin"
     );
     const rnnRedPumpkin = JSON.stringify(rnnRedPumpkinForecast.data);
+    console.log("Get RNN model forecast data");
 
     // var model forecast
     const varTempForecast = await axios.get(
@@ -258,11 +278,20 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
       "https://agrobuddytk.an.r.appspot.com/forecast?model=var&type=market&plant=RedPumpkin"
     );
     const varRedPumpkin = JSON.stringify(varRedPumpkinForecast.data);
+    console.log("Get VAR model forecast data");
 
     // update data forecast table temperature row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE fID = 1",
-      [arTemp, arimaTemp, armaTemp, sarimaTemp, rnnTemp, varTemp],
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE fID = 1",
+      [
+        arTemp,
+        arimaTemp,
+        armaTemp,
+        sarimaTemp,
+        rnnTemp,
+        varTemp,
+        autoarimaTemp,
+      ],
       (err) => {
         if (!err) {
           console.log("update forecast temperature row");
@@ -274,8 +303,16 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
 
     // update data forecast table rainfall row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE fID = 2",
-      [arRain, arimaRain, armaRain, sarimaRain, rnnRain, varRain],
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE fID = 2",
+      [
+        arRain,
+        arimaRain,
+        armaRain,
+        sarimaRain,
+        rnnRain,
+        varRain,
+        autoarimaRaiFall,
+      ],
       (err) => {
         if (!err) {
           console.log("update forecast rainfall row");
@@ -287,7 +324,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
 
     // update data forecast table ashplantain market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE fID = 3",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE fID = 3",
       [
         arAshPlantain,
         arimaAshPlantain,
@@ -295,6 +332,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
         sarimaAshPlantain,
         rnnAshPlantain,
         varAshPlantain,
+        autoarimaAshPlantain,
       ],
       (err) => {
         if (!err) {
@@ -307,7 +345,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
 
     // update data forecast table brinjal market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE fID = 4",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE fID = 4",
       [
         arBrinjal,
         arimaBrinjal,
@@ -315,6 +353,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
         sarimaBrinjal,
         rnnBrinjal,
         varBrinjal,
+        autoarimaBrinjal,
       ],
       (err) => {
         if (!err) {
@@ -327,7 +366,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
 
     // update data forecast table cucumber market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = 5",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE variables = 5",
       [
         arCucumber,
         arimaCucumber,
@@ -335,6 +374,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
         sarimaCucumber,
         rnnCucumber,
         varCucumber,
+        autoarimaCucumber,
       ],
       (err) => {
         if (!err) {
@@ -347,7 +387,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
 
     // update data forecast table ladiesFingers market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = 6",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE variables = 6",
       [
         arladiesFingers,
         arimaladiesFingers,
@@ -355,6 +395,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
         sarimaladiesFingers,
         rnnladiesFingers,
         varladiesFingers,
+        autoarimaladiesFingers,
       ],
       (err) => {
         if (!err) {
@@ -367,7 +408,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
 
     // update data forecast table red pumpkin market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, AUTOARIMA = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=? WHERE variables = 7",
+      "UPDATE forecast SET AR = ?, AUTOARIMA = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE variables = 7",
       [
         arRedPumpkin,
         arimaRedPumpkin,
@@ -375,6 +416,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
         sarimaRedPumpkin,
         rnnRedPumpkin,
         varRedPumpkin,
+        autoarimaRedPumpkin,
       ],
       (err) => {
         if (!err) {
@@ -385,7 +427,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
       }
     );
 
-    console.log("update forecast");
+    console.log("update forecast table");
   } catch (error) {
     console.log(error);
   }
@@ -410,7 +452,16 @@ router.get("/forecast/:variables", (req, res) => {
     [req.params.variables],
     (err, rows) => {
       if (!err) {
-        res.send(rows);
+        let newResult = rows[0];
+        newResult.AR = JSON.parse(newResult.AR);
+        newResult.ARIMA = JSON.parse(newResult.ARIMA);
+        newResult.ARMA = JSON.parse(newResult.ARMA);
+        newResult.SARIMA = JSON.parse(newResult.SARIMA);
+        newResult.RNN = JSON.parse(newResult.RNN);
+        newResult.VAR = JSON.parse(newResult.VAR);
+        newResult.AUTOARIMA = JSON.parse(newResult.AUTOARIMA);
+
+        res.send(newResult);
       } else {
         console.log(err);
       }
@@ -425,7 +476,10 @@ router.get("/forecastAR/:variables", (req, res) => {
     [req.params.variables],
     (err, rows) => {
       if (!err) {
-        res.send(rows);
+        let newResult = rows[0];
+        newResult.AR = JSON.parse(newResult.AR);
+
+        res.send(newResult);
       } else {
         console.log(err);
       }
