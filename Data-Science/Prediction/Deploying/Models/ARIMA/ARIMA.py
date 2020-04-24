@@ -8,7 +8,7 @@ import sys
 import numpy
 from sklearn.metrics import mean_squared_error
 from statsmodels.tsa.arima_model import ARIMA
-from Models.Components import AccurancyCalculator
+from Models.Components import AccuracyCalculator
 from Models.Components import FileDownloader
 from Models.Components import CustomLogger as logger
 
@@ -146,14 +146,14 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
                 return str(meanSquaredError)
             else:
                 # Calculate accuracy with predicted and testing data.
-                accuracy = AccurancyCalculator.calculate(validationDataSet, forecastResult)
+                accuracy = AccuracyCalculator.calculate(validationDataSet, forecastResult)
 
                 # Log and return accuracy.
                 logger.log("Accuracy Percentage : " + str(accuracy))
                 return str(accuracy)
         else:
             # Return json array after calculation.
-            jsonArray = AccurancyCalculator.jsonConverter(forecastResult)
+            jsonArray = AccuracyCalculator.jsonConverter(forecastResult)
             logger.log("JSON Array is : " + str(jsonArray))
             return str(jsonArray)
 

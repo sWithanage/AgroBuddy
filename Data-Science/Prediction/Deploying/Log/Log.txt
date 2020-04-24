@@ -3765,3 +3765,53 @@ AR.2            8.1688           +0.0000j            8.1688            0.0000
 [info] 2020-04-24 16:42:25 | Data set scaled successfully.
 [info] 2020-04-24 16:42:25 | Data set scaled successfully.
 [info] 2020-04-24 16:42:25 | Predicted forecast [{"dateNumber": 0, "value": 28.724}, {"dateNumber": 1, "value": 28.088}, {"dateNumber": 2, "value": 27.841}, {"dateNumber": 3, "value": 28.156}, {"dateNumber": 4, "value": 27.917}, {"dateNumber": 5, "value": 27.931}, {"dateNumber": 6, "value": 27.466}, {"dateNumber": 7, "value": 28.18}, {"dateNumber": 8, "value": 27.704}, {"dateNumber": 9, "value": 27.737}, {"dateNumber": 10, "value": 27.869}, {"dateNumber": 11, "value": 27.661}, {"dateNumber": 12, "value": 28.032}, {"dateNumber": 13, "value": 28.422}, {"dateNumber": 14, "value": 27.492}, {"dateNumber": 15, "value": 28.142}, {"dateNumber": 16, "value": 28.212}, {"dateNumber": 17, "value": 27.942}, {"dateNumber": 18, "value": 27.142}, {"dateNumber": 19, "value": 14.322}, {"dateNumber": 20, "value": 27.192}, {"dateNumber": 21, "value": 27.952}, {"dateNumber": 22, "value": 28.432}, {"dateNumber": 23, "value": 28.022}, {"dateNumber": 24, "value": 27.702}, {"dateNumber": 25, "value": 26.672}, {"dateNumber": 26, "value": 25.712}, {"dateNumber": 27, "value": 26.132}, {"dateNumber": 28, "value": 26.692}, {"dateNumber": 29, "value": 27.362}, {"dateNumber": 30, "value": 27.002}, {"dateNumber": 31, "value": 26.992}, {"dateNumber": 32, "value": 28.002}, {"dateNumber": 33, "value": 28.332}, {"dateNumber": 34, "value": 27.852}, {"dateNumber": 35, "value": 26.872}, {"dateNumber": 36, "value": 28.612}, {"dateNumber": 37, "value": 28.352}, {"dateNumber": 38, "value": 27.202}, {"dateNumber": 39, "value": 27.722}, {"dateNumber": 40, "value": 27.802}, {"dateNumber": 41, "value": 27.752}, {"dateNumber": 42, "value": 27.162}, {"dateNumber": 43, "value": 27.262}, {"dateNumber": 44, "value": 26.802}, {"dateNumber": 45, "value": 21.982}, {"dateNumber": 46, "value": 19.072}, {"dateNumber": 47, "value": 19.072}, {"dateNumber": 48, "value": 22.072}, {"dateNumber": 49, "value": 22.072}, {"dateNumber": 50, "value": 20.072}, {"dateNumber": 51, "value": 19.072}, {"dateNumber": 52, "value": 19.072}, {"dateNumber": 53, "value": 18.072}, {"dateNumber": 54, "value": 20.072}, {"dateNumber": 55, "value": 21.072}, {"dateNumber": 56, "value": 17.072}, {"dateNumber": 57, "value": 17.072}, {"dateNumber": 58, "value": 17.072}, {"dateNumber": 59, "value": 17.072}, {"dateNumber": 60, "value": 17.072}, {"dateNumber": 61, "value": 19.072}, {"dateNumber": 62, "value": 19.072}, {"dateNumber": 63, "value": 19.072}, {"dateNumber": 64, "value": 19.072}, {"dateNumber": 65, "value": 19.072}, {"dateNumber": 66, "value": 20.072}, {"dateNumber": 67, "value": 18.072}, {"dateNumber": 68, "value": 19.072}, {"dateNumber": 69, "value": 19.072}, {"dateNumber": 70, "value": 16.072}, {"dateNumber": 71, "value": 18.072}, {"dateNumber": 72, "value": 17.072}, {"dateNumber": 73, "value": 18.072}, {"dateNumber": 74, "value": 18.072}, {"dateNumber": 75, "value": 17.072}, {"dateNumber": 76, "value": 17.072}, {"dateNumber": 77, "value": 17.072}, {"dateNumber": 78, "value": 18.072}, {"dateNumber": 79, "value": 17.072}, {"dateNumber": 80, "value": 20.072}, {"dateNumber": 81, "value": 19.072}, {"dateNumber": 82, "value": 19.072}, {"dateNumber": 83, "value": 19.072}, {"dateNumber": 84, "value": 18.072}, {"dateNumber": 85, "value": 25.072}, {"dateNumber": 86, "value": 24.582}, {"dateNumber": 87, "value": 25.462}, {"dateNumber": 88, "value": 27.042}, {"dateNumber": 89, "value": 26.742}].
+[info] 2020-04-25 00:10:45 | Requested for accuracy of ARIMA temperature prediction model.
+[info] 2020-04-25 00:10:45 | Client requested for Temperature accuracy.
+[info] 2020-04-25 00:10:45 | Downloading data set file from : https://agrobuddy.tk/getData?type=temp.
+[info] 2020-04-25 00:10:45 | Dataset retrieved successfully.
+[info] 2020-04-25 00:10:45 | Finding splitting point.
+[info] 2020-04-25 00:10:45 | Data Splitting successful.
+[info] 2020-04-25 00:10:45 | Training Data Set Size : 4472.
+[info] 2020-04-25 00:10:45 | Testing  Data Set Size : 1119.
+[info] 2020-04-25 00:10:45 | Removing seasonal difference.
+[info] 2020-04-25 00:10:45 | ARIMA model set. Order of arima model is 7,0,1 and period is 365.
+[info] 2020-04-25 00:10:45 | Training model.
+[info] 2020-04-25 00:10:45 | Model fitted successfully.
+[info] 2020-04-25 00:10:45 |                               ARMA Model Results                              
+==============================================================================
+Dep. Variable:                      y   No. Observations:                 4107
+Model:                     ARMA(7, 1)   Log Likelihood               -4722.828
+Method:                       css-mle   S.D. of innovations              0.764
+Date:                Sat, 25 Apr 2020   AIC                           9465.656
+Time:                        00:11:52   BIC                           9528.861
+Sample:                             0   HQIC                          9488.031
+                                                                              
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0251      0.123     -0.203      0.839      -0.267       0.217
+ar.L1.y        1.7020      0.020     83.855      0.000       1.662       1.742
+ar.L2.y       -0.7407      0.032    -22.975      0.000      -0.804      -0.678
+ar.L3.y        0.0819      0.033      2.486      0.013       0.017       0.147
+ar.L4.y       -0.0345      0.033     -1.046      0.296      -0.099       0.030
+ar.L5.y        0.0095      0.033      0.287      0.774      -0.055       0.074
+ar.L6.y       -0.0280      0.031     -0.904      0.366      -0.089       0.033
+ar.L7.y        0.0067      0.016      0.417      0.677      -0.025       0.038
+ma.L1.y       -0.9669      0.013    -74.279      0.000      -0.992      -0.941
+                                    Roots                                    
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1            1.0131           -0.0000j            1.0131           -0.0000
+AR.2            1.2493           -0.0000j            1.2493           -0.0000
+AR.3           -1.8656           -1.5495j            2.4252           -0.3897
+AR.4           -1.8656           +1.5495j            2.4252            0.3897
+AR.5            0.7437           -2.0651j            2.1949           -0.1950
+AR.6            0.7437           +2.0651j            2.1949            0.1950
+AR.7            4.1651           -0.0000j            4.1651           -0.0000
+MA.1            1.0343           +0.0000j            1.0343            0.0000
+-----------------------------------------------------------------------------.
+[info] 2020-04-25 00:10:45 | Future values forecasted.
+[info] 2020-04-25 00:10:45 | Validation values separated.
+[info] 2020-04-25 00:10:45 | Accuracy calculating.
+[info] 2020-04-25 00:10:45 | Accuracy Percentage : 92.59789290898273.

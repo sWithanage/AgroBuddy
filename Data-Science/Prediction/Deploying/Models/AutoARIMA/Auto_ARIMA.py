@@ -8,7 +8,7 @@ import sys
 import pmdarima as pm
 from Models.Components import FileDownloader
 from sklearn.metrics import mean_squared_error
-from Models.Components import AccurancyCalculator
+from Models.Components import AccuracyCalculator
 from Models.Components import CustomLogger as logger
 
 validationDatasetSize = 0
@@ -101,14 +101,14 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                 return str(meanSquaredError)
             else:
                 # Calculate accuracy with predicted and testing data.
-                accuracy = AccurancyCalculator.calculate(validationData, forecastResult, arrayType="sarima")
+                accuracy = AccuracyCalculator.calculate(validationData, forecastResult, arrayType="sarima")
 
                 # Log and return accuracy.
                 logger.log("Accuracy Percentage : " + str(accuracy))
                 return str(accuracy)
         else:
             # Return json array after calculation.
-            jsonArray = AccurancyCalculator.jsonConverter(forecastResult, arrayType="sarima")
+            jsonArray = AccuracyCalculator.jsonConverter(forecastResult, arrayType="sarima")
             logger.log("JSON Array is : " + str(jsonArray))
             return str(jsonArray)
     except Exception:

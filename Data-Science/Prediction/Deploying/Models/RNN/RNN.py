@@ -14,7 +14,7 @@ from Models.Components import CustomLogger as logger
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
 from Models.Components import FileDownloader
-from Models.Components import AccurancyCalculator
+from Models.Components import AccuracyCalculator
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
@@ -310,7 +310,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             return errorPercentage
         else:
 
-            accuracy = str(AccurancyCalculator.calculate(expectations, predictions, "rnn"))
+            accuracy = str(AccuracyCalculator.calculate(expectations, predictions, "rnn"))
 
             logger.log("Accuracy is " + accuracy)
             return accuracy
@@ -352,7 +352,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                 futureForecastArray.append(finalProcessedForecastValue)
 
         # Generate json array with future forecasted values.
-        jsonForecastedArray = str(AccurancyCalculator.jsonConverter(futureForecastArray, "rnn"))
+        jsonForecastedArray = str(AccuracyCalculator.jsonConverter(futureForecastArray, "rnn"))
 
         logger.log("Predicted forecast " + jsonForecastedArray)
 
