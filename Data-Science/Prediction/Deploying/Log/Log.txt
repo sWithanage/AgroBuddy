@@ -3556,3 +3556,212 @@ AR.2            8.1688           +0.0000j            8.1688            0.0000
 -----------------------------------------------------------------------------.
 [info] 2020-04-24 16:00:11 | Future values forecasted.
 [info] 2020-04-24 16:00:11 | Validation values separated.
+[info] 2020-04-24 16:39:53 | Client requested for Temperature forecast.
+[info] 2020-04-24 16:39:53 | Downloading data set file from : https://agrobuddy.tk/getData?type=temp.
+[info] 2020-04-24 16:39:53 | Data set file downloaded successfully.
+[info] 2020-04-24 16:39:53 | Data set file deleted successfully.
+[info] 2020-04-24 16:39:53 | Requested for seasonal difference.
+[info] 2020-04-24 16:39:53 | Data structure updated to supervised leaning.
+[info] 2020-04-24 16:39:53 | Finding splitting point.
+[info] 2020-04-24 16:39:53 | Data splitting successful.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Model fitted successfully.
+[info] 2020-04-24 16:39:53 | Predict method successful.
+[info] 2020-04-24 16:39:53 | Forecasting future steps.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Data set scaled successfully.
+[info] 2020-04-24 16:39:53 | Predicted forecast [{"dateNumber": 0, "value": 28.767}, {"dateNumber": 1, "value": 28.131}, {"dateNumber": 2, "value": 27.889}, {"dateNumber": 3, "value": 28.206}, {"dateNumber": 4, "value": 27.967}, {"dateNumber": 5, "value": 27.977}, {"dateNumber": 6, "value": 27.508}, {"dateNumber": 7, "value": 28.218}, {"dateNumber": 8, "value": 27.738}, {"dateNumber": 9, "value": 27.768}, {"dateNumber": 10, "value": 27.898}, {"dateNumber": 11, "value": 27.688}, {"dateNumber": 12, "value": 28.058}, {"dateNumber": 13, "value": 28.448}, {"dateNumber": 14, "value": 27.518}, {"dateNumber": 15, "value": 28.168}, {"dateNumber": 16, "value": 28.238}, {"dateNumber": 17, "value": 27.968}, {"dateNumber": 18, "value": 27.168}, {"dateNumber": 19, "value": 14.348}, {"dateNumber": 20, "value": 27.218}, {"dateNumber": 21, "value": 27.978}, {"dateNumber": 22, "value": 28.458}, {"dateNumber": 23, "value": 28.048}, {"dateNumber": 24, "value": 27.728}, {"dateNumber": 25, "value": 26.698}, {"dateNumber": 26, "value": 25.738}, {"dateNumber": 27, "value": 26.158}, {"dateNumber": 28, "value": 26.718}, {"dateNumber": 29, "value": 27.388}, {"dateNumber": 30, "value": 27.028}, {"dateNumber": 31, "value": 27.018}, {"dateNumber": 32, "value": 28.028}, {"dateNumber": 33, "value": 28.358}, {"dateNumber": 34, "value": 27.878}, {"dateNumber": 35, "value": 26.898}, {"dateNumber": 36, "value": 28.638}, {"dateNumber": 37, "value": 28.378}, {"dateNumber": 38, "value": 27.228}, {"dateNumber": 39, "value": 27.748}, {"dateNumber": 40, "value": 27.828}, {"dateNumber": 41, "value": 27.778}, {"dateNumber": 42, "value": 27.188}, {"dateNumber": 43, "value": 27.288}, {"dateNumber": 44, "value": 26.828}, {"dateNumber": 45, "value": 22.008}, {"dateNumber": 46, "value": 19.098}, {"dateNumber": 47, "value": 19.098}, {"dateNumber": 48, "value": 22.098}, {"dateNumber": 49, "value": 22.098}, {"dateNumber": 50, "value": 20.098}, {"dateNumber": 51, "value": 19.098}, {"dateNumber": 52, "value": 19.098}, {"dateNumber": 53, "value": 18.098}, {"dateNumber": 54, "value": 20.098}, {"dateNumber": 55, "value": 21.098}, {"dateNumber": 56, "value": 17.098}, {"dateNumber": 57, "value": 17.098}, {"dateNumber": 58, "value": 17.098}, {"dateNumber": 59, "value": 17.098}, {"dateNumber": 60, "value": 17.098}, {"dateNumber": 61, "value": 19.098}, {"dateNumber": 62, "value": 19.098}, {"dateNumber": 63, "value": 19.098}, {"dateNumber": 64, "value": 19.098}, {"dateNumber": 65, "value": 19.098}, {"dateNumber": 66, "value": 20.098}, {"dateNumber": 67, "value": 18.098}, {"dateNumber": 68, "value": 19.098}, {"dateNumber": 69, "value": 19.098}, {"dateNumber": 70, "value": 16.098}, {"dateNumber": 71, "value": 18.098}, {"dateNumber": 72, "value": 17.098}, {"dateNumber": 73, "value": 18.098}, {"dateNumber": 74, "value": 18.098}, {"dateNumber": 75, "value": 17.098}, {"dateNumber": 76, "value": 17.098}, {"dateNumber": 77, "value": 17.098}, {"dateNumber": 78, "value": 18.098}, {"dateNumber": 79, "value": 17.098}, {"dateNumber": 80, "value": 20.098}, {"dateNumber": 81, "value": 19.098}, {"dateNumber": 82, "value": 19.098}, {"dateNumber": 83, "value": 19.098}, {"dateNumber": 84, "value": 18.098}, {"dateNumber": 85, "value": 25.098}, {"dateNumber": 86, "value": 24.608}, {"dateNumber": 87, "value": 25.488}, {"dateNumber": 88, "value": 27.068}, {"dateNumber": 89, "value": 26.768}].
+[info] 2020-04-24 16:42:25 | Client requested for Temperature forecast.
+[info] 2020-04-24 16:42:25 | Downloading data set file from : https://agrobuddy.tk/getData?type=temp.
+[info] 2020-04-24 16:42:25 | Data set file downloaded successfully.
+[info] 2020-04-24 16:42:25 | Data set file deleted successfully.
+[info] 2020-04-24 16:42:25 | Requested for seasonal difference.
+[info] 2020-04-24 16:42:25 | Data structure updated to supervised leaning.
+[info] 2020-04-24 16:42:25 | Finding splitting point.
+[info] 2020-04-24 16:42:25 | Data splitting successful.
+[info] 2020-04-24 16:42:25 | Model fitted successfully.
+[info] 2020-04-24 16:42:25 | Predict method successful.
+[info] 2020-04-24 16:42:25 | Forecasting future steps.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Data set scaled successfully.
+[info] 2020-04-24 16:42:25 | Predicted forecast [{"dateNumber": 0, "value": 28.724}, {"dateNumber": 1, "value": 28.088}, {"dateNumber": 2, "value": 27.841}, {"dateNumber": 3, "value": 28.156}, {"dateNumber": 4, "value": 27.917}, {"dateNumber": 5, "value": 27.931}, {"dateNumber": 6, "value": 27.466}, {"dateNumber": 7, "value": 28.18}, {"dateNumber": 8, "value": 27.704}, {"dateNumber": 9, "value": 27.737}, {"dateNumber": 10, "value": 27.869}, {"dateNumber": 11, "value": 27.661}, {"dateNumber": 12, "value": 28.032}, {"dateNumber": 13, "value": 28.422}, {"dateNumber": 14, "value": 27.492}, {"dateNumber": 15, "value": 28.142}, {"dateNumber": 16, "value": 28.212}, {"dateNumber": 17, "value": 27.942}, {"dateNumber": 18, "value": 27.142}, {"dateNumber": 19, "value": 14.322}, {"dateNumber": 20, "value": 27.192}, {"dateNumber": 21, "value": 27.952}, {"dateNumber": 22, "value": 28.432}, {"dateNumber": 23, "value": 28.022}, {"dateNumber": 24, "value": 27.702}, {"dateNumber": 25, "value": 26.672}, {"dateNumber": 26, "value": 25.712}, {"dateNumber": 27, "value": 26.132}, {"dateNumber": 28, "value": 26.692}, {"dateNumber": 29, "value": 27.362}, {"dateNumber": 30, "value": 27.002}, {"dateNumber": 31, "value": 26.992}, {"dateNumber": 32, "value": 28.002}, {"dateNumber": 33, "value": 28.332}, {"dateNumber": 34, "value": 27.852}, {"dateNumber": 35, "value": 26.872}, {"dateNumber": 36, "value": 28.612}, {"dateNumber": 37, "value": 28.352}, {"dateNumber": 38, "value": 27.202}, {"dateNumber": 39, "value": 27.722}, {"dateNumber": 40, "value": 27.802}, {"dateNumber": 41, "value": 27.752}, {"dateNumber": 42, "value": 27.162}, {"dateNumber": 43, "value": 27.262}, {"dateNumber": 44, "value": 26.802}, {"dateNumber": 45, "value": 21.982}, {"dateNumber": 46, "value": 19.072}, {"dateNumber": 47, "value": 19.072}, {"dateNumber": 48, "value": 22.072}, {"dateNumber": 49, "value": 22.072}, {"dateNumber": 50, "value": 20.072}, {"dateNumber": 51, "value": 19.072}, {"dateNumber": 52, "value": 19.072}, {"dateNumber": 53, "value": 18.072}, {"dateNumber": 54, "value": 20.072}, {"dateNumber": 55, "value": 21.072}, {"dateNumber": 56, "value": 17.072}, {"dateNumber": 57, "value": 17.072}, {"dateNumber": 58, "value": 17.072}, {"dateNumber": 59, "value": 17.072}, {"dateNumber": 60, "value": 17.072}, {"dateNumber": 61, "value": 19.072}, {"dateNumber": 62, "value": 19.072}, {"dateNumber": 63, "value": 19.072}, {"dateNumber": 64, "value": 19.072}, {"dateNumber": 65, "value": 19.072}, {"dateNumber": 66, "value": 20.072}, {"dateNumber": 67, "value": 18.072}, {"dateNumber": 68, "value": 19.072}, {"dateNumber": 69, "value": 19.072}, {"dateNumber": 70, "value": 16.072}, {"dateNumber": 71, "value": 18.072}, {"dateNumber": 72, "value": 17.072}, {"dateNumber": 73, "value": 18.072}, {"dateNumber": 74, "value": 18.072}, {"dateNumber": 75, "value": 17.072}, {"dateNumber": 76, "value": 17.072}, {"dateNumber": 77, "value": 17.072}, {"dateNumber": 78, "value": 18.072}, {"dateNumber": 79, "value": 17.072}, {"dateNumber": 80, "value": 20.072}, {"dateNumber": 81, "value": 19.072}, {"dateNumber": 82, "value": 19.072}, {"dateNumber": 83, "value": 19.072}, {"dateNumber": 84, "value": 18.072}, {"dateNumber": 85, "value": 25.072}, {"dateNumber": 86, "value": 24.582}, {"dateNumber": 87, "value": 25.462}, {"dateNumber": 88, "value": 27.042}, {"dateNumber": 89, "value": 26.742}].

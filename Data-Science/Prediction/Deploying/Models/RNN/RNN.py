@@ -110,8 +110,6 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         # Transform testing data according to the scale value.
         scaledTestingValues = currentScaleConfig.transform(testingDataToScale)
 
-        logger.log("Data set scaled successfully")
-
         # Return scaling value for after usage, converted training and testing data-sets.
         return currentScaleConfig, scaledTrainingValues, scaledTestingValues
 
@@ -325,7 +323,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         futureForecastArray = []
 
         # Get forecast value for size of the testing dataset.
-        for countInForecast in range(len(testingDataSet) + (futureRequirement + 2)):
+        for countInForecast in range(len(testingDataSet) + (futureRequirement + 1)):
 
             # Make one-step forecast.
             if countInForecast < len(testingDataSet):
