@@ -76,6 +76,84 @@
             </div>
         </div>
     </div>
+
+  <!----------------------------Diseases------------------------------------------------------------->
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+
+        <h6 class="card-subtitle"></h6>
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="white-box text-center">
+              <img src="assets/images/gallery/{{cropImage}}" class="img-responsive"> </div>
+          </div>
+          <div class="col-lg-9 col-md-9 col-sm-6">
+            <h4 class="box-title m-t-40">Crop description</h4>
+            <p>{{cropDescription}}</p>
+
+
+
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <h3 class="box-title m-t-40">General Info</h3>
+            <div class="table-responsive">
+              <table class="table">
+                <tbody>
+                <tr>
+                  <td width="390">Crop Id</td>
+                  <td> {{cropId}} </td>
+                </tr>
+                <tr>
+                  <td>Crop Name</td>
+                  <td> {{cropName}} </td>
+                </tr>
+                <tr>
+                  <td>Scientific Name</td>
+                  <td> {{scientificName}} </td>
+                </tr>
+                <tr>
+                  <td>Nutrition</td>
+                  <td> {{nutrition}}</td>
+                </tr>
+                <tr>
+                  <td>Cultivated Area</td>
+                  <td> {{cultivatedArea}} </td>
+                </tr>
+                <tr>
+                  <td>Temperature</td>
+                  <td> {{temperature}}</td>
+                </tr>
+                <tr>
+                  <td>Duration of Plant</td>
+                  <td> {{duration}} </td>
+                </tr>
+                <tr>
+                  <td>Percentage of cultivated area</td>
+                  <td> {{percentage}} </td>
+                </tr>
+
+                <tr>
+                  <div class="row">
+                    <div class="custom-control custom-checkbox">
+                      <button id="remove" (click)="updateDetails()" type="button" class="btn btn-primary">Update Plant</button>
+                    </div>
+
+                    <div class="custom-control custom-checkbox">
+                      <button type="button" class="btn btn-success" id="remove" (click)="deleteDetails(cropId)">Delete Plant</button>
+                    </div>
+                  </div>
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <!-- Column -->
 </div>
 </div>
