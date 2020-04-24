@@ -18,8 +18,8 @@ Router.get("/buyers", (req, res) => {
 });
 
 //get all diseases of a crop
-Router.get("/diseases/:id", (req, res) => {
-    mysqlConnection.query("SELECT * from disease WHERE crop_id=?", [req.params.id], 
+Router.get("/diseases/:cid", (req, res) => {
+    mysqlConnection.query("SELECT * from disease WHERE crop_id=?", [req.params.cid], 
     (err, rows, fields) => {
         if(!err){
             res.send(rows);
@@ -69,10 +69,11 @@ Router.delete("/diseases/:id", (req, res) => {
 //inserting a disease
 Router.post("/diseases", async (req, res) => {
     let data = {
+    crop_id: req.body.id,
     disease_name: req.body.name,
     disease_image: req.body.image,
-    disease_description: req.body.desc,
-    disease_timeperiod: req.body.timePeriod
+    disease_Scientific_name: req.body.scientific_name,
+    disease_symptoms: req.body.symptoms
     };
     mysqlConnection.query("INSERT INTO disease SET ?", data, (err, rows) => {
       if (!err) {
@@ -87,13 +88,14 @@ Router.post("/diseases", async (req, res) => {
 //update disease details
 Router.put("/diseases/:id", async (req, res) => {
     let data = {
-    disease_name: req.body.name,
-    disease_image: req.body.image,
-    disease_description: req.body.desc,
-    disease_timeperiod: req.body.timePeriod
+        crop_id: req.body.id,
+        disease_name: req.body.name,
+        disease_image: req.body.image,
+        disease_Scientific_name: req.body.scientific_name,
+        disease_symptoms: req.body.symptoms
     };
     mysqlConnection.query(
-        "UPDATE disease SET disease_name= ?, disease_image=?, disease_description=?, disease_timeperiod=? where disease_id= ?",
+        "UPDATE disease SET crop_id= ?, disease_name=?, disease_image=?,disease_Scientific_name, disease_symptoms=? where disease_id= ?",
         [data, req.params.id],
         (err, rows) => {
           if (!err) {

@@ -160,7 +160,7 @@ router.use(
 
 //check login credentials
 router.post('/authentication', function(request, response) {
-  
+
 	var username = request.body.username;
 	var password = request.body.password;
   if (username && password) 
@@ -173,7 +173,6 @@ router.post('/authentication', function(request, response) {
 				request.session.loggedin = true;
         request.session.username = username;
         response.send(true);
-				//response.redirect('http://localhost:4200/#/signup');
       } 
       else {
 				response.send(false);
@@ -186,6 +185,19 @@ router.post('/authentication', function(request, response) {
 		response.end();
 	}
 });
+
+//logout user 
+router.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if(err) {
+      res.send('Could not log out.');
+    }
+    else{
+      res.send('Successfully logged out!');
+    }
+  });
+});
+
 
 // router.post("/authentication", (req, res) => {
 //   let data = {
