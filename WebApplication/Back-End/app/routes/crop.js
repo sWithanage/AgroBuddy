@@ -110,6 +110,19 @@ router.put("/crops/:id", async (req, res) => {
         }
     );
 });
-  
+
+// get cultivated areas
+router.get("/cultivatedarea", (req, res) => {
+    mysqlConnection.query(
+      "SELECT plant_name, cultivated_area FROM cultivated_area ",
+      (err, rows) => {
+        if (!err) {
+          res.send(rows);
+        } else {
+          console.log(err);
+        }
+      }
+    );
+  });
 
 module.exports = router;
