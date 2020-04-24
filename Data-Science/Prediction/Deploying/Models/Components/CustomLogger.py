@@ -1,29 +1,41 @@
+# =====================================================
+# Title                 :   Custom logging component
+# Author                :   Sasanka Withanage
+# Last modified Date    :   22 April 2020
+# =====================================================
+
+import sys
+import os.path
+import requests
+from pytz import timezone
 from datetime import datetime
 
-import requests
-import os.path
-from pytz import timezone
-
+# Get asia time and format it.
 dateFormat = "%Y-%m-%d %H:%M:%S"
 currentTimeInUTC = datetime.now(timezone('UTC'))
 currentTimeInAsia = currentTimeInUTC.astimezone(timezone('Asia/Colombo'))
 dateAndTime = currentTimeInAsia.strftime(dateFormat)
 
-
-
+# Create path for log file.
 baseDirectoryPath = os.path.dirname(os.path.abspath(__file__))
 customLogFilePath = os.path.join(baseDirectoryPath, "../../Log/Log.txt")
 
 
-def log(message, type="info"):
+# -------------------------------------------------------------------------
+# Print log message with proper format.
+# -------------------------------------------------------------------------
+def log(message, logErrorType="info"):
     logFile = open(customLogFilePath, "a")
-    customMessageLine = "\n[", type, "] ", str(dateAndTime), " | ", str(message), "."
-    customMessageForTelegram = "[" + str(type) + "] " + str(dateAndTime) + " | " + str(message) + "."
+    customMessageLine = "\n[", logErrorType, "] ", str(dateAndTime), " | ", str(message), "."
+    customMessageForTelegram = "[" + str(logErrorType) + "] " + str(dateAndTime) + " | " + str(message) + "."
     logFile.writelines(customMessageLine)
     messageToTelegram(customMessageForTelegram)
     logFile.close()
 
 
+# -------------------------------------------------------------------------
+# Return whole content in the log file.
+# -------------------------------------------------------------------------
 def getContent():
     logFile = open(customLogFilePath, "r")
     contentInLogFile = logFile.read()
@@ -31,11 +43,37 @@ def getContent():
     return contentInLogFile
 
 
+# -------------------------------------------------------------------------
+# Clear the whole content of the log file.
+# -------------------------------------------------------------------------
 def cleanLog():
     open(customLogFilePath, "w").close()
 
 
+# -------------------------------------------------------------------------
+# Send message to telegram.
+# -------------------------------------------------------------------------
 def messageToTelegram(message):
-    print("Telegram message sent.")
-    # url = "https://api.telegram.org/bot1186123737:AAE9w3B9xin6WoxTkFwARF-ZedAG_cokRO8/sendMessage?chat_id=703976962&text=" + str(message)
-    # requests.post(url)
+    print("Telegram Message sent : ", message)
+    url = "https://api.telegram.org/bot1186123737:AAE9w3B9xin6WoxTkFwARF-ZedAG_cokRO8/sendMessage?chat_id=703976962&text=" + str(
+        message)
+    requests.post(url)
+
+
+# -------------------------------------------------------------------------
+# Displaying progress bar with percentages.
+# -------------------------------------------------------------------------
+def progressBar(current, totalCount=100, message="Loading", nextLine=False):
+    percentageDivideValue = current / totalCount
+    percentage = int(percentageDivideValue * 100)
+
+    if (percentage + percentageDivideValue) > 100:
+        percentage = 100
+
+    if nextLine or current == 0:
+        sys.stdout.write(("\r\n" + message + " : |%s%s|(%d%s)" % (
+            (percentage * "█"), ((100 - percentage) * "-"), percentage, "%") + " "))
+    else:
+        sys.stdout.write(("\r" + message + " : |%s%s|(%d%s)" % (
+            (percentage * "█"), ((100 - percentage) * "-"), percentage, "%") + " "))
+    sys.stdout.flush()

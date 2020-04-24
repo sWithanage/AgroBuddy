@@ -1,18 +1,31 @@
+# =====================================================
+# Title                 :   Download file from server
+# Author                :   Sasanka Withanage
+# Last modified Date    :   22 April 2020
+# =====================================================
+
 import os
 import tensorflow as tf
 from pandas import read_csv
 from Models.Components import CustomLogger as logger
 
 
-def getFileData(datasetType):
+# -------------------------------------------------------------------------
+# Download csv file from the server.
+# -------------------------------------------------------------------------
+def getFileData(datasetType, filePathOnly=False):
     downloadingFilePath = "https://agrobuddy.tk/getData?type=" + datasetType
     logger.log("Downloading data set file from : " + str(downloadingFilePath))
 
     # Download relevant dataset from the server.
     downloadedFilePath = tf.keras.utils.get_file(
-        origin = downloadingFilePath,
+        origin=downloadingFilePath,
         fname=datasetType + '.csv',
         extract=False)
+
+    # Return only the file path.
+    if filePathOnly:
+        return downloadedFilePath
 
     # Get csv data into memory.
     series = read_csv(downloadedFilePath, header=0, index_col=0)

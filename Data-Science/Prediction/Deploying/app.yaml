@@ -1,4 +1,4 @@
-entrypoint: "gunicorn -b :$PORT main:app --timeout 7200"
+entrypoint: "gunicorn -b :$PORT main:app --timeout 72000"
 env: flex
 runtime: python
 runtime_config: 
@@ -6,3 +6,4 @@ runtime_config:
 resources:
   cpu: 4
   memory_gb: 10
+  disk_size_gb: 10

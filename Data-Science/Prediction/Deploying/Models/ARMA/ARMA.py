@@ -1,29 +1,39 @@
+# =====================================================
+# Title                 :   ARMA Model
+# Author                :   Sasanka Withanage
+# Last modified Date    :   22 April 2020
+# =====================================================
+
 import sys
 import numpy
-from statsmodels.tsa.arima_model import ARMA
-
-from Models.Components import AccurancyCalculator
+from typing import List, Any
 from Models.Components import FileDownloader
+from statsmodels.tsa.arima_model import ARMA
+from sklearn.metrics import mean_squared_error
+from Models.Components import AccurancyCalculator
 from Models.Components import CustomLogger as logger
 
+periodOfTime, model = "", ""
 
+
+# -------------------------------------------------------------------------
+# This method can provide accuracy percentages and forecast values.
+# -------------------------------------------------------------------------
 def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfTrainingDataSet=7, getAccuracy=True):
-    # try:
-
+    global periodOfTime, model
+    try:
+        # Printing request of user.
         if getAccuracy:
-            print("Client requested for ARMA accuracy")
-            logger.log("Client requested for ARMA accuracy")
+            logger.log("Client requested for " + predictionName + " accuracy")
         else:
-            print("Client requested for ARMA Forecast")
-            logger.log("Client requested for ARMA Forecast")
+            logger.log("Client requested for " + predictionName + " forecast")
 
-
+        # Import relevant file from the server.
         series = FileDownloader.getFileData(datasetType)
         logger.log("Dataset retrieved successfully")
 
-        logger.log("Splitting dataset into training and testing")
-
-
+        # Set splitting point of the dataset.
+        logger.log("Finding splitting point")
         if defaultRatio:
             split_point = int(len(series) - (len(series) * 0.2))
         elif not getAccuracy:
@@ -31,87 +41,150 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
         else:
             split_point = len(series) - sizeOfTrainingDataSet
 
-        dataset, validation = series[0:split_point], series[split_point:]
+        # Splitting data set according to the splitting point.
+        trainingDataSet, validationDataSet = series[0:split_point], series[split_point:]
+        logger.log("Data splitting successful")
 
-        trainingDataSetSize = len(dataset)
-        testingDataSetSize = len(validation)
+        # Set length into variables.
+        trainingDataSetSize = len(trainingDataSet)
+        testingDataSetSize = len(validationDataSet)
 
-        if not getAccuracy:
-            testingDataSetSize = sizeOfTrainingDataSet
-
-        trainingDataSetSizeString = 'Training Data Set Size : ' + str(len(dataset))
-        testingDataSetSizeString = 'Testing  Data Set Size : ' + str(len(validation))
+        trainingDataSetSizeString = 'Training Data Set Size : ' + str(trainingDataSetSize)
+        testingDataSetSizeString = 'Testing  Data Set Size : ' + str(testingDataSetSize)
 
         logger.log(trainingDataSetSizeString)
         logger.log(testingDataSetSizeString)
 
+        # If user required for forecast, testing data size will set to future requirement.
+        if not getAccuracy:
+            testingDataSetSize = sizeOfTrainingDataSet
+            logger.log("Testing data set is updated with new value. New value is " + str(testingDataSetSize))
+
         # There is a difference in weather changing.
         # To find out that properly we are going to  take seasonal difference.
         # That is, we can take the observation for a day and subtract the observation from the same day one year ago.
+        # Remove seasonal difference.
+        def findSeasonalDifference(dataset, interval=1):
+            logger.log("Requested for seasonal difference")
 
-        # create a difference series
-        def difference(dataset, interval=1):
-            diff = list()
-            for i in range(interval, len(dataset)):
-                value = dataset[i] - dataset[i - interval]
-                # value = dataset[i]
-                diff.append(value)
-            return numpy.array(diff)
+            # Initialize list as difference.
+            listOfDifference = list()
 
-        # invert difference value
+            # Iterate through whole array.
+            for datasetIndex in range(interval, len(dataset)):
+                value = dataset[datasetIndex] - dataset[datasetIndex - interval]
+                listOfDifference.append(value)
+
+            # return difference array.
+            return numpy.array(listOfDifference)
+
+        # Invert difference values.
         # Only for data which changed and wanted to make it back as previous.
-        def inverse_difference(history, yhat, interval=1):
-            return yhat + history[-interval]
+        def invertSeasonalDifference(lastIndexValue, differenceValue, interval=1):
+            return differenceValue + lastIndexValue[-interval]
 
-        # seasonal difference
-        X = dataset.values
+        # Retrieve values from training dataset.
+        trainingDatasetValues = trainingDataSet.values
 
-        # fit model
+        # Train proper model according to user requirement.
         if modelType == 1:
-            days_in_year = 365
-            differenced = difference(X, days_in_year)
-            model = ARMA(differenced, order=(7, 0, 1))
+            periodOfTime = 365
+            seasonalDifferenceArray = findSeasonalDifference(trainingDatasetValues, periodOfTime)
+
+            # Suitable seasonal order for the rainfall and temperature.
+            model = ARMA(seasonalDifferenceArray, order=(7, 0, 1))
+
+            logger.log("ARMA model set. Order of arma model is 7,0,1 and period is 365")
 
         elif modelType == 2:
-            days_in_year = 48
-            differenced = difference(X, days_in_year)
-            model = ARMA(differenced, order=(2, 0, 0))
+            periodOfTime = 48
+            seasonalDifferenceArray = findSeasonalDifference(trainingDatasetValues, periodOfTime)
 
-        model_fit = model.fit(disp=0)
+            # Suitable seasonal order for the plant price prediction.
+            model = ARMA(seasonalDifferenceArray, order=(2, 0, 0))
 
-        # print summary of fit model
-        print(model_fit.summary())
+            logger.log("ARIMA model set. Order of arima model is 2,0,0 and period is 48. Weekly data sets")
 
-        # multi-step out-of-sample forecast
-        forecast = model_fit.forecast(steps=testingDataSetSize)[0]
+        # Training model.
+        logger.log("Training model")
+        fittedModel = model.fit(disp=0)
+        logger.log("Model fitted")
 
-        # invert the differenced forecast to something usable
-        history = [x for x in X]
-        day = 1
+        # Log summery details.
+        logger.log(fittedModel.summary())
 
-        dataArray = []
-        for yhat in forecast:
-            inverted = inverse_difference(history, yhat, days_in_year)
-            dataArray.append(inverted)
+        # Future forecast value.
+        forecast = fittedModel.forecast(steps=testingDataSetSize)[0]
+        logger.log("Future values forecasted")
+
+        # Reshape history array.
+        history = [x for x in trainingDatasetValues]
+
+        forecastResult: List[Any] = []
+        for singleForecastedElement in forecast:
+            # Invert each value from forecasted values.
+            inverted = invertSeasonalDifference(history, singleForecastedElement, periodOfTime)
+
+            # Append to forecasted result.
+            forecastResult.append(inverted)
+
+            # Append values to history.
             history.append(inverted)
-            day += 1
 
-        # seasonal difference
-        validationData = validation.values
-        if (getAccuracy):
-            accuracy = AccurancyCalculator.calculate(validationData, dataArray)
-            logger.log("Accuracy Percentage : " + str(accuracy))
-            return str(accuracy)
+        logger.log("Multi step forecasted")
+
+        # Get values from the validation data.
+        validationData = validationDataSet.values
+
+        # Check for the user requirement whether accuracy or forecast details.
+        if getAccuracy:
+
+            # If rain fall return mean squared error.
+            if datasetType == "precipitation":
+                # Calculate mean squared error value.
+                meanSquaredError = mean_squared_error(validationData, forecastResult, squared=False)
+
+                # Log and return accuracy.
+                logger.log("Mean squared error is " + str(meanSquaredError))
+                return str(meanSquaredError)
+            else:
+                # Calculate accuracy with predicted and testing data.
+                accuracy = AccurancyCalculator.calculate(validationData, forecastResult)
+
+                # Log and return accuracy.
+                logger.log("Accuracy Percentage : " + str(accuracy))
+                return str(accuracy)
         else:
-            jsonArray = AccurancyCalculator.jsonConverter(dataArray)
+            # Return json array after calculation.
+            jsonArray = AccurancyCalculator.jsonConverter(forecastResult)
             logger.log("JSON Array is : " + str(jsonArray))
             return str(jsonArray)
 
-    # except Exception as e:
-    #     exc_type, exc_obj, exc_tb = sys.exc_info()
-    #     exceptionDetails = str(exc_type) + " error occurred in '" + str(exc_tb.tb_frame.f_code.co_filename) + "' Line : " + str(exc_tb.tb_lineno)
-    #     logger.log(exceptionDetails,"ERROR")
-    #     return "Error occurred in the source code"
+    except Exception:
+        # Display proper error message with error and error line.
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        exceptionDetails = str(exc_type) + " error occurred in '" + str(
+            exc_tb.tb_frame.f_code.co_filename) + "' Line : " + str(exc_tb.tb_lineno)
+        logger.log(exceptionDetails, "ERROR")
+        return "Error occurred in the source code"
 
-# print(predict("Temperature", "arima-model-temperature-dataset",defaultRatio = False,getAccuracy=False,sizeOfTrainingDataSet=90))
-# predict("AshPlantain-ARIMA", "AshPlantain", 2, defaultRatio=False, getAccuracy=True, sizeOfTrainingDataSet=90)
+
+# Model Training callers with out Api
+
+# --------------------------------------------------- Accuracy ---------------------------------------------------
+# predict("Temperature", "temp")
+# predict("Precipitation", "precipitation")
+# predict("AshPlantain-ARMA", "AshPlantain", 2)
+# predict("Brinjal-ARMA", "Brinjal", 2)
+# predict("Cucumber-ARMA", "Cucumber", 2)
+# predict("LadiesFinger-ARMA", "LadiesFinger", 2)
+# predict("RedPumpkin-ARMA", "RedPumpkin", 2)
+
+# ------------------------------------------------- Forecasting -------------------------------------------------
+# predict("Temperature", "temp", defaultRatio=False, getAccuracy=False, sizeOfTrainingDataSet=90)
+# predict("Precipitation", "precipitation", defaultRatio=False, getAccuracy=False, sizeOfTrainingDataSet=90)
+# predict("ARMA_AshPlantain", "AshPlantain", 2, defaultRatio=False, getAccuracy=False, sizeOfTrainingDataSet=16)
+# predict("ARMA_Brinjal", "Brinjal", 2, defaultRatio=False, getAccuracy=False, sizeOfTrainingDataSet=16)
+# predict("ARMA_Cucumber", "Cucumber", 2, defaultRatio=False, getAccuracy=False, sizeOfTrainingDataSet=16)
+# predict("ARMA_LadiesFinger", "LadiesFinger", 2, defaultRatio=False, getAccuracy=False, sizeOfTrainingDataSet=16)
+# predict("ARMA_RedPumpkin", "RedPumpkin", 2, defaultRatio=False, getAccuracy=False, sizeOfTrainingDataSet=16)

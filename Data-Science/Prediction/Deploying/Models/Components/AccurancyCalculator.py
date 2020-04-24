@@ -1,79 +1,109 @@
-import numpy
+# =====================================================
+# Title                 :   Accuracy calculation component
+# Author                :   Sasanka Withanage
+# Last modified Date    :   22 April 2020
+# =====================================================
+
 import json
+import numpy
 from Models.Components import CustomLogger as logger
 
+# Initializing variables.
+importedPredictionValue, importedTrueFutureValue, predictionValue = 0, 0, 0
 
+
+# -------------------------------------------------------------------------
+# Calculate accuracy with several type of arrays.
+# -------------------------------------------------------------------------
 def calculate(true_future, prediction, arrayType="normal"):
+    global importedPredictionValue, importedTrueFutureValue
     logger.log("Accuracy calculating")
-    iterationTime = min(len(true_future), len(prediction))
+    sizeOfDatasetToRetrieve = min(len(true_future), len(prediction))
     accuracyArray = []
     trueArray = []
     predictedArray = []
 
-    for x in range(iterationTime):
+    # Iterate through whole array.
+    for iterationIndex in range(sizeOfDatasetToRetrieve):
+
+        # Configure data type to retrieve data from array.
         if arrayType == "normal":
-            predictionValue = prediction[x][0]
-            trueFutureValue = true_future[x][0]
+            importedPredictionValue = prediction[iterationIndex][0]
+            importedTrueFutureValue = true_future[iterationIndex][0]
         elif arrayType == "sarima":
-            predictionValue = prediction[x]
-            trueFutureValue = true_future[x][0]
+            importedPredictionValue = prediction[iterationIndex]
+            importedTrueFutureValue = true_future[iterationIndex][0]
         elif arrayType == "rnn" or arrayType == "ar" or arrayType == "sarima":
-            predictionValue = float(prediction[x])
-            trueFutureValue = float(true_future[x])
+            importedPredictionValue = float(prediction[iterationIndex])
+            importedTrueFutureValue = float(true_future[iterationIndex])
         elif arrayType == "var":
-            predictionValue = float(prediction[x][0])
-            trueFutureValue = float(true_future[x][0])
+            importedPredictionValue = float(prediction[iterationIndex][0])
+            importedTrueFutureValue = float(true_future[iterationIndex][0])
 
-        difference = predictionValue - trueFutureValue
+        # Get difference of the prediction and the actual value.
+        difference = importedPredictionValue - importedTrueFutureValue
 
+        # Get positive difference number.
         if difference < 0:
             difference = difference * -1
 
-        if trueFutureValue != 0:
-            accuracy = 100 - ((difference / trueFutureValue) * 100)
-        else:
-            accuracy = 100 - ((difference / 1) * 100)
+        # Calculate accuracy.
+        accuracy = 100 - ((difference / importedTrueFutureValue) * 100)
 
-        if accuracy < 0:
-            accuracy = 0
+        # Append to accuracy array.
+        accuracyArray.append(accuracy)
 
-        if difference < trueFutureValue:
-            accuracyArray.append(accuracy)
+        # Append to list.
+        trueArray.append(round(importedTrueFutureValue))
+        predictedArray.append(round(importedPredictionValue))
 
-        trueArray.append(round(trueFutureValue))
-        predictedArray.append(round(predictionValue))
-
-        print(x, ": True Future - " + setSpace(trueFutureValue) + " | Predicted Future : " + setSpace(predictionValue) +
+        # Print log details.
+        print(iterationIndex,
+              ": True Future - " + setSpace(importedTrueFutureValue) + " | Predicted Future : " + setSpace(
+                  importedPredictionValue) +
               " | Difference : " + setSpace(difference) + " | Accuracy : " + setSpace(accuracy))
 
+    # Get mean of the accuracy array.
     accuracyPercentage = numpy.mean(accuracyArray)
-    print("Accuracy Percentage : " + str(accuracyPercentage))
-    logger.log("Accuracy Percentage : " + str(accuracyPercentage))
+
+    # Return accuracy.
     return accuracyPercentage
 
 
+# -------------------------------------------------------------------------
+# Convert data into json array from several types of arrays.
+# -------------------------------------------------------------------------
 def jsonConverter(predictedData, arrayType="normal"):
     global predictionValue
     predictedValues = []
-    for x in range(len(predictedData)):
+
+    # Iterate through whole array.
+    for iterationIndex in range(len(predictedData)):
         if arrayType == "normal":
-            predictionValue = predictedData[x][0]
+            predictionValue = predictedData[iterationIndex][0]
         elif arrayType == "sarima":
-            predictionValue = predictedData[x]
+            predictionValue = predictedData[iterationIndex]
         elif arrayType == "rnn" or arrayType == "ar" or arrayType == "sarima":
-            predictionValue = float(predictedData[x])
+            predictionValue = float(predictedData[iterationIndex])
         elif arrayType == "var":
-            predictionValue = float(predictedData[x][0])
+            predictionValue = float(predictedData[iterationIndex][0])
 
+        # Append values to json array.
         if predictionValue < 0:
-            tempJsonPart = {'dateNumber': x, 'value': '0'}
+            tempJsonPart = {'dateNumber': iterationIndex, 'value': '0'}
         else:
-            tempJsonPart = {'dateNumber': x, 'value': round(predictionValue, 3)}
+            tempJsonPart = {'dateNumber': iterationIndex, 'value': round(predictionValue, 3)}
+
+        # Add json part to main array.
         predictedValues.append(tempJsonPart)
-    json_str = json.dumps(predictedValues)
-    return json_str
+
+    # Return converted array as json file.
+    return json.dumps(predictedValues)
 
 
+# -------------------------------------------------------------------------
+# Line space maker. This will keep balance in both sides of the values in accuracy array.
+# -------------------------------------------------------------------------
 def setSpace(value, spaceSize=6):
     value = str(round(value, 2))
     valueSize = len(value)

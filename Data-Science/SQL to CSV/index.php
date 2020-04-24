@@ -28,7 +28,17 @@ else if($type=='arima-model-temperature-dataset'){
     $fileName = 'temperature&Date.csv';
 }
 
+else if($type=='temp'){
+    $sql = "SELECT `date` as 'date', `avgTemp` as 'temp' FROM `weatherdata` WHERE `date`>'2005-01-01'";
+    $fileName = 'temperature&Date.csv';
+}
+
 else if($type=='arima-model-precipitation-dataset'){
+    $sql = "SELECT `date` as 'date', `rainFall` as 'rainFall' FROM `weatherdata` WHERE `date`>'2017-01-01'";
+    $fileName = 'rainfall&Date.csv';
+}
+
+else if($type=='precipitation'){
     $sql = "SELECT `date` as 'date', `rainFall` as 'rainFall' FROM `weatherdata` WHERE `date`>'2017-01-01'";
     $fileName = 'rainfall&Date.csv';
 }
