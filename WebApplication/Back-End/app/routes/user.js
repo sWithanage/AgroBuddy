@@ -10,6 +10,7 @@ let bodyParser = require("body-parser");
 let multer = require("multer");
 let upload = multer();
 
+//for being able to read request bodies
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -184,26 +185,24 @@ router.post("/authentication", (req, res) => {
 });
 
 //login authentication
-
-app.use(session({
-  secret: 'keyboard cat',
+//initializing the session
+router.use(session({
+  secret: 'itsasecret',
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 60000 }
-}))
+}));
 
-var sess = req.session;  //initialize session variable
-req.session.userId = results[0].id; //set user id
-req.session.user = results[0];//set user name
-
-//unset session
-req.session.destroy(function(err) {
-  //cal back method
-})
-
-//show message or notification
-var message = '';
-message = 'Wrong Credentials.';
-res.render('index.ejs',{message: message});
+//simple session example
+router.get('/api', (req, res) =>{
+  if(req.session.page_views){
+    req.session.page_views++;
+    res.send("You visited this page "+ req.session.page_views + "times");
+  }
+  else{
+    req.session.page_views = 1;
+    res.send("Welcome to this page for the first time!");
+  }
+});
 
 module.exports = router;

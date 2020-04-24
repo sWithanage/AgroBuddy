@@ -17,6 +17,19 @@ Router.get("/buyers", (req, res) => {
     })
 });
 
+//get all diseases of a crop
+Router.get("/diseases/:id", (req, res) => {
+    mysqlConnection.query("SELECT * from disease WHERE crop_id=?", [req.params.id], 
+    (err, rows, fields) => {
+        if(!err){
+            res.send(rows);
+        }
+        else{
+            console.log(err);
+        }
+    })
+});
+
 //get all disease details
 Router.get("/diseases", (req, res) => {
     mysqlConnection.query("SELECT * from disease", (err, rows, fields) => {
