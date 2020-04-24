@@ -57,10 +57,10 @@ router.post("/users", async (req, res) => {
 });
 
 //post login details
-router.post("/authentication", function (req, res) {
-  console.log(req.body.name);
-  res.send(true);
-});
+// router.post("/authentication", function (req, res) {
+//   console.log(req.body.name);
+//   res.send(true);
+// });
 
 // get all users details
 router.get("/usersDetails", (req, res) => {
@@ -149,61 +149,70 @@ router.put("/usersDetails", async (req, res) => {
   );
 });
 
+// initialize express-session to allow us track the logged-in user across sessions.
 router.use(
-    session({
-      secret: "secret",
-      resave: true,
-      saveUninitialized: true,
-    })
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
 );
 
-router.post("/authentication", (req, res) => {
-  let data = {
-    user_Username: req.body.username,
-    user_Password: req.body.password,
-  };
-  if (username && password) {
-    connection.query(
-        "SELECT * FROM user WHERE user_Username = ? AND user_Password = ?",
-        data,
-        function (error, results, fields) {
-          if (results.length > 0) {
-            req.session.loggedin = true;
-            req.session.username = username;
-            //console.error(err);
-            //console.log("login successful");
-            //res.redirect("http://localhost:4200");
-          } else {
-            res.send("Incorrect Username and/or Password!");
-          }
-          res.end();
-        }
-    );
-  } else {
-    response.send("Please enter Username and Password!");
-    response.end();
-  }
+//check login credentials
+router.post('/authentication', function(request, response) {
+  
+	var username = request.body.username;
+	var password = request.body.password;
+  if (username && password) 
+  {
+    mysqlConnection.query('SELECT * FROM user WHERE user_Username = ? AND user_Password = ?', 
+    [username, password], 
+    function(error, results, fields) 
+    {
+			if (results.length > 0) {
+				request.session.loggedin = true;
+        request.session.username = username;
+        response.send(true);
+				//response.redirect('http://localhost:4200/#/signup');
+      } 
+      else {
+				response.send(false);
+			}			
+			response.end();
+		});
+  } 
+  else {
+		response.send(false);
+		response.end();
+	}
 });
 
-//login authentication
-//initializing the session
-router.use(session({
-  secret: 'itsasecret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: 60000 }
-}));
-
-//simple session example
-router.get('/api', (req, res) =>{
-  if(req.session.page_views){
-    req.session.page_views++;
-    res.send("You visited this page "+ req.session.page_views + "times");
-  }
-  else{
-    req.session.page_views = 1;
-    res.send("Welcome to this page for the first time!");
-  }
-});
+// router.post("/authentication", (req, res) => {
+//   let data = {
+//     user_Username: req.body.username,
+//     user_Password: req.body.password,
+//   };
+//   if (username && password) {
+//     connection.query(
+//         "SELECT * FROM user WHERE user_Username = ? AND user_Password = ?",
+//         data,
+//         function (error, results, fields) {
+//           if (results.length > 0) {
+//             req.session.loggedin = true;
+//             req.session.username = username;
+//             //console.error(err);
+//             //console.log("login successful");
+//             //res.redirect("http://localhost:4200");
+//           } else {
+//             res.send("Incorrect Username and/or Password!");
+//           }
+//           res.end();
+//         }
+//     );
+//   } else {
+//     response.send("Please enter Username and Password!");
+//     response.end();
+//   }
+// });
 
 module.exports = router;

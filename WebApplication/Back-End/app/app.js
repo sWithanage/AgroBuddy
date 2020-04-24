@@ -1,6 +1,7 @@
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
 const mysql = require("mysql");
 const path = require("path");
 const cors = require("cors");
@@ -21,6 +22,9 @@ const forecast = require("./routes/forecast");
 const app = express();
 // enable CORS with various options
 app.use(cors());
+
+// initialize cookie-parser to allow us access the cookies stored in the browser. 
+app.use(cookieParser());
 
 app.use(users);
 app.use(admins);
