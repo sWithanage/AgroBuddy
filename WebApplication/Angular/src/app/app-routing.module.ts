@@ -19,6 +19,7 @@ import {MarketPriceComponent} from './Client/market-price/market-price.component
 import {PlantFinderComponent} from './Client/plant-finder/plant-finder.component';
 import {BuyersComponent} from './Client/buyers/buyers.component';
 import {ProfileComponent} from './profile/profile.component';
+import {AdminBuyersComponent} from './Admin/admin-buyers/admin-buyers.component';
 
 
 export const Approutes: Routes = [
@@ -83,6 +84,17 @@ export const Approutes: Routes = [
           urls: [
             {title: 'Dashboard', url: '/admin/dashboard'},
             {title: 'User Management'}
+          ]
+        }
+      },
+      {
+        path: 'adminBuyers',
+        component: AdminBuyersComponent,
+        data: {
+          title: 'Buyers - AgroBuddy',
+          urls: [
+            {title: 'Dashboard', url: '/admin/dashboard'},
+            {title: 'Buyers'}
           ]
         }
       },
