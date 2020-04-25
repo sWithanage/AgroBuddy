@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express();
 const mysqlConnection = require("../connection");
+const nodemailer = require("nodemailer");
 
 router.post("/sendmail", (req, res) => {
   console.log("request came");
