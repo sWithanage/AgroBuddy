@@ -18,6 +18,7 @@ import {ContactUsComponent} from './Client/contact-us/contact-us.component';
 import {MarketPriceComponent} from './Client/market-price/market-price.component';
 import {PlantFinderComponent} from './Client/plant-finder/plant-finder.component';
 import {BuyersComponent} from './Client/buyers/buyers.component';
+import {DiseasesComponent} from './Client/diseases/diseases.component';
 
 
 export const Approutes: Routes = [
@@ -181,6 +182,17 @@ export const Approutes: Routes = [
           urls: [
             { title: 'Dashboard', url: '/client/dashboard' },
             { title: 'Buyers' }
+          ]
+        }
+      },
+      {
+        path: 'diseases',
+        component: DiseasesComponent,
+        data: {
+          title: 'Diseases - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/client/dashboard' },
+            { title: 'Diseases' }
           ]
         }
       }

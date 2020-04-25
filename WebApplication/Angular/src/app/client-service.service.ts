@@ -7,6 +7,7 @@ import {MarketPriceData} from './market-price-data.model';
 import {BestCrop} from './best-crop.model';
 import {ClientArea} from './client-area.model';
 import {Buyers} from './buyers.model';
+import {Diseases} from './diseases.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,9 @@ export class ClientServiceService {
   }
   getPlantDetails(plantName: any): Observable<CropDetails[]> {
     return this.http.get<CropDetails[]>(this.url + 'crops/' + plantName);
+  }
+  getDiseases(plantName: any): Observable<Diseases[]> {
+    return this.http.get<Diseases[]>(this.url + 'diseases/' + plantName);
   }
   getPlants(): Observable<CropDetails[]> {
     return this.http.get<CropDetails[]>(this.url + 'crops');
@@ -48,9 +52,15 @@ export class ClientServiceService {
     return this.http.post<boolean> (this.url + 'chosenCrop', value);
   }
   clientArea(userId: any): Observable<ClientArea[]> {
-    return this.http.get<ClientArea[]>(this.url + 'clientArea');
+    return this.http.get<ClientArea[]>(this.url + 'cultivatedarea/' + userId);
   }
   getBuyers(): Observable<Buyers[]> {
     return this.http.get<Buyers[]>(this.url + 'buyers');
+  }
+  sendEmail(data: any) {
+    return this.http.post(this.url + 'sendmail', data);
+  }
+  getArea(): Observable<ClientArea[]> {
+    return this.http.get<ClientArea[]>(this.url + 'cultivatedarea');
   }
 }
