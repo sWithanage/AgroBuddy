@@ -17,7 +17,6 @@ export class UserDetailsComponent implements OnInit {
         this.user = data;
       });
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       this.user_Id = params[this.user_Id];
     });
   }

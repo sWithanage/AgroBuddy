@@ -23,42 +23,59 @@ export interface chartWeather {
   styleUrls: ['./weather-forcast.component.scss']
 })
 export class WeatherForcastComponent implements OnInit {
-  constructor(private connectionService: AdminServiceService) {
+  dataSet = [];
+  labels = [];
+  private count = 1;
+  constructor(private connectionService: AdminServiceService, private _weatherService: AdminServiceService) {
+  }
+  public lineChartData: Array<any> = [
+    { data: this.dataSet, label: '°C' }
+  ];
+  public lineChartLabels: Array<any> = this.labels;
+  public lineChartOptions: any = {
+    responsive: true
+  };
+  public lineChartColors: Array<any> = [
+    {
+      // dark grey
+      backgroundColor: 'rgb(41,98,255,.1)',
+      borderColor: '#2962FF',
+      pointBackgroundColor: '#2962FF',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: '#2962FF'
+    }
+  ];
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+
+  // events
+  currentTemperature: any;
+  public chartClicked(e: any): void {
+    // console.log(e);
   }
 
-  lineChart: chartRainfall = {
-    type: 'Line',
-    data: {
-      labels: ['Jan1', 'Jan2', 'Jan3', 'jan4', 'Feb1', 'Feb3', 'Feb4', 'Mar1', 'Mar2'],
-      series: [[2, 0, 5, 2, 5, 2, 3, 1, 6]]
-    },
-    options: {
-      showArea: true,
-      showPoint: false,
+  public chartHovered(e: any): void {
+    // console.log(e);
+  }
 
-      chartPadding: {
-        left: -35
-      },
-      axisX: {
-        showLabel: true,
-        showGrid: false
-      },
-      axisY: {
-        showLabel: false,
-        showGrid: true
-      },
-      fullWidth: true
-    }
-  };
-  date: any;
-  rainfall: any;
-  avgTemp: any;
-  minTemp: any;
   ngOnInit(): void {
+
     this.connectionService.getTemperatureData().subscribe(
       data => {
-        console.log(data);
+        for (const dataElement of data) {
+          // @ts-ignore
+          this.dataSet.push(Number(dataElement.avgTemp));
+          this.labels.push('Day ' + this.count);
+          this.count = this.count + 1;
+        }
+        this.lineChartData = this.dataSet;
+        this.lineChartLabels = this.labels;
+      });
+
+    this._weatherService.getCurrentWeather()
+      .subscribe(data => {
+        this.currentTemperature = data[0].temp;
       });
   }
-  }
-
+}

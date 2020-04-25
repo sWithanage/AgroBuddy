@@ -1,5 +1,5 @@
 <div class="row">
-    <!-- Column -->
+  <!-- Column -->
   <div class="col-md-12">
     <div class="card">
       <div class="card-body bg-light-info">
@@ -8,32 +8,21 @@
             <i class="icon-Cloud-Sun display-5"></i>
           </div>
           <div>
-            <h1 class="m-b-0 font-light">35
-              <sup>o</sup>
+            <h1 class="m-b-0 font-light">{{rainfallValue}}
+              <sup>mm</sup>
             </h1>
-            <h5 class="font-light">Rainfall Forecast</h5>
+            <h5 class="font-light">Precipitation Forecast (Monaragala District)</h5>
           </div>
         </div>
-        <div style="height: 170px">
-          <x-chartist id="ct-weather" class="position-relative" [data]="lineChart.data" [type]="lineChart.type" [options]="lineChart.options"></x-chartist>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="d-flex align-items-center">
-
-          <div>
-                        <span class="btn-circle btn-lg btn btn-outline-secondary">
-                            <i class="wi wi-day-sunny"></i>
-                        </span>
-          </div>
-          <div class="m-l-10">
-            <h4 class="m-b-0">Monday</h4>
-            <h6 class="font-light m-b-0">March 2019</h6>
+        <div class="card">
+          <div class="card-body">
+            <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+                    [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
 
-
+</div>

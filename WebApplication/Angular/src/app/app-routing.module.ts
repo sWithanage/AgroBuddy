@@ -18,6 +18,7 @@ import {ContactUsComponent} from './Client/contact-us/contact-us.component';
 import {MarketPriceComponent} from './Client/market-price/market-price.component';
 import {PlantFinderComponent} from './Client/plant-finder/plant-finder.component';
 import {BuyersComponent} from './Client/buyers/buyers.component';
+import {ProfileComponent} from './profile/profile.component';
 
 
 export const Approutes: Routes = [
@@ -194,6 +195,10 @@ export const Approutes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
   {
     path: '**',

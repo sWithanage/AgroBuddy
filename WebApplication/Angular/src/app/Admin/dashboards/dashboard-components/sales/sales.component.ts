@@ -31,7 +31,6 @@ export class SalesComponent implements  OnInit {
     this.connectionService.getMarketPrice().subscribe(
       data => {
         this.prices = data;
-        console.log(data);
         this.brinjalDataArray.splice(-1, 1);
         this.ashPlantainDataArray.splice(-1, 1);
         this.redPumpkinDataArray.splice(-1, 1);

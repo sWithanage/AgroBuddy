@@ -16,60 +16,62 @@ export class MixstatsComponent implements OnInit {
   ashPlantainPecentage: any;
   constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) { }
 
- async ngOnInit() {
-   this.connectionService.getAllPlants().subscribe(
-     data => {
-       console.log(data);
+  async ngOnInit() {
+    this.connectionService.getAllPlants().subscribe(
+      data => {
 
-   for (const dataElement of data) {
-     // tslint:disable-next-line:triple-equals
-     if (dataElement.crop_name == 'Brinjal') {
-       this.brinjalPercentage.push(dataElement.percentage);
-     }
-     // tslint:disable-next-line:triple-equals
-     if (dataElement.crop_name == 'Ladies Fingers') {
-       this.ladiesfingersPercentage.push(dataElement.percentage);
-     }
-     // tslint:disable-next-line:triple-equals
-     if (dataElement.crop_name == 'Cucumber') {
-       this.cucmberPecentage.push(dataElement.percentage);
-     }
-     // tslint:disable-next-line:triple-equals
-     if (dataElement.crop_name == 'Pumpkin') {
-       this.pumpkinPecentage.push(dataElement.percentage);
-     }
-     // tslint:disable-next-line:triple-equals
-     if (dataElement.crop_name == 'Ash Plantain') {
-       this.ashPlantainPecentage.push(dataElement.percentage);
-     }
+        for (const dataElement of data) {
+          // tslint:disable-next-line:triple-equals
+          if (dataElement.crop_name == 'Brinjal') {
+            this.brinjalPercentage = dataElement.cultivated_area_percentage;
+          }
+          // tslint:disable-next-line:triple-equals
+          if (dataElement.crop_name == 'Ladies Fingers') {
+            this.ladiesfingersPercentage = dataElement.cultivated_area_percentage;
+          }
+          // tslint:disable-next-line:triple-equals
+          if (dataElement.crop_name == 'Cucumber') {
+            this.cucmberPecentage = dataElement.cultivated_area_percentage;
+          }
+          // tslint:disable-next-line:triple-equals
+          if (dataElement.crop_name == 'Pumpkin') {
+            this.pumpkinPecentage = dataElement.cultivated_area_percentage;
+          }
+          // tslint:disable-next-line:triple-equals
+          if (dataElement.crop_name == 'Ash Plantain') {
+            this.ashPlantainPecentage = dataElement.cultivated_area_percentage;
+          }
 
-   }
-   });
+        }
+        // tslint:disable-next-line:max-line-length
+        updatePie(this.brinjalPercentage, this.ashPlantainPecentage, this.ladiesfingersPercentage, this.cucmberPecentage, this.pumpkinPecentage);
+      });
 
-
-    const chart = c3.generate({
-      bindto: '#visitor',
-      data: {
-        columns: [['Brinjal', this.brinjalPercentage], ['Ash Plantain', 8], ['Ladies Fingers', 6], ['Cucumber', 2], ['Red Pumkin', 10]],
-        type: 'donut'
-      },
-      donut: {
-        label: {
-          show: false
+    function updatePie(brinjalPercentage, ashPlantainPecentage, ladiesfingersPercentage, cucmberPecentage, pumpkinPecentage) {
+      const chart = c3.generate({
+        bindto: '#visitor',
+        data: {
+          // tslint:disable-next-line:max-line-length
+          columns: [['Brinjal', Number(brinjalPercentage)], ['Ash Plantain', Number(ashPlantainPecentage)], ['Ladies Fingers', Number(ladiesfingersPercentage)], ['Cucumber', Number(cucmberPecentage)], ['Red Pumkin', Number(pumpkinPecentage)]],
+          type: 'donut'
         },
-        title: 'Sales',
-        width: 20
-      },
+        donut: {
+          label: {
+            show: false
+          },
+          title: 'Sales',
+          width: 20
+        },
 
-      legend: {
-        hide: true
-        // or hide: 'data1'
-        // or hide: ['data1', 'data2']
-      },
-      color: {
-        pattern: ['#4798e8', '#01c0c8', '#f6f6f6']
-      }
-    });
+        legend: {
+          hide: true
+          // or hide: 'data1'
+          // or hide: ['data1', 'data2']
+        },
+        color: {
+          pattern: ['#00E8E6', '#00297D', '#FCFF00', '#EC007D', '#76C5AD']
+        }
+      });
+    }
   }
-
 }

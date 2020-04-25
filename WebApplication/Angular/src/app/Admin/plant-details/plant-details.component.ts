@@ -6,12 +6,20 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: 'plant-details.component.html'
 })
 export class PlantDetailsComponent implements OnInit {
+  diseases: any[];
+  disease_id: any;
+  crop_id: any;
+  disease_name: any;
+  disease_image: any;
+  disease_Scientific_name: any;
+  disease_symptoms: any;
   crop: any[];
   plantDetails: any[];
   plantName: string;
   part1 = true;
   part2 = false;
   part3 = false;
+  part4 = false;
   cropId: string;
   cropName: string;
   cropImage: string;
@@ -22,6 +30,11 @@ export class PlantDetailsComponent implements OnInit {
   duration: string;
   percentage: number;
   cultivatedArea: string;
+  diseaseId: any;
+  diseaseName: any;
+  diseaseImage: any;
+  diseaseScientificName: any;
+  diseaseSymptoms: any;
   constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) {}
   ngOnInit(): void {
     this.connectionService.getCropDetails().subscribe(
@@ -35,6 +48,7 @@ export class PlantDetailsComponent implements OnInit {
       .subscribe(params => {
 
         this.plantName = params.plant;
+        this.cropId = params.plant;
         console.log(this.plantName);
       });
 
@@ -51,6 +65,18 @@ export class PlantDetailsComponent implements OnInit {
        this.temperature = data[0].temperature;
        this.duration = data[0].duration;
        this.percentage = data[0].percentage;
+
+      });
+    this.connectionService.getDiseaseDetails(this.cropId).subscribe(
+      data => {
+        this.diseases = data;
+        console.log(data);
+        this.crop_id = data[0].crop_id;
+        this.disease_name = data[0].disease_name;
+        this.disease_image = data[0].disease_image;
+        this.disease_Scientific_name = data[0].disease_Scientific_name;
+        this.disease_symptoms = data[0].disease_symptoms;
+
 
       });
   }
@@ -75,5 +101,50 @@ export class PlantDetailsComponent implements OnInit {
     this.connectionService.deletePlant(cropId).subscribe(
       data => console.log(cropId)
     );
+  }
+  deleteDiseaseRow(disease_id: any){
+    console.log(disease_id);
+    this.connectionService.deleteDiseaseDetails(disease_id).subscribe(
+      data => console.log(disease_id)
+    );
+  }
+  updateDisease(disease_id: any) {
+    this.disease_id = disease_id;
+    this.part1 = false;
+    this.part2 = false;
+    this.part3 = true;
+    this.part4 = false;
+    this.updateDiseaseDetailsToForm();
+  }
+  updateDiseaseDetailsToForm() {
+    this.connectionService.getDiseaseListById(this.disease_id).subscribe(
+      data => {
+        console.log(data);
+        this.disease_id = data[0].disease_id;
+        this.crop_id = data[0].crop_id;
+        this.disease_name = data[0].disease_name;
+        this.disease_image = data[0].disease_image;
+        this.disease_Scientific_name = data[0].disease_Scientific_name;
+        this.disease_symptoms = data[0].disease_symptoms;
+
+
+      });
+  }
+  submitDiseaseUpdates( values: any, disease_id: number) {
+      console.log(this.cropId  );
+      this.connectionService.updateDiseaseAll(values, disease_id).subscribe(
+        data => console.log(values)
+      );
+  }
+  addDiseaseDetails() {
+    this.part1 = false;
+    this.part2 = false;
+    this.part3 = false;
+    this.part4 = true;
+  }
+  submitDiseaseDetails(value: any) {
+    this.connectionService.addDisease(value).subscribe(
+      data => console.log(data), error => alert('There is a error in login. please try again later.'
+      ));
   }
 }

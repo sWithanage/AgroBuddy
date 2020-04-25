@@ -1,4 +1,5 @@
 export interface CropDetails {
+  cultivated_area_percentage: any;
   crop_id: string;
   crop_name: string;
   crop_image: string;

@@ -22,47 +22,60 @@ export interface chartRainfall {
   templateUrl: './rainfall-forcast.component.html',
   styleUrls: ['./rainfall-forcast.component.scss']
 })
+
 export class RaifallForcastComponent implements OnInit {
-  date: any;
-  rainfall: any[];
-  avgTemp: any;
-  minTemp: any;
-  constructor(private connectionService: AdminServiceService) {
+  dataSet = [];
+  labels = [];
+  private count = 1;
+  constructor(private connectionService: AdminServiceService, private _weatherService: AdminServiceService) {
   }
+  public lineChartData: Array<any> = [
+    { data: this.dataSet, label: '°C' }
+  ];
+  public lineChartLabels: Array<any> = this.labels;
+  public lineChartOptions: any = {
+    responsive: true
+  };
+  public lineChartColors: Array<any> = [
+    {
+      // dark grey
+      backgroundColor: 'rgb(41,98,255,.1)',
+      borderColor: '#2962FF',
+      pointBackgroundColor: '#2962FF',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: '#2962FF'
+    }
+  ];
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+
+  // events
+  rainfallValue: any;
+  public chartClicked(e: any): void {
+    // console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    // console.log(e);
+  }
+
   ngOnInit(): void {
     this.connectionService.getRainfallData().subscribe(
       data => {
-        console.log(data);
-        this.rainfall = data[0].rainFall;
+        for (const dataElement of data) {
+          // @ts-ignore
+          this.dataSet.push(Number(dataElement.rainFall));
+          this.labels.push('Day ' + this.count);
+          this.count = this.count + 1;
+        }
+        this.lineChartData = this.dataSet;
+        this.lineChartLabels = this.labels;
+      });
+
+    this._weatherService.getCurrentWeather()
+      .subscribe(data => {
+        this.rainfallValue = data[0].rain_1h;
       });
   }
-  public lable: any[] = this.date;
-  public type = 'Line';
-  public options = true;
-
-  // Line chart
-   lineChart: chartRainfall = {
-    type: 'Line',
-    data: {
-      labels: ['Jan1', 'Jan2', 'Jan3', 'jan4', 'Feb1', 'Feb3', 'Feb4', 'Mar1', 'Mar2'],
-       series: [{data: this.rainfall}]
-    },
-    options: {
-      showArea: true,
-      showPoint: false,
-
-      chartPadding: {
-        left: -35
-      },
-      axisX: {
-        showLabel: true,
-        showGrid: false
-      },
-      axisY: {
-        showLabel: false,
-        showGrid: true
-      },
-      fullWidth: true
-    }
-  };
 }
