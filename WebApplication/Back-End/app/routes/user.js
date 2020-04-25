@@ -4,6 +4,8 @@ const router = express();
 // get database connection
 const mysqlConnection = require("../connection");
 const session = require("express-session");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 // for POST-Support
 // access inside request body
@@ -31,29 +33,34 @@ router.use((cli, res, next) => {
 
 //post sign up details
 router.post("/users", async (req, res) => {
-  let data = {
-    user_Fname: req.body.name,
-    user_Lname: req.body.lname,
-    user_Dob: req.body.dob,
-    user_NIC: req.body.nic,
-    user_Email: req.body.email,
-    user_Username: req.body.user,
-    user_Password: req.body.password,
-    user_AddressNo: req.body.no,
-    user_Street1: req.body.st1,
-    user_Street2: req.body.st2,
-    user_City: req.body.city,
-    user_TelNo: req.body.telephoneNo,
-    user_PhoneNo: req.body.phoneNo,
-  };
-  mysqlConnection.query("INSERT INTO user SET ?", data, (err, rows) => {
-    if (!err) {
-      res.send(true);
-    } else {
-      console.error(err);
-      res.send(err);
-    }
-  });
+  try{
+    const hashedPassword = await bcrypt.hash(req.body.password,saltRounds)
+    let data = {
+      user_Fname: req.body.name,
+      user_Lname: req.body.lname,
+      user_Dob: req.body.dob,
+      user_NIC: req.body.nic,
+      user_Email: req.body.email,
+      user_Username: req.body.user,
+      user_Password: hashedPassword,
+      user_AddressNo: req.body.no,
+      user_Street1: req.body.st1,
+      user_Street2: req.body.st2,
+      user_City: req.body.city,
+      user_TelNo: req.body.telephoneNo,
+      user_PhoneNo: req.body.phoneNo,
+    };
+    mysqlConnection.query("INSERT INTO user SET ?", data, (err, rows) => {
+      if (!err) {
+        res.send(true);
+      } else {
+        console.error(err);
+        res.send(err);
+      }
+    });
+  }catch{
+    res.status(500).send();
+  }
 });
 
 //post login details

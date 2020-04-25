@@ -101,10 +101,10 @@ router.get("/prediction/rainfall", (req, res) => {
   );
 });
 
-//get temperature last 9 days
+//get temperature of last 9 days
 router.get("/prediction/temperature", (req, res) => {
   mysqlConnection.query(
-    "SELECT avgTemp FROM weatherdata ORDER BY date DESC limit 9",
+    "SELECT date,avgTemp FROM weatherdata ORDER BY date DESC limit 9",
     (err, rows, fields) => {
       if (!err) {
         res.send(rows);

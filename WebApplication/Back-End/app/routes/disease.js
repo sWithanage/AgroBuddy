@@ -2,21 +2,6 @@ const express = require('express');
 const Router = express.Router();    //router object for express
 const mysqlConnection = require("../connection");
 
-//get all buyers details
-Router.get("/buyers", (req, res) => {
-    mysqlConnection.query("SELECT * from buyers", 
-    (err, rows, fields) => {
-        if(!err)
-        {
-            res.send(rows);
-        }
-        else
-        {
-            console.log(err);
-        }
-    })
-});
-
 //get all diseases of a crop
 Router.get("/diseases/:cid", (req, res) => {
     mysqlConnection.query("SELECT * from disease WHERE crop_id=?", [req.params.cid], 
@@ -43,8 +28,10 @@ Router.get("/diseases", (req, res) => {
 });
 
 //get a disease
-Router.get("/diseases/:id", (req, res) => {
-    mysqlConnection.query("SELECT * from disease WHERE disease_id=?", [req.params.id], (err, rows, fields) => {
+Router.get("/disease/:id", (req, res) => {
+    mysqlConnection.query("SELECT * from disease WHERE disease_id=?", 
+    [req.params.id], 
+    (err, rows, fields) => {
         if(!err){
             res.send(rows);
         }
