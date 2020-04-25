@@ -75,6 +75,8 @@ export class RaifallForcastComponent implements OnInit {
 
     this._weatherService.getCurrentWeather()
       .subscribe(data => {
+        console.log(data);
+        // @ts-ignore
         this.rainfallValue = data[0].rain_1h;
       });
   }

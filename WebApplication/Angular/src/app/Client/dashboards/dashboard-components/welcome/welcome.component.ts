@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {CookieService} from 'ngx-cookie-service';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html'
@@ -7,7 +8,7 @@ export class WelcomeComponent {
   date: any;
   userName: any;
 
-  constructor() {
+  constructor(private cookie: CookieService) {
   }
 
   // tslint:disable-next-line:use-lifecycle-interface
@@ -16,6 +17,6 @@ export class WelcomeComponent {
     this.date = date.toDateString();
     console.log('Date = ' + this.date);
 
-    this.userName = 'sasanka withanage';
+    this.userName = this.cookie.get('user_Fname') + ' ' + this.cookie.get('user_Lname');
   }
 }

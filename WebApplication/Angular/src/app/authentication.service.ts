@@ -15,12 +15,13 @@ export class AuthenticationService {
   private url = 'https://agrobuddybackend.nn.r.appspot.com/';
 
   users(value: any) {
-    console.log(value);
     return this.serviceHttp.post<boolean> (this.url + 'users', value);
   }
   addcustomerLogin(value: any) {
-    console.log(value);
-    return this.serviceHttp.post<boolean>(this.url + 'authentication', value);
+    return this.serviceHttp.post<any>(this.url + 'authentication', value);
+  }
+  session(value: any) {
+    return this.serviceHttp.post<any>(this.url + 'session', value);
   }
   getUserList(): Observable<ClientDetails[]> {
     return this.serviceHttp.get<ClientDetails[]>(this.url + 'usersDetails');

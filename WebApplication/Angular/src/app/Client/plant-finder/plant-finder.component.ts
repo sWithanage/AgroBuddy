@@ -31,25 +31,38 @@ export class PlantFinderComponent implements OnInit {
   fullPage =  true;       // display the full page div at the begining of the page
   plantDetails = false;   // hide the plant details div at the begining of the page
   confirmation =  false;  // hide the confirmation div at the begining of the page
-  userId = 8;
+  userId;
   plantName = [];
-  area = [];
-  public pieChartLabels: string[] = this.plantName;
-  public pieChartData: number[] = this.area;
+  cArea = [];
+
+  public pieChartData;
   public pieChartType = 'pie';
-  ngOnInit() {
-    this.connectionService.clientArea(this.userId).subscribe(   // get cultivated area details on given user id
+  public pieChartLabels;
+
+  async ngOnInit() {
+    this.connectionService.clientArea(this.userId).subscribe(
       data => {
-        console.log(data);
-        // tslint:disable-next-line:forin
-        for (const x of data) {
-          this.plantName.push(x.plant_name);
-          this.area.push(x.cultivated_area);
+        for (const area of data) {
+          // @ts-ignore
+          this.plantName.push(area.plantName);
+          // @ts-ignore
+          this.cArea.push(area.area);
         }
       });
-    this.pieChartData = this.area;
+    // @ts-ignore
+    this.delay(1000);
+    this.updateChart();
+  }
+
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms));
+  }
+
+  updateChart() {
+    this.pieChartData = this.cArea;
     this.pieChartLabels = this.plantName;
   }
+
   validator(value: any) {   // validate the text fields
     // tslint:disable-next-line:triple-equals
     if (String(value).length == 0) {
@@ -57,7 +70,7 @@ export class PlantFinderComponent implements OnInit {
     }
     // tslint:disable-next-line:triple-equals
     if (String(value) == 'undefined') {
-      return false;        // return false if the text field is undefined
+      return false;        // return false if the user entered data to the text field is undefined
     }
     return true;          // return true if the user entered data to the text field is defined
   }
