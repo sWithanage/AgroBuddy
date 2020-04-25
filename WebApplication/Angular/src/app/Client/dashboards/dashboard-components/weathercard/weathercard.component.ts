@@ -10,13 +10,13 @@ export class WeathercardComponent implements OnInit {
 
   weather: WeatherDetails[];
   // tslint:disable-next-line:max-line-length
- constructor(private _weatherService: ClientServiceService) { }   // local variable _weatherService, gives an instance of ClientServiceService
+  constructor(private _weatherService: ClientServiceService) { }   // local variable _weatherService, gives an instance of ClientServiceService
 
   today: number = Date.now();
 
   ngOnInit() {
     // using the service instance and fetching the weather data
-    this._weatherService.getCurrentWeather()
+    this._weatherService.getCurrentWeather()  // get current weather
       .subscribe(data => this.weather = data);   // assigns the data recieved from the observable into local currentweathr property
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ClientServiceService} from '../../client-service.service';
-import {ActivatedRoute} from '@angular/router';
 import {Buyers} from '../../buyers.model';
 
 @Component({
@@ -14,9 +13,9 @@ export class BuyersComponent implements OnInit {
   constructor(private connectionService: ClientServiceService) { }
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
-    this.connectionService.getBuyers().subscribe(
+    this.connectionService.getBuyers().subscribe(   // get buyers' details from a backend
       data => {
-        this.buyers = data;
+        this.buyers = data;     // assign buyers details to an array
       });
   }
 

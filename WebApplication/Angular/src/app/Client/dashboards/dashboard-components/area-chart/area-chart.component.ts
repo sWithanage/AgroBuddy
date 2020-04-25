@@ -14,7 +14,7 @@ export class AreaChartComponent implements OnInit {
   public pieChartData: number[] = this.area;
   public pieChartType = 'pie';
   ngOnInit() {
-    this.service.getArea().subscribe(
+    this.service.getArea().subscribe(   // get cultivated area details
       data => {
         console.log(data);
         // tslint:disable-next-line:forin

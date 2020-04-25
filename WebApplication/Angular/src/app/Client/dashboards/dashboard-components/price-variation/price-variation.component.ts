@@ -8,13 +8,13 @@ import {ClientServiceService} from '../../../../client-service.service';
 })
 export class PriceVariationComponent implements OnInit {
 
-  prices: any[];
-  week = [];
-  ashPlantainArray = [];
-  brinjals = [];
-  cucumber = [];
-  ladiesFingers = [];
-  redPumpkin = [];
+  prices: any[];          // array for store all the data set
+  week = [];              // array to store the week details
+  ashPlantainArray = [];  // array to store ash plantain prices
+  brinjals = [];          // array to store brinjal prices
+  cucumber = [];          // array to store cucumber prices
+  ladiesFingers = [];     // array to store ladies fingers prices
+  redPumpkin = [];        // array to store red pumpkin prices
   constructor(private service: ClientServiceService) {
   }
 
@@ -39,7 +39,7 @@ export class PriceVariationComponent implements OnInit {
   public barChartDataSet;
 
   async ngOnInit() {
-    this.service.getMarketPrice().subscribe(
+    this.service.getMarketPrice().subscribe(    // get market prices
       data => {
         this.prices = data;
         console.log(data);
@@ -54,13 +54,14 @@ export class PriceVariationComponent implements OnInit {
       });
     // @ts-ignore
     this.delay(1000);
-    this.updateTable();
+    this.updateTable();     // call the update table method
   }
 
   async delay(ms: number) {
     await new Promise(resolve => setTimeout(() => resolve(), ms));
   }
 
+  // assigning values
   updateTable() {
     this.barChartLabels = this.week;
     this.barChartDataSet = [{data: this.ashPlantainArray, label: 'AshPlantain'},

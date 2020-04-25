@@ -13,7 +13,7 @@ export class PlantsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private connectionService: ClientServiceService) { }
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
-    this.connectionService.getPlants().subscribe(
+    this.connectionService.getPlants().subscribe(   // get all plants
       data => {
         this.plantDetails = data;
       });

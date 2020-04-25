@@ -10,8 +10,6 @@ import {ClientServiceService} from '../../client-service.service';
 export class ClientPlantDetailsComponent implements OnInit {
   crop: any[];
   plantDetails: any[];
-  plantName: string;
-
   cropId: string;
   cropName: string;
   cropImage: string;
@@ -32,6 +30,7 @@ export class ClientPlantDetailsComponent implements OnInit {
         console.log(data);
       });
 
+    // get the crop id from the previous page
     this.route.queryParams
       .filter(params => params.plant)
       .subscribe(params => {
@@ -40,6 +39,7 @@ export class ClientPlantDetailsComponent implements OnInit {
         console.log(this.cropId);
       });
 
+    // get plant details on given crop id
     this.connectionService.getPlantDetails(this.cropId).subscribe(
       data => {
         this.plantDetails = data;
@@ -47,9 +47,9 @@ export class ClientPlantDetailsComponent implements OnInit {
         this.cropImage = data[0].crop_image;
         this.cropDescription = data[0].crop_description;
         this.scientificName = data[0].scientific_name;
-         this.temperature = data[0].temperature;
+        this.temperature = data[0].temperature;
         this.nutrition = data[0].nutrition;
-         this.duration = data[0].duration;
+        this.duration = data[0].duration;
         this.cultivatedArea = data[0].cultivated_area;
         this.fertilizers = data[0].fertilizers;
       });

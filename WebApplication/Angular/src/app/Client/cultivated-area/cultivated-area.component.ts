@@ -11,11 +11,12 @@ export class CultivatedAreaComponent implements OnInit {
   plantName = [];
   area = [];
   constructor(private service: ClientServiceService) { }
-  public pieChartLabels: string[] = this.plantName;
-  public pieChartData: number[] = this.area;
+
+  public pieChartLabels: string[];  // array to store the labels for pie chart
+  public pieChartData: number[];    // array to store data for pie chart
   public pieChartType = 'pie';
   ngOnInit() {
-    this.service.getArea().subscribe(
+    this.service.getArea().subscribe(   // get cultivated area
       data => {
         console.log(data);
         // tslint:disable-next-line:forin
@@ -24,7 +25,7 @@ export class CultivatedAreaComponent implements OnInit {
           this.area.push(x.cultivatedArea);
         }
       });
-    this.pieChartData = this.area;
-    this.pieChartLabels = this.plantName;
+    this.pieChartData = this.area;          // assign values
+    this.pieChartLabels = this.plantName;   // assign values
   }
 }

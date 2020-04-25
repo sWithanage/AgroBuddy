@@ -2,23 +2,17 @@
   <div class="card-body">
     <h4 class="card-title">Today's Weather</h4>
     <div class="d-flex align-items-center flex-row m-t-30">
-      <div class="display-5 text-info">
-        <i class="wi wi-day-showers"></i>
-        <span>
-                    <sup>°</sup>
-                </span>
-      </div>
       <div class="m-l-10">
         <h3 class="m-b-0">{{today | date:'medium'}}</h3>
-        <small>Sri Lanka</small>
+        <small>Monaragala, Sri Lanka</small>
       </div>
     </div>
     <table class="table no-border mini-table m-t-20">
       <tbody *ngFor = "let cw of weather">
-       <tr>
-          <td class="text-muted">Temperature</td>
-          <td class="font-medium">{{cw.temp}}°</td>
-        </tr>
+      <tr>
+        <td class="text-muted">Temperature</td>
+        <td class="font-medium">{{cw.temp}}°</td>
+      </tr>
       <tr>
         <td class="text-muted">Wind-Speed</td>
         <td class="font-medium">{{cw.wind_speed}} km/h</td>
@@ -31,7 +25,7 @@
         <td class="text-muted">Pressure</td>
         <td class="font-medium">{{cw.pressure}}</td>
       </tr>
-     <tr>
+      <tr>
         <td class="text-muted">Description</td>
         <td class="font-medium">{{cw.weather_description}}</td>
       </tr>

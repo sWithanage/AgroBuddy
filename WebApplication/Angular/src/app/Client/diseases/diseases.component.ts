@@ -9,8 +9,6 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DiseasesComponent implements OnInit {
 
-
-  pdisease: any[];
   disease: any[];
   cropId;
   diseaseName;
@@ -19,15 +17,9 @@ export class DiseasesComponent implements OnInit {
   diseaseSymptoms;
 
   constructor(private connectionService: ClientServiceService, private route: ActivatedRoute) {}
-  ngOnInit(): void {
-    // @ts-ignore
-    this.connectionService.getPlantDetails().subscribe(
-      data => {
-        this.pdisease = data;
-        console.log(data);
-      });
 
-    this.route.queryParams
+  ngOnInit(): void {
+    this.route.queryParams    // get the crop id from the previous page
       .filter(params => params.plant)
       .subscribe(params => {
 
@@ -35,7 +27,7 @@ export class DiseasesComponent implements OnInit {
         console.log(this.cropId);
       });
 
-    this.connectionService.getDiseases(this.cropId).subscribe(
+    this.connectionService.getDiseases(this.cropId).subscribe(    // get diseases on the given crop id
       data => {
         this.disease = data;
         this.diseaseName = data[0].disease_name;
