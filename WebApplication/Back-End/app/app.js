@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const mysql = require("mysql");
 const path = require("path");
 const cors = require("cors");
+const axios = require("axios");
 
 // const cron = require("node-cron");
 // const axios = require("axios");
@@ -35,6 +36,20 @@ app.use(predictions);
 app.use(accuracy);
 app.use(forecast);
 app.use(buyer);
+
+// get best crop
+app.get("/bestcrop", async (req, res) => {
+  try {
+    const bestcrop = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/bestPlant"
+    );
+    res.send({
+      bestcrop: bestcrop.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 //starting the server
 app.listen(PORT, () => {
