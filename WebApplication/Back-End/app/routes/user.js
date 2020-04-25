@@ -122,25 +122,21 @@ router.delete("/usersDetails", (req, res) => {
 
 //rest api to update record into mysql database
 router.put("/usersDetails", async (req, res) => {
-  let data = {
-    user_Type: req.body.userType,
-    user_Fname: req.body.firstName,
-    user_Lname: req.body.lastName,
-    user_Username: req.body.userName,
-    user_Email: req.body.email,
-    user_NIC: req.body.nic,
-    user_Dob: req.body.dob,
-    user_Password: req.body.pass,
-    user_AddressNo: req.body.address,
-    user_Street1: req.body.str1,
-    user_Street2: req.body.str2,
-    user_City: req.body.city,
-    user_PhoneNo: req.body.phone,
-    user_TelNo: req.body.tele,
-  };
   mysqlConnection.query(
-    "UPDATE user SET user_Type= ?, user_Fname=?, user_Lname=?, user_Username=?, user_Email=?, user_NIC=?, user_Dob=?, user_Password=?, user_AddressNo=?, user_Street1=?, user_Street2=?, user_City=?, user_PhoneNo=?, user_TelNo=? where user_Id= ?",
-    [data, req.body.userId],
+    "UPDATE user SET user_Type= '"+req.body.usertype+
+      "', user_Fname='"+req.body.firstName+"', " +
+      "user_Lname='"+req.body.lastName+"'," +
+      " user_Username='"+req.body.userName+"'," +
+      " user_Email='"+req.body.email+"'," +
+      " user_NIC='"+req.body.nic+"'," +
+      " user_Dob='"+req.body.dob+"', " +
+      "user_AddressNo='"+req.body.address+"'," +
+      " user_Street1='"+req.body.str1+"'," +
+      " user_Street2='"+req.body.str2+"'," +
+      " user_City='"+req.body.city+"'," +
+      " user_PhoneNo='"+req.body.phone+"'," +
+      " user_TelNo='"+req.body.tele+"'" +
+      " where user_Id= '"+req.body.userId+"'",
     (err, rows) => {
       if (!err) {
         res.send(true);
@@ -162,34 +158,68 @@ router.use(
 
 // check login credentials
 router.post("/authentication", (request, response) => {
-  var username = request.body.username;
-  var password = request.body.password;
+  let username = request.body.username;
+  let password = request.body.password;
+  let randomKey = request.body.randomKey;
+  let datetime = new Date();
+  let currentDate = datetime.toISOString().slice(0,10);
+
   if (username && password) {
     mysqlConnection.query(
-      "SELECT * FROM user WHERE user_Username = ? AND user_Password = ?",
-      [username, password],
-      async (error, results, fields) => {
-        if (results.length > 0) {
-          const comparision = await bcrypt.compare(
-            password,
-            results[0].password
-          );
-          if (comparision) {
-            request.session.loggedin = true;
-            request.session.username = username;
-            response.send(true);
-          } else {
-            response.send(false);
+        "SELECT user_Id, user_Type, user_Fname, user_Lname, user_Username, user_Email, user_Password FROM user WHERE user_Username = '" +
+        username +
+        "'",
+        async (error, results, fields) => {
+          if (results.length > 0) {
+            const comparision = await bcrypt.compare(
+                password,
+                results[0].user_Password
+            );
+            if (comparision) {
+              console.log("user logged in");
+              request.session.loggedin = true;
+              request.session.username = username;
+              response.send(results[0]);
+              loggingActivation(results[0].user_Id, randomKey, currentDate)
+            } else {
+              response.send(false);
+            }
           }
+          response.end();
         }
-        response.end();
-      }
     );
   } else {
     response.send(false);
     response.end();
   }
 });
+
+function loggingActivation(user_Id, randomKey , date){
+  mysqlConnection.query(
+      "SELECT * FROM userlogin where user_Id = '"+user_Id+"'",
+      (err, result, fields) => {
+        if(result.length > 0 ){
+          mysqlConnection.query(
+              "UPDATE userlogin SET randomKey=? , date =? where user_Id =? ",[randomKey , date ,user_Id],
+              async (err, result, fields) => {
+                if (err) throw err;
+                console.log(result);
+              }
+          );
+        }else{
+          mysqlConnection.query(
+              "INSERT INTO userlogin (user_Id, date ,randomKey) VALUES ",[user_Id , date , randomKey],
+              (err, result, fields) => {
+                if (err) throw err;
+                console.log(result);
+              }
+          );
+          if (err) throw err;
+          console.log(result);
+        }
+      }
+  );
+}
 
 //logout user
 router.post("/logout", (req, res) => {

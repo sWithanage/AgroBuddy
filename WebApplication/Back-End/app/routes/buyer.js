@@ -66,13 +66,12 @@ router.post("/buyers", async (req, res) => {
 //update crop details
 router.put("/buyers/:id", async (req, res) => {
     let data = {
-        buyerId: req.body.buyerId,
         buyerName: req.body.buyerName,
         buyerAddress: req.body.buyerAddress,
         buyerContactNumber: req.body.ContactNumber
     };
     mysqlConnection.query(
-        "UPDATE buyers SET crop_id?, crop_name= ?, crop_image=?, crop_description=?, scientific_name=?, nutrition=?, cultivated_area=?, duration=?, temperature=?, cultivated_area_percentage=? where crop_Id= ?",
+        "UPDATE buyers SET buyerName= ?, buyerAddress=?, buyerContactNumber=? where buyerId= ?",
         [data, req.params.id],
         (err, rows) => {
           if (!err) {
