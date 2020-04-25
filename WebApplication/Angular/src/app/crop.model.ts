@@ -9,4 +9,5 @@ export interface CropDetails {
   duration: string;
   percentage: number;
   cultivated_area: string;
+  fertilizers: string;
 }

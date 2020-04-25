@@ -38,6 +38,14 @@
                   <td>Cultivating Areas</td>
                   <td> {{cultivatedArea}} </td>
                 </tr>
+                <tr>
+                  <td>Fertilizing</td>
+                  <td> {{fertilizers}} </td>
+                </tr>
+                <tr>
+                  <td>Diseases</td>
+                  <td><a [routerLink]="['/client/diseases']" [queryParams]="{ plant: cropId}">View diseases</a></td>
+                </tr>
                 </tbody>
               </table>
             </div>
