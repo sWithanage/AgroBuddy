@@ -24,21 +24,42 @@ export class ClientServiceService {
   getCurrentWeather(): Observable<IcurrentWeather[]> {
     return this.http.get<IcurrentWeather[]>(this.url + 'prediction/weather');
   }
+  // method returning plant details on selected plant
   getPlantDetails(plantName: any): Observable<CropDetails[]> {
     return this.http.get<CropDetails[]>(this.url + 'crops/' + plantName);
   }
+  // method returning diseases on selected plant
   getDiseases(plantName: any): Observable<Diseases[]> {
     return this.http.get<Diseases[]>(this.url + 'diseases/' + plantName);
   }
+  // get all plants from database
   getPlants(): Observable<CropDetails[]> {
     return this.http.get<CropDetails[]>(this.url + 'crops');
   }
+  // get market prices
   getMarketPrice(): Observable<MarketPriceData[]> {
     return this.http.get<MarketPriceData[]>(this.url + 'prediction/marketprice');
   }
+  // post contact us form details to database
   contact(value: any) {
     console.log(value);
     return this.http.post<boolean> (this.url + 'contact', value);
+  }
+  // post contact us form details to send confirmation emails
+  sendEmail(data: any) {
+    return this.http.post(this.url + 'sendmail', data);
+  }
+  // get cultivated areas
+  getArea(): Observable<ClientArea[]> {
+    return this.http.get<ClientArea[]>(this.url + 'cultivatedarea');
+  }
+  // get cultivated areas on given user Id
+  clientArea(userId: any): Observable<ClientArea[]> {
+    return this.http.get<ClientArea[]>(this.url + 'cultivated/' + userId);
+  }
+  // get buyers details
+  getBuyers(): Observable<Buyers[]> {
+    return this.http.get<Buyers[]>(this.url + 'buyers');
   }
   predict(value: any) {
     console.log(value);
@@ -50,17 +71,5 @@ export class ClientServiceService {
   chosenCrop(value: any) {
     console.log(value);
     return this.http.post<boolean> (this.url + 'chosenCrop', value);
-  }
-  clientArea(userId: any): Observable<ClientArea[]> {
-    return this.http.get<ClientArea[]>(this.url + 'cultivatedarea/' + userId);
-  }
-  getBuyers(): Observable<Buyers[]> {
-    return this.http.get<Buyers[]>(this.url + 'buyers');
-  }
-  sendEmail(data: any) {
-    return this.http.post(this.url + 'sendmail', data);
-  }
-  getArea(): Observable<ClientArea[]> {
-    return this.http.get<ClientArea[]>(this.url + 'cultivatedarea');
   }
 }
