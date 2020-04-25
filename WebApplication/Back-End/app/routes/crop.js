@@ -114,7 +114,7 @@ router.put("/crops/:id", async (req, res) => {
 // get cultivated areas
 router.get("/cultivatedarea", (req, res) => {
   mysqlConnection.query(
-    "SELECT plant_name, SUM(cultivated_area) FROM cultivated_area where plant_name = 'Cucumber' UNION SELECT plant_name, SUM(cultivated_area) FROM cultivated_area where plant_name = 'Brinjals' UNION SELECT plant_name, SUM(cultivated_area) FROM cultivated_area where plant_name = 'AshPlantain' UNION SELECT plant_name, SUM(cultivated_area) FROM cultivated_area where plant_name = 'Pumpkin' UNION SELECT plant_name, SUM(cultivated_area) FROM cultivated_area where plant_name = 'LadiesFinger'",
+    "SELECT plant_name, SUM(cultivated_area) AS cultivatedArea FROM cultivated_area where plant_name = 'Cucumber' UNION SELECT plant_name, SUM(cultivated_area) AS cultivatedArea FROM cultivated_area where plant_name = 'Brinjals' UNION SELECT plant_name, SUM(cultivated_area) AS cultivatedArea FROM cultivated_area where plant_name = 'AshPlantain' UNION SELECT plant_name, SUM(cultivated_area) AS cultivatedArea FROM cultivated_area where plant_name = 'Pumpkin' UNION SELECT plant_name, SUM(cultivated_area) AS cultivatedArea FROM cultivated_area where plant_name = 'LadiesFinger'",
     (err, rows) => {
       if (!err) {
         res.send(rows);
@@ -128,7 +128,7 @@ router.get("/cultivatedarea", (req, res) => {
 // get cultivated areas
 router.get("/cultivatedarea/:plantname", (req, res) => {
   mysqlConnection.query(
-    "SELECT plant_name, SUM(cultivated_area) FROM cultivated_area where plant_name = ?",
+    "SELECT plant_name, SUM(cultivated_area) AS cultivatedArea FROM cultivated_area where plant_name = ?",
     [req.params.plantname],
     (err, rows) => {
       if (!err) {

@@ -115,6 +115,48 @@ router.get("/prediction/temperature", (req, res) => {
   );
 });
 
+//get average temperature of last year
+router.get("/prediction/avgrain", (req, res) => {
+  mysqlConnection.query(
+    "SELECT AVG(rainFall) AS avgRainfall FROM weatherdata ORDER BY date DESC limit 365",
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+//get max temperature of last year
+router.get("/prediction/maxrain", (req, res) => {
+  mysqlConnection.query(
+    "SELECT MAX(rainFall) AS maxRainfall FROM weatherdata ORDER BY date DESC limit 365",
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+//get min temperature of last year
+router.get("/prediction/minrain", (req, res) => {
+  mysqlConnection.query(
+    "SELECT MIN(rainFall) AS minRainfall FROM weatherdata ORDER BY date DESC limit 365",
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
 //get current weather details
 router.get("/prediction/weather", (req, res) => {
   mysqlConnection.query(
