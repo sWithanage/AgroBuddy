@@ -9,7 +9,7 @@ import {CropDetails} from './crop.model';
 import { IcurrentWeather } from './currentWeather';
 import {MarketPriceData} from './market-price-data.model';
 import {RainfallData} from './rainfall-data.model';
-import {DiseasesDetails} from './diseases.model';
+import {Diseases} from './diseases.model';
 
 
 @Injectable({
@@ -110,11 +110,11 @@ export class AdminServiceService {
   getTemperatureData(): Observable<WeatherDetails[]> {
     return this.serviceHttp.get<WeatherDetails[]>(this.url + 'prediction/temperature');
   }
-  getDiseaseDetails(crop_Id: any): Observable<DiseasesDetails[]> {
-    return this.serviceHttp.get<DiseasesDetails[]>(this.url + 'diseases/' + crop_Id);
+  getDiseaseDetails(crop_Id: any): Observable<Diseases[]> {
+    return this.serviceHttp.get<Diseases[]>(this.url + 'diseases/' + crop_Id);
   }
-  getDiseaseListById(disease_Id: any): Observable<DiseasesDetails[]> {
-    return this.serviceHttp.get<DiseasesDetails[]>(this.url + 'diseases/' + disease_Id);
+  getDiseaseListById(disease_Id: any): Observable<Diseases[]> {
+    return this.serviceHttp.get<Diseases[]>(this.url + 'diseases/' + disease_Id);
   }
   deleteDiseaseDetails(disease_id: any) {
     console.log(disease_id);
@@ -126,7 +126,7 @@ export class AdminServiceService {
     return this.serviceHttp.put<boolean>(this.url +  'diseases', value  );
     console.log(disease_Id);
   }
-  addDisease(value: any): Observable<DiseasesDetails[]> {
+  addDisease(value: any): Observable<Diseases[]> {
     console.log(value);
     return this.serviceHttp.post<any> (this.url + 'diseases', value);
   }
