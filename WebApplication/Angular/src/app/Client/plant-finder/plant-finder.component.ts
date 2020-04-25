@@ -31,36 +31,25 @@ export class PlantFinderComponent implements OnInit {
   fullPage =  true;       // display the full page div at the begining of the page
   plantDetails = false;   // hide the plant details div at the begining of the page
   confirmation =  false;  // hide the confirmation div at the begining of the page
-  userId;
+  userId = 8;
   plantName = [];
-  cArea = [];
-
-  public pieChartData;
+  area = [];
+  public pieChartLabels: string[] = this.plantName;
+  public pieChartData: number[] = this.area;
   public pieChartType = 'pie';
-  public pieChartLabels;
-
-  async ngOnInit() {
-    this.connectionService.clientArea(this.userId).subscribe(
+  ngOnInit() {
+    this.connectionService.clientArea(this.userId).subscribe(   // get cultivated area details on given user id
       data => {
-        for (const area of data) {
-          this.plantName.push(area.plantName);
-          this.cArea.push(area.area);
+        console.log(data);
+        // tslint:disable-next-line:forin
+        for (const x of data) {
+          this.plantName.push(x.plant_name);
+          this.area.push(x.cultivated_area);
         }
       });
-    // @ts-ignore
-    this.delay(1000);
-    this.updateChart();
-  }
-
-  async delay(ms: number) {
-    await new Promise(resolve => setTimeout(() => resolve(), ms));
-  }
-
-  updateChart() {
-    this.pieChartData = this.cArea;
+    this.pieChartData = this.area;
     this.pieChartLabels = this.plantName;
   }
-
   validator(value: any) {   // validate the text fields
     // tslint:disable-next-line:triple-equals
     if (String(value).length == 0) {
@@ -68,7 +57,7 @@ export class PlantFinderComponent implements OnInit {
     }
     // tslint:disable-next-line:triple-equals
     if (String(value) == 'undefined') {
-      return false;        // return false if the user entered data to the text field is undefined
+      return false;        // return false if the text field is undefined
     }
     return true;          // return true if the user entered data to the text field is defined
   }
