@@ -52,8 +52,7 @@ import { BuyersComponent } from './Client/buyers/buyers.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AdminBuyersComponent} from './Admin/admin-buyers/admin-buyers.component';
 import { DiseasesComponent } from './Client/diseases/diseases.component';
-
-
+import {ProfileComponent} from './profile/profile.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -97,8 +96,7 @@ const routes: Routes = [ {
     BuyersComponent,
     ProfileComponent,
     AdminBuyersComponent,
-    DiseasesComponent
-
+    DiseasesComponent,
   ],
   imports: [
     CommonModule,

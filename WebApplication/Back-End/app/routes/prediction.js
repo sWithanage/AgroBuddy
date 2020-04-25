@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router(); //router object for express
 const mysqlConnection = require("../agroDataConnection");
-const nodemailer = require("nodemailer");
 
 //get current market price prediction
 router.get("/prediction/marketprice", (req, res) => {
