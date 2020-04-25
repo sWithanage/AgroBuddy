@@ -14,6 +14,7 @@ from Models.ARIMA import ARIMA
 from Models.SARIMA import SARIMA
 from Models.AutoARIMA import Auto_ARIMA
 from flask import Flask, request, send_file
+from Models.BestCropFinder import BestCropFinder
 from Models.Components import CustomLogger as logger
 
 app = Flask(__name__)
@@ -24,6 +25,13 @@ app = Flask(__name__)
 @app.route("/")
 def homePage():
     return "This is an api to get accuracies and forecast."
+
+
+# ********************************************* Finding Best Plant *************************************************
+
+@app.route("/bestPlant")
+def findingBestPlant():
+    return str(BestCropFinder.getBestPlant())
 
 
 # ************************************************* ACCURACY DETAILS *************************************************
@@ -599,11 +607,6 @@ def cleanLog():
         return send_file('Log/Log.txt', attachment_filename='Log File.txt')
     except Exception as e:
         return str(e)
-
-
-@app.errorhandler(404)
-def resource_not_found():
-    return "Page is not found. Please check the url and try again."
 
 
 if __name__ == '__main__':
