@@ -20,6 +20,7 @@ import {PlantFinderComponent} from './Client/plant-finder/plant-finder.component
 import {BuyersComponent} from './Client/buyers/buyers.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AdminBuyersComponent} from './Admin/admin-buyers/admin-buyers.component';
+import {DiseasesComponent} from './Client/diseases/diseases.component';
 
 
 export const Approutes: Routes = [
@@ -194,6 +195,17 @@ export const Approutes: Routes = [
           urls: [
             { title: 'Dashboard', url: '/client/dashboard' },
             { title: 'Buyers' }
+          ]
+        }
+      },
+      {
+        path: 'diseases',
+        component: DiseasesComponent,
+        data: {
+          title: 'Diseases - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/client/dashboard' },
+            { title: 'Diseases' }
           ]
         }
       }

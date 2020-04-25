@@ -4,6 +4,8 @@ const router = express();
 // get database connection
 const mysqlConnection = require("../connection");
 const session = require("express-session");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 // for POST-Support
 // access inside request body
@@ -23,44 +25,44 @@ router.use((cli, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Allow-Control-Allow-Methods", "*");
   res.setHeader(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
 });
 
 //post sign up details
 router.post("/users", async (req, res) => {
-  let data = {
-    user_Fname: req.body.name,
-    user_Lname: req.body.lname,
-    user_Dob: req.body.dob,
-    user_NIC: req.body.nic,
-    user_Email: req.body.email,
-    user_Username: req.body.user,
-    user_Password: req.body.password,
-    user_AddressNo: req.body.no,
-    user_Street1: req.body.st1,
-    user_Street2: req.body.st2,
-    user_City: req.body.city,
-    user_TelNo: req.body.telephoneNo,
-    user_PhoneNo: req.body.phoneNo,
-  };
-  mysqlConnection.query("INSERT INTO user SET ?", data, (err, rows) => {
-    if (!err) {
-      res.send(true);
-    } else {
-      console.error(err);
-      res.send(err);
-    }
-  });
+  try {
+    const userpassword = req.body.password;
+    const hashedPassword = await bcrypt.hash(userpassword, saltRounds);
+    let data = {
+      user_Fname: req.body.name,
+      user_Lname: req.body.lname,
+      user_Dob: req.body.dob,
+      user_NIC: req.body.nic,
+      user_Email: req.body.email,
+      user_Username: req.body.user,
+      user_Password: hashedPassword,
+      user_AddressNo: req.body.no,
+      user_Street1: req.body.st1,
+      user_Street2: req.body.st2,
+      user_City: req.body.city,
+      user_TelNo: req.body.telephoneNo,
+      user_PhoneNo: req.body.phoneNo,
+    };
+    mysqlConnection.query("INSERT INTO user SET ?", data, (err) => {
+      if (!err) {
+        res.send(true);
+      } else {
+        console.error(err);
+        res.send(err);
+      }
+    });
+  } catch {
+    res.status(500).send();
+  }
 });
-
-//post login details
-// router.post("/authentication", function (req, res) {
-//   console.log(req.body.name);
-//   res.send(true);
-// });
 
 // get all users details
 router.get("/usersDetails", (req, res) => {
@@ -76,45 +78,45 @@ router.get("/usersDetails", (req, res) => {
 //update only user type
 router.put("/users", async (req, res) => {
   mysqlConnection.query(
-      "UPDATE user SET user_Type= ?  where user_Id= ?",
-      [req.body.user_Type, req.body.user_Id],
-      (err, rows) => {
-        if (!err) {
-          res.send(true);
-        } else {
-          res.send(err);
-        }
+    "UPDATE user SET user_Type= ?  where user_Id= ?",
+    [req.body.user_Type, req.body.user_Id],
+    (err, rows) => {
+      if (!err) {
+        res.send(true);
+      } else {
+        res.send(err);
       }
+    }
   );
 });
 
 // get selected user details
 router.get("/users/:id", (req, res) => {
   mysqlConnection.query(
-      "SELECT * FROM user WHERE user_Id=?",
-      [req.params.id],
-      (err, rows, fields) => {
-        if (!err) {
-          res.send(rows);
-        } else {
-          console.log(err);
-        }
+    "SELECT * FROM user WHERE user_Id=?",
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
       }
+    }
   );
 });
 
 // delete selected user details
 router.delete("/usersDetails", (req, res) => {
   mysqlConnection.query(
-      "DELETE FROM user WHERE user_Id=?",
-      [req.body.user_Id],
-      (err, rows, fields) => {
-        if (!err) {
-          res.send("user deleted successfully");
-        } else {
-          console.log(err);
-        }
+    "DELETE FROM user WHERE user_Id=?",
+    [req.body.user_Id],
+    (err, rows, fields) => {
+      if (!err) {
+        res.send("user deleted successfully");
+      } else {
+        console.log(err);
       }
+    }
   );
 });
 
@@ -134,85 +136,70 @@ router.put("/usersDetails", async (req, res) => {
     user_Street2: req.body.str2,
     user_City: req.body.city,
     user_PhoneNo: req.body.phone,
-    user_TelNo: req.body.tele
+    user_TelNo: req.body.tele,
   };
   mysqlConnection.query(
-      "UPDATE user SET user_Type= ?, user_Fname=?, user_Lname=?, user_Username=?, user_Email=?, user_NIC=?, user_Dob=?, user_Password=?, user_AddressNo=?, user_Street1=?, user_Street2=?, user_City=?, user_PhoneNo=?, user_TelNo=? where user_Id= ?",
-      [data, req.body.userId],
-      (err, rows) => {
-        if (!err) {
-          res.send(true);
-        } else {
-          res.send(err);
-        }
+    "UPDATE user SET user_Type= ?, user_Fname=?, user_Lname=?, user_Username=?, user_Email=?, user_NIC=?, user_Dob=?, user_Password=?, user_AddressNo=?, user_Street1=?, user_Street2=?, user_City=?, user_PhoneNo=?, user_TelNo=? where user_Id= ?",
+    [data, req.body.userId],
+    (err, rows) => {
+      if (!err) {
+        res.send(true);
+      } else {
+        res.send(err);
       }
+    }
   );
 });
 
 // initialize express-session to allow us track the logged-in user across sessions.
 router.use(
   session({
-    secret: 'secret',
+    secret: "secret",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
 );
 
-//check login credentials
-router.post('/authentication', function(request, response) {
-  
-	var username = request.body.username;
-	var password = request.body.password;
-  if (username && password) 
-  {
-    mysqlConnection.query('SELECT * FROM user WHERE user_Username = ? AND user_Password = ?', 
-    [username, password], 
-    function(error, results, fields) 
-    {
-			if (results.length > 0) {
-				request.session.loggedin = true;
-        request.session.username = username;
-        response.send(true);
-				//response.redirect('http://localhost:4200/#/signup');
-      } 
-      else {
-				response.send(false);
-			}			
-			response.end();
-		});
-  } 
-  else {
-		response.send(false);
-		response.end();
-	}
+// check login credentials
+router.post("/authentication", (request, response) => {
+  var username = request.body.username;
+  var password = request.body.password;
+  if (username && password) {
+    mysqlConnection.query(
+      "SELECT * FROM user WHERE user_Username = ? AND user_Password = ?",
+      [username, password],
+      async (error, results, fields) => {
+        if (results.length > 0) {
+          const comparision = await bcrypt.compare(
+            password,
+            results[0].password
+          );
+          if (comparision) {
+            request.session.loggedin = true;
+            request.session.username = username;
+            response.send(true);
+          } else {
+            response.send(false);
+          }
+        }
+        response.end();
+      }
+    );
+  } else {
+    response.send(false);
+    response.end();
+  }
 });
 
-// router.post("/authentication", (req, res) => {
-//   let data = {
-//     user_Username: req.body.username,
-//     user_Password: req.body.password,
-//   };
-//   if (username && password) {
-//     connection.query(
-//         "SELECT * FROM user WHERE user_Username = ? AND user_Password = ?",
-//         data,
-//         function (error, results, fields) {
-//           if (results.length > 0) {
-//             req.session.loggedin = true;
-//             req.session.username = username;
-//             //console.error(err);
-//             //console.log("login successful");
-//             //res.redirect("http://localhost:4200");
-//           } else {
-//             res.send("Incorrect Username and/or Password!");
-//           }
-//           res.end();
-//         }
-//     );
-//   } else {
-//     response.send("Please enter Username and Password!");
-//     response.end();
-//   }
-// });
+//logout user
+router.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.send("Could not log out.");
+    } else {
+      res.send("Successfully logged out!");
+    }
+  });
+});
 
 module.exports = router;

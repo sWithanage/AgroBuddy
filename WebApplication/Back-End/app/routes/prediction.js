@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router(); //router object for express
 const mysqlConnection = require("../agroDataConnection");
+const nodemailer = require("nodemailer");
 
 //get current market price prediction
 router.get("/prediction/marketprice", (req, res) => {
@@ -90,7 +91,6 @@ router.get("/marketprice/redPumpkin", (req, res) => {
 router.get("/prediction/rainfall", (req, res) => {
   mysqlConnection.query(
     "SELECT rainFall FROM weatherdata ORDER BY date DESC limit 9",
-    [req.params.id],
     (err, rows, fields) => {
       if (!err) {
         res.send(rows);
@@ -101,11 +101,52 @@ router.get("/prediction/rainfall", (req, res) => {
   );
 });
 
-//get temperature last 9 days
+//get temperature of last 9 days
 router.get("/prediction/temperature", (req, res) => {
   mysqlConnection.query(
-    "SELECT avgTemp FROM weatherdata ORDER BY date DESC limit 9",
-    [req.params.id],
+    "SELECT date,avgTemp FROM weatherdata ORDER BY date DESC limit 9",
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+//get average temperature of last year
+router.get("/prediction/avgrain", (req, res) => {
+  mysqlConnection.query(
+    "SELECT AVG(rainFall) AS avgRainfall FROM weatherdata ORDER BY date DESC limit 365",
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+//get max temperature of last year
+router.get("/prediction/maxrain", (req, res) => {
+  mysqlConnection.query(
+    "SELECT MAX(rainFall) AS maxRainfall FROM weatherdata ORDER BY date DESC limit 365",
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+//get min temperature of last year
+router.get("/prediction/minrain", (req, res) => {
+  mysqlConnection.query(
+    "SELECT MIN(rainFall) AS minRainfall FROM weatherdata ORDER BY date DESC limit 365",
     (err, rows, fields) => {
       if (!err) {
         res.send(rows);
