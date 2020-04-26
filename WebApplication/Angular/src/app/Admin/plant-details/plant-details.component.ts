@@ -82,6 +82,7 @@ export class PlantDetailsComponent implements OnInit {
         this.diseases = data;
         console.log(data);
         // this.crop_id = data[0].crop_id;
+        this.disease_id = data[0].disease_id;
         this.disease_name = data[0].disease_name;
         this.disease_image = data[0].disease_image;
         this.disease_Scientific_name = data[0].disease_Scientific_name;
