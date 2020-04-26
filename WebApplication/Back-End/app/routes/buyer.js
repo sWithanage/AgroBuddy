@@ -43,13 +43,12 @@ router.delete("/buyers", async (req, res) => {
     })
 });
 
-//inserting a crop
+//inserting a buyer
 router.post("/buyers", async (req, res) => {
     let data = {
-        buyerId: req.body.buyerId,
-        buyerName: req.body.buyerName,
-        buyerAddress: req.body.buyerAddress,
-        buyerContactNumber: req.body.ContactNumber
+        buyerName: req.body.buyer_Name,
+        buyerAddress: req.body.buyer_Address,
+        buyerContactNumber: req.body.buyer_ContactNumber
     };
     mysqlConnection.query("INSERT INTO buyers SET ?", 
     data, 
@@ -64,15 +63,12 @@ router.post("/buyers", async (req, res) => {
 });
 
 //update crop details
-router.put("/buyers/:id", async (req, res) => {
-    let data = {
-        buyerName: req.body.buyerName,
-        buyerAddress: req.body.buyerAddress,
-        buyerContactNumber: req.body.ContactNumber
-    };
+router.put("/buyers", async (req, res) => {
     mysqlConnection.query(
-        "UPDATE buyers SET buyerName= ?, buyerAddress=?, buyerContactNumber=? where buyerId= ?",
-        [data, req.params.id],
+        "UPDATE buyers SET buyerName='" + req.body.buyerName + "', " +
+        "buyerAddress='"+req.body.buyerAddress+"'," +
+        "buyerContactNumber='"+req.body.buyerContactNumber+"'" +
+        "WHERE buyerId= '"+req.body.buyerId+"'",
         (err, rows) => {
           if (!err) {
             res.send(true);

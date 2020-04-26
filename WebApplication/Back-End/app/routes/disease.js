@@ -56,11 +56,11 @@ Router.delete("/diseases/:id", (req, res) => {
 //inserting a disease
 Router.post("/diseases", async (req, res) => {
     let data = {
-    crop_id: req.body.id,
-    disease_name: req.body.name,
-    disease_image: req.body.image,
-    disease_Scientific_name: req.body.scientific_name,
-    disease_symptoms: req.body.symptoms
+    crop_id:req.body.crop_id,
+    disease_name: req.body.diseaseName,
+    disease_image: req.body.diseaseImage,
+    disease_Scientific_name: req.body.diseaseScientificName,
+    disease_symptoms: req.body.diseaseSymptoms
     };
     mysqlConnection.query("INSERT INTO disease SET ?", data, (err, rows) => {
       if (!err) {
@@ -73,17 +73,13 @@ Router.post("/diseases", async (req, res) => {
   });
 
 //update disease details
-Router.put("/diseases/:id", async (req, res) => {
-    let data = {
-        crop_id: req.body.id,
-        disease_name: req.body.name,
-        disease_image: req.body.image,
-        disease_Scientific_name: req.body.scientific_name,
-        disease_symptoms: req.body.symptoms
-    };
+Router.put("/diseases", async (req, res) => {
     mysqlConnection.query(
-        "UPDATE disease SET crop_id= ?, disease_name=?, disease_image=?,disease_Scientific_name, disease_symptoms=? where disease_id= ?",
-        [data, req.params.id],
+        "UPDATE disease SET disease_name='" + req.body.disease_name + "', " +
+        "disease_image='"+req.body.disease_image+"'," +
+        "disease_Scientific_name='"+req.body.disease_Scientific_name+"'," +
+        "disease_symptoms='"+req.body.disease_symptoms+"'" +
+        "WHERE disease_id= '"+req.body.disease_id+"'",
         (err, rows) => {
           if (!err) {
             res.send(true);
@@ -92,6 +88,6 @@ Router.put("/diseases/:id", async (req, res) => {
           }
         }
     );
-  });
+});
 
 module.exports = Router;

@@ -44,23 +44,6 @@ router.delete("/crops", async (req, res) => {
 });
 
 //inserting a crop
-// router.post("/crops", (req, res) => {
-//     var crop_id = req.body.crop_id;
-//     var crop_name = req.body.crop_name;
-//     var crop_image = req.body.crop_image;
-//     var crop_description = req.body.crop_description;
-
-//     mysqlConnection.query('INSERT INTO crop VALUES("+crop_id+","+crop_name+","+crop_image+","+crop_description+")' , (err, result) => {
-//         if(!err){
-//             res.send({"Crop":"inserted successfully"});
-//         }
-//         else{
-//             console.log(err);
-//         }
-//     });
-// });
-
-//inserting a crop
 router.post("/crops", async (req, res) => {
   let data = {
     crop_id: req.body.cropId,
