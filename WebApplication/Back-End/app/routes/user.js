@@ -105,19 +105,20 @@ router.get("/users/:id", (req, res) => {
   );
 });
 
+
 // delete selected user details
-router.delete("/usersDetails", (req, res) => {
-  mysqlConnection.query(
-    "DELETE FROM user WHERE user_Id=?",
-    [req.body.user_Id],
-    (err, rows, fields) => {
-      if (!err) {
-        res.send("user deleted successfully");
-      } else {
-        console.log(err);
-      }
-    }
-  );
+router.post("/deleteUser/:id", async (req, res) => {
+    console.log(req.params.id);
+    mysqlConnection.query(
+        "DELETE FROM user WHERE user_Id='"+req.params.id+"'",
+        (err, rows, fields) => {
+            if (!err) {
+                res.send(true);
+            } else {
+                console.log(err);
+            }
+        }
+    );
 });
 
 //rest api to update record into mysql database
@@ -129,7 +130,6 @@ router.put("/usersDetails", async (req, res) => {
       " user_Username='"+req.body.userName+"'," +
       " user_Email='"+req.body.email+"'," +
       " user_NIC='"+req.body.nic+"'," +
-      " user_Dob='"+req.body.dob+"', " +
       "user_AddressNo='"+req.body.address+"'," +
       " user_Street1='"+req.body.str1+"'," +
       " user_Street2='"+req.body.str2+"'," +
@@ -139,9 +139,11 @@ router.put("/usersDetails", async (req, res) => {
       " where user_Id= '"+req.body.userId+"'",
     (err, rows) => {
       if (!err) {
+          console.log("Update wenawa");
         res.send(true);
       } else {
-        res.send(err);
+          console.log(err);
+          res.send(err);
       }
     }
   );

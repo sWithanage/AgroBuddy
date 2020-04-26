@@ -8,8 +8,6 @@ const cors = require("cors");
 const axios = require("axios");
 
 // const cron = require("node-cron");
-// const axios = require("axios");
-
 //const mysqlConnection = require("./connection");
 const PORT = 8080;
 
@@ -51,7 +49,7 @@ app.get("/bestcrop", async (req, res) => {
   }
 });
 
-app.get("/details", async (req, res) => {
+app.post("/details", async (req, res) => {
   try {
     const location = await axios.get(req.body.location);
     const date = await axios.get(req.body.location);

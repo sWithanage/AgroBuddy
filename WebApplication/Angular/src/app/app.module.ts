@@ -53,6 +53,8 @@ import {AdminBuyersComponent} from './Admin/admin-buyers/admin-buyers.component'
 import { DiseasesComponent } from './Client/diseases/diseases.component';
 import {CookieService} from 'ngx-cookie-service';
 import {ProfileComponent} from './profile/profile.component';
+import { HomeComponent } from './home/home.component';
+//import { MatToolbarModule , MatButtonModule , MatSidenavModule , MatIconModule , MatListModule , MatSelectModule , MatFormFieldModule , MatInputModule } from '@angular/material';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -96,6 +98,7 @@ const routes: Routes = [ {
     ProfileComponent,
     AdminBuyersComponent,
     DiseasesComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,

@@ -21,6 +21,7 @@ import {BuyersComponent} from './Client/buyers/buyers.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AdminBuyersComponent} from './Admin/admin-buyers/admin-buyers.component';
 import {DiseasesComponent} from './Client/diseases/diseases.component';
+import {HomeComponent} from './home/home.component';
 
 
 export const Approutes: Routes = [
@@ -223,6 +224,9 @@ export const Approutes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {path: 'home', 
+  component: HomeComponent,
   },
   {
     path: '**',

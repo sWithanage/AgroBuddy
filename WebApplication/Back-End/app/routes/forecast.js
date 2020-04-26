@@ -366,7 +366,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
 
     // update data forecast table cucumber market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE variables = 5",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE fID = 5",
       [
         arCucumber,
         arimaCucumber,
@@ -387,7 +387,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
 
     // update data forecast table ladiesFingers market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE variables = 6",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE fID = 6",
       [
         arladiesFingers,
         arimaladiesFingers,
@@ -408,7 +408,7 @@ cron.schedule("30 23 * * Monday", async (req, res) => {
 
     // update data forecast table red pumpkin market price row
     mysqlConnection.query(
-      "UPDATE forecast SET AR = ?, AUTOARIMA = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE variables = 7",
+      "UPDATE forecast SET AR = ?, ARIMA = ?, ARMA = ?, SARIMA=?, RNN=?, VAR=?, AUTOARIMA=? WHERE fID = 7",
       [
         arRedPumpkin,
         arimaRedPumpkin,
