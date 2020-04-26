@@ -51,6 +51,18 @@ app.get("/bestcrop", async (req, res) => {
   }
 });
 
+app.get("/details", async (req, res) => {
+  try {
+    const location = await axios.get(req.body.location);
+    const date = await axios.get(req.body.location);
+    res.send({
+      location: location.data,
+      date: date.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 //starting the server
 app.listen(PORT, () => {
   console.log("App has started on Port: " + PORT);

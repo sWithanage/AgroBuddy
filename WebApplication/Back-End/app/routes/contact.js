@@ -72,9 +72,9 @@ router.post("/contact", async (req, res) => {
 // insert data in to cutivated area table
 router.post("/area", async (req, res) => {
   let data = {
-    userId: req.body.user_Id,
-    plant_name: req.body.plant,
-    cultivated_area: req.body.areaqty, 
+    userId: req.body.confirmUId,
+    plant_name: req.body.confirmPlant,
+    cultivated_area: req.body.confirmArea, 
     };
 
   mysqlConnection.query("INSERT INTO cultivated_area SET ?", data, (err, rows) => {

@@ -1,10 +1,11 @@
 const mysql = require("mysql");
 
+//creating connection configuration
 var db_config = {
-  host: "sql219.main-hosting.eu",
-  user: "u178617662_agrobackEnd",
-  password: "agrobackEnd",
-  database: "u178617662_agrobackEnd",
+  host: "104.197.107.230",
+  user: "agrobuddybackendawsnb18865",
+  password: "*#e7GWr:rA/+__^<sL",
+  database: "agroBuddyBackend",
 };
 
 var connection;
