@@ -64,10 +64,10 @@ export class ClientServiceService {
   }
   predict(value: any) {
     console.log(value);
-    return this.http.post<boolean> (this.url + 'predict', value);
+    return this.http.post<boolean> (this.url + 'details', value);
   }
   getBestCrop(): Observable<BestCropPoints[]> {
-    return this.http.get<BestCropPoints[]>('https://agrobuddybackend.nn.r.appspot.com/bestcrop');
+    return this.http.get<BestCropPoints[]>(this.url + 'bestcrop');
   }
   chosenCrop(value: any) {
     console.log(value);

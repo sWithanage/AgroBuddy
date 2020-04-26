@@ -54,7 +54,6 @@ import { DiseasesComponent } from './Client/diseases/diseases.component';
 import {CookieService} from 'ngx-cookie-service';
 import {ProfileComponent} from './profile/profile.component';
 
-
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelSpeed: 1,
