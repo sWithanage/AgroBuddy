@@ -4,7 +4,8 @@ const mysqlConnection = require("../connection");
 
 //get all diseases of a crop
 Router.get("/diseases/:cid", (req, res) => {
-    mysqlConnection.query("SELECT * from disease WHERE crop_id=?", [req.params.cid], 
+    mysqlConnection.query("SELECT * from disease WHERE crop_id=?", 
+    [req.params.cid], 
     (err, rows, fields) => {
         if(!err){
             res.send(rows);
@@ -17,7 +18,8 @@ Router.get("/diseases/:cid", (req, res) => {
 
 //get all disease details
 Router.get("/diseases", (req, res) => {
-    mysqlConnection.query("SELECT * from disease", (err, rows, fields) => {
+    mysqlConnection.query("SELECT * from disease", 
+    (err, rows, fields) => {
         if(!err){
             res.send(rows);
         }
@@ -42,8 +44,10 @@ Router.get("/disease/:id", (req, res) => {
 });
 
 //delete a disease
-Router.delete("/diseases/:id", (req, res) => {
-    mysqlConnection.query("DELETE FROM disease WHERE disease_id=?", [req.params.id], (err, rows, fields) => {
+Router.delete("/diseases", (req, res) => {
+    mysqlConnection.query("DELETE FROM disease WHERE disease_id=?", 
+    [req.body.disease_id], 
+    (err, rows, fields) => {
         if(!err){
             res.send("Disease deleted successfully");
         }
@@ -62,7 +66,9 @@ Router.post("/diseases", async (req, res) => {
     disease_Scientific_name: req.body.diseaseScientificName,
     disease_symptoms: req.body.diseaseSymptoms
     };
-    mysqlConnection.query("INSERT INTO disease SET ?", data, (err, rows) => {
+    mysqlConnection.query("INSERT INTO disease SET ?", 
+    data, 
+    (err, rows) => {
       if (!err) {
         res.send(true);
       } else {
