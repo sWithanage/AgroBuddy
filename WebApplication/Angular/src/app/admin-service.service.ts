@@ -147,7 +147,7 @@ export class AdminServiceService {
   }
   updateBuyerAll(value: any, buyerId: any) {
     return this.serviceHttp.put<boolean>(this.url +  'buyers', value  );
-    console.log(buyerId);
+    console.log(value);
   }
   addBuyer(value: any): Observable<Buyers[]> {
   console.log(value);

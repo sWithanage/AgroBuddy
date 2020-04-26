@@ -14,9 +14,9 @@ export class AdminBuyersComponent implements OnInit {
   buyer_Name: any;
   buyer__Address: any;
   buyer_ContactNumber: any;
-  part1: true;
-  part2: false;
-  part3: false;
+  part1 = true;
+  part2 = false;
+  part3 = false;
   constructor(private connectionService: AdminServiceService) {}
 
   ngOnInit() {
@@ -50,10 +50,10 @@ export class AdminBuyersComponent implements OnInit {
       data => console.log(buyerId)
     );
   }
-  submitBuyerUpdates( values: any, buyerId: any) {
-    console.log(this.buyerId  );
-    this.connectionService.updateBuyerAll(values, buyerId).subscribe(
-      data => console.log(values)
+  submitBuyerUpdates( value: any, buyerId: any) {
+    console.log(value);
+    this.connectionService.updateBuyerAll(value, buyerId).subscribe(
+      data => console.log(value)
     );
   }
   addBuyerDetails(){
