@@ -55,6 +55,10 @@
                                         <td>Percentage of cultivated area</td>
                                         <td> {{percentage}} </td>
                                     </tr>
+                                    <tr>
+                                      <td>Fertilizers</td>
+                                      <td> {{fertilizers}} </td>
+                                    </tr>
 
                                     <tr>
                                       <div class="row">
@@ -185,6 +189,30 @@
       <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Cultivated Areas</label>
       <div class="col-sm-9">
         <input type="text" [(ngModel)]="cultivatedArea"  class="form-control" name="cultivatedArea" id="inputEmail3" value="{{cultivatedArea}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Duration</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="duration"  class="form-control" name="duration" id="inputEmail3" value="{{duration}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Cultivated Area Percentage</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="percentage"  class="form-control" name="percentage" id="inputEmail3" value="{{percentage}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Temperature</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="temperature"  class="form-control" name="temperature" id="inputEmail3" value="{{temperature}}" ngModel>
+      </div>
+    </div>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Suitable Fertilizers</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="fertilizers"  class="form-control" name="fertilizers" id="inputEmail3" value="{{fertilizers}}" ngModel>
       </div>
     </div>
 

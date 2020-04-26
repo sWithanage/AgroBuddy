@@ -30,6 +30,7 @@ export class PlantDetailsComponent implements OnInit {
   duration: string;
   percentage: number;
   cultivatedArea: string;
+  fertilizers: string;
   crop_Id: string;
   crop_Name: string;
   crop_Image: string;
@@ -75,7 +76,7 @@ export class PlantDetailsComponent implements OnInit {
        this.temperature = data[0].temperature;
        this.duration = data[0].duration;
        this.percentage = data[0].percentage;
-
+        this.fertilizers = data[0].fertilizers;
       });
     this.connectionService.getDiseaseDetails(this.cropId).subscribe(
       data => {
@@ -104,6 +105,7 @@ export class PlantDetailsComponent implements OnInit {
   updatePlantDetailsToForm() {
     this.connectionService.getPlantListById(this.crop_Id).subscribe(
       data => {
+        console.log("sasanka withanages");
         console.log(data);
         this.cropName = data[0].crop_name;
         this.cropDescription = data[0].crop_description;
@@ -114,6 +116,7 @@ export class PlantDetailsComponent implements OnInit {
         this.percentage = data[0].percentage;
         this.cultivatedArea = data[0].cultivated_area;
         this.nutrition = data[0].nutrition;
+        this.fertilizers = data[0].fertilizers;
       });
   }
   submitUpdates(value: any) {
