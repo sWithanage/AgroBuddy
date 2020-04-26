@@ -55,8 +55,8 @@
     <div class="col-lg-6">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Cultivated Areas</h4>
-          <h6 class="card-subtitle">Areas of each vegetable as a percentage.</h6>
+          <h4 class="card-title">Your Cultivated Area</h4>
+          <h6 class="card-subtitle">Area that you have cultivated different crops</h6>
           <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="[{backgroundColor: ['#c9f76e', '#6b2e6b', '#b8e0b8','#ec9513', '#2dd22d' ]}]">
           </canvas>
         </div>
@@ -68,32 +68,73 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title">{{cropName}}</h3>
+            <h3 class="card-title">Crop Point Details</h3>
             <div class="row">
-              <div class="col-lg-3 col-md-3 col-sm-6">
-                <div class="white-box text-center">
-                  <img src="assets/images/gallery/{{cropImage}}" class="img-responsive"> </div>
-              </div>
               <div class="col-lg-9 col-md-9 col-sm-6">
-                <h4 class="box-title m-t-40">Plant description</h4>
-                <p>{{cropDescription}}</p>
+                <p>Each crop has received points based on predictions on each categories.
+                  You can decide which crop to chose to plant based on given points.  </p>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12">
-                <h3 class="box-title m-t-40">General Info</h3>
+                <h3 class="box-title m-t-40">Total Points Each Crop Received</h3>
                 <div class="table-responsive">
                   <table class="table">
                     <tbody>
                     <tr>
-                      <td>Temperature</td>
-                      <td> {{cropTemperature}} </td>
+                    <td>Total points Ash Plantain received</td>
+                    <td> {{ashPlantainPoints}} </td>
                     </tr>
                     <tr>
-                      <td>Nutrition</td>
-                      <td> {{cropNutrition}} </td>
+                      <td>Total points Brinjals received</td>
+                      <td> {{brinjalPoints}} </td>
                     </tr>
                     <tr>
-                      <td>Duration</td>
-                      <td> {{cropDuration}} </td>
+                      <td>Total points Cucumber received</td>
+                      <td> {{cucumberPoints}} </td>
+                    </tr>
+                    <tr>
+                      <td>Total points Ladies Fingers received</td>
+                      <td> {{ladiesFingerPoints}} </td>
+                    </tr>
+                    <tr>
+                      <td>Total points Red Pumpkin received</td>
+                      <td> {{redPumpkinPoints}} </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <h3 class="box-title m-t-40">Crop Status Based On Categories</h3>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                    <tr>
+                      <td>Highest Points On Market Price</td>
+                      <td> {{marketPriceHighestPoints}} </td>
+                    </tr>
+                    <tr>
+                      <td>Best Plant On Market Price</td>
+                      <td> {{marketPriceBestPlant}} </td>
+                    </tr>
+                    <tr>
+                      <td>Highest Points On Temperature</td>
+                      <td> {{temperatureHighestPoints}} </td>
+                    </tr>
+                    <tr>
+                      <td>Best Plant On Temperature</td>
+                      <td> {{temperatureBestPlant}} </td>
+                    </tr>
+                    <tr>
+                      <td>Highest Points On Rainfall</td>
+                      <td> {{rainfallHighestPoints}} </td>
+                    </tr>
+                    <tr>
+                      <td>Best Plant On Rainfall</td>
+                      <td> {{rainfallBestPlant}} </td>
+                    </tr>
+                    <tr>
+                      <td>Highest Points On Cultivated Area </td>
+                      <td> {{cultivatedAreaHighest}} </td>
                     </tr>
                     </tbody>
                   </table>
@@ -130,7 +171,7 @@
             </div>
             <div class="action-form">
               <div class="form-group m-b-0 text-right"  mr-2>
-                <button type="submit" class="btn btn-info waves-effect waves-light" (click)="onSubmitConfirm(confirmationPlant.value)">Find Best Crop</button> <p>  </p>
+                <button type="submit" class="btn btn-info waves-effect waves-light" (click)="onSubmitConfirm(confirmationPlant.value)">Confirm Crop</button> <p>  </p>
                 <button type="submit" class="btn btn-info waves-effect waves-light" (click)="back()">Back</button>
               </div>
             </div>
@@ -141,8 +182,8 @@
     <div class="col-lg-6">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Cultivated Areas</h4>
-          <h6 class="card-subtitle">Areas of each vegitable as a precentage</h6>
+          <h4 class="card-title">Your Cultivated Area</h4>
+          <h6 class="card-subtitle">Area that you have cultivated different crops</h6>
           <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="[{backgroundColor: ['#b8e0b8', '#6b2e6b', '#c9f76e','#2dd22d', '#ec9513' ]}]">
           </canvas>
         </div>

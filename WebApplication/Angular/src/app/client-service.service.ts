@@ -8,6 +8,7 @@ import {BestCrop} from './best-crop.model';
 import {ClientArea} from './client-area.model';
 import {Buyers} from './buyers.model';
 import {Diseases} from './diseases.model';
+import {BestCropPoints} from './best-crop-points.model';
 
 @Injectable({
   providedIn: 'root'
@@ -65,11 +66,11 @@ export class ClientServiceService {
     console.log(value);
     return this.http.post<boolean> (this.url + 'predict', value);
   }
-  getBestCrop(): Observable<BestCrop[]> {
-    return this.http.get<BestCrop[]>(this.url + 'bestCrops');
+  getBestCrop(): Observable<BestCropPoints[]> {
+    return this.http.get<BestCropPoints[]>('https://agrobuddybackend.nn.r.appspot.com/bestcrop');
   }
   chosenCrop(value: any) {
     console.log(value);
-    return this.http.post<boolean> (this.url + 'chosenCrop', value);
+    return this.http.post<boolean> (this.url + 'area', value);
   }
 }
