@@ -10,6 +10,8 @@ import { IcurrentWeather } from './currentWeather';
 import {MarketPriceData} from './market-price-data.model';
 import {RainfallData} from './rainfall-data.model';
 import {Diseases} from './diseases.model';
+import {Buyers} from './buyers.model';
+
 
 
 @Injectable({
@@ -130,4 +132,25 @@ export class AdminServiceService {
     console.log(value);
     return this.serviceHttp.post<any> (this.url + 'diseases', value);
   }
+  getBuyersList(): Observable<Buyers[]> {
+    return this.serviceHttp.get<Buyers[]>(this.url + 'buyers');
+  }
+  getPlantListById(crop_Id: any): Observable<CropDetails[]> {
+    return this.serviceHttp.get<CropDetails[]>(this.url + 'crops/' + crop_Id);
+  }
+  getBuyerListById(buyerId: any): Observable<Buyers[]> {
+    return this.serviceHttp.get<Buyers[]>(this.url + 'buyers/' + buyerId);
+  }
+  deleteBuyerDetails(buyerId: any) {
+    console.log(buyerId);
+    return this.serviceHttp.delete<any>(this.url + 'buyers', buyerId);
+  }
+  updateBuyerAll(value: any, buyerId: any) {
+    return this.serviceHttp.put<boolean>(this.url +  'buyers', value  );
+    console.log(buyerId);
+  }
+  addBuyer(value: any): Observable<Buyers[]> {
+  console.log(value);
+  return this.serviceHttp.post<any> (this.url + 'buyers', value);
 }
+  }

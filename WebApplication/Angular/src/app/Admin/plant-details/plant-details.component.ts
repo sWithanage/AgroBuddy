@@ -30,6 +30,16 @@ export class PlantDetailsComponent implements OnInit {
   duration: string;
   percentage: number;
   cultivatedArea: string;
+  crop_Id: string;
+  crop_Name: string;
+  crop_Image: string;
+  crop_Description: string;
+  scientific_Name: string;
+  nutr_ition: string;
+  tempe_rature: string;
+  dura_tion: string;
+  perce_ntage: number;
+  cultivated_Area: string;
   diseaseId: any;
   diseaseName: any;
   diseaseImage: any;
@@ -71,7 +81,7 @@ export class PlantDetailsComponent implements OnInit {
       data => {
         this.diseases = data;
         console.log(data);
-        this.crop_id = data[0].crop_id;
+        // this.crop_id = data[0].crop_id;
         this.disease_name = data[0].disease_name;
         this.disease_image = data[0].disease_image;
         this.disease_Scientific_name = data[0].disease_Scientific_name;
@@ -82,12 +92,29 @@ export class PlantDetailsComponent implements OnInit {
   }
 
 
-  updateDetails() {
+  updateDetails(cropId: any) {
+    this.cropId = cropId;
     this.part1 = false;
     this.part2 = true;
     this.part3 = false;
+    this.part4 = false;
+    this.updatePlantDetailsToForm();
   }
-
+  updatePlantDetailsToForm() {
+    this.connectionService.getPlantListById(this.crop_Id).subscribe(
+      data => {
+        console.log(data);
+        this.cropName = data[0].crop_name;
+        this.cropDescription = data[0].crop_description;
+        this.cropImage = data[0].crop_image;
+        this.scientificName = data[0].scientific_name;
+        this.temperature = data[0].temperature;
+        this.duration = data[0].duration;
+        this.percentage = data[0].percentage;
+        this.cultivatedArea = data[0].cultivated_area;
+        this.nutrition = data[0].nutrition;
+      });
+  }
   submitUpdates(value: any) {
       console.log(value);
     this.connectionService.updatePlant( value).subscribe(
@@ -102,7 +129,7 @@ export class PlantDetailsComponent implements OnInit {
       data => console.log(cropId)
     );
   }
-  deleteDiseaseRow(disease_id: any){
+  deleteDiseaseRow(disease_id: any) {
     console.log(disease_id);
     this.connectionService.deleteDiseaseDetails(disease_id).subscribe(
       data => console.log(disease_id)

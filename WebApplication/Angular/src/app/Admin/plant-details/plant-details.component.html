@@ -59,7 +59,7 @@
                                     <tr>
                                       <div class="row">
                                       <div class="custom-control custom-checkbox">
-                                        <button id="remove" (click)="updateDetails()" type="button" class="btn btn-primary">Update Plant</button>
+                                        <button id="remove" (click)="updateDetails(cropId)" type="button" class="btn btn-primary">Update Plant</button>
                                       </div>
 
                                         <div class="custom-control custom-checkbox">
@@ -134,7 +134,7 @@
     </div>
   </div>
 
-    <!-- Column -->
+    <!-- update plant------------------------------------------------------------------------------------ -->
 </div>
 </div>
 <div [style.display]="part2 ? 'block' : 'none'">
@@ -142,9 +142,9 @@
 
 
   <hr class="m-t-0">
-  <form  #loginForm="ngForm">
+  <form  #loginForm2="ngForm">
 
-    <h4 >Personal Info</h4>
+    <h4 >Plant Info</h4>
     <div class="form-group row p-b-15">
       <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Id</label>
       <div class="col-sm-9">
@@ -190,7 +190,7 @@
 
     <div class="card-body">
       <div class="form-group m-b-0 text-right">
-        <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitUpdates(loginForm.value)">Save</button>
+        <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitUpdates(loginForm2.value)">Save</button>
         <button type="submit" class="btn btn-dark waves-effect waves-light">Cancel</button>
       </div>
     </div>
@@ -204,7 +204,7 @@
 
 
   <hr class="m-t-0">
-  <form  #loginForm="ngForm">
+  <form  #loginForm3="ngForm">
 
     <h4 >Disease Info</h4>
     <div class="form-group row p-b-15">
@@ -229,13 +229,13 @@
     <div class="form-group row p-b-15">
       <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Disease Scientific Name</label>
       <div class="col-sm-9">
-        <input type="text"  [(ngModel)]="disease_Scientific_name" class="form-control" name="email" id="inputEmail3" value="{{disease_Scientific_name}}" ngModel>
+        <input type="text"  [(ngModel)]="disease_Scientific_name" class="form-control" name="disease_Scientific_name" id="inputEmail3" value="{{disease_Scientific_name}}" ngModel>
       </div>
     </div>
     <div class="form-group row p-b-15">
       <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Disease symptoms</label>
       <div class="col-sm-9">
-        <input type="text"  [(ngModel)]="disease_symptoms" class="form-control" name="usertype" id="inputEmail3" value="{{disease_symptoms}}" ngModel>
+        <input type="text"  [(ngModel)]="disease_symptoms" class="form-control" name="disease_symptoms" id="inputEmail3" value="{{disease_symptoms}}" ngModel>
       </div>
     </div>
     <div class="form-group row p-b-15">
@@ -249,7 +249,7 @@
       <div class="card">
         <div class="card-body">
           <div class="button-group">
-            <button type="submit" class="btn btn-primary" (click)="submitDiseaseUpdates(loginForm.value,disease_id)">Update</button>
+            <button type="submit" class="btn btn-primary" (click)="submitDiseaseUpdates(loginForm3.value,disease_id)">Update</button>
             <button type="submit" class="btn btn-secondary" (click)="deleteDiseaseRow(disease_id)">Delete</button>
             <button type="submit" class="btn btn-success"> <a routerLink="/admin/dashboard">Cancel</a></button>
           </div>
@@ -261,7 +261,7 @@
 </div>
 <!------------------------Add Diseases----------------------------------------------------------->
 <div [style.display]="part4 ? 'block' : 'none'">
-  <form  #loginForm2="ngForm">
+  <form  #loginForm4="ngForm">
   <h5 >Fill the information regarding the Disease.</h5><br>
   <div class="form-group row p-b-15">
     <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Disease Name</label>
@@ -296,7 +296,7 @@
 
   <div class="card-body">
     <div class="form-group m-b-0 text-right">
-      <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitDiseaseDetails(loginForm2.value)">Save</button>
+      <button type="submit" class="btn btn-info waves-effect waves-light" (click)="submitDiseaseDetails(loginForm4.value)">Save</button>
       <button type="submit" class="btn btn-dark waves-effect waves-light" ><a routerLink="/admin/dashboard">Cancel</a></button>
     </div>
   </div>

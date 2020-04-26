@@ -18,7 +18,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {
   InfocardComponent,
   TopsellComponent,
-  ActivityComponent,
   BrowserStatsComponent,
   InfoBoxComponent,
   MixstatsComponent,
@@ -31,6 +30,7 @@ import {
   WeatherForcastComponent,
   RaifallForcastComponent,
   WelcomeComponent,
+  ActivityComponent,
 
 } from './dashboard-components';
 
@@ -51,7 +51,6 @@ import {
     DashboardComponent,
     InfocardComponent,
     TopsellComponent,
-    ActivityComponent,
     BrowserStatsComponent,
     InfoBoxComponent,
     MixstatsComponent,
@@ -63,7 +62,8 @@ import {
     WeathercardComponent,
     WeatherForcastComponent,
     RaifallForcastComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ActivityComponent
   ]
 })
 export class DashboardModule {}

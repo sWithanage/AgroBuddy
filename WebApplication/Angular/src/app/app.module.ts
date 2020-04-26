@@ -49,10 +49,10 @@ import { ContactUsComponent } from './Client/contact-us/contact-us.component';
 import { MarketPriceComponent } from './Client/market-price/market-price.component';
 import { PlantFinderComponent } from './Client/plant-finder/plant-finder.component';
 import { BuyersComponent } from './Client/buyers/buyers.component';
-import {ProfileComponent} from './profile/profile.component';
 import {AdminBuyersComponent} from './Admin/admin-buyers/admin-buyers.component';
 import { DiseasesComponent } from './Client/diseases/diseases.component';
 import {CookieService} from 'ngx-cookie-service';
+import {ProfileComponent} from './profile/profile.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
