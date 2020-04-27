@@ -1,7 +1,7 @@
 # =====================================================
 # Title                 :   Price Predictor
 # Author                :   Venura Pallawela
-# Last modified Date    :   25 April 2020
+# Last modified Date    :   27 April 2020
 # =====================================================
 
 import json
@@ -19,6 +19,9 @@ def getBestPlant():
 
     print("Finding Best Plant")
 
+    # -------------------------------------------------------------------------
+    # Method to get Forecasted data from DB into an Array
+    # -------------------------------------------------------------------------
     def getForecast(variable):
         global downloadedData
         with urllib.request.urlopen("https://agrobuddybackend.nn.r.appspot.com/" + str(variable)) as url:
@@ -30,6 +33,9 @@ def getBestPlant():
             downloadedData += 1
             return temporaryList
 
+    # -------------------------------------------------------------------------
+    # Method to get Previous Years' Dataset into an Array
+    # -------------------------------------------------------------------------
     def getPastYearData(variable, variableName):
         global downloadedData
         with urllib.request.urlopen("https://agrobuddybackend.nn.r.appspot.com/" + str(variable)) as url:
@@ -40,12 +46,18 @@ def getBestPlant():
             downloadedData += 1
             return temporaryList
 
+    # -------------------------------------------------------------------------
+    # Method to get Predicted Values for Rainfall Data
+    # -------------------------------------------------------------------------
     def getRainfall(variable, variableName):
         with urllib.request.urlopen("https://agrobuddybackend.nn.r.appspot.com/prediction/" + str(variable)) as url:
             data = json.loads(url.read().decode())
             modelSelected = data[0][variableName]
             return modelSelected
 
+    # -------------------------------------------------------------------------
+    # Method to get the Amount of Area Cultivated for Each Plant
+    # -------------------------------------------------------------------------
     def getCultivatedAreaData(variable, reqPlant):
         with urllib.request.urlopen("https://agrobuddybackend.nn.r.appspot.com/" + str(variable)) as url:
             data = json.loads(url.read().decode())
@@ -53,6 +65,9 @@ def getBestPlant():
                 if x["plant_name"] == reqPlant:
                     return x["cultivatedArea"]
 
+    # -------------------------------------------------------------------------
+    # Saving all data into variables from the above 4 methods.
+    # -------------------------------------------------------------------------
     cultivatedAreaAshPlantain = getCultivatedAreaData("cultivatedarea", "AshPlantain")
     cultivatedAreaBrinjal = getCultivatedAreaData("cultivatedarea", "Brinjals")
     cultivatedAreaCucumber = getCultivatedAreaData("cultivatedarea", "Cucumber")
@@ -87,25 +102,39 @@ def getBestPlant():
 
     print("\nData Downloaded successfully ")
 
-    # Point Allocation for Market Price
+            # -------------------------------------------------------------------------
+                                # Point Allocation for Market Price
+            # -------------------------------------------------------------------------
+
+    # -------------------------------------------------------------------------
+    # Method to Calculate the Maximum Difference.
+    # -------------------------------------------------------------------------
     def getMaximumDifference():
         maxDifferenceArray = []
-
+        # Calls the above method to get each plants AVERAGE and MAXIMUM
+        # Assigns each value obtained into a array as the MAXIMUM DIFFERENCE for each plant
         maxDifferenceArray.append(singleDifference(ashPlantainPrevYearPrices, ashPlantainMPriceArray))
         maxDifferenceArray.append(singleDifference(brinjalPrevYearPrices, brinjalMPriceArray))
         maxDifferenceArray.append(singleDifference(cucumberPrevYearPrices, cucumberMPriceArray))
         maxDifferenceArray.append(singleDifference(ladiesFingerPrevYearPrices, ladiesFingersMPriceArray))
         maxDifferenceArray.append(singleDifference(redPumpkinPrevYearPrices, redPumpkinMPriceArray))
+        # Finds the Maximum Value within the Array with the MAXIMUM DIFFERENCE
+        return (100 / numpy.amax(maxDifferenceArray))               #Returns a variable which is 100/MaximumValue
 
-        return (100 / numpy.amax(maxDifferenceArray))
-
+    # -------------------------------------------------------------------------
+    # Method to Find the Maximum from an Array with the Maximum Difference Variables
+    # -------------------------------------------------------------------------
     def singleDifference(previousYearPrices, forecast):
-        previousYearAverage = numpy.average(previousYearPrices)
-        maxOfThePlant = numpy.amax(forecast)
-        return (maxOfThePlant - previousYearAverage)
+        previousYearAverage = numpy.average(previousYearPrices)     #Calculates the AVERAGE of the previous years' market price for the relevant plant
+        maxOfThePlant = numpy.amax(forecast)                        #Gets the MAXIMUM predicted market price for the plant
+        return (maxOfThePlant - previousYearAverage)                #Returns the Difference between the AVERAGE and the Maximum
 
+    # The Points Per Each Rupee is the Value obtained from the above Method
     pointPerRupee = getMaximumDifference()
 
+    # -------------------------------------------------------------------------
+    # Method to Assign Points to each Plant using Points Per Rupee
+    # -------------------------------------------------------------------------
     def pricePoints(previousYearValueArray, forecastArray):
         global pointPerRupee
         temporaryPoints = 0
@@ -113,12 +142,20 @@ def getBestPlant():
         averagePriceForPreviousYear = numpy.average(previousYearValueArray)
         for weekValue in forecastArray:
             if (weekValue >= averagePriceForPreviousYear):
+                # Finds whether if each predicted value is hgiher than the average calculated
                 dayCount += 1
+            # Finds the difference between the weeklypredictedvalue and the average
             priceDifference = weekValue - averagePriceForPreviousYear
             temporaryPoints += (priceDifference * pointPerRupee)
+        # Assigns points based on the difference which is multiplied by the points per rupee
         temporaryPoints = temporaryPoints / (len(forecastArray))
+        # Points assigned is then divided by the length of the array of variables
+        # To get the points for predicted 3 months for each plant
         return temporaryPoints, dayCount
 
+    # -------------------------------------------------------------------------
+    # Gets the Plant with the Highest Number of Points for Market Price
+    # -------------------------------------------------------------------------
     def getBestPlantForMarketPrice(ashPlantain, brinjal, cucumber, ladiesFinger, redPumpkin):
         bestPlant = numpy.amax([ashPlantain, brinjal, cucumber, ladiesFinger, redPumpkin])
         if bestPlant == ashPlantain:
@@ -133,6 +170,9 @@ def getBestPlant():
             plantResult = "Plant with Highest Number of Points for Market Price is Red Pumpkin"
         return plantResult
 
+    # -------------------------------------------------------------------------
+    # Gets the Plant which had all weekly values above the Average
+    # -------------------------------------------------------------------------
     def getOutputStringAsJsonMarketPrice(ashPlantain, brinjal, cucumber, ladiesFinger, redPumpkin):
         if (ashPlantain == len(ashPlantainMPriceArray)):
             bestMarketPricePlant = "Ash Plantain had a Market Price above the average for all 16 weeks"
@@ -146,14 +186,23 @@ def getBestPlant():
             bestMarketPricePlant = "Red Pumpkin had a Market Price above the average for all 16 weeks"
         return bestMarketPricePlant
 
-    # Point Allocation for Rainfall
+            # -------------------------------------------------------------------------
+                                # Point Allocation for Rainfall
+            # -------------------------------------------------------------------------
+
+    # -------------------------------------------------------------------------
+    # Method to Assign Points to each Plant
+    # -------------------------------------------------------------------------
     def rainfallPoints(minRainfallRange, maxRainfallRange, worstHigh):
+        # A Constant set of variables is assigned as a range, and the Highest Possible rainfall is also entered
+        # Lowest Possible rainfall in mm is assumed as 0
         tempRainfallPoints = 0
         higherThanWorst = 0
         lowerThanWorst = 0
         dayCount = 0
         for rainfallIndex in rainfallArray:
             if minRainfallRange <= rainfallIndex <= maxRainfallRange:
+                # Iterates through the array to find a value which falls within the Rainfall Range
                 tempRainfallPoints += 1
             elif rainfallIndex <= minRainfallRange:
                 tempRainfallPoints -= 1
@@ -162,16 +211,21 @@ def getBestPlant():
                 tempRainfallPoints -= 1
                 higherThanWorst += 1
             dayCount += 1
+            # Retuns the Points per each Plant, which is divided by the NumberOfDays
         return ((tempRainfallPoints / dayCount) * 100), lowerThanWorst, higherThanWorst, tempRainfallPoints
 
+    # -------------------------------------------------------------------------
+    # Gets The Plant with the Highest Number of Points for Rainfall
+    # From the above found plant, the Number of days which it had exceeded the limits is also Displayed
+    # -------------------------------------------------------------------------
     def getBestPlantForRainfall(ashPlantain, brinjal, cucumber, ladiesFinger, redPumpkin):
         bestPlant = numpy.amax([ashPlantain, brinjal, cucumber, ladiesFinger, redPumpkin])
-        ashPlantainRainfallPoints = (rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[1]) + (
-        rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[2])
-        brinjalRainfallPoints = (rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[1]) + (
-        rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[2])
-        cucumberRainfallPoints = (rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[1]) + (
-        rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[2])
+        ashPlantainRainfallPoints = (rainfallPoints(0.001, 0.0032, rainfallPrevYearMaximum)[1]) + (
+        rainfallPoints(0.001, 0.0032, rainfallPrevYearMaximum)[2])
+        brinjalRainfallPoints = (rainfallPoints(0.001, 0.0027, rainfallPrevYearMaximum)[1]) + (
+        rainfallPoints(0.001, 0.0027, rainfallPrevYearMaximum)[2])
+        cucumberRainfallPoints = (rainfallPoints(0.001, 0.0082, rainfallPrevYearMaximum)[1]) + (
+        rainfallPoints(0.001, 0.0082, rainfallPrevYearMaximum)[2])
         ladiesFingerRainfallPoints = (rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[1]) + (
         rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[2])
         redPumpkinRainfallPoints = (rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[1]) + (
@@ -194,7 +248,13 @@ def getBestPlant():
             errorResult = "Red Pumpkin had values exceeding the limits for " + str(redPumpkinRainfallPoints) + " days"
         return plantResult, errorResult
 
-    # Point Allocation for Cultivated Area
+            # -------------------------------------------------------------------------
+                                # Point Allocation for Cultivated Area
+            # -------------------------------------------------------------------------
+
+    # -------------------------------------------------------------------------
+    # Method to Assign Points to each Plant
+    # -------------------------------------------------------------------------
     def cultivatedAreaPoints(ashPlantainCultivatedArea, brinjalCultivatedArea, cucumberCultivatedArea, ladiesFingerCultivatedArea, redPumpkinCultivatedArea):
         if ashPlantainCultivatedArea is None:
             ashPlantainCultivatedArea = 0
@@ -208,7 +268,9 @@ def getBestPlant():
             redPumpkinCultivatedArea = 0
 
         print(ashPlantainCultivatedArea ," ", brinjalCultivatedArea ," ",  cucumberCultivatedArea ," ",  ladiesFingerCultivatedArea ," ",  redPumpkinCultivatedArea)
+        # Sums up the cultivated area for each Plant.
         totalPoints = ashPlantainCultivatedArea + brinjalCultivatedArea + cucumberCultivatedArea + ladiesFingerCultivatedArea + redPumpkinCultivatedArea
+        # Points are allocated by taken the Inverse Percentage for each Plants' Cultivated Area from the Total Cultivated Area
         ashPlantainPoints = 100 - ((ashPlantainCultivatedArea / totalPoints) * 100)
         brinjalPoints = 100 - ((brinjalCultivatedArea / totalPoints) * 100)
         cucumberPoints = 100 - ((cucumberCultivatedArea / totalPoints) * 100)
@@ -216,6 +278,9 @@ def getBestPlant():
         redPumpkinPoints = 100 - ((redPumpkinCultivatedArea / totalPoints) * 100)
         return (ashPlantainPoints, brinjalPoints, cucumberPoints, ladiesFingerPoints, redPumpkinPoints)
 
+    # -------------------------------------------------------------------------
+    # Gets The Plant with the Highest Number of Points for Cultivated Area
+    # -------------------------------------------------------------------------
     def getBestPlantCultivatedAreaWise(ashPlantain, brinjal, cucumber, ladiesFinger, redPumpkin):
         bestPlant = numpy.amax([ashPlantain, brinjal, cucumber, ladiesFinger, redPumpkin])
         if bestPlant == ashPlantain:
@@ -230,14 +295,23 @@ def getBestPlant():
             plantResult = "Plant with Highest Number of Points for Cultivated Area is Red Pumpkin"
         return plantResult
 
-    # Point Allocation for Rainfall
+            # -------------------------------------------------------------------------
+                                # Point Allocation for Temperature
+            # -------------------------------------------------------------------------
+
+    # -------------------------------------------------------------------------
+    # Method to Assign Points to each Plant
+    # -------------------------------------------------------------------------
     def temperaturePoint(minInRange, maxInRange, worstLow, worstHigh):
+        # A Temperature Range is set for the optimum growth
+        # A Maximum and Minimum Temperature is initialised for each Plant
         tempTeperaturePoints = 0
         higherThanWorst = 0
         lowerThanWorst = 0
         dayCount = 0
         for temperatureIndex in temperatureArray:
             if minInRange <= temperatureIndex <= maxInRange:
+                # Iterates through the array to find a value which falls within the Temperature Range
                 tempTeperaturePoints += 1
             elif worstLow >= temperatureIndex:
                 tempTeperaturePoints -= 1
@@ -246,8 +320,13 @@ def getBestPlant():
                 tempTeperaturePoints -= 1
                 higherThanWorst += 1
             dayCount += 1
+        # Retuns the Points per each Plant, which is divided by the NumberOfDays
         return ((tempTeperaturePoints / dayCount) * 100), lowerThanWorst, higherThanWorst
 
+    # -------------------------------------------------------------------------
+    # Gets The Plant with the Highest Number of Points for Temperature
+    # Also finds the number of days in which the above plant had exceeded the boundaries
+    # -------------------------------------------------------------------------
     def getBestPlantForTemperature(ashPlantain, brinjal, cucumber, ladiesFinger, redPumpkin):
         bestPlant = numpy.amax([ashPlantain, brinjal, cucumber, ladiesFinger, redPumpkin])
         ashPlantainTemperaturePoints = (temperaturePoint(26, 30, 18, 36)[1]) + (temperaturePoint(26, 30, 18, 36)[2])
@@ -320,12 +399,12 @@ def getBestPlant():
 
     print("-----------------------------------------------------------")
 
-    print("Ash Plantain Rainfall Points          : ", rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[0])
-    ashPlantainRainfallPoints = rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[0]
-    print("Brinjal Rainfall Points               : ", rainfallPoints(0.001, 0.002, rainfallPrevYearMaximum)[0])
-    brinjalRainfallPoints = rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[0]
-    print("Cucumber Rainfall Points              : ", rainfallPoints(0.0015, 0.0025, rainfallPrevYearMaximum)[0])
-    cucumberRainfallPoints = rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[0]
+    print("Ash Plantain Rainfall Points          : ", rainfallPoints(0.001, 0.0032, rainfallPrevYearMaximum)[0])
+    ashPlantainRainfallPoints = rainfallPoints(0.001, 0.0032, rainfallPrevYearMaximum)[0]
+    print("Brinjal Rainfall Points               : ", rainfallPoints(0.001, 0.0027, rainfallPrevYearMaximum)[0])
+    brinjalRainfallPoints = rainfallPoints(0.001, 0.0027, rainfallPrevYearMaximum)[0]
+    print("Cucumber Rainfall Points              : ", rainfallPoints(0.0015, 0.0082, rainfallPrevYearMaximum)[0])
+    cucumberRainfallPoints = rainfallPoints(0.001, 0.0082, rainfallPrevYearMaximum)[0]
     print("Ladies Fingers Rainfall Points        : ", rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[0])
     ladiesFingerRainfallPoints = rainfallPoints(0.001, 0.003, rainfallPrevYearMaximum)[0]
     print("Red Pumpkin Rainfall Points           : ", rainfallPoints(0.001, 0.002, rainfallPrevYearMaximum)[0])
