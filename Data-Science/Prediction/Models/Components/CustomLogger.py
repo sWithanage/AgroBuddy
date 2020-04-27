@@ -3,7 +3,7 @@
 # Author                :   Sasanka Withanage
 # Last modified Date    :   22 April 2020
 # =====================================================
-
+import json
 import sys
 import os.path
 import requests
@@ -42,6 +42,18 @@ def getContent():
     logFile.close()
     return contentInLogFile
 
+
+# -------------------------------------------------------------------------
+# Read by log file and put to json file.
+# -------------------------------------------------------------------------
+def getLogInJSON():
+    testsite_array = []
+    with open(customLogFilePath) as my_file:
+        for line in my_file:
+            testsite_array.append(line)
+
+    row_json = json.dumps(testsite_array)
+    return row_json
 
 # -------------------------------------------------------------------------
 # Clear the whole content of the log file.

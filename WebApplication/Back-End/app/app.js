@@ -49,6 +49,20 @@ app.get("/bestcrop", async (req, res) => {
   }
 });
 
+// get best crop
+app.get("/log", async (req, res) => {
+  try {
+    const bestcrop = await axios.get(
+      "http://127.0.0.1:8080/log/json"
+    );
+    res.send({
+      bestcrop: bestcrop.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.post("/details", async (req, res) => {
   try {
     const location = await axios.get(req.body.location);

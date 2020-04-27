@@ -56,6 +56,7 @@ import {SpinnerAdminComponent} from './Admin/shared/spinnerAdmin.component';
 import {SpinnerClientComponent} from './Client/shared/spinnerClient.component';
 import {ChangeModelAdminComponent} from './Admin/changeModel/changeModelAdmin.component';
 import { HomeComponent } from './home/home.component';
+import {LogComponent} from './Admin/log/log.component';
 
 
 
@@ -104,6 +105,7 @@ const routes: Routes = [ {
     SpinnerAdminComponent,
     SpinnerClientComponent,
     ChangeModelAdminComponent,
+    LogComponent,
   ],
   imports: [
     CommonModule,

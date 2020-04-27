@@ -599,6 +599,11 @@ def getLog():
         return str(e)
 
 
+@app.route("/log/json")
+def getJsonLog():
+    return str(logger.getLogInJSON())
+
+
 @app.route("/log/clear")
 def cleanLog():
     try:

@@ -3815,3 +3815,216 @@ MA.1            1.0343           +0.0000j            1.0343            0.0000
 [info] 2020-04-25 00:10:45 | Validation values separated.
 [info] 2020-04-25 00:10:45 | Accuracy calculating.
 [info] 2020-04-25 00:10:45 | Accuracy Percentage : 92.59789290898273.
+[info] 2020-04-27 08:44:19 | Client requested for RNNLadiesFinger accuracy.
+[info] 2020-04-27 08:44:19 | Downloading data set file from : https://agrobuddy.tk/getData?type=LadiesFinger.
+[info] 2020-04-27 08:44:19 | Data set file downloaded successfully.
+[info] 2020-04-27 08:44:19 | Data set file deleted successfully.
+[info] 2020-04-27 08:44:19 | Requested for seasonal difference.
+[info] 2020-04-27 08:44:19 | Data structure updated to supervised leaning.
+[info] 2020-04-27 08:44:19 | Finding splitting point.
+[info] 2020-04-27 08:44:19 | Data splitting successful.
+[info] 2020-04-27 08:44:19 | Model fitted successfully.
+[info] 2020-04-27 08:44:19 | Predict method successful.
+[info] 2020-04-27 08:44:19 | Get accuracy percentages.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Data set scaled successfully.
+[info] 2020-04-27 08:44:19 | Accuracy calculating.
+[info] 2020-04-27 08:44:19 | Accuracy is 95.2239796551056.
+[info] 2020-04-27 08:52:52 | Client requested for RNNLadiesFinger accuracy.
+[info] 2020-04-27 08:52:52 | Downloading data set file from : https://agrobuddy.tk/getData?type=LadiesFinger.
+[info] 2020-04-27 08:52:52 | Data set file downloaded successfully.
+[info] 2020-04-27 08:52:52 | Data set file deleted successfully.
+[info] 2020-04-27 08:52:52 | Requested for seasonal difference.
+[info] 2020-04-27 08:52:52 | Data structure updated to supervised leaning.
+[info] 2020-04-27 08:52:52 | Finding splitting point.
+[info] 2020-04-27 08:52:52 | Data splitting successful.
+[info] 2020-04-27 08:52:52 | Model fitted successfully.
+[info] 2020-04-27 08:52:52 | Predict method successful.
+[info] 2020-04-27 08:52:52 | Get accuracy percentages.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Data set scaled successfully.
+[info] 2020-04-27 08:52:52 | Accuracy calculating.
+[info] 2020-04-27 08:52:52 | Accuracy is 95.28004675144612.
+[info] 2020-04-27 09:00:34 | Client requested for RNNLadiesFinger accuracy.
+[info] 2020-04-27 09:00:34 | Downloading data set file from : https://agrobuddy.tk/getData?type=LadiesFinger.
+[info] 2020-04-27 09:00:34 | Data set file downloaded successfully.
+[info] 2020-04-27 09:00:34 | Data set file deleted successfully.
+[info] 2020-04-27 09:00:34 | Requested for seasonal difference.
+[info] 2020-04-27 09:00:34 | Data structure updated to supervised leaning.
+[info] 2020-04-27 09:00:34 | Finding splitting point.
+[info] 2020-04-27 09:00:34 | Data splitting successful.
+[info] 2020-04-27 09:16:11 | Requested for log report.
+[info] 2020-04-27 09:16:11 | Requested for log report.
+[info] 2020-04-27 09:16:11 | Requested for log report.

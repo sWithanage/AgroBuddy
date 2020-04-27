@@ -126,6 +126,9 @@ export class AdminServiceService {
   getBuyersList(): Observable<Buyers[]> {
     return this.serviceHttp.get<Buyers[]>(this.url + 'buyers');
   }
+  getLog(): Observable<Buyers[]> {
+    return this.serviceHttp.get<Buyers[]>('http://localhost:8080/log');
+  }
   getPlantListById(crop_Id: any): Observable<CropDetails[]> {
     return this.serviceHttp.get<CropDetails[]>(this.url + 'crops/' + crop_Id);
   }

@@ -21,6 +21,7 @@ import {AdminBuyersComponent} from './Admin/admin-buyers/admin-buyers.component'
 import {DiseasesComponent} from './Client/diseases/diseases.component';
 import {ChangeModelAdminComponent} from './Admin/changeModel/changeModelAdmin.component';
 import {HomeComponent} from './home/home.component';
+import {LogComponent} from './Admin/log/log.component';
 
 
 export const Approutes: Routes = [
@@ -52,6 +53,17 @@ export const Approutes: Routes = [
           urls: [
             { title: 'Dashboard', url: '/admin/dashboard' },
             { title: 'Plant Details' }
+          ]
+        }
+      },
+      {
+        path: 'log',
+        component: LogComponent,
+        data: {
+          title: 'Server Log File - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/admin/log' },
+            { title: 'Server Log File' }
           ]
         }
       },
