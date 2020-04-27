@@ -11,6 +11,7 @@ const axios = require("axios");
 //const mysqlConnection = require("./connection");
 const PORT = 8080;
 
+// routing of all js file in the routes folder
 const users = require("./routes/user");
 const contact = require("./routes/contact");
 const crops = require("./routes/crop");
@@ -52,11 +53,11 @@ app.get("/bestcrop", async (req, res) => {
 // get best crop
 app.get("/log", async (req, res) => {
   try {
-    const bestcrop = await axios.get(
-      "http://127.0.0.1:8080/log/json"
+    const logdata = await axios.get(
+      "https://agrobuddytk.an.r.appspot.com/log/json"
     );
     res.send({
-      bestcrop: bestcrop.data,
+      logdata: logdata.data,
     });
   } catch (error) {
     console.log(error);

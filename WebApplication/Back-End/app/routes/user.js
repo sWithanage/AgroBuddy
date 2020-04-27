@@ -159,10 +159,10 @@ router.use(
 );
 
 // check login credentials
-router.post("/authentication", (request, response) => {
-  let username = request.body.username;
-  let password = request.body.password;
-  let randomKey = request.body.randomKey;
+router.post("/authentication", (req, res) => {
+  let username = req.body.username;
+  let password = req.body.password;
+  let randomKey = req.body.randomKey;
   let datetime = new Date();
   let currentDate = datetime.toISOString().slice(0,10);
 
@@ -171,7 +171,7 @@ router.post("/authentication", (request, response) => {
         "SELECT user_Id, user_Type, user_Fname, user_Lname, user_Username, user_Email, user_Password FROM user WHERE user_Username = '" +
         username +
         "'",
-        async (error, results, fields) => {
+        async (error, results) => {
           if (results.length > 0) {
             const comparision = await bcrypt.compare(
                 password,
@@ -179,20 +179,20 @@ router.post("/authentication", (request, response) => {
             );
             if (comparision) {
               console.log("user logged in");
-              request.session.loggedin = true;
-              request.session.username = username;
-              response.send(results[0]);
+              req.session.loggedin = true;
+              req.session.username = username;
+              res.send(results[0]);
               loggingActivation(results[0].user_Id, randomKey, currentDate)
             } else {
-              response.send(false);
+              res.send(false);
             }
           }
-          response.end();
+          res.end();
         }
     );
   } else {
-    response.send(false);
-    response.end();
+    res.send(false);
+    res.end();
   }
 });
 

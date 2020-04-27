@@ -13,7 +13,6 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
   // save those data into DB
   try {
     // ar model accuracy
-    // Prmoise.all
     const arTempAccuracy = await axios.get(
       "https://agrobuddytk.an.r.appspot.com/accuracy?model=ar&type=temp"
     );
