@@ -66,12 +66,12 @@ export class ContactUsComponent {
       this.connectionService.sendEmail(user).subscribe(
         data => {
           const res: any = data;
+          this.back();
         },
         err => {
           console.log(err);
         }
       );
-      this.back();
     }
   }
   // back to the dashboard

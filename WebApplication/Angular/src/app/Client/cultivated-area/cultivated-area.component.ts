@@ -24,7 +24,17 @@ export class CultivatedAreaComponent implements OnInit {
           this.plantName.push(x.plant_name);
           this.area.push(x.cultivatedArea);
         }
-        this.pieChartData = this.area;          // assign values
+
+        let sum = 0;
+        for ( let i = 0; i < this.area.length; i++ ) {
+          sum += parseInt( this.area[i], 10 );
+        }
+        const possibilities = [];
+        for (const x of this.area) {
+          possibilities.push(Math.round((x / sum) * 100));
+        }
+
+        this.pieChartData = possibilities;          // assign values
       });
     this.pieChartLabels = this.plantName;   // assign values
   }

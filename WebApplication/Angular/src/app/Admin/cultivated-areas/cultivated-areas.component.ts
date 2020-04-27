@@ -1,32 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminServiceService} from '../../admin-service.service';
+import {ClientServiceService} from '../../client-service.service';
 
 @Component({
   templateUrl: './cultivated-areas.component.html'
 })
 export class CultivatedAreasComponent implements OnInit {
-  crop: any[];
 
-  constructor(private connectionService: AdminServiceService) {}
-  area = [50, 40, 30, 60, 40];
+  plantName = [];
+  area = [];
+  constructor(private service: ClientServiceService) { }
 
-  public pieChartLabels: string[] = [
-    'Ash Plantain',
-    'Brinjals',
-    'Cucumber',
-    'Ladies-Fingers',
-    'Red Pumpkin'
-  ];
-  public pieChartData: number[] = this.area;
+  public pieChartLabels: string[];  // array to store the labels for pie chart
+  public pieChartData = [];    // array to store data for pie chart
   public pieChartType = 'pie';
 
-  /**
-     * (My guess), for Angular to recognize the change in the dataset
-     * it has to change the dataset variable directly,
-     * so one way around it, is to clone the data, change it and then
-     * assign it;
-     */
-  ngOnInit(): void {
+  ngOnInit() {
+    this.service.getArea().subscribe(   // get cultivated area
+      data => {
+        // tslint:disable-next-line:forin
+        for (const x of data) {
+          this.plantName.push(x.plant_name);
+          this.area.push(x.cultivatedArea);
+        }
 
+        let sum = 0;
+        for ( let i = 0; i < this.area.length; i++ ) {
+          sum += parseInt( this.area[i], 10 );
+        }
+        const possibilities = [];
+        for (const x of this.area) {
+          possibilities.push(Math.round((x / sum) * 100));
+        }
+
+        this.pieChartData = possibilities;          // assign values
+      });
+    this.pieChartLabels = this.plantName;   // assign values
   }
 }
