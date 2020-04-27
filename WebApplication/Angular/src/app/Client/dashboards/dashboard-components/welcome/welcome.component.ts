@@ -15,7 +15,6 @@ export class WelcomeComponent {
   ngOnInit() {
     const date: Date = new Date();
     this.date = date.toDateString();
-    console.log('Date = ' + this.date);
 
     this.userName = this.cookie.get('user_Fname') + ' ' + this.cookie.get('user_Lname');
   }

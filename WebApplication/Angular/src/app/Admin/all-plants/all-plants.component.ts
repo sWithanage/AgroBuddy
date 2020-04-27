@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import {AdminServiceService} from '../../admin-service.service';
+import {modelDetails} from '../../prediction-model.model';
 @Component({
   templateUrl: 'all-plants.component.html'
 })
@@ -24,6 +25,9 @@ export class AllPlantsComponent {
   cultivatedArea: string;
   constructor(private route: ActivatedRoute, private connectionService: AdminServiceService) { }
   // tslint:disable-next-line:use-lifecycle-interface
+  fertilizer: string;
+
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
     this.connectionService.getAllPlants().subscribe(
       data => {
@@ -36,9 +40,14 @@ export class AllPlantsComponent {
   }
   submitAddDetails(value: any) {
     this.connectionService.addPlant(value).subscribe(
-      data => console.log(data), error => alert('There is a error in login. please try again later.'
-      ));
+      data => this.addedSuccessfully(data), error => alert('There is a error in login. please try again later.'));
   }
 
+  addedSuccessfully(data) {
+    // tslint:disable-next-line:triple-equals
+    if (data == true) {
+      window.location.reload();
+    }
+  }
 
 }

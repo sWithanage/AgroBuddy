@@ -4,10 +4,8 @@ import { FullComponentAdmin } from './Admin/layouts/full/full.component';
 import { FullComponentClient } from './Client/layouts/full/full.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
-import { BlankComponent } from './Admin/layouts/blank/blank.component';
 import {AllPlantsComponent} from './Admin/all-plants/all-plants.component';
 import {PlantDetailsComponent} from './Admin/plant-details/plant-details.component';
-import {ChangeModelComponent} from './Admin/ChangeModel/ChangeModel.component';
 import {PredictiveDetailsComponent} from './Admin/predictiveDetails/predictiveDetails.component';
 import {UserManagementComponent} from './Admin/user-management/user-management.component';
 import {CultivatedAreasComponent} from './Admin/cultivated-areas/cultivated-areas.component';
@@ -21,6 +19,7 @@ import {BuyersComponent} from './Client/buyers/buyers.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AdminBuyersComponent} from './Admin/admin-buyers/admin-buyers.component';
 import {DiseasesComponent} from './Client/diseases/diseases.component';
+import {ChangeModelAdminComponent} from './Admin/changeModel/changeModelAdmin.component';
 import {HomeComponent} from './home/home.component';
 
 
@@ -69,7 +68,7 @@ export const Approutes: Routes = [
       },
       {
         path: 'ChangeModel',
-        component: ChangeModelComponent,
+        component: ChangeModelAdminComponent,
         data: {
           title: 'Predictive Models - AgroBuddy',
           urls: [
@@ -90,7 +89,7 @@ export const Approutes: Routes = [
         }
       },
       {
-        path: 'adminBuyers',
+        path: 'buyers',
         component: AdminBuyersComponent,
         data: {
           title: 'Buyers - AgroBuddy',
@@ -218,15 +217,16 @@ export const Approutes: Routes = [
     component: LoginComponent
   },
   {
+    path: '',
+    component: HomeComponent
+  },
+  {
     path: 'signup',
     component: SignupComponent,
   },
   {
     path: 'profile',
     component: ProfileComponent,
-  },
-  {path: 'home', 
-  component: HomeComponent,
   },
   {
     path: '**',

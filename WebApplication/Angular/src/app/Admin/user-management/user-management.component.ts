@@ -32,21 +32,18 @@ export class UserManagementComponent implements OnInit {
     this.connectionService.getUserList().subscribe(
       data => {
         this.user = data;
-        console.log(data);
         this.statusDetails = data[0].user_Type;
       });
   }
   deleteRow(userId: any) {
-      console.log(userId);
       this.connectionService.deleteUserDetails(userId).subscribe(
-        data => console.log(userId)
+        data => window.location.reload()
       );
   }
 
   update(userIdToChange: any, userTypeToChange: any) {
-    console.log(userIdToChange + ' ' + userTypeToChange);
     this.connectionService.updateUserType(userIdToChange, userTypeToChange).subscribe(
-      data => console.log(userIdToChange + ' ' + userTypeToChange)
+      data => window.location.reload()
     );
   }
 
@@ -66,7 +63,6 @@ export class UserManagementComponent implements OnInit {
   updateClientDetailsToForm() {
     this.connectionService.getUserListById(this.userIdToUpdate).subscribe(
       data => {
-        console.log(data);
         this.client = data;
         this.userId = data[0].user_Id;
         this.userFname = data[0].user_Fname;
@@ -74,6 +70,7 @@ export class UserManagementComponent implements OnInit {
         this.userEmail = data[0].user_Email;
         this.userNIC = data[0].user_NIC;
         this.userDob = data[0].user_Dob;
+        const newDate = new Date(this.userDob);
         this.userAddressNo = data[0].user_AddressNo;
         this.userStreet1 = data[0].user_Street1;
         this.userStreet2 = data[0].user_Street2;
@@ -88,12 +85,8 @@ export class UserManagementComponent implements OnInit {
   }
 
   submitUpdates( values: any, user_Id: number) {
-    console.log(this.userFname  );
     this.connectionService.updateUserAll(values, user_Id).subscribe(
-      data => console.log(values)
+      data => window.location.reload()
     );
-    // this.connectionService.getUserListById().subscribe(
-    //   data => console.log(data), error => alert('There is a error in login. please try again later.'
-    //   ));
   }
 }

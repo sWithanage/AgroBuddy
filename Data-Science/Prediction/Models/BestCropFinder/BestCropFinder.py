@@ -195,8 +195,19 @@ def getBestPlant():
         return plantResult, errorResult
 
     # Point Allocation for Cultivated Area
-    def cultivatedAreaPoints(ashPlantainCultivatedArea, brinjalCultivatedArea, cucumberCultivatedArea,
-                             ladiesFingerCultivatedArea, redPumpkinCultivatedArea):
+    def cultivatedAreaPoints(ashPlantainCultivatedArea, brinjalCultivatedArea, cucumberCultivatedArea, ladiesFingerCultivatedArea, redPumpkinCultivatedArea):
+        if ashPlantainCultivatedArea is None:
+            ashPlantainCultivatedArea = 0
+        if brinjalCultivatedArea is None:
+            brinjalCultivatedArea = 0
+        if cucumberCultivatedArea is None:
+            cucumberCultivatedArea = 0
+        if ladiesFingerCultivatedArea is None:
+            ladiesFingerCultivatedArea = 0
+        if redPumpkinCultivatedArea is None:
+            redPumpkinCultivatedArea = 0
+
+        print(ashPlantainCultivatedArea ," ", brinjalCultivatedArea ," ",  cucumberCultivatedArea ," ",  ladiesFingerCultivatedArea ," ",  redPumpkinCultivatedArea)
         totalPoints = ashPlantainCultivatedArea + brinjalCultivatedArea + cucumberCultivatedArea + ladiesFingerCultivatedArea + redPumpkinCultivatedArea
         ashPlantainPoints = 100 - ((ashPlantainCultivatedArea / totalPoints) * 100)
         brinjalPoints = 100 - ((brinjalCultivatedArea / totalPoints) * 100)

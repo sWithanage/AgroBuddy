@@ -1,33 +1,51 @@
 <div class="card">
   <div class="card-body text-center">
     <div class="profile-pic m-b-20 m-t-20">
-      <img src="assets/images/users/5.jpg" width="150" class="rounded-circle" alt="user" />
-      <h4 class="m-t-20 m-b-0">{{user_Fname}} {{user_Lname}}</h4>
+      <img src="assets/images/users/1.jpg" width="150" class="rounded-circle" alt="user" />
+      <h2 class="m-t-20 m-b-0">{{user_Fname}} {{user_Lname}}</h2>
       <a href="mailto:{{user_Email}}">{{user_Email}}</a>
     </div>
-    <div class="badge badge-pill badge-light font-16"><a routerLink="/admin/dashboard">Dashboard</a></div>
-    <div class="badge badge-pill badge-light font-16">UI</div>
-    <div class="badge badge-pill badge-light font-16">UX</div>
-    <br>
-    <br>
-    <div><h6><b>User Type:</b> {{user_Type}}</h6></div>
-    <div><h6><b>User Id:</b> {{user_Id}}</h6></div>
-    <div><h6><b>Address:</b> {{user_AddressNo}},{{user_Street1}},{{user_Street2}},{{user_City}}</h6></div>
-    <div><h6><b>Date Of Birth:</b> {{user_Dob}}</h6></div>
-    <div><h6><b>NIC:</b> {{user_NIC}}</h6></div>
-    <div><h6><b>Phone No:</b> {{user_PhoneNo}}</h6></div>
-    <div><h6><b>Tele Phone No:</b> {{user_TelNo}}</h6></div>
-  </div>
-  <div class="p-25 border-top m-t-15">
-    <div class="row text-center">
-      <div class="col-6 border-right">
-        <a href="#" class="link d-flex align-items-center justify-content-center font-medium">
-          <i class="mdi mdi-message font-20 m-r-5"></i>Message</a>
-      </div>
-      <div class="col-6">
-        <a href="#" class="link d-flex align-items-center justify-content-center font-medium">
-          <i class="mdi mdi-developer-board font-20 m-r-5"></i>Portfolio</a>
-      </div>
+    <div [style.display]="adminDashboard ? 'block' : 'none'">
+      <div class="badge badge-pill badge-light font-16"><a href="#/admin/dashboard">Dashboard</a></div>
     </div>
+    <div [style.display]="clientDashboard ? 'block' : 'none'">
+      <div class="badge badge-pill badge-light font-16"><a href="#/client/dashboard">Dashboard</a></div>
+    </div>
+    <br>
+    <div class="badge badge-pill badge-light font-16"><a href="mailto:{{user_Email}}"><i class="fa fa-phone"></i> Call</a></div>
+    <div class="badge badge-pill badge-light font-16" ><a href="tel:{{user_PhoneNo}}"><i class="fa fa-envelope"></i> Mail</a></div>
+  </div>
+</div>
+<div class="col-lg-8 col-md-8" style="margin-left:20%; ">
+  <h3 class="box-title m-t-40">Profile Details</h3>
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+      <tr>
+        <td>User Type:</td>
+        <td>{{user_Type}}</td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td>{{user_AddressNo}},{{user_Street1}},{{user_Street2}},{{user_City}}</td>
+      </tr>
+      <tr>
+        <td>Date Of Birth:</td>
+        <td>{{user_Dob}}</td>
+      </tr>
+      <tr>
+        <td>NIC:</td>
+        <td>{{user_NIC}}</td>
+      </tr>
+      <tr>
+        <td>Phone No:</td>
+        <td>{{user_PhoneNo}}</td>
+      </tr>
+      <tr>
+        <td>Telephone Phone No:</td>
+        <td>{{user_TelNo}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

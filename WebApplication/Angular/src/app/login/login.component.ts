@@ -22,6 +22,7 @@ export class LoginComponent {
   public unameEmpty;
   public passwordEmpty;
   randomKey = Math.random().toString(36).substring(2, 15);
+  logginError = false;
 
   validator(value: any) {
     // tslint:disable-next-line:triple-equals
@@ -42,17 +43,15 @@ export class LoginComponent {
   }
 
   onSubmit(value: any) {
-    console.log(value);
     // tslint:disable-next-line:max-line-length
     this.connectionService.addcustomerLogin(value).subscribe(data => this.authenticateUser(data), error => alert('There is a error in login. please try again later.'));
   }
 
   authenticateUser(authenticated: any) {
     // tslint:disable-next-line:triple-equals
-    if (authenticated == false) {
-      console.log('Invalid password!..Try again');
+    if (authenticated == false || authenticated == null) {
+      this.logginError = true;
     } else {
-      console.log('Successfully Log In!.....');
       this.cookie.set('user_Id', authenticated.user_Id);
       this.cookie.set('user_Type', authenticated.user_Type);
       this.cookie.set('user_Fname', authenticated.user_Fname);

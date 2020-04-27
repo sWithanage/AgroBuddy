@@ -32,17 +32,23 @@
     <div class="col-lg-6">
       <div class="card" >
         <div class="card-body">
-          <form class="form-horizontal m-t-30" #predict="ngForm">
+          <div [style.display]="plantDetails ? 'block' : 'none'">
+          <h3>Best Plant is </h3>
+            <h1 style="text-align: center; color:lawngreen;" >{{bestPlant}}</h1>
+          </div>
+          <img [style.display]="loaderGif ? 'block' : 'none'" src="assets/images/plantFinder.gif">
+          <form [style.display]="formContentDisplayStatus ? 'block' : 'none'" class="form-horizontal m-t-30" #predict="ngForm">
             <div class="form-group">
               <label>Location</label>
-              <input class="form-control" [(ngModel)]="location" type="text" required=" " if="location" placeholder="Location" name="location" ngModel required>
-              <div *ngIf="locationEmpty"><span>Location is required</span></div>
+              <select class="form-control" [(ngModel)]="location" placeholder="Location" required=" " name="location">
+                  <option value="Monaragala" selected="selected">Monaragala</option>
+                  <option disabled>Kandy</option>
+                  <option disabled>Jaffna</option>
+                  <option disabled>Jaffna</option>
+              </select>
+              <div *ngIf="true"><span>Location is required</span></div>
             </div>
-            <div class="form-group">
-              <label>Date</label>
-              <input class="form-control" [(ngModel)]="date" type="date" required=" " if="date" placeholder="MM/DD?YYY" name="date" ngModel required>
-              <div *ngIf="dateEmpty"><span>Date is required</span></div>
-            </div>
+            <p><b>Assume that you start farming from today*</b></p>
             <div class="action-form">
               <div class="form-group m-b-0 text-right">
                 <button type="submit" class="btn btn-info waves-effect waves-light" (click)="onSubmitBestCrop(predict.value)">Find Best Crop</button>
@@ -81,23 +87,23 @@
                     <tbody>
                     <tr>
                     <td>Total points Ash Plantain received</td>
-                    <td> {{ashPlantainPoints}} </td>
+                    <td> {{ashPlantainPoints}} %</td>
                     </tr>
                     <tr>
                       <td>Total points Brinjals received</td>
-                      <td> {{brinjalPoints}} </td>
+                      <td> {{brinjalPoints}} %</td>
                     </tr>
                     <tr>
                       <td>Total points Cucumber received</td>
-                      <td> {{cucumberPoints}} </td>
+                      <td> {{cucumberPoints}} %</td>
                     </tr>
                     <tr>
                       <td>Total points Ladies Fingers received</td>
-                      <td> {{ladiesFingerPoints}} </td>
+                      <td> {{ladiesFingerPoints}} %</td>
                     </tr>
                     <tr>
                       <td>Total points Red Pumpkin received</td>
-                      <td> {{redPumpkinPoints}} </td>
+                      <td> {{redPumpkinPoints}} %</td>
                     </tr>
                     </tbody>
                   </table>
@@ -147,7 +153,7 @@
       <div class="action-form">
         <div class="form-group m-b-0 text-right" mr-2>
           <button type="submit" class="btn btn-info waves-effect waves-light" (click)="choosePlant()">Choose to plant</button><p>  </p>
-          <button type="button" class="btn btn-info waves-effect waves-light" (click)="cancel()">Cancel</button>
+          <button type="button" class="btn btn-secondary waves-effect waves-light" (click)="cancel()">Cancel</button>
         </div>
       </div>
     </div>
@@ -161,18 +167,24 @@
           <form class="form-horizontal m-t-30" #confirmationPlant="ngForm">
             <div class="form-group">
               <label>Plant Name</label>
-              <input class="form-control" [(ngModel)]="plant" type="text" required=" " if="plant" placeholder="Plant Name" name="plant" ngModel required>
+              <select class="form-control" [(ngModel)]="plant" required=" " if="plant" placeholder="Plant Name" name="plant" ngModel required>
+                <option value="AshPlantain">Ash Plaintain</option>
+                <option value="Brinjal">Brinjal</option>
+                <option value="Cucumber">Cucumber</option>
+                <option value="LadiesFingers">Ladies Fingers</option>
+                <option value="Pumpkin">Pumpkin</option>
+              </select>
               <div *ngIf="plantEmpty"><span>Plant Name is required</span></div>
             </div>
             <div class="form-group">
               <label>Area</label>
-              <input class="form-control" [(ngModel)]="areaqty" type="text" required=" " if="areaqty" placeholder="Area" name="areaqty" ngModel required>
+              <input class="form-control" [(ngModel)]="areaqty" type="text" required=" " if="areaqty" placeholder="Area in achers" name="areaqty" ngModel required>
               <div *ngIf="areaEmpty"><span>Area is required</span></div>
             </div>
             <div class="action-form">
               <div class="form-group m-b-0 text-right"  mr-2>
                 <button type="submit" class="btn btn-info waves-effect waves-light" (click)="onSubmitConfirm(confirmationPlant.value)">Confirm Crop</button> <p>  </p>
-                <button type="submit" class="btn btn-info waves-effect waves-light" (click)="back()">Back</button>
+                <button type="submit" class="btn btn-secondary waves-effect waves-light" (click)="back()">Back</button>
               </div>
             </div>
           </form>

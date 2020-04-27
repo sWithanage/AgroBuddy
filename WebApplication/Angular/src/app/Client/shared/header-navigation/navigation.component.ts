@@ -18,6 +18,7 @@ export class NavigationComponentClient implements AfterViewInit {
   public showSearch = false;
   name: any;
   email: any;
+  profileLoc: any;
 
   constructor(private modalService: NgbModal, private router: Router, private cookie: CookieService) {
     // tslint:disable-next-line:triple-equals
@@ -33,5 +34,9 @@ export class NavigationComponentClient implements AfterViewInit {
   logOut() {
     this.cookie.deleteAll();
     window.location.reload();
+  }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
   }
 }

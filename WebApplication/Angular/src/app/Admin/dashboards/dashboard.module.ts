@@ -16,21 +16,16 @@ import { DashboardRoutes } from './dashboard.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import {
-  InfocardComponent,
-  TopsellComponent,
   BrowserStatsComponent,
-  InfoBoxComponent,
   MixstatsComponent,
   ProductInfoComponent,
   SalesComponent,
-  UserProfileComponent,
   UserDetailsComponent,
   VisitorsComponent,
   WeathercardComponent,
   WeatherForcastComponent,
   RaifallForcastComponent,
   WelcomeComponent,
-  ActivityComponent,
 
 } from './dashboard-components';
 
@@ -49,21 +44,16 @@ import {
   ],
   declarations: [
     DashboardComponent,
-    InfocardComponent,
-    TopsellComponent,
     BrowserStatsComponent,
-    InfoBoxComponent,
     MixstatsComponent,
     ProductInfoComponent,
     SalesComponent,
-    UserProfileComponent,
     UserDetailsComponent,
     VisitorsComponent,
     WeathercardComponent,
     WeatherForcastComponent,
     RaifallForcastComponent,
-    WelcomeComponent,
-    ActivityComponent
+    WelcomeComponent
   ]
 })
 export class DashboardModule {}

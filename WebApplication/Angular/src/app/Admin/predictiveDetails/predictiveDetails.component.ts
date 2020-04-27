@@ -25,6 +25,7 @@ export class PredictiveDetailsComponent implements OnInit {
   status: any;
   selectedOption: any;
   status_values: any = ['ARIMA', 'ARMA', 'SARIMA', 'RNN', 'AR', 'VAR', 'AUTOARIMA'];
+  noteMessage = '';
 
   constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) {
   }
@@ -33,7 +34,6 @@ export class PredictiveDetailsComponent implements OnInit {
     // this.connectionService.getAllModels().subscribe(
     //   data => {
     //     this.model = data;
-    //     console.log(data);
     //   });
 
     this.route.queryParams
@@ -41,24 +41,27 @@ export class PredictiveDetailsComponent implements OnInit {
       .subscribe(params => {
 
         this.variable = params.variables;
+        // tslint:disable-next-line:triple-equals
+        if (this.variable == 'rainfall') {
+          this.noteMessage = '(Mean Squared Error)';
+        }
       });
 
     this.connectionService.getAllModels().subscribe(
       data => {
-         console.log(data);
 
         for (const dataElement of data) {
           // tslint:disable-next-line:triple-equals
           if (dataElement.variables == this.variable) {
             this.modelDetails = data;
             this.variable = dataElement.variables;
-            this.ARIMAmodel = dataElement.ARIMA;
-            this.ARMAmodel = dataElement.ARMA;
-            this.SARIMAmodel = dataElement.SARIMA;
-            this.RNNmodel = dataElement.RNN;
-            this.AUTOARIMA = dataElement.AUTOARIMA;
-            this.ARmodel = dataElement.AR;
-            this.VARmodel = dataElement.VAR;
+            this.ARIMAmodel = String(Math.round(dataElement.ARIMA * 1000) / 1000);
+            this.ARMAmodel = String(Math.round(dataElement.ARMA * 1000) / 1000);
+            this.SARIMAmodel = String(Math.round(dataElement.SARIMA * 1000) / 1000);
+            this.RNNmodel = String(Math.round(dataElement.RNN * 1000) / 1000);
+            this.AUTOARIMA = String(Math.round(dataElement.AUTOARIMA * 1000) / 1000);
+            this.ARmodel = String(Math.round(dataElement.AR * 1000) / 1000);
+            this.VARmodel = String(Math.round(dataElement.VAR * 1000) / 1000);
             this.id = dataElement.aID;
             this.status = dataElement.activeModel;
             this.selectedOption = dataElement.activeModel;
@@ -68,9 +71,8 @@ export class PredictiveDetailsComponent implements OnInit {
   }
 
   setModelData(variable: any, selectedOption: string) {
-    console.log(variable + ' ' + selectedOption);
     this.connectionService.updateActivatedModel( variable, selectedOption).subscribe(
-      data => console.log(variable, selectedOption));
+      data => window.location.reload());
   }
 
 

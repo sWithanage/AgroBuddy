@@ -35,7 +35,6 @@ import {BreadcrumbComponentClient} from './Client/shared/breadcrumb/breadcrumb.c
 import {NavigationComponentClient} from './Client/shared/header-navigation/navigation.component';
 import {AllPlantsComponent} from './Admin/all-plants/all-plants.component';
 import {PlantDetailsComponent} from './Admin/plant-details/plant-details.component';
-import {ChangeModelComponent} from './Admin/ChangeModel/ChangeModel.component';
 import {PredictiveDetailsComponent} from './Admin/predictiveDetails/predictiveDetails.component';
 import {UserManagementComponent} from './Admin/user-management/user-management.component';
 import { ClientServiceService } from './client-service.service';
@@ -53,8 +52,12 @@ import {AdminBuyersComponent} from './Admin/admin-buyers/admin-buyers.component'
 import { DiseasesComponent } from './Client/diseases/diseases.component';
 import {CookieService} from 'ngx-cookie-service';
 import {ProfileComponent} from './profile/profile.component';
+import {SpinnerAdminComponent} from './Admin/shared/spinnerAdmin.component';
+import {SpinnerClientComponent} from './Client/shared/spinnerClient.component';
+import {ChangeModelAdminComponent} from './Admin/changeModel/changeModelAdmin.component';
 import { HomeComponent } from './home/home.component';
-//import { MatToolbarModule , MatButtonModule , MatSidenavModule , MatIconModule , MatListModule , MatSelectModule , MatFormFieldModule , MatInputModule } from '@angular/material';
+
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -80,11 +83,11 @@ const routes: Routes = [ {
     NavigationComponentClient,
     FullComponentAdmin,
     // SidebarComponent,
+    HomeComponent,
     LoginComponent,
     SignupComponent,
     AllPlantsComponent,
     PlantDetailsComponent,
-    ChangeModelComponent,
     PredictiveDetailsComponent,
     UserManagementComponent,
     CultivatedAreasComponent,
@@ -98,7 +101,9 @@ const routes: Routes = [ {
     ProfileComponent,
     AdminBuyersComponent,
     DiseasesComponent,
-    HomeComponent,
+    SpinnerAdminComponent,
+    SpinnerClientComponent,
+    ChangeModelAdminComponent,
   ],
   imports: [
     CommonModule,

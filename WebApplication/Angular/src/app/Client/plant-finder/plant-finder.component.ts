@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-import {ClientServiceService} from '../../client-service.service';
-import {BestCropPoints} from '../../best-crop-points.model';
-import {CookieService} from 'ngx-cookie-service';
+import { Component, OnInit} from '@angular/core';
+import {  Router  } from '@angular/router';
+import {  ClientServiceService} from '../../client-service.service';
+import {  BestCropPoints} from '../../best-crop-points.model';
+import {  CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-plant-finder',
@@ -11,10 +11,10 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class PlantFinderComponent implements OnInit {
 
-  constructor(private router: Router, private connectionService: ClientServiceService, private cookie: CookieService) { }
+  constructor(private router: Router, private connectionService: ClientServiceService, private cookie: CookieService) {}
 
-  location: any;    // user entered location that they are going to cultivate
-  date: any;        // user entered date that they are going to cultivate
+  location: any; // user entered location that they are going to cultivate
+  date: any; // user entered date that they are going to cultivate
   bestCrop: BestCropPoints[];
   ashPlantainPoints: any;
   brinjalPoints: any;
@@ -29,91 +29,124 @@ export class PlantFinderComponent implements OnInit {
   rainfallBestPlant: any;
   cultivatedAreaHighest: any;
   plant: any;
-  areaqty: any;        // the area quantity that user going to cultivate
-  public locationEmpty;   // location field empty
-  public dateEmpty;       // date field empty
-  public plantEmpty;      // plant field empty
-  public areaEmpty;       // area field empty
-  fullPage =  true;       // display the full page div at the begining of the page
-  plantDetails = false;   // hide the plant details div at the begining of the page
-  confirmation =  false;  // hide the confirmation div at the begining of the page
+  loaderGif = false;
+  formContentDisplayStatus = true;
+  areaqty: any; // the area quantity that user going to cultivate
+  public dateEmpty; // date field empty
+  public plantEmpty; // plant field empty
+  public areaEmpty; // area field empty
+  fullPage = true; // display the full page div at the begining of the page
+  plantDetails = false; // hide the plant details div at the begining of the page
+  confirmation = false; // hide the confirmation div at the begining of the page
   userId;
   plantName = [];
   area = [];
+
   public pieChartLabels: string[] = this.plantName;
-  public pieChartData: number[] = this.area;
+  public pieChartData = [];
   public pieChartType = 'pie';
+  locationEmpty = false;
+  bestPlant = 'sasa';
+  private maxPoints: number;
   ngOnInit() {
     this.userId = this.cookie.get('user_Id');
-    console.log('User Id' + this.userId);
-    this.connectionService.clientArea(this.userId).subscribe(   // get cultivated area details on given user id
+    this.connectionService.clientArea(this.userId).subscribe( // get cultivated area details on given user id
       data => {
-        console.log(data);
+
         // tslint:disable-next-line:forin
         for (const x of data) {
           this.plantName.push(x.plant_name);
-          this.area.push(x.cultivated_area);
+          this.area.push(x.cultivatedArea);
         }
+        this.pieChartData = this.area;
+        this.pieChartLabels = this.plantName;
+
       });
-    this.pieChartData = this.area;
-    this.pieChartLabels = this.plantName;
+
   }
-  validator(value: any) {   // validate the text fields
+
+  validator(value: any) { // validate the text fields
     // tslint:disable-next-line:triple-equals
     if (String(value).length == 0) {
-      return false;         // return false if user did not enter data to the text field
+      return false; // return false if user did not enter data to the text field
     }
     // tslint:disable-next-line:triple-equals
     if (String(value) == 'undefined') {
-      return false;        // return false if the user entered data to the text field is undefined
+      return false; // return false if the user entered data to the text field is undefined
     }
-    return true;          // return true if the user entered data to the text field is defined
+    return true; // return true if the user entered data to the text field is defined
   }
   submitProcess(authenticated: boolean, value: any) {
     if (authenticated) {
-      console.log('Successfully submitted...!');
     } else {
-      console.log('Try again');
     }
   }
-  // on the button click in best crop finder
-  onSubmitBestCrop(value: any) {
-    if (!this.validator(this.location)) {     // validate the location text field
+
+  onSubmitBestCrop(value: any) { // display the details of the best crop
+    // tslint:disable-next-line:no-unused-expression triple-equals
+    if (value.location == undefined) {
       this.locationEmpty = true;
-    } else if (!this.validator(this.date)) {  // validate the date text field
-      this.dateEmpty = true;
     } else {
-      // psot the location and date to prediction purpose
-      // tslint:disable-next-line:max-line-length
-      this.connectionService.predict(value).subscribe(data => this.submitProcess(data, value), error => alert('Problem in submitting. Please check and try again..'));
-      this.details();   // call the function to display the details of the best crop
+      this.loaderGif = true;
+      this.maxPoints = 0;
+      this.formContentDisplayStatus = false;
+      this.connectionService.getBestCrop().subscribe(
+        data => {
+
+          // @ts-ignore
+          this.ashPlantainPoints = Math.round(Number(data.bestcrop.AshPlantainPoints) * 100) / 100;
+          if (this.maxPoints < this.ashPlantainPoints) {
+            this.maxPoints = this.ashPlantainPoints;
+            this.bestPlant = 'Ash Plantain';
+          }
+          // @ts-ignore
+          this.brinjalPoints = Math.round(Number(data.bestcrop.BrinjalPoints) * 100) / 100;
+          if (this.maxPoints < this.brinjalPoints) {
+            this.maxPoints = this.brinjalPoints;
+            this.bestPlant = 'Brinjal';
+          }
+          // @ts-ignore
+          this.cucumberPoints = Math.round(Number(data.bestcrop.CucumberPoints) * 100) / 100;
+          if (this.maxPoints < this.cucumberPoints) {
+            this.maxPoints = this.cucumberPoints;
+            this.bestPlant = 'Cucumber';
+          }
+          // @ts-ignore
+          this.ladiesFingerPoints = Math.round(Number(data.bestcrop.LadiesFingerPoints) * 100) / 100;
+          if (this.maxPoints < this.ladiesFingerPoints) {
+            this.maxPoints = this.ladiesFingerPoints;
+            this.bestPlant = 'Ladies Finger';
+          }
+          // @ts-ignore
+          this.redPumpkinPoints = Math.round(Number(data.bestcrop.RedPumpkinPoints) * 100) / 100;
+          if (this.maxPoints < this.redPumpkinPoints) {
+            this.maxPoints = this.redPumpkinPoints;
+            this.bestPlant = 'Red Pumpkin';
+          }
+          // @ts-ignore
+          this.marketPriceHighestPoints = data.bestcrop.MarketPriceHighestPoints;
+          // @ts-ignore
+          this.marketPriceBestPlant = data.bestcrop.MarketPriceBestPlant;
+          // @ts-ignore
+          this.temperatureHighestPoints = data.bestcrop.TemperatureHighestPoints;
+          // @ts-ignore
+          this.temperatureBestPlant = data.bestcrop.TemperatureBestPlant;
+          // @ts-ignore
+          this.rainfallHighestPoints = data.bestcrop.RainfallHighestPoints;
+          // @ts-ignore
+          this.rainfallBestPlant = data.bestcrop.RainfallBestPlant;
+          // @ts-ignore
+          this.cultivatedAreaHighest = data.bestcrop.cultivatedAreaHighest;
+          this.loaderGif = false;
+          this.plantDetails = true;
+        });
     }
   }
-  details() {   // display the details of the best crop
-    this.plantDetails = true;
-    this.connectionService.getBestCrop().subscribe(
-      data => {
-        this.bestCrop = data;
-        console.log(this.bestCrop);
-        this.ashPlantainPoints = data[0].AshPlantainPoints;
-        this.brinjalPoints = data[0].BrinjalPoints;
-        this.cucumberPoints = data[0].CucumberPoints;
-        this.ladiesFingerPoints = data[0].LadiesFingerPoints;
-        this.redPumpkinPoints = data[0].RedPumpkinPoints;
-        this.marketPriceHighestPoints = data[0].MarketPriceHighestPoints;
-        this.marketPriceBestPlant = data[0].MarketPriceBestPlant;
-        this.temperatureHighestPoints = data[0].TemperatureHighestPoints;
-        this.temperatureBestPlant = data[0].TemperatureBestPlant;
-        this.rainfallHighestPoints = data[0].RainfallHighestPoints;
-        this.rainfallBestPlant = data[0].RainfallBestPlant;
-        this.cultivatedAreaHighest = data[0].cultivatedAreaHighest;
-      });
+  choosePlant() { // choose the crop to plant
+    this.fullPage = false; // hide the full page div
+    this.confirmation = true; // display the confirmation div
   }
-  choosePlant() {   // choose the crop to plant
-    this.fullPage = false;      // hide the full page div
-    this.confirmation = true;   // display the confirmation div
-  }
-  cancel() {  // when cancelling redirect to the dashboard
+  cancel() { // when cancelling redirect to the dashboard
     this.router.navigate(['/client/dashboard']);
   }
   onSubmitConfirm(value: any) {
@@ -123,7 +156,7 @@ export class PlantFinderComponent implements OnInit {
       this.areaEmpty = true;
     } else {
       // post values to the backend
-      const  chosen = {
+      const chosen = {
         confirmUId: this.userId,
         confirmPlant: this.plant,
         confirmArea: this.areaqty,
@@ -133,7 +166,7 @@ export class PlantFinderComponent implements OnInit {
       this.router.navigate(['/client/dashboard']);
     }
   }
-  back() {    // back to the best crop details
+  back() { // back to the best crop details
     this.confirmation = false;
     this.fullPage = true;
   }

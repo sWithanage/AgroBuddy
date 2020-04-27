@@ -36,4 +36,8 @@ export class NavigationComponentAdmin implements AfterViewInit {
     this.cookie.deleteAll();
     window.location.reload();
   }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
 }

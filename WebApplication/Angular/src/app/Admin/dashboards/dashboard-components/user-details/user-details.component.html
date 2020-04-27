@@ -9,7 +9,6 @@
                     <table class="table bg-white table-bordered nowrap display">
                         <thead>
                             <tr>
-                                <th> </th>
                                 <th>User Id</th>
                                 <th>UserType</th>
                                 <th>Name</th>
@@ -19,16 +18,10 @@
                                 <th>PhoneNo</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="text-transform: capitalize;">
                             <tr *ngFor="let users of user">
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customControlValidation2" required>
-                                        <label class="custom-control-label" for="customControlValidation2"></label>
-                                    </div>
-                                </td>
-                                <td>{{users.user_Id}}</td>
-                              <td>
+                                <td style="text-align: center;">{{users.user_Id}}</td>
+                              <td style="text-align: center;">
                                 <span class="label label-danger">{{users.user_Type}}</span>
                               </td>
                               <td><a [routerLink]="['/profile']" [queryParams]="{user_Id:users.user_Id}">{{users.user_Fname}} {{users.user_Lname}}</a></td>

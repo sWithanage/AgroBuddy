@@ -42,7 +42,6 @@ export class PriceVariationComponent implements OnInit {
     this.service.getMarketPrice().subscribe(    // get market prices
       data => {
         this.prices = data;
-        console.log(data);
         for (const plant of data) {
           this.week.push(plant.yearWithWeek);
           this.ashPlantainArray.push(plant.AshPlantain);
@@ -51,6 +50,10 @@ export class PriceVariationComponent implements OnInit {
           this.ladiesFingers.push(plant.LadiesFinger);
           this.redPumpkin.push(plant.RedPumpkin);
         }
+        this.barChartLabels = this.week;
+        this.barChartDataSet = [{data: this.ashPlantainArray, label: 'AshPlantain'},
+          {data: this.brinjals, label: 'Brinjals'}, {data: this.cucumber, label: 'Cucumber'},
+          {data: this.ladiesFingers, label: 'Ladies-Fingers'}, {data: this.redPumpkin, label: 'Red Pumpkin'}];
       });
     // @ts-ignore
     this.delay(1000);

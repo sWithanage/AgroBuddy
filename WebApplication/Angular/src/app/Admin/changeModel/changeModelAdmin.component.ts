@@ -4,7 +4,7 @@ import {AdminServiceService} from '../../admin-service.service';
 @Component({
   templateUrl: 'changeModel.component.html'
 })
-export class ChangeModelComponent {
+export class ChangeModelAdminComponent {
   modelDetails: any[];
   variables: string;
   constructor(private route: ActivatedRoute, private connectionService: AdminServiceService) {
@@ -12,7 +12,6 @@ export class ChangeModelComponent {
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       this.variables = params['variables'];
       });
   }

@@ -1,11 +1,8 @@
-<div class="card">
-  <a routerLink="/client/cultivatedArea" role="button" routerLinkActive="active">
+
+<a routerLink="/client/cultivatedArea" role="button" routerLinkActive="active">
   <div class="card-body">
     <h4 class="card-title">Cultivated Areas</h4>
     <h6 class="card-subtitle">Areas of each vegetable as a percentage.</h6>
     <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="[{backgroundColor: ['#c9f76e', '#6b2e6b', '#b8e0b8','#ec9513', '#2dd22d' ]}]">
     </canvas>
   </div>
-  </a>
-</div>
-

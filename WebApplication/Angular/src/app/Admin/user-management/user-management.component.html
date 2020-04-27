@@ -34,7 +34,7 @@
               <th>User name</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody style="text-transform: capitalize;">
             <tr *ngFor="let users of user">
               <td>
                 <div class="custom-control custom-checkbox">
@@ -60,7 +60,7 @@
                   </select>
                 </span>
               </td>
-              <td>{{users.user_Fname}}{{users.user_Lname}}</td>
+              <td>{{users.user_Fname}} {{users.user_Lname}}</td>
 
               <td>{{users.user_Email}}</td>
               <td>{{users.user_NIC}}</td>
@@ -122,12 +122,6 @@
           <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">NIC</label>
           <div class="col-sm-9">
             <input type="text"  [(ngModel)]="userNIC" class="form-control" name="nic" id="inputEmail3" value="{{userNIC}}" ngModel>
-          </div>
-        </div>
-        <div class="form-group row p-b-15">
-          <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Date of Birth</label>
-          <div class="col-sm-9">
-            <input type="text"  [(ngModel)]="userDob" class="form-control" name="dob" id="inputEmail3" value="{{userDob}}" ngModel>
           </div>
         </div>
         <div class="form-group row p-b-15">

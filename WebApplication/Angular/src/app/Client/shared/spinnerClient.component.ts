@@ -15,7 +15,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-spinner',
+  selector: 'app-spinner-client',
   template: `<div class="preloader" *ngIf="isSpinnerVisible">
         <div class="spinner">
           <div class="double-bounce1"></div>
@@ -24,7 +24,7 @@ import { DOCUMENT } from '@angular/common';
     </div>`,
   encapsulation: ViewEncapsulation.None
 })
-export class SpinnerComponent implements OnDestroy {
+export class SpinnerClientComponent implements OnDestroy {
   public isSpinnerVisible = true;
 
   @Input() public backgroundColor = 'rgba(0, 115, 170, 0.69)';

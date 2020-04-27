@@ -131,7 +131,6 @@ export class SignupComponent {
   //   });
   // }
   onSubmit(value: any) {
-    console.log(this.phoneno, this.telno);
     // tslint:disable-next-line:triple-equals
     if (this.telno || this.phoneno == 0) {
       this.errormassage = 'You should enter telephone number or phone number!';
@@ -139,7 +138,7 @@ export class SignupComponent {
     } else {
 
       this.connectionService.users(value).subscribe(
-        data => console.log(data), error => alert('There is a error in login. please try again later.'
+        data => console.log('connected'), error => alert('There is a error in login. please try again later.'
         ));
     }
   }
@@ -182,9 +181,7 @@ export class SignupComponent {
 
   signupProcess(authenticated: boolean, value: any) {
     if (authenticated) {
-      console.log('Successfully Sign In...!');
     } else {
-      console.log('Invalid password!..Try again');
     }
   }
 }

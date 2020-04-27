@@ -1,6 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import {AdminServiceService} from '../../admin-service.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   templateUrl: 'plant-details.component.html'
@@ -20,7 +21,6 @@ export class PlantDetailsComponent implements OnInit {
   part2 = false;
   part3 = false;
   part4 = false;
-  cropId: string;
   cropName: string;
   cropImage: string;
   cropDescription: string;
@@ -31,7 +31,6 @@ export class PlantDetailsComponent implements OnInit {
   percentage: number;
   cultivatedArea: string;
   fertilizers: string;
-  crop_Id: string;
   crop_Name: string;
   crop_Image: string;
   crop_Description: string;
@@ -46,12 +45,11 @@ export class PlantDetailsComponent implements OnInit {
   diseaseImage: any;
   diseaseScientificName: any;
   diseaseSymptoms: any;
-  constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) {}
+  constructor(private connectionService: AdminServiceService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
     this.connectionService.getCropDetails().subscribe(
       data => {
         this.crop = data;
-        console.log(data);
       });
 
     this.route.queryParams
@@ -59,43 +57,51 @@ export class PlantDetailsComponent implements OnInit {
       .subscribe(params => {
 
         this.plantName = params.plant;
-        this.cropId = params.plant;
-        console.log(this.plantName);
+        this.crop_id = params.plant;
       });
 
     this.connectionService.getPlantDetails(this.plantName).subscribe(
       data => {
-        this.plantDetails = data;
-        this.cropName = data[0].crop_name;
-        this.cropImage = data[0].crop_image;
-        this.cropDescription = data[0].crop_description;
-        this.scientificName = data[0].scientific_name;
-       this.nutrition = data[0].nutrition;
-       this.cultivatedArea = data[0].cultivated_area;
-       this.cropId = data[0].crop_id;
-       this.temperature = data[0].temperature;
-       this.duration = data[0].duration;
-       this.percentage = data[0].percentage;
-        this.fertilizers = data[0].fertilizers;
+        // tslint:disable-next-line:triple-equals
+        if ( data.length == 0) {
+          this.router.navigate(['/admin/plant']);
+        } else {
+          this.plantDetails = data;
+          this.cropName = data[0].crop_name;
+          this.cropImage = data[0].crop_image;
+          this.cropDescription = data[0].crop_description;
+          this.scientificName = data[0].scientific_name;
+          this.nutrition = data[0].nutrition;
+          this.cultivatedArea = data[0].cultivated_area;
+          this.crop_id = data[0].crop_id;
+          this.temperature = data[0].temperature;
+          this.duration = data[0].duration;
+          this.percentage = data[0].cultivated_area_percentage;
+          this.fertilizers = data[0].fertilizers;
+        }
+        // tslint:disable-next-line:triple-equals
+        if (this.fertilizers == null) {
+          this.fertilizers = 'No record';
+        }
       });
-    this.connectionService.getDiseaseDetails(this.cropId).subscribe(
+    this.connectionService.getDiseaseDetails(this.crop_id).subscribe(
       data => {
         this.diseases = data;
-        console.log(data);
         // this.crop_id = data[0].crop_id;
-        this.disease_id = data[0].disease_id;
-        this.disease_name = data[0].disease_name;
-        this.disease_image = data[0].disease_image;
-        this.disease_Scientific_name = data[0].disease_Scientific_name;
-        this.disease_symptoms = data[0].disease_symptoms;
-
+        if (data.length > 0) {
+          this.disease_id = data[0].disease_id;
+          this.disease_name = data[0].disease_name;
+          this.disease_image = data[0].disease_image;
+          this.disease_Scientific_name = data[0].disease_Scientific_name;
+          this.disease_symptoms = data[0].disease_symptoms;
+        }
 
       });
   }
 
 
   updateDetails(cropId: any) {
-    this.cropId = cropId;
+    this.crop_id = cropId;
     this.part1 = false;
     this.part2 = true;
     this.part3 = false;
@@ -103,10 +109,8 @@ export class PlantDetailsComponent implements OnInit {
     this.updatePlantDetailsToForm();
   }
   updatePlantDetailsToForm() {
-    this.connectionService.getPlantListById(this.crop_Id).subscribe(
+    this.connectionService.getPlantListById(this.crop_id).subscribe(
       data => {
-        console.log("sasanka withanages");
-        console.log(data);
         this.cropName = data[0].crop_name;
         this.cropDescription = data[0].crop_description;
         this.cropImage = data[0].crop_image;
@@ -120,62 +124,69 @@ export class PlantDetailsComponent implements OnInit {
       });
   }
   submitUpdates(value: any) {
-      console.log(value);
     this.connectionService.updatePlant( value).subscribe(
-      data => console.log(value)
+      data => this.refreshPage()
     );
   }
 
   deleteDetails(cropId: string) {
-    console.log(cropId);
-    console.log(cropId);
     this.connectionService.deletePlant(cropId).subscribe(
-      data => console.log(cropId)
+      data => this.refreshPage()
     );
   }
+
   deleteDiseaseRow(disease_id: any) {
-    console.log(disease_id);
     this.connectionService.deleteDiseaseDetails(disease_id).subscribe(
-      data => console.log(disease_id)
+      data => this.refreshPage()
     );
   }
+
   updateDisease(disease_id: any) {
     this.disease_id = disease_id;
     this.part1 = false;
     this.part2 = false;
     this.part3 = true;
     this.part4 = false;
-    this.updateDiseaseDetailsToForm();
+    this.updateDiseaseDetailsToForm(disease_id);
   }
-  updateDiseaseDetailsToForm() {
-    this.connectionService.getDiseaseListById(this.disease_id).subscribe(
+  updateDiseaseDetailsToForm(diseaseId) {
+    this.connectionService.getDiseaseListById(diseaseId).subscribe(
       data => {
-        console.log(data);
         this.disease_id = data[0].disease_id;
         this.crop_id = data[0].crop_id;
         this.disease_name = data[0].disease_name;
         this.disease_image = data[0].disease_image;
         this.disease_Scientific_name = data[0].disease_Scientific_name;
         this.disease_symptoms = data[0].disease_symptoms;
-
-
       });
   }
   submitDiseaseUpdates( values: any, disease_id: number) {
-      console.log(this.cropId  );
       this.connectionService.updateDiseaseAll(values, disease_id).subscribe(
-        data => console.log(values)
+        data => this.refreshPage()
       );
   }
+
   addDiseaseDetails() {
     this.part1 = false;
     this.part2 = false;
     this.part3 = false;
     this.part4 = true;
   }
+
   submitDiseaseDetails(value: any) {
     this.connectionService.addDisease(value).subscribe(
-      data => console.log(data), error => alert('There is a error in login. please try again later.'
+      data => this.addedSuccessfully(data), error => alert('There is a error in login. please try again later.'
       ));
+  }
+
+  refreshPage() {
+    window.location.reload();
+  }
+
+  addedSuccessfully(data) {
+    // tslint:disable-next-line:triple-equals
+    if (data == true) {
+      window.location.reload();
+    }
   }
 }

@@ -4,10 +4,11 @@
       <!-- client Profile-->
       <div class="user-profile m-t-20" ngbDropdown>
         <div class="user-pic">
-          <img src="assets/images/users/1.jpg" alt="users" class="rounded-circle img-fluid" />
+          <img (click)="goToProfile()" src="assets/images/users/1.jpg" alt="users" class="rounded-circle img-fluid" />
         </div>
         <div class="user-content hide-menu m-t-10">
-          <h5 class="m-b-10 user-name font-medium">{{name}}</h5>
+          <h5 class="m-b-10 user-name font-medium" style="text-transform: capitalize">{{name}}</h5>
+
           <a href="javascript:void(0)" (click)="logOut()" title="Logout" class="btn btn-circle btn-sm">
             <i class="ti-power-off"></i>
           </a>

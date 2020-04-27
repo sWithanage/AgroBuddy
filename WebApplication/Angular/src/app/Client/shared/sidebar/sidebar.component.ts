@@ -41,4 +41,8 @@ export class SidebarComponentClient implements OnInit {
     this.cookie.deleteAll();
     window.location.reload();
   }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
 }

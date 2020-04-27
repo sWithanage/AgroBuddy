@@ -20,6 +20,7 @@ import {Buyers} from './buyers.model';
 export class AdminServiceService {
 
   constructor(private serviceHttp: HttpClient) { }
+  // private url = 'http://localhost:8080/';
   private url = 'https://agrobuddybackend.nn.r.appspot.com/';
 
 
@@ -28,7 +29,7 @@ export class AdminServiceService {
   //   return this.serviceHttp.get<WeatherDetails[]>(this.url + 'weatherData');
   // }
   getAllUserById(user_Id: any): Observable<ClientDetails[]> {
-    return this.serviceHttp.get<ClientDetails[]>(this.url + 'users/'+ user_Id);
+    return this.serviceHttp.get<ClientDetails[]>(this.url + 'users/' + user_Id);
   }
   getUserList(): Observable<ClientDetails[]> {
     return this.serviceHttp.get<ClientDetails[]>(this.url + 'usersDetails');
@@ -50,12 +51,10 @@ export class AdminServiceService {
   }
 
   availability(activeModel: any) {
-    console.log(activeModel);
     return this.serviceHttp.post<boolean> (this.url + 'availableModel', activeModel);
   }
 
   updateUserType(userIdToChange: any, userTypeToChange: any) {
-    console.log(userIdToChange + '' + userTypeToChange);
     return this.serviceHttp.put<boolean>(this.url + 'users', {
       user_Type: userTypeToChange,
       user_Id: userIdToChange,
@@ -63,12 +62,12 @@ export class AdminServiceService {
   }
   updateUserAll(value: any, user_Id: number ) {
     return this.serviceHttp.put<boolean>(this.url +  'usersDetails', value  );
-    console.log(user_Id);
   }
-  deleteUserDetails(userIdToChange: any) {
-    console.log(userIdToChange);
-    return this.serviceHttp.delete<any> (this.url + 'usersDetails', userIdToChange );
 
+  deleteUserDetails(userIdToChange: any) {
+    const json = '{ "name": "John Doe"}';
+    const jsonValue = JSON.parse(json);
+    return this.serviceHttp.post<any> (this.url + 'deleteUser/' + userIdToChange , jsonValue );
   }
 
   //method returning the current weather details
@@ -81,24 +80,18 @@ export class AdminServiceService {
     return this.serviceHttp.get<ClientDetails[]>(this.url + 'users/' + user_Id);
   }
   addPlant(value: any): Observable<modelDetails[]> {
-    console.log(value);
     return this.serviceHttp.post<any> (this.url + 'crops', value);
   }
   deletePlant(cropId: string) {
-    console.log(cropId);
-    return this.serviceHttp.delete<string> (this.url + 'crops');
-
+    return this.serviceHttp.post<any> ( this.url + 'deleteCrops/' + cropId, cropId);
   }
   updatePlant(value: any) {
-    console.log(value);
     return this.serviceHttp.put<boolean> ( this.url + 'crops' , value  );
-    console.log(value);
   }
   getMarketPrice(): Observable<MarketPriceData[]> {
     return this.serviceHttp.get<MarketPriceData[]>(this.url + 'prediction/marketprice');
   }
   updateActivatedModel(variable: any, selectedOption: any) {
-    console.log(variable, selectedOption);
     return this.serviceHttp.put<boolean>(this.url + 'accuracy', {
       status: selectedOption,
       variables: variable,
@@ -116,20 +109,18 @@ export class AdminServiceService {
     return this.serviceHttp.get<Diseases[]>(this.url + 'diseases/' + crop_Id);
   }
   getDiseaseListById(disease_Id: any): Observable<Diseases[]> {
-    return this.serviceHttp.get<Diseases[]>(this.url + 'diseases/' + disease_Id);
+    return this.serviceHttp.get<Diseases[]>(this.url + 'disease/' + disease_Id);
   }
-  deleteDiseaseDetails(disease_id: any) {
-    console.log(disease_id);
-    return this.serviceHttp.delete<any> (this.url + 'diseases', disease_id );
 
+  deleteDiseaseDetails(disease_id: string) {
+    const json = '{ "name": "John Doe", "language": { "name": "en", "level": 5 } }';
+    const jsonValue = JSON.parse(json);
+    return this.serviceHttp.post<any> (this.url + 'deleteDisease/' + disease_id , jsonValue );
   }
   updateDiseaseAll(value: any, disease_Id: any) {
-    console.log(disease_Id , value);
     return this.serviceHttp.put<boolean>(this.url +  'diseases', value  );
-    console.log(disease_Id);
   }
   addDisease(value: any): Observable<Diseases[]> {
-    console.log(value);
     return this.serviceHttp.post<any> (this.url + 'diseases', value);
   }
   getBuyersList(): Observable<Buyers[]> {
@@ -141,16 +132,21 @@ export class AdminServiceService {
   getBuyerListById(buyerId: any): Observable<Buyers[]> {
     return this.serviceHttp.get<Buyers[]>(this.url + 'buyers/' + buyerId);
   }
-  deleteBuyerDetails(buyerId: any) {
-    console.log(buyerId);
-    return this.serviceHttp.delete<any>(this.url + 'buyers', buyerId);
+
+  deleteBuyerDetails(buyerId: string) {
+    const json = '{ "name": "John Doe", "language": { "name": "en", "level": 5 } }';
+    const jsonValue = JSON.parse(json);
+    return this.serviceHttp.post<any> (this.url + 'deleteBuyer/' + buyerId , jsonValue );
   }
   updateBuyerAll(value: any, buyerId: any) {
-    return this.serviceHttp.put<boolean>(this.url +  'buyers', value  );
-    console.log(value);
+    return this.serviceHttp.put<boolean>(this.url +  'buyers', {
+      buyerId: buyerId,
+      buyerAddress: value.buyerAddress,
+      buyerName: value.buyerName,
+      buyerContactNumber: value.buyerContactNumber,
+    }  );
   }
   addBuyer(value: any): Observable<Buyers[]> {
-  console.log(value);
   return this.serviceHttp.post<any> (this.url + 'buyers', value);
 }
   }

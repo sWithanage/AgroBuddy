@@ -12,7 +12,7 @@ export class AdminBuyersComponent implements OnInit {
   buyers_new: any;
   buyer_Id: any;
   buyer_Name: any;
-  buyer__Address: any;
+  buyer_Address: any;
   buyer_ContactNumber: any;
   part1 = true;
   part2 = false;
@@ -22,7 +22,6 @@ export class AdminBuyersComponent implements OnInit {
   ngOnInit() {
     this.connectionService.getBuyersList().subscribe(
       data => {
-        console.log(data);
         this.buyers = data;
       });
   }
@@ -34,10 +33,10 @@ export class AdminBuyersComponent implements OnInit {
     this.part3 = false;
     this.buyersDetailsToForm();
   }
+
   buyersDetailsToForm() {
     this.connectionService.getBuyerListById(this.buyerId).subscribe(
       data => {
-        console.log(data);
         this.buyerId = data[0].buyerId;
         this.buyerName = data[0].buyerName;
         this.buyerAddress = data[0].buyerAddress;
@@ -45,25 +44,22 @@ export class AdminBuyersComponent implements OnInit {
       });
   }
   deletBuuyer(buyerId: any) {
-    console.log(buyerId);
     this.connectionService.deleteBuyerDetails(buyerId).subscribe(
-      data => console.log(buyerId)
+      data => window.location.reload()
     );
   }
-  submitBuyerUpdates( value: any, buyerId: any) {
-    console.log(value);
-    this.connectionService.updateBuyerAll(value, buyerId).subscribe(
-      data => console.log(value)
+  submitBuyerUpdates( value: any) {
+    this.connectionService.updateBuyerAll(value, this.buyerId).subscribe(
+      data => window.location.reload()
     );
   }
-  addBuyerDetails(){
+  addBuyerDetails() {
     this.part1 = false;
     this.part2 = false;
     this.part3 = true;
   }
   submitAddBuyerDetails(value: any) {
     this.connectionService.addBuyer(value).subscribe(
-      data => console.log(data), error => alert('There is a error in login. please try again later.'
-      ));
+      data => window.location.reload(), error => alert('There is a error in login. please try again later.'));
   }
 }

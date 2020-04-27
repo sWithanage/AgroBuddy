@@ -24,7 +24,6 @@ export class DiseasesComponent implements OnInit {
       .subscribe(params => {
 
         this.cropId = params.plant;
-        console.log(this.cropId);
       });
 
     this.connectionService.getDiseases(this.cropId).subscribe(    // get diseases on the given crop id

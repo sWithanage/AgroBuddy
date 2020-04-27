@@ -40,9 +40,7 @@ export class ContactUsComponent {
   }
   submitProcess(authenticated: boolean, value: any) {
     if (authenticated) {
-      console.log('Successfully submitted...!');
     } else {
-      console.log('Try again');
     }
   }
   // on the button click in contact us form

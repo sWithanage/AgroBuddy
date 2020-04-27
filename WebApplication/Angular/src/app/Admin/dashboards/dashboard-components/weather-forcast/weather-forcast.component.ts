@@ -52,11 +52,9 @@ export class WeatherForcastComponent implements OnInit {
   // events
   currentTemperature: any;
   public chartClicked(e: any): void {
-    // console.log(e);
   }
 
   public chartHovered(e: any): void {
-    // console.log(e);
   }
 
   ngOnInit(): void {

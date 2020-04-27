@@ -1,4 +1,15 @@
     <ngb-carousel>
+      <ng-template ngbSlide *ngIf="firstChat">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Ash Plantain Prices</h4>
+            <h6 class="card-subtitle">Market price variation of last month</h6>
+            <canvas baseChart [datasets]="ashPlantaindata" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                    [chartType]="barChartType"  [colors]="ashPlantainColors" >
+            </canvas>
+          </div>
+        </div>
+     </ng-template>
       <ng-template ngbSlide>
         <div class="card">
           <div class="card-body">
@@ -10,7 +21,8 @@
           </div>
         </div>
      </ng-template>
-    <ng-template ngbSlide>
+
+      <ng-template ngbSlide>
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Brinjals Prices</h4>

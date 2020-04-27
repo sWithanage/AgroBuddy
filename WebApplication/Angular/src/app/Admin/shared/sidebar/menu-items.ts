@@ -28,8 +28,16 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/admin/userManagement',
-    title: 'User management',
+    title: 'User Management',
     icon: 'icon-User',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/admin/buyers',
+    title: 'Buyer Management',
+    icon: 'icon-Business-ManWoman',
     class: '',
     extralink: false,
     submenu: []

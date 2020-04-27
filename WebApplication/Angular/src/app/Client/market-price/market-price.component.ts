@@ -50,7 +50,6 @@ export class MarketPriceComponent implements OnInit {
     this.service.getMarketPrice().subscribe(        // get market prices
       data => {
         this.prices = data;
-        console.log(data);
         for (const plant of data) {
           this.week.push(plant.yearWithWeek);
           this.ashPlantainArray.push(plant.AshPlantain);
@@ -59,9 +58,10 @@ export class MarketPriceComponent implements OnInit {
           this.ladiesFingers.push(plant.LadiesFinger);
           this.redPumpkin.push(plant.RedPumpkin);
         }
+
       });
     // @ts-ignore
-    this.delay(1000);
+    this.delay(2000);
     this.updateTable();   // call the update table method
   }
 
@@ -70,6 +70,8 @@ export class MarketPriceComponent implements OnInit {
   }
 
   // assigning values
+  // tslint:disable-next-line:member-ordering
+  firstChat = true;
   updateTable() {
     this.barChartLabels = this.week;
     this.ashPlantaindata = [{data: this.ashPlantainArray, label: 'AshPlantain'}];
@@ -77,5 +79,8 @@ export class MarketPriceComponent implements OnInit {
     this.cucumberdata = [{data: this.cucumber, label: 'Cucumber'}];
     this.ladiesFingersdata = [{data: this.ladiesFingers, label: 'Ladies-Fingers'}];
     this.redPumpkindata = [{data: this.redPumpkin, label: 'Red Pumpkin'}];
+    setTimeout(() => {
+      this.firstChat = false;
+    }, 2000);
   }
 }

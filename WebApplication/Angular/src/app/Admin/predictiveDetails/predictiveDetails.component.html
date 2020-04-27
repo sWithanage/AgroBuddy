@@ -3,7 +3,7 @@
         <!-- title -->
         <div class="d-md-flex align-items-center">
             <div>
-                <h4 class="card-title">{{variable}} Prediction</h4>
+                <h4 class="card-title" style="text-transform: capitalize;">{{variable}} Prediction</h4>
                 <h5 class="card-subtitle">Overview of Top Selling Items</h5>
             </div>
 
@@ -11,7 +11,7 @@
         <!-- title -->
     </div>
   <div>
-    <select  [(ngModel)]="selectedOption" (change)="setModelData(variable,this.selectedOption)">
+    <select  class="btn btn-success" [(ngModel)]="selectedOption" (change)="setModelData(variable,this.selectedOption)">
       <option   [value]="status_item" *ngFor="let status_item of status_values" >
         {{status_item}}
       </option>
@@ -24,7 +24,7 @@
                 <tr class="bg-light">
                     <th class="border-top-0">Models</th>
                     <th class="border-top-0">Model Id</th>
-                    <th class="border-top-0">Accuracy</th>
+                    <th class="border-top-0">Accuracy {{noteMessage}}</th>
 
                 </tr>
             </thead>

@@ -43,7 +43,6 @@ export class ClientServiceService {
   }
   // post contact us form details to database
   contact(value: any) {
-    console.log(value);
     return this.http.post<boolean> (this.url + 'contact', value);
   }
   // post contact us form details to send confirmation emails
@@ -63,14 +62,12 @@ export class ClientServiceService {
     return this.http.get<Buyers[]>(this.url + 'buyers');
   }
   predict(value: any) {
-    console.log(value);
     return this.http.post<boolean> (this.url + 'details', value);
   }
   getBestCrop(): Observable<BestCropPoints[]> {
     return this.http.get<BestCropPoints[]>(this.url + 'bestcrop');
   }
   chosenCrop(value: any) {
-    console.log(value);
     return this.http.post<boolean> (this.url + 'area', value);
   }
 }

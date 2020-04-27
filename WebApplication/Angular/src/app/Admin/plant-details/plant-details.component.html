@@ -7,17 +7,19 @@
                 <h3 class="card-title">{{cropName}} Plant</h3>
                 <h6 class="card-subtitle"></h6>
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="white-box text-center">
                             <img src="assets/images/gallery/{{cropImage}}" class="img-responsive"> </div>
                     </div>
-                    <div class="col-lg-9 col-md-9 col-sm-6">
+                    <div class="col-lg-1 col-md-1 col-sm-12">
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12">
                         <h4 class="box-title m-t-40">Crop description</h4>
                         <p>{{cropDescription}}</p>
-
-
-
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <h3 class="box-title m-t-40">General Info</h3>
                         <div class="table-responsive">
@@ -25,7 +27,7 @@
                                 <tbody>
                                     <tr>
                                         <td width="390">Crop Id</td>
-                                        <td> {{cropId}} </td>
+                                        <td> {{crop_id}} </td>
                                     </tr>
                                     <tr>
                                         <td>Crop Name</td>
@@ -63,11 +65,11 @@
                                     <tr>
                                       <div class="row">
                                       <div class="custom-control custom-checkbox">
-                                        <button id="remove" (click)="updateDetails(cropId)" type="button" class="btn btn-primary">Update Plant</button>
+                                        <button id="remove" (click)="updateDetails(crop_id)" type="button" class="btn btn-primary">Update Plant</button>
                                       </div>
 
                                         <div class="custom-control custom-checkbox">
-                                          <button type="button" class="btn btn-success" id="remove" (click)="deleteDetails(cropId)">Delete Plant</button>
+                                          <button type="button" class="btn btn-success" id="remove" (click)="deleteDetails(crop_id)">Delete Plant</button>
                                         </div>
                                       </div>
                                     </tr>
@@ -103,7 +105,6 @@
             <tr>
               <th></th>
               <th></th>
-              <th>Image</th>
               <th>ID</th>
               <th>Disease Name</th>
               <th>Disease Scientific Name</th>
@@ -121,9 +122,6 @@
                 <div class="custom-control custom-checkbox">
                   <button type="button" class="btn btn-secondary btn-circle" id="remove" (click)="deleteDiseaseRow(disease.disease_id)"><i class="fa fa-times"></i> </button>
                 </div>
-              </td>
-              <td>
-                <h6>{{disease.disease_image}}</h6>
               </td>
               <td>{{disease.disease_id}}</td>
               <td>{{disease.disease_name}}</td>
@@ -152,7 +150,7 @@
     <div class="form-group row p-b-15">
       <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Id</label>
       <div class="col-sm-9">
-        <input type="text" [(ngModel)]="cropId"  class="form-control" name="cropId" id="inputEmail3" value="{{cropId}}" ngModel>
+        <input type="text" [(ngModel)]="crop_id"  class="form-control" name="cropId" id="inputEmail3" value="{{crop_id}}" ngModel>
       </div>
     </div>
     <div class="form-group row p-b-15">
@@ -215,6 +213,7 @@
         <input type="text" [(ngModel)]="fertilizers"  class="form-control" name="fertilizers" id="inputEmail3" value="{{fertilizers}}" ngModel>
       </div>
     </div>
+    <hr>
 
     <div class="card-body">
       <div class="form-group m-b-0 text-right">
@@ -239,7 +238,7 @@
       <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Disease ID</label>
 
       <div class="col-sm-9">
-        <input type="text"  [(ngModel)]="disease_id" class="form-control" name="disease_id" id="inputEmail3" value="{{disease_id}}" ngModel>
+        <input type="text"  [(ngModel)]="disease_id" class="form-control" name="disease_id" id="inputEmail3" disabled value="{{disease_id}}" ngModel>
       </div>
     </div>
     <div class="form-group row p-b-15">
@@ -269,7 +268,7 @@
     <div class="form-group row p-b-15">
       <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Id</label>
       <div class="col-sm-9">
-        <input type="text"  [(ngModel)]="cropId" class="form-control" name="cropId" id="inputEmail3" value="{{cropId}}" ngModel>
+        <input type="text"  [(ngModel)]="crop_id" class="form-control" name="crop_id" id="inputEmail3" disabled value="{{crop_id}}" ngModel>
       </div>
     </div>
 
@@ -315,12 +314,8 @@
       <input type="text" [(ngModel)]="diseaseSymptoms"  class="form-control" name="diseaseSymptoms" id="inputEmail3" ngModel>
     </div>
   </div>
-  <div class="form-group row p-b-15">
-    <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Crop Id</label>
-    <div class="col-sm-9">
-      <input type="text" [(ngModel)]="cropId"  class="form-control" name="cropId" id="inputEmail3" ngModel>
-    </div>
-  </div>
+    <input type="hidden" [(ngModel)]="crop_id"  class="form-control" name="crop_id" id="inputEmail3" ngModel>
+
 
   <div class="card-body">
     <div class="form-group m-b-0 text-right">
