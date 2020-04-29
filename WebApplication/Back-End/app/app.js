@@ -20,6 +20,8 @@ const predictions = require("./routes/prediction");
 const accuracy = require("./routes/accuracy");
 const forecast = require("./routes/forecast");
 const buyer = require("./routes/buyer");
+const agrodata = require("./routes/agrodata");
+
 const app = express();
 // enable CORS with various options
 app.use(cors());
@@ -35,6 +37,7 @@ app.use(predictions);
 app.use(accuracy);
 app.use(forecast);
 app.use(buyer);
+app.use(agrodata);
 
 // get best crop
 app.get("/bestcrop", async (req, res) => {
