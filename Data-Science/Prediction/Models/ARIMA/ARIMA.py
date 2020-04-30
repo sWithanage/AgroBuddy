@@ -18,21 +18,22 @@ ARIMAModel, periodOfTime = "", ""
 # -------------------------------------------------------------------------
 # This method can provide accuracy percentages and forecast values.
 # -------------------------------------------------------------------------
-def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfTrainingDataSet=7, getAccuracy=True):
+def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfTrainingDataSet=7, getAccuracy=True,
+            logOnTelegram=True):
     global ARIMAModel, periodOfTime
     try:
         # Printing request of user.
         if getAccuracy:
-            logger.log("Client requested for " + predictionName + " accuracy")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " accuracy")
         else:
-            logger.log("Client requested for " + predictionName + " forecast")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " forecast")
 
         # Import relevant file from the server.
         series = FileDownloader.getFileData(datasetType)
-        logger.log("Dataset retrieved successfully")
+        logger.log(logOnTelegram, "Dataset retrieved successfully")
 
         # Set splitting point of the dataset.
-        logger.log("Finding splitting point")
+        logger.log(logOnTelegram, "Finding splitting point")
         if defaultRatio:
             split_point = int(len(series) - (len(series) * 0.2))
         elif not getAccuracy:
@@ -42,7 +43,7 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
 
         # Splitting data set according to the splitting point.
         trainingDataSet, validationDataSet = series[0:split_point], series[split_point:]
-        logger.log("Data Splitting successful")
+        logger.log(logOnTelegram, "Data Splitting successful")
 
         # Set length into variables.
         trainingDataSetSize = len(trainingDataSet)
@@ -51,17 +52,17 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
         trainingDataSetSizeString = 'Training Data Set Size : ' + str(trainingDataSetSize)
         testingDataSetSizeString = 'Testing  Data Set Size : ' + str(testingDataSetSize)
 
-        logger.log(trainingDataSetSizeString)
-        logger.log(testingDataSetSizeString)
+        logger.log(logOnTelegram, trainingDataSetSizeString)
+        logger.log(logOnTelegram, testingDataSetSizeString)
 
         # If user required for forecast, testing data size will set to future requirement.
         if not getAccuracy:
             testingDataSetSize = sizeOfTrainingDataSet
-            logger.log("Testing data set updated with new value. It's " + str(testingDataSetSize))
+            logger.log(logOnTelegram, "Testing data set updated with new value. It's " + str(testingDataSetSize))
 
         # Remove seasonal difference.
         def findSeasonalDifference(dataset, interval=1):
-            logger.log("Removing seasonal difference")
+            logger.log(logOnTelegram, "Removing seasonal difference")
 
             # Initialize list as difference.
             listOfDifference = list()
@@ -89,7 +90,7 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
             # Suitable seasonal order for the rainfall and temperature.
             ARIMAModel = ARIMA(seasonalDifferenceArray, order=(7, 0, 1))
 
-            logger.log("ARIMA model set. Order of arima model is 7,0,1 and period is 365")
+            logger.log(logOnTelegram, "ARIMA model set. Order of arima model is 7,0,1 and period is 365")
 
         elif modelType == 2:
             periodOfTime = 48
@@ -98,19 +99,20 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
             # Suitable seasonal order for the plant price prediction.
             ARIMAModel = ARIMA(seasonalDifferenceArray, order=(2, 0, 0))
 
-            logger.log("ARIMA model set. Order of arima model is 2,0,0 and period is 48. Weekly data sets")
+            logger.log(logOnTelegram,
+                       "ARIMA model set. Order of arima model is 2,0,0 and period is 48. Weekly data sets")
 
         # Training model.
-        logger.log("Training model")
+        logger.log(logOnTelegram, "Training model")
         fittedModel = ARIMAModel.fit(disp=0)
-        logger.log("Model fitted successfully")
+        logger.log(logOnTelegram, "Model fitted successfully")
 
         # Log summery details.
-        logger.log(fittedModel.summary())
+        logger.log(logOnTelegram, fittedModel.summary())
 
         # Future forecast value.
         forecast = fittedModel.forecast(steps=testingDataSetSize)[0]
-        logger.log("Future values forecasted")
+        logger.log(logOnTelegram, "Future values forecasted")
 
         # Reshape history array.
         history = [x for x in trainingDatasetValues]
@@ -131,7 +133,7 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
 
         # Get values from the validation data.
         validationDataSet = validationDataSet.values
-        logger.log("Validation values separated")
+        logger.log(logOnTelegram, "Validation values separated")
 
         # Check for the user requirement whether accuracy or forecast details.
         if getAccuracy:
@@ -142,19 +144,19 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
                 meanSquaredError = mean_squared_error(validationDataSet, forecastResult, squared=False)
 
                 # Log and return accuracy.
-                logger.log("Mean squared error for precipitation is " + str(meanSquaredError))
+                logger.log(logOnTelegram, "Mean squared error for precipitation is " + str(meanSquaredError))
                 return str(meanSquaredError)
             else:
                 # Calculate accuracy with predicted and testing data.
                 accuracy = AccuracyCalculator.calculate(validationDataSet, forecastResult)
 
                 # Log and return accuracy.
-                logger.log("Accuracy Percentage : " + str(accuracy))
+                logger.log(logOnTelegram, "Accuracy Percentage : " + str(accuracy))
                 return str(accuracy)
         else:
             # Return json array after calculation.
             jsonArray = AccuracyCalculator.jsonConverter(forecastResult)
-            logger.log("JSON Array is : " + str(jsonArray))
+            logger.log(logOnTelegram, "JSON Array is : " + str(jsonArray))
             return str(jsonArray)
 
     except Exception:
@@ -162,9 +164,8 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
         exc_type, exc_obj, exc_tb = sys.exc_info()
         exceptionDetails = str(exc_type) + " error occurred in '" + str(
             exc_tb.tb_frame.f_code.co_filename) + "' Line : " + str(exc_tb.tb_lineno)
-        logger.log(exceptionDetails, "ERROR")
+        logger.log(logOnTelegram, exceptionDetails, "ERROR")
         return "Error occurred in the source code"
-
 
 # Model Training callers with out Api
 

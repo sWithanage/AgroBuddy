@@ -28,13 +28,13 @@ import numpy
 # This method can provide accuracy percentages and forecast values.
 # -------------------------------------------------------------------------
 def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSet=2, getAccuracy=True,
-            futureRequirement=90):
+            futureRequirement=90, logOnTelegram=True):
     try:
         # Printing request of user.
         if getAccuracy:
-            logger.log("Client requested for " + predictionName + " accuracy")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " accuracy")
         else:
-            logger.log("Client requested for " + predictionName + " forecast")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " forecast")
 
         # -------------------------------------------------------------------------
         # frame a sequence as a supervised learning problem.
@@ -56,7 +56,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             # Replace NAN with 0.
             tempDataFrame.fillna(0, inplace=True)
 
-            logger.log("Data structure updated to supervised leaning")
+            logger.log(logOnTelegram, "Data structure updated to supervised leaning")
 
             # Return converted value.
             return tempDataFrame
@@ -65,7 +65,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         # Get rid of seasonal difference by get the difference between data points.
         # -------------------------------------------------------------------------
         def findSeasonalDifference(dataset, interval=1):
-            logger.log("Requested for seasonal difference")
+            logger.log(logOnTelegram, "Requested for seasonal difference")
 
             # Initializing the temporary list to hold values.
             temporarySeasonalDifferenceList = list()
@@ -102,7 +102,8 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             currentScaleConfig = currentScaleConfig.fit(trainingDataToScale)
 
             # Reshape the training data array.
-            trainingDataToScale = trainingDataToScale.reshape(trainingDataToScale.shape[0], trainingDataToScale.shape[1])
+            trainingDataToScale = trainingDataToScale.reshape(trainingDataToScale.shape[0],
+                                                              trainingDataToScale.shape[1])
 
             # Transform training data according to the scale value.
             scaledTrainingValues = currentScaleConfig.transform(trainingDataToScale)
@@ -132,8 +133,6 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
 
             # Inverting values in to true form.
             inverted = currentScaleConfig.inverse_transform(array)
-
-            logger.log("Data set scaled successfully")
 
             # Return inverted value only.
             return inverted[0, -1]
@@ -171,7 +170,8 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             # Iterate for total number of epochs.
             for epochCount in range(numberOfEpochs):
                 # Showing progress bar for epochs.
-                logger.progressBar((epochCount + 1), numberOfEpochs, "Model Training | " + str(numberOfEpochs) + " Epochs ")
+                logger.progressBar((epochCount + 1), numberOfEpochs,
+                                   "Model Training | " + str(numberOfEpochs) + " Epochs ")
 
                 # Fit the model with data set.
                 LSTMModel.fit(inputsValues, outputValues, epochs=1, batch_size=batchSize, verbose=0, shuffle=False)
@@ -182,7 +182,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             # Spare a line after progress bar.
             print("")
 
-            logger.log("Model fitted successfully")
+            logger.log(logOnTelegram, "Model fitted successfully")
 
             # Return created model.
             return LSTMModel
@@ -220,14 +220,14 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
 
         # Load data from the csv and delete the file from that path.
         path = FileDownloader.getFileData(datasetType, True)
-        logger.log("Data set file downloaded successfully")
+        logger.log(logOnTelegram, "Data set file downloaded successfully")
 
         # Read downloaded csv and add into the data series.
         series = read_csv(path, header=0, parse_dates=[0], index_col=0, squeeze=True, date_parser=parseDate)
 
         # Remove downloaded file after reading.
         os.remove(path)
-        logger.log("Data set file deleted successfully")
+        logger.log(logOnTelegram, "Data set file deleted successfully")
 
         # Transform data to be stationary.
         dataInRawFormat = series.values
@@ -242,7 +242,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         supervisedLearningDataValue = supervisedLearningDataSet.values
 
         # Split data point in required ratio.
-        logger.log("Finding splitting point")
+        logger.log(logOnTelegram, "Finding splitting point")
         if defaultRatio:
             # Split into 80% to 20% ratio.
             splittingPoint = int(len(series) - (len(series) * 0.2))
@@ -251,9 +251,10 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             splittingPoint = len(series) - sizeOfTrainingDataSet
 
         # Split data into train and test-sets.
-        rawTrainingDataSet, rawTestingDataSet = supervisedLearningDataValue[0:splittingPoint], supervisedLearningDataValue[
-                                                                                               splittingPoint:]
-        logger.log("Data splitting successful")
+        rawTrainingDataSet, rawTestingDataSet = supervisedLearningDataValue[
+                                                0:splittingPoint], supervisedLearningDataValue[
+                                                                   splittingPoint:]
+        logger.log(logOnTelegram, "Data splitting successful")
 
         # Transform data into proper scale.
         scaleConfig, trainingDataSet, testingDataSet = scaleDataSets(rawTrainingDataSet, rawTestingDataSet)
@@ -266,11 +267,11 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
 
         # Predict using reshaped past data set. Model will train with this.
         fittedModel.predict(reshapedTrainingData, batch_size=1)
-        logger.log("Predict method successful")
+        logger.log(logOnTelegram, "Predict method successful")
 
         # Checking whether user required accuracy or forecast details.
         if getAccuracy:
-            logger.log("Get accuracy percentages")
+            logger.log(logOnTelegram, "Get accuracy percentages")
 
             # List to hold predicted data temporarily.
             predictions = list()
@@ -309,17 +310,17 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                 errorPercentage = str(mean_squared_error(dataInRawFormat[splittingPoint + 1:], predictions))
 
                 # Return mean squared error and log.
-                logger.log("Mean squared error is " + errorPercentage)
+                logger.log(logOnTelegram, "Mean squared error is " + errorPercentage)
                 return errorPercentage
             else:
 
                 accuracy = str(AccuracyCalculator.calculate(expectations, predictions, "rnn"))
 
-                logger.log("Accuracy is " + accuracy)
+                logger.log(logOnTelegram, "Accuracy is " + accuracy)
                 return accuracy
 
         else:
-            logger.log("Forecasting future steps")
+            logger.log(logOnTelegram, "Forecasting future steps")
 
             # Initializing variable.
             lastPredictedValueInBinary = 0
@@ -331,7 +332,8 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                 # Make one-step forecast.
                 if countInForecast < len(testingDataSet):
                     # Get the last value of the array.
-                    xInputValues, yInputValues = testingDataSet[countInForecast, 0:-1], testingDataSet[countInForecast, -1]
+                    xInputValues, yInputValues = testingDataSet[countInForecast, 0:-1], testingDataSet[
+                        countInForecast, -1]
                 else:
                     # Get the last value of the array.
                     xInputValues = lastPredictedValueInBinary
@@ -357,7 +359,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             # Generate json array with future forecasted values.
             jsonForecastedArray = str(AccuracyCalculator.jsonConverter(futureForecastArray, "rnn"))
 
-            logger.log("Predicted forecast " + jsonForecastedArray)
+            logger.log(logOnTelegram, "Predicted forecast " + jsonForecastedArray)
 
             # Return json array.
             return jsonForecastedArray
@@ -367,15 +369,14 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         exc_type, exc_obj, exc_tb = sys.exc_info()
         exceptionDetails = str(exc_type) + " error occurred in '" + str(
             exc_tb.tb_frame.f_code.co_filename) + "' Line : " + str(exc_tb.tb_lineno)
-        logger.log(exceptionDetails, "ERROR")
+        logger.log(logOnTelegram, exceptionDetails, "ERROR")
         return "Error occurred in the source code"
-
 
 # Model Training callers with out Api
 
 # --------------------------------------------------- Accuracy ---------------------------------------------------
 # predict("Temperature", "temp", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
-# predict("Precipitation", "precipitation", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
+predict("Precipitation", "precipitation", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
 # predict("RNNAshPlantain", "AshPlantain", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
 # predict("RNNBrinjal", "Brinjal", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
 # predict("RNNCucumber", "Cucumber", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)

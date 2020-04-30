@@ -13,9 +13,9 @@ from Models.Components import CustomLogger as logger
 # -------------------------------------------------------------------------
 # Download csv file from the server.
 # -------------------------------------------------------------------------
-def getFileData(datasetType, filePathOnly=False):
+def getFileData(datasetType, filePathOnly=False, logOnTelegram=True):
     downloadingFilePath = "https://agrobuddy.tk/getData?type=" + datasetType
-    logger.log("Downloading data set file from : " + str(downloadingFilePath))
+    logger.log(logOnTelegram, "Downloading data set file from : " + str(downloadingFilePath))
 
     # Download relevant dataset from the server.
     downloadedFilePath = tf.keras.utils.get_file(

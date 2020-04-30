@@ -15,9 +15,9 @@ importedPredictionValue, importedTrueFutureValue, predictionValue = 0, 0, 0
 # -------------------------------------------------------------------------
 # Calculate accuracy with several type of arrays.
 # -------------------------------------------------------------------------
-def calculate(true_future, prediction, arrayType="normal"):
+def calculate(true_future, prediction, arrayType="normal", logOnTelegram=True):
     global importedPredictionValue, importedTrueFutureValue
-    logger.log("Accuracy calculating")
+    logger.log(logOnTelegram, "Accuracy calculating")
     sizeOfDatasetToRetrieve = min(len(true_future), len(prediction))
     accuracyArray = []
     trueArray = []
@@ -41,11 +41,7 @@ def calculate(true_future, prediction, arrayType="normal"):
             importedTrueFutureValue = float(true_future[iterationIndex][0])
 
         # Get difference of the prediction and the actual value.
-        difference = importedPredictionValue - importedTrueFutureValue
-
-        # Get positive difference number.
-        if difference < 0:
-            difference = difference * -1
+        difference = abs(importedPredictionValue - importedTrueFutureValue)
 
         # Calculate accuracy.
         accuracy = 100 - ((difference / importedTrueFutureValue) * 100)

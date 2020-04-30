@@ -15,13 +15,14 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 # -------------------------------------------------------------------------
 # This method can provide accuracy percentages and forecast values.
 # -------------------------------------------------------------------------
-def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True):
+def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True,
+            logOnTelegram=True):
     try:
         # Printing request of user.
         if getAccuracy:
-            logger.log("Client requested for " + predictionName + " accuracy.")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " accuracy.")
         else:
-            logger.log("Client requested for " + predictionName + " forecast.")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " forecast.")
 
         # Import relevant file from the server.
         series = FileDownloader.getFileData(datasetType)
@@ -30,7 +31,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         importedDataValues = series.values
 
         # Set splitting point of the dataset.
-        logger.log("Finding splitting point")
+        logger.log(logOnTelegram, "Finding splitting point")
         if defaultRatio:
             split_point = int(len(series) - (len(series) * 0.2))
         elif not getAccuracy:
@@ -40,7 +41,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
 
         # Splitting data set according to the splitting point.
         trainingDataSet, validationDataSet = importedDataValues[1:split_point], importedDataValues[split_point:]
-        logger.log("Data splitting successful")
+        logger.log(logOnTelegram, "Data splitting successful")
 
         # Set length into variables.
         trainingDataSetSize = len(trainingDataSet)
@@ -49,29 +50,30 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         trainingDataSetSizeString = 'Training Data Set Size : ' + str(trainingDataSetSize)
         testingDataSetSizeString = 'Testing  Data Set Size : ' + str(testingDataSetSize)
 
-        logger.log(trainingDataSetSizeString)
-        logger.log(testingDataSetSizeString)
+        logger.log(logOnTelegram, trainingDataSetSizeString)
+        logger.log(logOnTelegram, testingDataSetSizeString)
 
         # If user required for forecast, testing data size will set to future requirement.
         if not getAccuracy:
             testingDataSetSize = sizeOfTrainingDataSet
-            logger.log("Testing data set is updated with new value. New value is " + str(testingDataSetSize))
+            logger.log(logOnTelegram,
+                       "Testing data set is updated with new value. New value is " + str(testingDataSetSize))
 
         # Initializing model with SARIMAX.
         model = SARIMAX(trainingDataSet)
-        logger.log("Model initialized successfully")
+        logger.log(logOnTelegram, "Model initialized successfully")
 
         # Training model.
         fittedModel = model.fit()
-        logger.log("Model fitted successfully")
+        logger.log(logOnTelegram, "Model fitted successfully")
 
         # Log summery details.
-        logger.log(fittedModel.summary())
+        logger.log(logOnTelegram, fittedModel.summary())
 
         # Future forecast value.
         forecast = fittedModel.predict(start=trainingDataSetSize, end=trainingDataSetSize + testingDataSetSize - 1,
                                        dynamic=True)
-        logger.log("Model predicting successful")
+        logger.log(logOnTelegram, "Model predicting successful")
 
         # Check for the user requirement whether accuracy or forecast details.
         if getAccuracy:
@@ -83,19 +85,19 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                 meanSquaredError = mean_squared_error(validationDataSet, forecast, squared=False)
 
                 # Log and return accuracy.
-                logger.log("Mean squared error is " + str(meanSquaredError))
+                logger.log(logOnTelegram, "Mean squared error is " + str(meanSquaredError))
                 return str(meanSquaredError)
             else:
                 # Calculate mean squared error value.
                 accuracy = AccuracyCalculator.calculate(validationDataSet, forecast, "sarima")
 
                 # Log and return accuracy.
-                logger.log("Accuracy Percentage : " + str(accuracy))
+                logger.log(logOnTelegram, "Accuracy Percentage : " + str(accuracy))
                 return str(accuracy)
         else:
             # Return json array after calculation.
             jsonArray = AccuracyCalculator.jsonConverter(forecast, "sarima")
-            logger.log("JSON Array is : " + str(jsonArray))
+            logger.log(logOnTelegram, "JSON Array is : " + str(jsonArray))
             return str(jsonArray)
 
     except Exception:
@@ -103,9 +105,8 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         exc_type, exc_obj, exc_tb = sys.exc_info()
         exceptionDetails = str(exc_type) + " error occurred in '" + str(
             exc_tb.tb_frame.f_code.co_filename) + "' Line : " + str(exc_tb.tb_lineno)
-        logger.log(exceptionDetails, "ERROR")
+        logger.log(logOnTelegram, exceptionDetails, "ERROR")
         return "Error occurred in the source code"
-
 
 # Model Training callers with out Api
 

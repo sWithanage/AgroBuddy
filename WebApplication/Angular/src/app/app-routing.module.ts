@@ -242,6 +242,6 @@ export const Approutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/authentication/404'
+    redirectTo: 'home'
   }
 ];

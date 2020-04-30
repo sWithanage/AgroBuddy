@@ -24,12 +24,13 @@ customLogFilePath = os.path.join(baseDirectoryPath, "../../Log/Log.txt")
 # -------------------------------------------------------------------------
 # Print log message with proper format.
 # -------------------------------------------------------------------------
-def log(message, logErrorType="info"):
+def log(logOnTelegram, message, logErrorType="info"):
     logFile = open(customLogFilePath, "a")
     customMessageLine = "\n[", logErrorType, "] ", str(dateAndTime), " | ", str(message), "."
     customMessageForTelegram = "[" + str(logErrorType) + "] " + str(dateAndTime) + " | " + str(message) + "."
     logFile.writelines(customMessageLine)
-    messageToTelegram(customMessageForTelegram)
+    if logOnTelegram:
+        messageToTelegram(customMessageForTelegram)
     logFile.close()
 
 

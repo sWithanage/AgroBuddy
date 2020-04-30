@@ -11,27 +11,28 @@ from sklearn.metrics import mean_squared_error
 from Models.Components import AccuracyCalculator
 from Models.Components import CustomLogger as logger
 
-validationDatasetSize = 0
+testingDataSetSize = 0
 
 
 # -------------------------------------------------------------------------
 # This method can provide accuracy percentages and forecast values.
 # -------------------------------------------------------------------------
-def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSet=7, getAccuracy=True):
-    global validationDatasetSize
+def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSet=7, getAccuracy=True,
+            logOnTelegram=True):
+    global testingDataSetSize
     try:
         # Printing request of user.
         if getAccuracy:
-            logger.log("Client requested for " + predictionName + " accuracy")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " accuracy")
         else:
-            logger.log("Client requested for " + predictionName + " forecast")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " forecast")
 
         # Import relevant file from the server.
         series = FileDownloader.getFileData(datasetType)
-        logger.log("Dataset retrieved successfully")
+        logger.log(logOnTelegram, "Dataset retrieved successfully")
 
         # Set splitting point of the dataset.
-        logger.log("Finding splitting point")
+        logger.log(logOnTelegram, "Finding splitting point")
         if defaultRatio:
             split_point = int(len(series) - (len(series) * 0.2))
         elif not getAccuracy:
@@ -41,7 +42,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
 
         # Splitting data set according to the splitting point.
         trainingDataSet, validationDataSet = series[0:split_point], series[split_point:]
-        logger.log("Data Splitting successful")
+        logger.log(logOnTelegram, "Data Splitting successful")
 
         # Set length into variables.
         trainingDataSetSize = len(trainingDataSet)
@@ -50,13 +51,14 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         trainingDataSetSizeString = 'Training Data Set Size : ' + str(trainingDataSetSize)
         testingDataSetSizeString = 'Testing  Data Set Size : ' + str(testingDataSetSize)
 
-        logger.log(trainingDataSetSizeString)
-        logger.log(testingDataSetSizeString)
+        logger.log(logOnTelegram, trainingDataSetSizeString)
+        logger.log(logOnTelegram, testingDataSetSizeString)
 
         # If user required for forecast, testing data size will set to future requirement.
         if not getAccuracy:
-            validationDatasetSize = sizeOfTrainingDataSet
-            logger.log("Testing data set is updated with new value. New value is " + str(testingDataSetSize))
+            testingDataSetSize = sizeOfTrainingDataSet
+            logger.log(logOnTelegram,
+                       "Testing data set is updated with new value. New value is " + str(testingDataSetSize))
 
         # Seasonal - fit stepwise auto-ARIMA
         bestFitSarimaModel = pm.auto_arima(trainingDataSet,  # Providing data set to the model.
@@ -75,14 +77,14 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                                            suppress_warnings=True,  # Warning might be
                                            stepwise=True  # This will help to find the optimum model properly.
                                            )
-        logger.log("Seasonal auto arima model initialized")
+        logger.log(logOnTelegram, "Seasonal auto arima model initialized")
 
         # Log model summery details.
-        logger.log(bestFitSarimaModel.summary())
+        logger.log(logOnTelegram, bestFitSarimaModel.summary())
 
         # Forecast
         forecastResult = bestFitSarimaModel.predict(
-            n_periods=validationDatasetSize)  # Number of predicting days for future.
+            n_periods=testingDataSetSize)  # Number of predicting days for future.
 
         # Log summery details.
         validationData = validationDataSet.values
@@ -97,28 +99,27 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                 meanSquaredError = mean_squared_error(validationData, forecastResult, squared=False)
 
                 # Log and return accuracy.
-                logger.log("Mean squared error : " + str(meanSquaredError))
+                logger.log(logOnTelegram, "Mean squared error : " + str(meanSquaredError))
                 return str(meanSquaredError)
             else:
                 # Calculate accuracy with predicted and testing data.
                 accuracy = AccuracyCalculator.calculate(validationData, forecastResult, arrayType="sarima")
 
                 # Log and return accuracy.
-                logger.log("Accuracy Percentage : " + str(accuracy))
+                logger.log(logOnTelegram, "Accuracy Percentage : " + str(accuracy))
                 return str(accuracy)
         else:
             # Return json array after calculation.
             jsonArray = AccuracyCalculator.jsonConverter(forecastResult, arrayType="sarima")
-            logger.log("JSON Array is : " + str(jsonArray))
+            logger.log(logOnTelegram, "JSON Array is : " + str(jsonArray))
             return str(jsonArray)
     except Exception:
         # Display proper error message with error and error line.
         exc_type, exc_obj, exc_tb = sys.exc_info()
         exceptionDetails = str(exc_type) + " error occurred in '" + str(
             exc_tb.tb_frame.f_code.co_filename) + "' Line : " + str(exc_tb.tb_lineno)
-        logger.log(exceptionDetails, "ERROR")
+        logger.log(logOnTelegram, exceptionDetails, "ERROR")
         return "Error occurred in the source code"
-
 
 # Model Training callers with out Api
 
