@@ -2,20 +2,20 @@
   <div class="card">
     <ngb-carousel>
       <ng-template ngbSlide>
-        <img src="assets/images/c_field.jpg" alt="Card image cap" style="max-height: 450px">
+        <img src="assets/images/image3.jpg" alt="Card image cap" style="width:100%; height: 550px">
         <div class="carousel-caption">
           <h3 class="text-white font-bold">AgroBuddy</h3>
           <p>Predict the best crop using ........</p>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <img src="assets/images/c_weather.jpg" alt="Card image cap" style="max-height: 450px">
+        <img src="assets/images/image1.jpg" alt="Card image cap" style="width:100%; height: 550px">
         <div class="carousel-caption">
           <h3 class="text-white font-bold">Weather</h3>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <img src="assets/images/c_market.jpg" alt="Card image cap" style="max-height: 450px">
+        <img src="assets/images/image2.jpg" alt="Card image cap" style="width:100%; height: 550px">
         <div class="carousel-caption">
           <h3 class="text-white font-bold">Market Price</h3>
         </div>
@@ -33,7 +33,7 @@
       <div class="card" >
         <div class="card-body">
           <div [style.display]="plantDetails ? 'block' : 'none'">
-          <h3>Best Plant is </h3>
+            <h3>Best Plant is </h3>
             <h1 style="text-align: center; color:lawngreen;" >{{bestPlant}}</h1>
           </div>
           <img [style.display]="loaderGif ? 'block' : 'none'" src="assets/images/plantFinder.gif">
@@ -41,10 +41,10 @@
             <div class="form-group">
               <label>Location</label>
               <select class="form-control" [(ngModel)]="location" placeholder="Location" required=" " name="location">
-                  <option value="Monaragala" selected="selected">Monaragala</option>
-                  <option disabled>Kandy</option>
-                  <option disabled>Jaffna</option>
-                  <option disabled>Jaffna</option>
+                <option value="Monaragala" selected="selected">Monaragala</option>
+                <option disabled>Kandy</option>
+                <option disabled>Jaffna</option>
+                <option disabled>Jaffna</option>
               </select>
               <div *ngIf="true"><span>Location is required</span></div>
             </div>
@@ -86,8 +86,8 @@
                   <table class="table">
                     <tbody>
                     <tr>
-                    <td>Total points Ash Plantain received</td>
-                    <td> {{ashPlantainPoints}} %</td>
+                      <td>Total points Ash Plantain received</td>
+                      <td> {{ashPlantainPoints}} %</td>
                     </tr>
                     <tr>
                       <td>Total points Brinjals received</td>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ClientServiceService} from '../../client-service.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-cultivated-area',
@@ -8,34 +9,59 @@ import {ClientServiceService} from '../../client-service.service';
 })
 export class CultivatedAreaComponent implements OnInit {
 
-  plantName = [];
-  area = [];
-  constructor(private service: ClientServiceService) { }
+  plantName1 = [];
+  plantName2 = [];
+  area1 = [];
+  area2 = [];
+  userId;
+  constructor(private service: ClientServiceService, private cookie: CookieService) { }
 
-  public pieChartLabels: string[];  // array to store the labels for pie chart
-  public pieChartData = [];    // array to store data for pie chart
+  public pieChartLabels1: string[];  // array to store the labels for pie chart
+  public pieChartData1 = [];    // array to store data for pie chart
   public pieChartType = 'pie';
-
+  public pieChartLabels2: string[];  // array to store the labels for pie chart
+  public pieChartData2 = [];
   ngOnInit() {
     this.service.getArea().subscribe(   // get cultivated area
       data => {
         // tslint:disable-next-line:forin
         for (const x of data) {
-          this.plantName.push(x.plant_name);
-          this.area.push(x.cultivatedArea);
+          this.plantName1.push(x.plant_name);
+          this.area1.push(x.cultivatedArea);
         }
 
         let sum = 0;
-        for ( let i = 0; i < this.area.length; i++ ) {
-          sum += parseInt( this.area[i], 10 );
+        for (let i = 0; i < this.area1.length; i++) {
+          sum += parseInt(this.area1[i], 10);
         }
         const possibilities = [];
-        for (const x of this.area) {
+        for (const x of this.area1) {
           possibilities.push(Math.round((x / sum) * 100));
         }
 
-        this.pieChartData = possibilities;          // assign values
+        this.pieChartData1 = possibilities;          // assign values
+        // this.pieChartLabels = this.plantName;   // assign values
       });
-    this.pieChartLabels = this.plantName;   // assign values
+    this.pieChartLabels1 = this.plantName1;
+
+    this.userId = this.cookie.get('user_Id');
+    this.service.clientArea(this.userId).subscribe( // get cultivated area details on given user id
+      data => {
+        // tslint:disable-next-line:forin
+        for (const x of data) {
+          this.plantName2.push(x.plant_name);
+          this.area2.push(x.cultivatedArea);
+        }
+        let sum = 0;
+        for (let i = 0; i < this.area2.length; i++) {
+          sum += parseInt(this.area2[i], 10);
+        }
+        const possibilities = [];
+        for (const x of this.area2) {
+          possibilities.push(Math.round((x / sum) * 100));
+        }
+        this.pieChartData2 = possibilities;          // assign values
+      });
+    this.pieChartLabels2 = this.plantName2;   // assign values
   }
 }
