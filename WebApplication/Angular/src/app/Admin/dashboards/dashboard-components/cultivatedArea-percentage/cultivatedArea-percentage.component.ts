@@ -4,10 +4,10 @@ import {AdminServiceService} from '../../../../admin-service.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-mix-stats',
-  templateUrl: './mix-stats.component.html'
+  selector: 'app-cultivatedArea-percentage',
+  templateUrl: './cultivatedArea-percentage.component.html'
 })
-export class MixstatsComponent implements OnInit {
+export class CultivatedAreaPercentageComponent implements OnInit {
   crop_name: any;
   brinjalPercentage: any;
   ladiesfingersPercentage: any;

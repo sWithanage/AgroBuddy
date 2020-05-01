@@ -27,6 +27,7 @@ export class AllPlantsComponent {
   // tslint:disable-next-line:use-lifecycle-interface
   fertilizer: string;
 
+  /*------------------------------------get all crop details-----------------------------*/
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
     this.connectionService.getAllPlants().subscribe(
@@ -34,15 +35,20 @@ export class AllPlantsComponent {
         this.plantDetails = data;
       });
   }
+
+  /*----------------------------------Add new plant form----------------------------------*/
   addDetails() {
     this.part1 = false;
     this.part2 = true;
   }
+
+  /*----------------get Add plant Form values and send them to service class---------------*/
   submitAddDetails(value: any) {
     this.connectionService.addPlant(value).subscribe(
       data => this.addedSuccessfully(data), error => alert('There is a error in login. please try again later.'));
   }
 
+  /*-------------------reload page after add plant to database successfully-----------------*/
   addedSuccessfully(data) {
     // tslint:disable-next-line:triple-equals
     if (data == true) {

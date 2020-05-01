@@ -9,11 +9,11 @@ import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
-  selector: 'app-visitors',
-  templateUrl: './visitors.component.html',
-  styleUrls: ['./visitors.component.scss']
+  selector: 'app-model-accuracy',
+  templateUrl: './model-accuracy.component.html',
+  styleUrls: ['./model-accuracy.component.scss']
 })
-export class VisitorsComponent implements OnInit {
+export class ModelAccuracyComponent implements OnInit {
   model: any[];
   // options
   showXAxis = true;

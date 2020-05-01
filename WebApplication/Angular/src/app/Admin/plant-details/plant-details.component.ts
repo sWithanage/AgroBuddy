@@ -47,11 +47,12 @@ export class PlantDetailsComponent implements OnInit {
   diseaseSymptoms: any;
   constructor(private connectionService: AdminServiceService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
+    /*------------------ get all crops' details---------------------*/
     this.connectionService.getCropDetails().subscribe(
       data => {
         this.crop = data;
       });
-
+    /*-------- get crop id and crop name from previous page----------*/
     this.route.queryParams
       .filter(params => params.plant)
       .subscribe(params => {
@@ -60,6 +61,7 @@ export class PlantDetailsComponent implements OnInit {
         this.crop_id = params.plant;
       });
 
+    /*--------- get crop details according to selected crop's crop name-------------*/
     this.connectionService.getPlantDetails(this.plantName).subscribe(
       data => {
         // tslint:disable-next-line:triple-equals
@@ -84,6 +86,8 @@ export class PlantDetailsComponent implements OnInit {
           this.fertilizers = 'No record';
         }
       });
+
+    /*------ get diseases's details according to selected crop's crop ID----------*/
     this.connectionService.getDiseaseDetails(this.crop_id).subscribe(
       data => {
         this.diseases = data;
@@ -99,7 +103,7 @@ export class PlantDetailsComponent implements OnInit {
       });
   }
 
-
+  /*------------------ view Update plant details form ---------------------*/
   updateDetails(cropId: any) {
     this.crop_id = cropId;
     this.part1 = false;
@@ -108,6 +112,7 @@ export class PlantDetailsComponent implements OnInit {
     this.part4 = false;
     this.updatePlantDetailsToForm();
   }
+  /*--------- assign actual values about selected crop to from variables ---------*/
   updatePlantDetailsToForm() {
     this.connectionService.getPlantListById(this.crop_id).subscribe(
       data => {
@@ -123,24 +128,26 @@ export class PlantDetailsComponent implements OnInit {
         this.fertilizers = data[0].fertilizers;
       });
   }
+  /*--------get updated crop details from from and send it to service class --------*/
   submitUpdates(value: any) {
     this.connectionService.updatePlant( value).subscribe(
       data => this.refreshPage()
     );
   }
 
+  /*--------delete crop details using cropID --------*/
   deleteDetails(cropId: string) {
     this.connectionService.deletePlant(cropId).subscribe(
       data => this.refreshPage()
     );
   }
-
+  /*--------get updated crop details from from and send it to service class --------*/
   deleteDiseaseRow(disease_id: any) {
     this.connectionService.deleteDiseaseDetails(disease_id).subscribe(
       data => this.refreshPage()
     );
   }
-
+  /*--------get updated disease details from from and send it to service class --------*/
   updateDisease(disease_id: any) {
     this.disease_id = disease_id;
     this.part1 = false;
@@ -149,6 +156,8 @@ export class PlantDetailsComponent implements OnInit {
     this.part4 = false;
     this.updateDiseaseDetailsToForm(disease_id);
   }
+
+  /*----------------view update disease page --------------------*/
   updateDiseaseDetailsToForm(diseaseId) {
     this.connectionService.getDiseaseListById(diseaseId).subscribe(
       data => {
@@ -160,29 +169,32 @@ export class PlantDetailsComponent implements OnInit {
         this.disease_symptoms = data[0].disease_symptoms;
       });
   }
+  /*--------get updated crop details from from and send it to service class to update--------*/
   submitDiseaseUpdates( values: any, disease_id: number) {
       this.connectionService.updateDiseaseAll(values, disease_id).subscribe(
         data => this.refreshPage()
       );
   }
-
+  /*-----------------------view add disease page -------------------------*/
   addDiseaseDetails() {
     this.part1 = false;
     this.part2 = false;
     this.part3 = false;
     this.part4 = true;
   }
-
+  /*--------get updated disease details from from and send it to service class to update --------*/
   submitDiseaseDetails(value: any) {
     this.connectionService.addDisease(value).subscribe(
       data => this.addedSuccessfully(data), error => alert('There is a error in login. please try again later.'
       ));
   }
 
+  /*--------refresh page after submite forms successfully --------*/
   refreshPage() {
     window.location.reload();
   }
 
+  /*--------refresh page after add data successfully --------*/
   addedSuccessfully(data) {
     // tslint:disable-next-line:triple-equals
     if (data == true) {

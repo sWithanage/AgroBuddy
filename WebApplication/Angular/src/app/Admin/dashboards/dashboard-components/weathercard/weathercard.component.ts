@@ -18,7 +18,7 @@ export class WeathercardComponent implements OnInit {
     //using the service instance and fetching the weather data
     this._weatherService.getCurrentWeather()
       .subscribe(data => this.currentWeather = data);   //assigns the data recieved from the observable into local currentweathr property
-  
+
     // tslint:disable-next-line:comment-format
     //this.connectionService.getWeatherData().subscribe(
      // data => {

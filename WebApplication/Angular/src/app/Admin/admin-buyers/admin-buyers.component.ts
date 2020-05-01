@@ -18,7 +18,7 @@ export class AdminBuyersComponent implements OnInit {
   part2 = false;
   part3 = false;
   constructor(private connectionService: AdminServiceService) {}
-
+  /*---------------------------------get all buyers ----------------------------------*/
   ngOnInit() {
     this.connectionService.getBuyersList().subscribe(
       data => {
@@ -26,6 +26,7 @@ export class AdminBuyersComponent implements OnInit {
       });
   }
 
+  /*------------------------view buyer update form of selected user-----------------------*/
   updateBuyer(buyerId: any) {
     this.buyerId = buyerId;
     this.part1 = false;
@@ -34,6 +35,7 @@ export class AdminBuyersComponent implements OnInit {
     this.buyersDetailsToForm();
   }
 
+  /*---------------------------assign actual buyer details to form-----------------------*/
   buyersDetailsToForm() {
     this.connectionService.getBuyerListById(this.buyerId).subscribe(
       data => {
@@ -43,21 +45,29 @@ export class AdminBuyersComponent implements OnInit {
         this.buyerContactNumber = data[0].buyerContactNumber;
       });
   }
+
+  /*----------------------------------------delete buyer----------------------------------*/
   deletBuuyer(buyerId: any) {
     this.connectionService.deleteBuyerDetails(buyerId).subscribe(
       data => window.location.reload()
     );
   }
+
+  /*----------------get updated buyer details and send them to service class---------------*/
   submitBuyerUpdates( value: any) {
     this.connectionService.updateBuyerAll(value, this.buyerId).subscribe(
       data => window.location.reload()
     );
   }
+
+  /*---------------------------------------view add buyer form------------------------------*/
   addBuyerDetails() {
     this.part1 = false;
     this.part2 = false;
     this.part3 = true;
   }
+
+  /*-------------------get new buyer's details and send them to service class-----------------*/
   submitAddBuyerDetails(value: any) {
     this.connectionService.addBuyer(value).subscribe(
       data => window.location.reload(), error => alert('There is a error in login. please try again later.'));

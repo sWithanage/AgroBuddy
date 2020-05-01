@@ -8,11 +8,11 @@ declare var require: any;
 
 
 @Component({
-  selector: 'app-sales',
-  templateUrl: './sales.component.html',
-  styleUrls: ['./sales.component.scss']
+  selector: 'app-marketPrice-forcast',
+  templateUrl: './marketPrice-forcast.component.html',
+  styleUrls: ['./marketPrice-forcast.component.scss']
 })
-export class SalesComponent implements  OnInit {
+export class MarketPriceForcastComponent implements  OnInit {
   prices: any[];
   week = [];
   ashPlantainArray = [];

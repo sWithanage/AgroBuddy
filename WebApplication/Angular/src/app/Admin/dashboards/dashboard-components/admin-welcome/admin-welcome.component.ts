@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {ActivatedRoute} from '@angular/router';
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.component.html'
+  selector: 'app-admin-welcome',
+  templateUrl: './admin-welcome.component.html'
 })
-export class WelcomeComponent {
+export class AdminWelcomeComponent {
   date: any;
   userName: any;
 

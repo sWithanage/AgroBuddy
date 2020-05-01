@@ -30,7 +30,7 @@ export class RaifallForcastComponent implements OnInit {
   constructor(private connectionService: AdminServiceService, private _weatherService: AdminServiceService) {
   }
   public lineChartData: Array<any> = [
-    { data: this.dataSet, label: '°C' }
+    { data: this.dataSet, label: 'mm' }
   ];
   public lineChartLabels: Array<any> = this.labels;
   public lineChartOptions: any = {

@@ -27,7 +27,7 @@ export class UserManagementComponent implements OnInit {
   user_Password: string;
   userTelNo: string;
   constructor(private connectionService: AdminServiceService ) {}
-
+  /*-------- get all users' details----------*/
   ngOnInit(): void {
     this.connectionService.getUserList().subscribe(
       data => {
@@ -35,24 +35,24 @@ export class UserManagementComponent implements OnInit {
         this.statusDetails = data[0].user_Type;
       });
   }
+  /*-------- get user ID which is selected to delete and send it to service class to delete user----------*/
   deleteRow(userId: any) {
       this.connectionService.deleteUserDetails(userId).subscribe(
         data => window.location.reload()
       );
   }
-
+  /*-------- get user type and user Id which is updated and send it to service class to update user type ----------*/
   update(userIdToChange: any, userTypeToChange: any) {
     this.connectionService.updateUserType(userIdToChange, userTypeToChange).subscribe(
       data => window.location.reload()
     );
   }
-
-
   gotoPart2() {
     this.part1 = false;
     this.part2 = true;
   }
 
+  /*-------- view update user page according to userId----------*/
   updateUser(user_Id: any) {
     this.userIdToUpdate = user_Id;
     this.part1 = false;
@@ -60,6 +60,7 @@ export class UserManagementComponent implements OnInit {
     this.updateClientDetailsToForm();
   }
 
+  /*----------------assign actual user details to form-------------------*/
   updateClientDetailsToForm() {
     this.connectionService.getUserListById(this.userIdToUpdate).subscribe(
       data => {
@@ -83,7 +84,7 @@ export class UserManagementComponent implements OnInit {
       });
 
   }
-
+  /*-------------get updated user details from form and send it to service class to update---------------*/
   submitUpdates( values: any, user_Id: number) {
     this.connectionService.updateUserAll(values, user_Id).subscribe(
       data => window.location.reload()

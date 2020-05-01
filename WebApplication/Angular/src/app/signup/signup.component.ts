@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import { AuthenticationService } from '../authentication.service';
+import {Router} from '@angular/router';
 // tslint:disable-next-line:comment-format
 //import * as EmailValidator from 'email-validator';
 
@@ -11,7 +12,7 @@ import { AuthenticationService } from '../authentication.service';
 export class SignupComponent {
   Customer: any[];
 
-  constructor(private connectionService: AuthenticationService) {
+  constructor(private connectionService: AuthenticationService, private router: Router) {
 
   }
 
@@ -60,7 +61,7 @@ export class SignupComponent {
   goToPart2() {
     // tslint:disable-next-line:comment-format
     //console.log(this.name, this.lname, this.email, this.dob, this.nic, String(this.name).length, EmailValidator.validate(this.email));
-
+    /*-----if text area of return true -------*/
     if (!this.validator(this.name)) {
         this.nameEmpty = true;
     } else if (!this.validator(this.lname)) {
@@ -125,11 +126,7 @@ export class SignupComponent {
     }
   }
 
-  // sendCustomerDetails(value: any) {
-  //   this.connectionService.addcustomer(value).subscribe(data => {
-  //     this.Customer = data;
-  //   });
-  // }
+  /*-----get form values and send it to service class to submit-------*/
   onSubmit(value: any) {
     // tslint:disable-next-line:triple-equals
     if (this.telno || this.phoneno == 0) {
@@ -142,18 +139,20 @@ export class SignupComponent {
         ));
     }
   }
-
+  /*-----check weather text field is empty or not-------*/
   validator(value: any) {
     // tslint:disable-next-line:triple-equals
     if (String(value).length == 0) {
       return false;
     }
+    /*-----check weather text field is undefined or not-------*/
     // tslint:disable-next-line:triple-equals
     if (String(value) == 'undefined') {
       return false;
     }
     return true;
     }
+  /*-----check weather email address is correct or not-------*/
     emailValidator(value: any) {
       // tslint:disable-next-line:triple-equals
       if (this.email != /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i) {
@@ -161,12 +160,14 @@ export class SignupComponent {
       }
       return true;
     }
+  /*-----set password to at least 8 characters-------*/
     passwordValidator(value: any) {
       if (String(this.password).length < 8) {
         return false;
       }
       return true;
     }
+  /*-------------check weather there is 10 numbers---------------*/
     phonenoValidator(value: any) {
       // tslint:disable-next-line:triple-equals
       if (String(this.phoneno).length != 10 && String(this.telno).length != 10) {
@@ -174,9 +175,15 @@ export class SignupComponent {
       }
       return true;
     }
-
+  /*-----------check weather text field is empty or not--------*/
   onSubmitForm(value: any) {
     this.connectionService.users(value).subscribe(data => this.signupProcess(data, value), error => alert('Problem in login. Please check and try agiain..'));
+    alert('Successfully registed!');
+    this.back();
+  }
+  /*-----------navigate to login form after successfully registered--------*/
+  back() {
+    this.router.navigate(['/login']);
   }
 
   signupProcess(authenticated: boolean, value: any) {

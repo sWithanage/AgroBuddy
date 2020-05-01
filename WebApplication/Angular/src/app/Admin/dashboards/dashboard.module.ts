@@ -16,16 +16,15 @@ import { DashboardRoutes } from './dashboard.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import {
-  BrowserStatsComponent,
-  MixstatsComponent,
-  ProductInfoComponent,
-  SalesComponent,
+  CropListComponent,
+  CultivatedAreaPercentageComponent,
+  MarketPriceForcastComponent,
   UserDetailsComponent,
-  VisitorsComponent,
+  ModelAccuracyComponent,
   WeathercardComponent,
   WeatherForcastComponent,
   RaifallForcastComponent,
-  WelcomeComponent,
+  AdminWelcomeComponent,
 
 } from './dashboard-components';
 
@@ -44,16 +43,15 @@ import {
   ],
   declarations: [
     DashboardComponent,
-    BrowserStatsComponent,
-    MixstatsComponent,
-    ProductInfoComponent,
-    SalesComponent,
+    CropListComponent,
+    CultivatedAreaPercentageComponent,
+    MarketPriceForcastComponent,
     UserDetailsComponent,
-    VisitorsComponent,
+    ModelAccuracyComponent,
     WeathercardComponent,
     WeatherForcastComponent,
     RaifallForcastComponent,
-    WelcomeComponent
+    AdminWelcomeComponent
   ]
 })
 export class DashboardModule {}

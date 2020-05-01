@@ -1,5 +1,5 @@
 //Buttons
-
+/* ------------used to admin-buyer(delete,update buttons) , cultivated areas(select user button) and user management(update,delete buttons) and plant-details(update,delete buttons)---------------------*/
 .btn-circle {
     border-radius: 100%;
     width: 40px;
@@ -11,6 +11,7 @@
         padding: 8px 10px;
         font-size: 14px;
     }
+  /*---------used to login(Log In button)---------------*/
     &.btn-lg {
         width: 50px;
         height: 50px;
@@ -31,7 +32,7 @@
     padding: .25rem .5rem;
     font-size: 10px;
 }
-
+/*-----------------used for all-plants(Add plant button), user-management(Add User button) ---------------*/
 .btn-rounded {
     border-radius: 60px;
     padding: 7px 18px;
@@ -51,15 +52,15 @@
         padding: 12px 35px;
         font-size: 16px;
     }
-} 
+}
 
-
+/*---------------------used for user-management(user details-> update button),Plant Details(plant details-> update button),admin-buyer(buyer details->update button) ------------------------*/
 .btn-primary, .btn-default, .btn-warning, .btn-outline-primary:hover, .btn-outline-warning:hover{
   color: $white;
     &:hover{
         color: $white;
     }
-} 
+}
 .btn-default{
     background-color:$info;
 }
@@ -144,7 +145,7 @@
     color: $white;
     background-color: #171515;
 }
-
+/*--------- used for all buttons(alignment settings) -----------*/
 .button-group {
     .btn {
         margin-bottom: 5px;

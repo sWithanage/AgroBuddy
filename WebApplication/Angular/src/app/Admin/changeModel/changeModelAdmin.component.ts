@@ -9,6 +9,7 @@ export class ChangeModelAdminComponent {
   variables: string;
   constructor(private route: ActivatedRoute, private connectionService: AdminServiceService) {
   }
+  /*----------------initialize variables with parameter values----------------*/
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
     this.route.queryParams.subscribe(params => {

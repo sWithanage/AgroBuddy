@@ -31,11 +31,7 @@ export class PredictiveDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.connectionService.getAllModels().subscribe(
-    //   data => {
-    //     this.model = data;
-    //   });
-
+    /*-------- get variable name from previous page----------*/
     this.route.queryParams
       .filter(params => params.variables)
       .subscribe(params => {
@@ -46,7 +42,7 @@ export class PredictiveDetailsComponent implements OnInit {
           this.noteMessage = '(Mean Squared Error)';
         }
       });
-
+    /*-------- get all model details and assign----------*/
     this.connectionService.getAllModels().subscribe(
       data => {
 
@@ -69,7 +65,7 @@ export class PredictiveDetailsComponent implements OnInit {
         }
       });
   }
-
+  /*-------- get changed model name and variable name and send it to service class to update----------*/
   setModelData(variable: any, selectedOption: string) {
     this.connectionService.updateActivatedModel( variable, selectedOption).subscribe(
       data => window.location.reload());

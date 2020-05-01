@@ -6,3 +6,61 @@
     </canvas>
   </div>
 </div>
+
+<style>
+  thead, tbody { display: block; }
+
+  tbody {
+    height: 350px;
+    overflow-y: auto;
+  }
+
+</style>
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">User List</h4>
+        <h6 class="card-subtitle">Select the user, that you want to get to know about the particular user's crop cultivated area.</h6>
+        <div class="table-responsive">
+          <table id="zero_config" class="table table-striped table-bordered no-wrap">
+            <thead>
+            <tr>
+              <th>Select User</th>
+              <th>User Id</th>
+              <th>User Name</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let users of user">
+                <div class="custom-control custom-checkbox">
+                  <button type="button" class="btn btn-success btn-circle" id="remove" (click)="areaOfUser(users.user_Id)"><i class="sl-icon-pencil"></i> </button>
+                </div>
+                <td>
+                  {{users.user_Id}}
+                </td>
+                <td>
+                  {{users.user_Fname}} {{users.user_Lname}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="col-lg-6">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">User's Cultivated Area Percentage</h4>
+      <h6 class="card-subtitle">The percentage of crop cultivated areas of the user that you selected.</h6>
+      <div [style.display]="part1 ? 'block' : 'none'">
+        <canvas baseChart height="150px" [data]="chartData" [labels]="chartLabels" [chartType]="chartType" [colors]="[{backgroundColor: ['#b8e0b8', '#6b2e6b', '#c9f76e','#2dd22d', '#ec9513' ]}]">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+

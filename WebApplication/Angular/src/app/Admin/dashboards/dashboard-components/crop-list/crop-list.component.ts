@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import {AdminServiceService} from '../../../../admin-service.service';
 @Component({
-  selector: 'app-browser-stats',
-  templateUrl: './browser-stats.component.html'
+  selector: 'app-crop-list',
+  templateUrl: './crop-list.component.html'
 })
-export class BrowserStatsComponent {
+export class CropListComponent {
   plantDetails: any[];
   cropName1: string;
   cropName2: string;
