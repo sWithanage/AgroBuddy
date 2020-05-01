@@ -1,16 +1,6 @@
 /*
-Template Name: Admin Template
-Author: Wrappixel
-
-File: scss
+  * Table Cell
 */
-
-
-
-/*******************
-Table Cell
-*******************/
-
 .table-box {
     display: table;
     width: 100%;
@@ -41,9 +31,9 @@ Table Cell
     }
 }
 
-/*******************
+/*
 Table td vertical middle
-*******************/
+*/
 
 .vm.table td,
 .vm.table th {
@@ -64,9 +54,9 @@ Table td vertical middle
 
 
 
-/*******************
+/*
 Table-Jsgrid table
-******************/
+*/
 
 .jsgrid-pager-page a,
 .jsgrid-pager-current-page,

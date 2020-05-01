@@ -46,9 +46,9 @@ a.link {
   }
 }
 
-/*******************
-Blockquote
-*******************/
+/*
+ * Blockquote
+*/
 
 html body blockquote {
   border-left: 5px solid $primary;
@@ -64,9 +64,9 @@ ol li {
   margin: 5px 0;
 }
 
-/*******************
-Thumb size
-*******************/
+/*
+ * Thumb size
+*/
 
 .thumb-sm {
   height: 32px;
@@ -91,9 +91,9 @@ Thumb size
   border-radius: $border-radius;
 }
 
-/*******************
-Opacity
-*******************/
+/*
+ * Opacity
+*/
 
 .op-5 {
   opacity: 0.5;
@@ -103,9 +103,9 @@ Opacity
   opacity: 0.3;
 }
 
-/*******************
-font weight
-*******************/
+/*
+ * font weight
+*/
 
 html body {
   .font-bold {
@@ -155,9 +155,9 @@ html body {
   }
 }
 
-/*******************
-Background colors
-*******************/
+/*
+ * Background colors
+*/
 
 html body {
   .bg-megna {
@@ -180,9 +180,9 @@ html body {
   }
 }
 
-/*******************
-Rounds
-*******************/
+/*
+  * Rounds
+*/
 
 .round {
   line-height: 48px;
@@ -226,17 +226,17 @@ Rounds
   font-size: 30px;
 }
 
-/*******************
-Labels
-*******************/
+/*
+  * Labels
+*/
 
 .label-rounded {
   border-radius: 60px;
 }
 
-/*******************
- Badge
-******************/
+/*
+ * Badge
+*/
 
 .badge {
   font-weight: $font-weight-light;
@@ -279,19 +279,19 @@ ul.list-style-none {
   }
 }
 
-/*******************
-Card
-******************/
+/*
+  * Card styles
+*/
 
 .card {
   margin-bottom: 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  .card-subtitle {
+  .card-subtitle {  // style for card sub-title
     font-weight: $font-weight-light;
     margin-bottom: 10px;
     color: $text-muted;
   }
-  .card-title {
+  .card-title {  // style for card title
     position: relative;
     font-weight: $font-weight-medium;
     margin-bottom: 10px;
@@ -358,9 +358,9 @@ Card
   background: $info;
   color: $white;
 }
-/*******************
-Labels
-*******************/
+/*
+  * Labels
+*/
 
 .label {
   padding: 3px 10px;

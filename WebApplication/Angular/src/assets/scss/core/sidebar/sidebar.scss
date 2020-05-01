@@ -1,13 +1,13 @@
-// Sidebar
+// scss for Sidebar
 $sidebar-link-padding: 12px 15px;
 $sidebar-icon-size: 20px;
 $sidebar-first-level-padding: 0 0 10px 0;
 $sidebar-first-level-link-padding: 10px 15px;
 $sidebar-first-level-icon-size: 14px;
 
-/*******************
-Main sidebar
-******************/
+/*
+  * Main sidebar
+*/
 
 .left-sidebar {
   position: absolute;
@@ -18,13 +18,12 @@ Main sidebar
   z-index: 10;
   padding-top: 64px;
   background: $sidebar;
-  //box-shadow: $shadow;
   transition: 0.2s ease-in;
 }
 
-/*******************
-sidebar navigation
-******************/
+/*
+  * sidebar navigation
+*/
 .scroll-sidebar {
   height: calc(100% - 20px);
   position: relative;
@@ -56,12 +55,11 @@ sidebar navigation
         }
       }
       &.selected > .sidebar-link {
-        /*background: rgba(0, 0, 0, 0.04);*/
         opacity: 1;
       }
-      /*******************
-      First level
-      ******************/
+      /*
+        * First level
+      */
       .first-level {
         padding: $sidebar-first-level-padding;
 
@@ -77,9 +75,9 @@ sidebar navigation
         }
       }
     }
-    /*******************
-         Small cap
-         ******************/
+    /*
+      * Small cap
+    */
     .nav-small-cap {
       font-size: 12px;
       padding: $sidebar-link-padding;
@@ -98,9 +96,9 @@ sidebar navigation
     }
   }
 }
-/*******************
- common m-p removed
-******************/
+/*
+  * common m-p removed
+*/
 .sidebar-nav {
   ul {
     margin: 0px;
@@ -121,9 +119,9 @@ sidebar navigation
 .collapse.in {
   display: block;
 }
-/*******************
-Down arrow
-******************/
+/*
+  * Down arrow
+*/
 .sidebar-nav .has-arrow {
   position: relative;
   &::after {
@@ -151,9 +149,6 @@ Down arrow
   }
 }
 
-/*.sidebar-nav .active > .has-arrow::after,*/
-
-/*.sidebar-nav li.selected > .has-arrow::after,*/
 .sidebar-nav li.active > .has-arrow::after,
 .sidebar-nav li > .has-arrow.active::after,
 .sidebar-nav .has-arrow[aria-expanded='true']::after {
@@ -163,9 +158,9 @@ Down arrow
   transform: rotate(-135deg) translate(0, -50%);
 }
 
-/*******************
-User Profile
-******************/
+/*
+  * User Profile
+*/
 .user-profile {
   padding: 15px;
   text-align: center;
