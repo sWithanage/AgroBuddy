@@ -1,7 +1,7 @@
 # =====================================================
 # Title                 :   Price Predictor
 # Author                :   Venura Pallawela
-# Last modified Date    :   27 April 2020
+# Last modified Date    :   03 May 2020
 # =====================================================
 
 import json
@@ -201,13 +201,13 @@ def getBestPlant():
         lowerThanWorst = 0
         dayCount = 0
         for rainfallIndex in rainfallArray:
-            if minRainfallRange <= rainfallIndex <= maxRainfallRange:
+            if float(minRainfallRange) <= float(rainfallIndex) <= float(maxRainfallRange):
                 # Iterates through the array to find a value which falls within the Rainfall Range
                 tempRainfallPoints += 1
-            elif rainfallIndex <= minRainfallRange:
+            elif float(rainfallIndex) <= float(minRainfallRange):
                 tempRainfallPoints -= 1
                 lowerThanWorst += 1
-            elif rainfallIndex >= worstHigh:
+            elif float(rainfallIndex) >= float(worstHigh):
                 tempRainfallPoints -= 1
                 higherThanWorst += 1
             dayCount += 1
@@ -493,4 +493,4 @@ def getBestPlant():
     return json.dumps(pointsString, indent=2)
 
 
-# print(getBestPlant())
+print(getBestPlant())

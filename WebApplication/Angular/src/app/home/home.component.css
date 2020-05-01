@@ -122,8 +122,10 @@ header .overlay {
 }
 
 .ourImage{
-  object-fit: cover;
-  height: 100vh;
+  height: 85vh;
+  position: absolute;
+  margin-top: 15vh;
+  margin-left: 10%;
 }
 @media only screen and (max-width: 600px) {
 
@@ -153,8 +155,10 @@ header .overlay {
 
   .ourImage {
     object-fit: cover;
-    width: 100vh;
-    height:auto;
+    height: 40vh;
+    position: absolute;
+    margin-top: 35vh;
+    margin-left: 0;
   }
 
   .blockForPart2 {

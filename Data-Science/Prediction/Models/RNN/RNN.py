@@ -1,21 +1,17 @@
 # =====================================================
 # Title                 :   Recurrent neural network Model
 # Author                :   Sasanka Withanage
-# Last modified Date    :   22 April 2020
+# Last modified Date    :   03 May 2020
 # =====================================================
 
-import os
 import sys
-
 from pandas import DataFrame
 from pandas import Series
 from pandas import concat
-from pandas import read_csv
-from pandas import datetime
 from Models.Components import CustomLogger as logger
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
-from Models.Components import FileDownloader
+from Models.Components import DataRetriever
 from Models.Components import AccuracyCalculator
 from keras.models import Sequential
 from keras.layers import Dense
@@ -201,33 +197,12 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             # Return forecast value.
             return futureStepValue[0, 0]
 
-        # -------------------------------------------------------------------------
-        # Parse the date from the dataset.
-        # -------------------------------------------------------------------------
-        def parseDate(x):
-
-            # Convert temperature dataset and the precipitation data set in %Y-%m-%d to proper date format.
-            if datasetType == "temp" or datasetType == "precipitation":
-                return datetime.strptime(x, '%Y-%m-%d')
-
-            # Convert all other dataset in %Y-%W to proper date format.
-            else:
-                return datetime.strptime(x, '%Y-%W')
-
         # -------------------------------------------------------------------------------------------------------------------------
         # -------------------------------------------- Model predictions started --------------------------------------------------
         # -------------------------------------------------------------------------------------------------------------------------
 
-        # Load data from the csv and delete the file from that path.
-        path = FileDownloader.getFileData(datasetType, True)
-        logger.log(logOnTelegram, "Data set file downloaded successfully")
-
         # Read downloaded csv and add into the data series.
-        series = read_csv(path, header=0, parse_dates=[0], index_col=0, squeeze=True, date_parser=parseDate)
-
-        # Remove downloaded file after reading.
-        os.remove(path)
-        logger.log(logOnTelegram, "Data set file deleted successfully")
+        series = DataRetriever.getFileData(datasetType)
 
         # Transform data to be stationary.
         dataInRawFormat = series.values
@@ -376,7 +351,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
 
 # --------------------------------------------------- Accuracy ---------------------------------------------------
 # predict("Temperature", "temp", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
-predict("Precipitation", "precipitation", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
+# predict("Precipitation", "precipitation", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
 # predict("RNNAshPlantain", "AshPlantain", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
 # predict("RNNBrinjal", "Brinjal", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
 # predict("RNNCucumber", "Cucumber", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)

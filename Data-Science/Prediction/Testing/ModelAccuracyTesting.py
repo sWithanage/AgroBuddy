@@ -1,3 +1,9 @@
+# =====================================================
+# Title                 :   Unit Testing
+# Author                :   Sasanka Withanage
+# Last modified Date    :   03 May 2020
+# =====================================================
+
 import unittest
 import AppController as app
 
@@ -159,5 +165,6 @@ class TestStringMethods(unittest.TestCase):
         self.assertGreaterEqual(float(app.SARIMA.predict("Brinjal-SARIMA", "Brinjal", logOnTelegram=False)), 70)
 
 
+# Testing class main method.
 if __name__ == '__main__':
     unittest.main()

@@ -1,7 +1,7 @@
 # =====================================================
 # Title                 :   ARIMA Model
 # Author                :   Sasanka Withanage
-# Last modified Date    :   22 April 2020
+# Last modified Date    :   03 May 2020
 # =====================================================
 
 import sys
@@ -9,7 +9,7 @@ import numpy
 from sklearn.metrics import mean_squared_error
 from statsmodels.tsa.arima_model import ARIMA
 from Models.Components import AccuracyCalculator
-from Models.Components import FileDownloader
+from Models.Components import DataRetriever
 from Models.Components import CustomLogger as logger
 
 ARIMAModel, periodOfTime = "", ""
@@ -29,7 +29,7 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
             logger.log(logOnTelegram, "Client requested for " + predictionName + " forecast")
 
         # Import relevant file from the server.
-        series = FileDownloader.getFileData(datasetType)
+        series = DataRetriever.getFileData(datasetType)
         logger.log(logOnTelegram, "Dataset retrieved successfully")
 
         # Set splitting point of the dataset.

@@ -1,13 +1,13 @@
 # =====================================================
 # Title                 :   Auto_Regression Model
 # Author                :   Sasanka Withanage
-# Last modified Date    :   22 April 2020
+# Last modified Date    :   03 May 2020
 # =====================================================
 
 import sys
 from sklearn.metrics import mean_squared_error
 from statsmodels.tsa.ar_model import AR
-from Models.Components import FileDownloader
+from Models.Components import DataRetriever
 from Models.Components import AccuracyCalculator
 from Models.Components import CustomLogger as logger
 
@@ -25,7 +25,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             logger.log(logOnTelegram, "Client requested for " + predictionName + " forecast")
 
         # Import relevant file from the server.
-        series = FileDownloader.getFileData(datasetType)
+        series = DataRetriever.getFileData(datasetType)
         logger.log(logOnTelegram, "Dataset retrieved successfully")
 
         # Get values from the series.

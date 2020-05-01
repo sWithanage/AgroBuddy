@@ -1,11 +1,11 @@
 # =====================================================
-# Title                 :   Flask Application
+# Title                 :   VAR Model
 # Author                :   Sasanka Withanage
-# Last modified Date    :   22 April 2020
+# Last modified Date    :   03 May 2020
 # =====================================================
 
 import sys
-from Models.Components import FileDownloader
+from Models.Components import DataRetriever
 from sklearn.metrics import mean_squared_error
 from Models.Components import AccuracyCalculator
 from statsmodels.tsa.vector_ar.var_model import VAR
@@ -28,12 +28,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             logger.log(logOnTelegram, "Client requested for " + predictionName + " forecast")
 
         # Download proper dataset according to requirement.
-        if datasetType == "temp" or datasetType == "precipitation":
-            series = FileDownloader.getFileData("rnn")
-            logger.log(logOnTelegram, "Dataset retrieved successfully")
-        else:
-            series = FileDownloader.getFileData("market")
-            logger.log(logOnTelegram, "Dataset retrieved successfully")
+        series = DataRetriever.getFileData(datasetType, True)
 
         # Set split data point.
         logger.log(logOnTelegram, "Finding splitting point")
@@ -46,23 +41,9 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
 
         # Retrieve data from the proper column.
         global features_considered, testingDataSetSize
-        if datasetType == "temp":
-            features_considered = ['T (degC)', 'T (degC)']
-        elif datasetType == "precipitation":
-            features_considered = ['rainFall', 'rainFall']
-        elif datasetType == "AshPlantain":
-            features_considered = ['AshPlantain', 'AshPlantain']
-        elif datasetType == "Brinjal":
-            features_considered = ['Brinjal', 'Brinjal']
-        elif datasetType == "Cucumber":
-            features_considered = ['Cucumber', 'Cucumber']
-        elif datasetType == "LadiesFinger":
-            features_considered = ['LadiesFinger', 'LadiesFinger']
-        elif datasetType == "RedPumpkin":
-            features_considered = ['RedPumpkin', 'RedPumpkin']
 
         # Retrieve data from the series.
-        featureValues = series[features_considered]
+        featureValues = series[['column1', 'column2']]
         logger.log(logOnTelegram, "Retrieved featured columns from the series successfully")
 
         # Get values from required features.
