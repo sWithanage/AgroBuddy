@@ -25111,3 +25111,14 @@ Warnings:
 [info] 2020-05-01 17:42:12 | Forecasting successful.
 [info] 2020-05-01 17:42:12 | Accuracy calculating.
 [info] 2020-05-01 17:42:12 | Accuracy Percentage : 92.3951501012699.
+[info] 2020-05-01 19:25:34 | Client requested for Temperature accuracy.
+[info] 2020-05-01 19:25:34 | Attempt number 1of data retrieving deployed.
+[info] 2020-05-01 19:25:34 | Requested for seasonal difference.
+[info] 2020-05-01 19:25:34 | Data structure updated to supervised leaning.
+[info] 2020-05-01 19:25:34 | Finding splitting point.
+[info] 2020-05-01 19:25:34 | Data splitting successful.
+[info] 2020-05-01 19:25:34 | Model fitted successfully.
+[info] 2020-05-01 19:25:34 | Predict method successful.
+[info] 2020-05-01 19:25:34 | Get accuracy percentages.
+[info] 2020-05-01 19:25:34 | Accuracy calculating.
+[info] 2020-05-01 19:25:34 | Accuracy is 97.68531351375898.

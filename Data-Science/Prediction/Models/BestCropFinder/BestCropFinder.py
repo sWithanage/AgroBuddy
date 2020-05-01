@@ -486,7 +486,7 @@ def getBestPlant():
         'TemperatureBestPlant': temperatureBestDays,
         'RainfallHighestPoints': rainfallBest,
         'RainfallBestPlant': rainfallBestDays,
-        'CultivatedArea%Highest': bestCultivatedPlant
+        'CultivatedAreaHighest': bestCultivatedPlant
     }
 
     return json.dumps(pointsString, indent=2)
