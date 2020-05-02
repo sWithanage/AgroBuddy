@@ -1,6 +1,5 @@
-/*******************/
 /*Steam line widget*/
-/*******************/
+
 .steamline {
     position: relative;
     border-left: 1px solid $border-color;
@@ -15,7 +14,7 @@
         height: 40px;
         border-radius: 100%;
         color: $white;
-        
+
         margin-right: 15px;
         img {
             max-width: 40px;
@@ -25,12 +24,12 @@
 
 .steamline .sl-right {
     padding-left: 30px;
-    
+
     .desc,
     .inline-photos {
         margin-bottom: 21px;
     }
-    
+
 }
 
 .steamline .sl-item {

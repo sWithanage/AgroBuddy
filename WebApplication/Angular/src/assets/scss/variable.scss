@@ -1,8 +1,3 @@
-/*******************************/
-
-// Custom Variables
-
-/*******************************/
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
 
@@ -68,9 +63,8 @@ $card-alt: #e4e9ef;
   -o-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
 }
-/* ***************************** */
+
 // Bootstrap overrides
-/* ***************************** */
 /* *
  * Table Of Content
  *
@@ -238,7 +232,7 @@ $custom-control-indicator-active-bg: rgba(0, 0, 0, 35%) !default;
 $custom-select-indicator: url(../../assets/images/custom-select.png) !default;
 $input-btn-focus-box-shadow: transparent !default;
 $custom-select-focus-box-shadow: transparent !default;
-// $custom-select-indicator: str-replace(url(''), '%23') !default;
+
 // Define common padding and border radius sizes and more.
 $border-width: 1px !default;
 $border-color: $gray-200 !default;
@@ -250,7 +244,7 @@ $progress-height: 5px !default;
 // Tabs
 $nav-tabs-link-active-bg: $white !default;
 // Grid breakpoints
-// Define the minimum dimensions at which your layout will change,
+// Define the minimum dimensions at which the layout will change,
 // adapting to different screen sizes, for use in media queries.
 $grid-breakpoints: (
   xs: 0,

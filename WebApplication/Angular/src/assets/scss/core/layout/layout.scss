@@ -1,8 +1,8 @@
 // App
 
-/*============================================================== 
- For all pages 
- ============================================================== */
+/*
+ For all pages
+ */
 
 #main-wrapper {
   width: 100%;
@@ -20,17 +20,17 @@
   min-height: calc(100vh - 180px);
 }
 
-/*******************
+/*
  Footer
-*******************/
+*/
 
 .footer {
   padding: 15px 20px;
 }
 
-/*******************
+/*
  Stickey inner-left-part
-*******************/
+*/
 
 $left-part-width: 260px;
 .left-part {
@@ -70,9 +70,9 @@ $left-part-width: 260px;
   }
 }
 
-/*******************
+/*
  Vertical layout
-*******************/
+*/
 
 #main-wrapper[data-layout='vertical'] {
   /*Vertical*/
@@ -162,9 +162,9 @@ $left-part-width: 260px;
   }
 }
 
-/*******************
+/*
  Vertical responsive layout
-*******************/
+*/
 
 @include media-breakpoint-up(md) {
   #main-wrapper[data-layout='vertical'] {

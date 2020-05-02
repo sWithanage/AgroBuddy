@@ -1,6 +1,4 @@
-/*******************/
 /*Comment widgets*/
-/*******************/
 
 .comment-widgets {
     position: relative;
@@ -15,7 +13,7 @@
         }
         &:hover,
         &.active {
-            background:$transparent-dark-bg; 
+            background:$transparent-dark-bg;
         }
     }
 }
@@ -33,8 +31,8 @@
         max-height: 65px;
         width:100%;
         overflow: hidden;
-        
-    } 
+
+    }
 }
 
 .comment-footer {

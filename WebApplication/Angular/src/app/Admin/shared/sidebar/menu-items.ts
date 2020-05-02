@@ -49,6 +49,22 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     extralink: false,
     submenu: []
+  },
+  {
+    path: '/admin/userUpdate',
+    title: 'User Update',
+    icon: 'icon-Receipt-3',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/admin/log',
+    title: 'Server Log',
+    icon: 'icon-Receipt-4',
+    class: '',
+    extralink: false,
+    submenu: []
   }
 
 ];

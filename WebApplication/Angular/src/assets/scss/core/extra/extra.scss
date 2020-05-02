@@ -329,9 +329,6 @@ label {
 
 // Taskboard
 
-/*******************
-Taskboard scss
-******************/
 .taskboard {
   overflow-x: auto;
   overflow-y: auto;
@@ -461,9 +458,9 @@ Taskboard scss
     }
 }
 
-/*******************
+/*
 Ngx wizard pages scss
-******************/
+*/
 
 .wizard-navbar {
   padding: 0px;
@@ -522,9 +519,9 @@ Ngx wizard pages scss
   border-color: $success;
 }
 
-/*******************
+/*
 Notifier pages scss
-******************/
+*/
 .notifier__container * {
   box-sizing: border-box;
 }

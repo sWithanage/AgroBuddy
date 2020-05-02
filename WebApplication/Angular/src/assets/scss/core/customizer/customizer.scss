@@ -1,6 +1,6 @@
-/*******************
+/*
 customizer
-*******************/
+*/
 .customizer{
     background: $theme-light;
     position: fixed;
@@ -17,11 +17,11 @@ customizer
         color:$white;
         position: absolute;
         top:30%;
-        left:-54px; 
+        left:-54px;
     }
     &.show-service-panel{
         right: 0px;
-    } 
+    }
     .customizer-body{
         position: relative;
         height: 100%;

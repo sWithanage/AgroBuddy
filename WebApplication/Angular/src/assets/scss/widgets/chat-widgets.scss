@@ -1,6 +1,5 @@
-/*******************/
 /*Chat widget*/
-/*******************/
+
 .chat-box{
     overflow: auto;
 }
@@ -20,11 +19,11 @@
             }
         }
         .chat-content {
-            width: calc(100% - 50px); 
+            width: calc(100% - 50px);
             display: inline-block;
             padding-left: 15px;
             h5 {
-                 
+
             }
             .box {
                 display: inline-block;
@@ -69,13 +68,4 @@
         }
     }
 }
-
-
-/*******************/
-/*Chat widget*/
-/*******************/
-
-
-
-
 
