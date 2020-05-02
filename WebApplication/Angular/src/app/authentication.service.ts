@@ -14,9 +14,12 @@ export class AuthenticationService {
   private Customer: any[];
   private url = 'https://agrobuddybackend.nn.r.appspot.com/';
 
+  /*-------------post users details -------------------*/
   users(value: any) {
     return this.serviceHttp.post<boolean> (this.url + 'users', value);
   }
+
+  /*-------------post username and password -------------------*/
   addcustomerLogin(value: any) {
     return this.serviceHttp.post<any>(this.url + 'authentication', value);
   }
@@ -25,6 +28,14 @@ export class AuthenticationService {
   }
   getUserList(): Observable<ClientDetails[]> {
     return this.serviceHttp.get<ClientDetails[]>(this.url + 'usersDetails');
+  }
+  /*-------------post email to reset password-----------------*/
+  resetPassword(value: any) {
+    return this.serviceHttp.post<any>(this.url + 'resetpassword', value);
+  }
+
+  updatePassword(value: any, pin: any, email: any) {
+    return this.serviceHttp.post<any>(this.url + 'newpassword', {'pin': pin, 'email': email, 'password': value['password']});
   }
 
 }

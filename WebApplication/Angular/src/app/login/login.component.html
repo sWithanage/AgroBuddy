@@ -1,3 +1,4 @@
+
 <style>
   .auth-wrapper {
     background-color: #eee;
@@ -26,7 +27,7 @@
         <div id="loginform" [ngClass]="{'d-none': recoverform}">
             <div class="logo">
                 <span class="db"><img src="assets/images/logo-icon.png" alt="logo" /></span>
-                <h5 class="font-medium m-b-20">Sign In to Admin</h5>
+                <h5 class="font-medium m-b-20">Sign In</h5>
             </div>
             <!-- Form -->
             <div class="row">
@@ -84,17 +85,18 @@
             <div class="logo">
                 <span class="db"><img src="assets/images/logo-icon.png" alt="logo" /></span>
                 <h5 class="font-medium m-b-20">Recover Password</h5>
-                <span>Enter your Email and instructions will be sent to you!</span>
+                <span>{{topMessage}}</span>
             </div>
             <div class="row m-t-20">
                 <!-- Form -->
-                <form class="col-12">
+                <form class="col-12" #loginForm2="ngForm" (ngSubmit)="onResetSubmit(loginForm2.value)" >
                     <!-- email -->
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <input class="form-control form-control-lg" type="email" required="" placeholder="Username">
-                        </div>
+                  <div class="form-group row">
+                    <div class="col-12 ">
+                      <input class="form-control form-control-lg" [(ngModel)]="email" type="email" required=" " if="email" placeholder="Email" name="email" ngModel required>
+                      <div *ngIf="emailEmpty"><span>Email is required!</span></div>
                     </div>
+                  </div>
                     <!-- pwd -->
                     <div class="row m-t-20">
                         <div class="col-12">
@@ -106,3 +108,5 @@
         </div>
     </div>
 </div>
+
+

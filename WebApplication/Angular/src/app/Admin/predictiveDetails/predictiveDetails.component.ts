@@ -18,13 +18,17 @@ export class PredictiveDetailsComponent implements OnInit {
   ARmodel: string;
   VARmodel: string;
   AUTOARIMA: string;
+  ratio: any;
   activeModel: string;
   id: number;
   value1: any;
   user: any;
   status: any;
+  selectedratio: any;
   selectedOption: any;
+  selectedOption2: any;
   status_values: any = ['ARIMA', 'ARMA', 'SARIMA', 'RNN', 'AR', 'VAR', 'AUTOARIMA'];
+  status_values2: any = ['90%', '80%', '70%', '60%', '50%', '40%'];
   noteMessage = '';
 
   constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) {
@@ -47,6 +51,7 @@ export class PredictiveDetailsComponent implements OnInit {
       data => {
 
         for (const dataElement of data) {
+          console.log(data);
           // tslint:disable-next-line:triple-equals
           if (dataElement.variables == this.variable) {
             this.modelDetails = data;
@@ -61,6 +66,28 @@ export class PredictiveDetailsComponent implements OnInit {
             this.id = dataElement.aID;
             this.status = dataElement.activeModel;
             this.selectedOption = dataElement.activeModel;
+            // tslint:disable-next-line:triple-equals
+            if (dataElement.ratio == 0.1) {
+              this.ratio = '90%' ;
+              // tslint:disable-next-line:triple-equals
+            } else if (dataElement.ratio == 0.2) {
+              this.ratio = '80%';
+              // tslint:disable-next-line:triple-equals
+            } else if (dataElement.ratio == 0.3) {
+              this.ratio = '70%' ;
+              // tslint:disable-next-line:triple-equals
+            } else if (dataElement.ratio == 0.4) {
+              this.ratio = '60%' ;
+              // tslint:disable-next-line:triple-equals
+            } else if (dataElement.ratio == 0.5) {
+              this.ratio = '50%' ;
+              // tslint:disable-next-line:triple-equals
+            } else if (dataElement.ratio == 0.6) {
+              this.ratio = '40%' ;
+            }
+            this.selectedOption2 = this.ratio;
+            this.selectedratio = this.ratio;
+            console.log(this.selectedOption2);
           }
         }
       });
@@ -71,7 +98,30 @@ export class PredictiveDetailsComponent implements OnInit {
       data => window.location.reload());
   }
 
+  /*-------- get changed ratio value and variable name and send it to service class to update----------*/
+  setRatioData(variable: any, selectedOption2: any) {
+    // tslint:disable-next-line:triple-equals
+    if (selectedOption2 == '90%') {
+      selectedOption2 = 0.1;
+      // tslint:disable-next-line:triple-equals
+    } else if (selectedOption2 == '80%') {
+      selectedOption2 = 0.2;
+      // tslint:disable-next-line:triple-equals
+    } else if (selectedOption2 == '70%') {
+      selectedOption2 = 0.3;
+      // tslint:disable-next-line:triple-equals
+    } else if (selectedOption2 == '60%') {
+      selectedOption2 = 0.4;
+      // tslint:disable-next-line:triple-equals
+    } else if (selectedOption2 == '50%') {
+      selectedOption2 = 0.5;
+      // tslint:disable-next-line:triple-equals
+    } else if (selectedOption2 == '40%') {
+      selectedOption2 = 0.6;
+    }
 
-
-
+    console.log(variable, selectedOption2);
+    this.connectionService.updateRatioStatus( variable, selectedOption2).subscribe(
+      data => window.location.reload());
+  }
 }

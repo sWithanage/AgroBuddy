@@ -17,6 +17,8 @@ export class CultivatedAreaPercentageComponent implements OnInit {
   constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
+
+    /*--------------------get all plant details--------------------*/
     this.connectionService.getAllPlants().subscribe(
       data => {
 

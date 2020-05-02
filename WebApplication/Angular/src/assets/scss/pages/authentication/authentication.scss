@@ -1,5 +1,5 @@
 @import "../../variable";
-
+/*---------- used for login form and sign up form--------*/
 .auth-wrapper{
     min-height: 100vh;
     position: relative;
@@ -21,7 +21,7 @@
             position: absolute;
         }
     }
-    
+    /*------------remove entered values after sign up or login and clear form ------------*/
     #recoverform{
         display: none;
     }

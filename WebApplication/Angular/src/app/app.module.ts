@@ -59,6 +59,8 @@ import { HomeComponent } from './home/home.component';
 import {LogComponent} from './Admin/log/log.component';
 import {UserUpdateComponent} from './Admin/user-update/user-update.component';
 import { ClientWeatherForecastComponent } from './Client/client-weather-forecast/client-weather-forecast.component';
+import {ResetPasswordComponent} from './reset-password/reset-password.component';
+
 
 
 
@@ -109,7 +111,8 @@ const routes: Routes = [ {
     ChangeModelAdminComponent,
     LogComponent,
     UserUpdateComponent,
-    ClientWeatherForecastComponent
+    ClientWeatherForecastComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

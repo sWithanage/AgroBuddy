@@ -17,6 +17,8 @@ export class CropListComponent {
   scientificName4: string;
   scientificName5: string;
   constructor(private connectionService: AdminServiceService) {}
+
+  /*----------------------get plant details and assign values----------------------*/
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
     this.connectionService.getAllPlants().subscribe(

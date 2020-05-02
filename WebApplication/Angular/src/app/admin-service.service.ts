@@ -220,4 +220,11 @@ export class AdminServiceService {
   sendEmail(data: any) {
     return this.serviceHttp.post(this.url + 'send/email', data);
   }
+  updateRatioStatus(variable: any, selectedOption2: any) {
+    console.log(variable, selectedOption2);
+    return this.serviceHttp.put<boolean>(this.url + 'ratioUpdate', {
+      selectedratio: selectedOption2,
+      variables: variable,
+    });
+  }
   }

@@ -10,5 +10,6 @@ export interface modelDetails {
     RNN: any;
     VAR: any;
     ANN: any;
+    ratio: any;
     activeModel: string;
 }

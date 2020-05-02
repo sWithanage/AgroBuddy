@@ -12,6 +12,7 @@ export class AdminWelcomeComponent {
   constructor(private cookie: CookieService) {
   }
 
+  /*----------------------get current user's first name and last name----------------------*/
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
     const date: Date = new Date();

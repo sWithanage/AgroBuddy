@@ -16,6 +16,11 @@
         {{status_item}}
       </option>
     </select>
+    <select  class="btn btn-success"  [(ngModel)]="selectedOption2" (change)="setRatioData(variable,this.selectedOption2)">
+      <option   [value]="status_item2" *ngFor="let status_item2 of status_values2" >
+        {{status_item2}}
+      </option>
+    </select>
 
   </div>
     <div class="table-responsive">
