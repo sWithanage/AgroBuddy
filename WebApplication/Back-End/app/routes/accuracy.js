@@ -386,10 +386,11 @@ router.put("/accuracy", (req, res) => {
   );
 });
 
-router.put("/accuracy/:id", (req, res) => {
+// update ratio value in accuracy table
+router.put("/ratioUpdate", (req, res) => {
   mysqlConnection.query(
     "UPDATE accuracy SET ratio=? WHERE variables=?",
-    [req.body.ratio, req.params.id],
+    [req.body.selectedratio, req.body.variables],
     (err, rows) => {
       if (!err) {
         res.send(rows);
@@ -400,5 +401,17 @@ router.put("/accuracy/:id", (req, res) => {
   )
 });
 
+// get ratio each model
+router.get("/ratio", (req, res) => {
+  mysqlConnection.query("SELECT variables,ratio from accuracy",
+      (err, rows, fields) => {
+          if(!err){
+              res.send(rows);
+          }
+          else{
+              console.log(err);
+          }
+      })
+});
 
 module.exports = router;
