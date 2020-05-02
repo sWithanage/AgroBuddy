@@ -386,4 +386,19 @@ router.put("/accuracy", (req, res) => {
   );
 });
 
+router.put("/accuracy/:id", (req, res) => {
+  mysqlConnection.query(
+    "UPDATE accuracy SET ratio=? WHERE variables=?",
+    [req.body.ratio, req.params.id],
+    (err, rows) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  )
+});
+
+
 module.exports = router;
