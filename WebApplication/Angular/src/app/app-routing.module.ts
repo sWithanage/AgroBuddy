@@ -23,6 +23,7 @@ import {ChangeModelAdminComponent} from './Admin/changeModel/changeModelAdmin.co
 import {HomeComponent} from './home/home.component';
 import {LogComponent} from './Admin/log/log.component';
 import {UserUpdateComponent} from './Admin/user-update/user-update.component';
+import {ClientWeatherForecastComponent} from './Client/client-weather-forecast/client-weather-forecast.component';
 
 
 export const Approutes: Routes = [
@@ -63,7 +64,7 @@ export const Approutes: Routes = [
         data: {
           title: 'Server Log File - AgroBuddy',
           urls: [
-            { title: 'Dashboard', url: '/admin/log' },
+            { title: 'Dashboard', url: '/admin/dashboard' },
             { title: 'Server Log File' }
           ]
         }
@@ -230,6 +231,17 @@ export const Approutes: Routes = [
           urls: [
             { title: 'Dashboard', url: '/client/dashboard' },
             { title: 'Diseases' }
+          ]
+        }
+      },
+      {
+        path: 'weatherForecast',
+        component: ClientWeatherForecastComponent,
+        data: {
+          title: 'Weather Forecast - AgroBuddy',
+          urls: [
+            { title: 'Dashboard', url: '/client/dashboard' },
+            { title: 'Weather Forecast' }
           ]
         }
       }

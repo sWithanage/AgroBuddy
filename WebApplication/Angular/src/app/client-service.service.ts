@@ -9,6 +9,8 @@ import {ClientArea} from './client-area.model';
 import {Buyers} from './buyers.model';
 import {Diseases} from './diseases.model';
 import {BestCropPoints} from './best-crop-points.model';
+import {RainfallData} from './rainfall-data.model';
+import {WeatherDetails} from './weathercard.model';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +71,11 @@ export class ClientServiceService {
   }
   chosenCrop(value: any) {
     return this.http.post<boolean> (this.url + 'area', value);
+  }
+  getRainfallData(): Observable<RainfallData[]> {
+    return this.http.get<RainfallData[]>(this.url + 'prediction/rainfall');
+  }
+  getTemperatureData(): Observable<WeatherDetails[]> {
+    return this.http.get<WeatherDetails[]>(this.url + 'prediction/temperature');
   }
 }

@@ -27,6 +27,14 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
+    path: '/client/weatherForecast',
+    title: 'Weather Forecast',
+    icon: 'icon-Sun-CloudyRain',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
     path: '/client/cultivatedArea',
     title: 'Cultivated Area',
     icon: 'icon-Pie-Chart2',
