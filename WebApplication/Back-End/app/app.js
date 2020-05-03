@@ -1,7 +1,6 @@
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const mysql = require("mysql");
 const path = require("path");
 const cors = require("cors");
@@ -26,9 +25,6 @@ const app = express();
 // enable CORS with various options
 app.use(cors());
 
-// initialize cookie-parser to allow us access the cookies stored in the browser.
-app.use(cookieParser());
-
 app.use(users);
 app.use(contact);
 app.use(crops);
@@ -43,7 +39,7 @@ app.use(agrodata);
 app.get("/bestcrop", async (req, res) => {
   try {
     const bestcrop = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/bestPlant"
+      "https://agrobuddy-models.an.r.appspot.com/bestPlant"
     );
     res.send({
       bestcrop: bestcrop.data,
@@ -57,7 +53,7 @@ app.get("/bestcrop", async (req, res) => {
 app.get("/log", async (req, res) => {
   try {
     const logdata = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/log/json"
+      "https://agrobuddy-models.an.r.appspot.com/log/json"
     );
     res.send({
       logdata: logdata.data,

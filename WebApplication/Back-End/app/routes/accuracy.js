@@ -14,211 +14,211 @@ cron.schedule("30 21 * * Monday", async (req, res) => {
   try {
     // ar model accuracy
     const arTempAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=ar&type=temp"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=ar&type=temp"
     );
 
     const arRaiFallAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=ar&type=rain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=ar&type=rain"
     );
 
     const arAshPlantain = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=ar&type=market&plant=AshPlantain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=ar&type=market&plant=AshPlantain"
     );
 
     const arBrinjal = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=ar&type=market&plant=Brinjal"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=ar&type=market&plant=Brinjal"
     );
 
     const arCucumber = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=ar&type=market&plant=Cucumber"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=ar&type=market&plant=Cucumber"
     );
 
     const arladiesFingers = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=ar&type=market&plant=LadiesFinger"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=ar&type=market&plant=LadiesFinger"
     );
 
     const arRedPumpkin = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=ar&type=market&plant=RedPumpkin"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=ar&type=market&plant=RedPumpkin"
     );
     console.log("Get AR model accuracy data");
 
     // auto_arima model accuracy
     const autoarimaTempAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=temp"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=auto_arima&type=temp"
     );
 
     const autoarimaRaiFallAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=rain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=auto_arima&type=rain"
     );
 
     const autoarimaAshPlantain = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=AshPlantain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=AshPlantain"
     );
 
     const autoarimaBrinjal = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=Brinjal"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=Brinjal"
     );
 
     const autoarimaCucumber = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=Cucumber"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=Cucumber"
     );
 
     const autoarimaladiesFingers = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=LadiesFinger"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=LadiesFinger"
     );
 
     const autoarimaRedPumpkin = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=RedPumpkin"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=auto_arima&type=market&plant=RedPumpkin"
     );
     console.log("Get AUTO ARIMA model accuracy data");
 
     // arima model accuracy
     const arimaTempAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arima&type=temp"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arima&type=temp"
     );
 
     const arimaRaiFallAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arima&type=rain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arima&type=rain"
     );
 
     const arimaAshPlantain = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arima&type=market&plant=AshPlantain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arima&type=market&plant=AshPlantain"
     );
 
     const arimaBrinjal = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arima&type=market&plant=Brinjal"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arima&type=market&plant=Brinjal"
     );
 
     const arimaCucumber = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arima&type=market&plant=Cucumber"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arima&type=market&plant=Cucumber"
     );
 
     const arimaladiesFingers = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arima&type=market&plant=LadiesFinger"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arima&type=market&plant=LadiesFinger"
     );
 
     const arimaRedPumpkin = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arima&type=market&plant=RedPumpkin"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arima&type=market&plant=RedPumpkin"
     );
     console.log("Get ARIMA model accuracy data");
 
     // arma model accuracy
     const armaTempAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arma&type=temp"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arma&type=temp"
     );
 
     const armaRaiFallAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arma&type=rain "
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arma&type=rain "
     );
 
     const armaAshPlantain = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arma&type=market&plant=AshPlantain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arma&type=market&plant=AshPlantain"
     );
 
     const armaBrinjal = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arma&type=market&plant=Brinjal"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arma&type=market&plant=Brinjal"
     );
 
     const armaCucumber = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arma&type=market&plant=Cucumber"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arma&type=market&plant=Cucumber"
     );
 
     const armaladiesFingers = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arma&type=market&plant=LadiesFinger"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arma&type=market&plant=LadiesFinger"
     );
 
     const armaRedPumpkin = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=arma&type=market&plant=RedPumpkin"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=arma&type=market&plant=RedPumpkin"
     );
     console.log("Get ARMA model accuracy data");
 
     // sarima model accracy
     const sarimaTempAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=sarima&type=temp"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=sarima&type=temp"
     );
 
     const sarimaRaiFallAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=sarima&type=rain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=sarima&type=rain"
     );
 
     const sarimaAshPlantain = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=sarima&type=market&plant=AshPlantain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=sarima&type=market&plant=AshPlantain"
     );
 
     const sarimaBrinjal = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=sarima&type=market&plant=Brinjal"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=sarima&type=market&plant=Brinjal"
     );
 
     const sarimaCucumber = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=sarima&type=market&plant=Cucumber"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=sarima&type=market&plant=Cucumber"
     );
 
     const sarimaladiesFingers = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=sarima&type=market&plant=LadiesFinger"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=sarima&type=market&plant=LadiesFinger"
     );
 
     const sarimaRedPumpkin = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=sarima&type=market&plant=RedPumpkin"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=sarima&type=market&plant=RedPumpkin"
     );
     console.log("Get SARIMA model accuracy data");
 
     // rnn model accracy
     const rnnTempAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=rnn&type=temp"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=rnn&type=temp"
     );
 
     const rnnRaiFallAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=rnn&type=rain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=rnn&type=rain"
     );
 
     const rnnAshPlantain = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=rnn&type=market&plant=AshPlantain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=rnn&type=market&plant=AshPlantain"
     );
 
     const rnnBrinjal = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=rnn&type=market&plant=Brinjal"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=rnn&type=market&plant=Brinjal"
     );
 
     const rnnCucumber = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=rnn&type=market&plant=Cucumber"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=rnn&type=market&plant=Cucumber"
     );
 
     const rnnladiesFingers = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=rnn&type=market&plant=LadiesFinger"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=rnn&type=market&plant=LadiesFinger"
     );
 
     const rnnRedPumpkin = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=rnn&type=market&plant=RedPumpkin"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=rnn&type=market&plant=RedPumpkin"
     );
     console.log("Get RNN model accuracy data");
 
     // var model accracy
     const varTempAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=var&type=temp"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=var&type=temp"
     );
 
     const varRaiFallAccuracy = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=var&type=rain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=var&type=rain"
     );
 
     const varAshPlantain = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=var&type=market&plant=AshPlantain"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=var&type=market&plant=AshPlantain"
     );
 
     const varBrinjal = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=var&type=market&plant=Brinjal"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=var&type=market&plant=Brinjal"
     );
 
     const varCucumber = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=var&type=market&plant=Cucumber"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=var&type=market&plant=Cucumber"
     );
 
     const varladiesFingers = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=var&type=market&plant=LadiesFinger"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=var&type=market&plant=LadiesFinger"
     );
 
     const varRedPumpkin = await axios.get(
-      "https://agrobuddytk.an.r.appspot.com/accuracy?model=var&type=market&plant=RedPumpkin"
+      "https://agrobuddy-models.an.r.appspot.com/accuracy?model=var&type=market&plant=RedPumpkin"
     );
     console.log("Get VAR model accuracy data");
 
