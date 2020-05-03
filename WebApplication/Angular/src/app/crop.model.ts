@@ -11,4 +11,5 @@ export interface CropDetails {
   percentage: number;
   cultivated_area: string;
   fertilizers: string;
+  schedule: string;
 }

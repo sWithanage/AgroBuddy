@@ -20,6 +20,7 @@ export class ClientPlantDetailsComponent implements OnInit {
   duration: string;
   cultivatedArea: string;
   fertilizers: string;
+  schedule: string;
 
   constructor(private connectionService: ClientServiceService, private route: ActivatedRoute) {}
   ngOnInit(): void {
@@ -52,6 +53,7 @@ export class ClientPlantDetailsComponent implements OnInit {
         this.duration = data[0].duration;
         this.cultivatedArea = data[0].cultivated_area;
         this.fertilizers = data[0].fertilizers;
+        this.schedule = data[0].schedule;
       });
   }
 }

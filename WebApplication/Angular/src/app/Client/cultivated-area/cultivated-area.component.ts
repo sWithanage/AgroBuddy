@@ -30,6 +30,7 @@ export class CultivatedAreaComponent implements OnInit {
           this.area1.push(x.cultivatedArea);
         }
 
+        // taken all areas turn to percentages
         let sum = 0;
         for (let i = 0; i < this.area1.length; i++) {
           sum += parseInt(this.area1[i], 10);
@@ -52,6 +53,7 @@ export class CultivatedAreaComponent implements OnInit {
           this.plantName2.push(x.plant_name);
           this.area2.push(x.cultivatedArea);
         }
+        // taken user area turn to percentages
         let sum = 0;
         for (let i = 0; i < this.area2.length; i++) {
           sum += parseInt(this.area2[i], 10);

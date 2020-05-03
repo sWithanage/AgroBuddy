@@ -13,9 +13,9 @@ export class WelcomeComponent {
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
-    const date: Date = new Date();
+    const date: Date = new Date();  // get current date
     this.date = date.toDateString();
 
-    this.userName = this.cookie.get('user_Fname') + ' ' + this.cookie.get('user_Lname');
+    this.userName = this.cookie.get('user_Fname') + ' ' + this.cookie.get('user_Lname');  // get username
   }
 }

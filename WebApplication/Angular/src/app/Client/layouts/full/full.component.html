@@ -1,11 +1,11 @@
 <!-- ============================================================== -->
-<!-- Main wrapper - style you can find in pages.scss -->
+<!-- Main wrapper-->
 <!-- ============================================================== -->
 <div id="main-wrapper" data-layout="vertical" data-sidebartype="full" [ngClass]="{'show-sidebar': showMobileMenu}" [dir]="options.dir" [attr.data-theme]="options.theme"
     [attr.data-layout]="options.layout" [attr.data-sidebartype]="options.sidebartype" [attr.data-sidebar-position]="options.sidebarpos"
     [attr.data-header-position]="options.headerpos" [attr.data-boxed-layout]="options.boxed">
     <!-- ============================================================== -->
-    <!-- Topbar header - style you can find in topbar.scss -->
+    <!-- Topbar header-->
     <!-- ============================================================== -->
     <header class="topbar" [attr.data-navbarbg]="options.navbarbg">
         <nav class="d-flex top-navbar navbar-expand-md" [ngClass]="(options.navbarbg=='skin6')?'navbar-light':'navbar-dark'">
@@ -20,7 +20,6 @@
               <a class="navbar-brand" href="/">
                 <!-- Logo icon -->
                 <b class="logo-icon">
-                  <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                   <!-- Dark Logo icon -->
                   <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                   <!-- Light Logo icon -->
@@ -54,7 +53,7 @@
         </nav>
     </header>
     <!-- ============================================================== -->
-    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- Left Sidebar-->
     <!-- ============================================================== -->
     <aside class="left-sidebar" [attr.data-sidebarbg]="options.sidebarbg" (mouseover)="Logo()" (mouseout)="Logo()">
         <!-- Sidebar scroll-->
@@ -64,7 +63,7 @@
         <!-- End Sidebar scroll-->
     </aside>
     <!-- ============================================================== -->
-    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- End Left Sidebar-->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- Page wrapper  -->

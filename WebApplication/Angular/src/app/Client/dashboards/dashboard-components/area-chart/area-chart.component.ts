@@ -24,6 +24,7 @@ export class AreaChartComponent implements OnInit {
           this.plantName.push(x.plant_name);
           this.area.push(x.cultivatedArea);
         }
+        // taken all areas turn to percentages
         let sum = 0;
         for (let i = 0; i < this.area.length; i++) {
           sum += parseInt(this.area[i], 10);

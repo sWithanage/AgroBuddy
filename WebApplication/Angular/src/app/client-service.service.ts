@@ -63,18 +63,19 @@ export class ClientServiceService {
   getBuyers(): Observable<Buyers[]> {
     return this.http.get<Buyers[]>(this.url + 'buyers');
   }
-  predict(value: any) {
-    return this.http.post<boolean> (this.url + 'details', value);
-  }
+  // get the predicted crop details
   getBestCrop(): Observable<BestCropPoints[]> {
     return this.http.get<BestCropPoints[]>(this.url + 'bestcrop');
   }
+  // post the chosen crop details
   chosenCrop(value: any) {
     return this.http.post<boolean> (this.url + 'area', value);
   }
+  // get forecasted rainfall data
   getRainfallData(): Observable<RainfallData[]> {
     return this.http.get<RainfallData[]>(this.url + 'prediction/rainfall');
   }
+  // get forecasted temperature data
   getTemperatureData(): Observable<WeatherDetails[]> {
     return this.http.get<WeatherDetails[]>(this.url + 'prediction/temperature');
   }

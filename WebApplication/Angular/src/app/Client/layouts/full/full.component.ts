@@ -55,6 +55,7 @@ export class FullComponentClient implements OnInit {
     this.handleSidebar();
   }
 
+  // handle side bar with size
   handleSidebar() {
     this.innerWidth = window.innerWidth;
     switch (this.defaultSidebar) {

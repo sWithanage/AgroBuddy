@@ -10,7 +10,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartistModule } from 'ng-chartist';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
+import { CalendarModule} from 'angular-calendar';
 
 import { DashboardRoutes } from './dashboard.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -18,8 +18,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {
   AreaChartComponent,
   PriceVariationComponent,
-  UserProfileComponent,
-  UserDetailsComponent,
   VegMenuComponent,
   WeathercardComponent,
   WelcomeComponent
@@ -40,8 +38,6 @@ import {
   ],
   declarations: [
     DashboardComponent,
-    UserProfileComponent,
-    UserDetailsComponent,
     WeathercardComponent,
     WelcomeComponent,
     PriceVariationComponent,
