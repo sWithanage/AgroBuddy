@@ -31,6 +31,7 @@ export class PlantDetailsComponent implements OnInit {
   percentage: number;
   cultivatedArea: string;
   fertilizers: string;
+  schedule: string;
   crop_Name: string;
   crop_Image: string;
   crop_Description: string;
@@ -80,6 +81,7 @@ export class PlantDetailsComponent implements OnInit {
           this.duration = data[0].duration;
           this.percentage = data[0].cultivated_area_percentage;
           this.fertilizers = data[0].fertilizers;
+          this.schedule = data[0].schedule;
         }
         // tslint:disable-next-line:triple-equals
         if (this.fertilizers == null) {
@@ -126,6 +128,7 @@ export class PlantDetailsComponent implements OnInit {
         this.cultivatedArea = data[0].cultivated_area;
         this.nutrition = data[0].nutrition;
         this.fertilizers = data[0].fertilizers;
+        this.schedule = data[0].schedule;
       });
   }
   /*--------get updated crop details from from and send it to service class --------*/

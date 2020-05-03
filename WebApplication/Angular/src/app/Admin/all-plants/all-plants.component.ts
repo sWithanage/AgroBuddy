@@ -23,6 +23,7 @@ export class AllPlantsComponent {
   duration: string;
   percentage: number;
   cultivatedArea: string;
+  schedule: string;
   constructor(private route: ActivatedRoute, private connectionService: AdminServiceService) { }
   // tslint:disable-next-line:use-lifecycle-interface
   fertilizer: string;

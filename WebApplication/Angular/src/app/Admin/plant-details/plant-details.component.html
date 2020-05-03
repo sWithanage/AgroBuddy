@@ -61,6 +61,10 @@
                                       <td>Fertilizers</td>
                                       <td> {{fertilizers}} </td>
                                     </tr>
+                                    <tr>
+                                      <td>Schedule</td>
+                                      <td> {{schedule}} </td>
+                                    </tr>
 
                                     <tr>
                                       <div class="row">
@@ -211,6 +215,13 @@
       <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Suitable Fertilizers</label>
       <div class="col-sm-9">
         <input type="text" [(ngModel)]="fertilizers"  class="form-control" name="fertilizers" id="inputEmail3" value="{{fertilizers}}" ngModel>
+      </div>
+    </div>
+    <hr>
+    <div class="form-group row p-b-15">
+      <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Schedule</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="schedule"  class="form-control" name="schedule" id="inputEmail3" value="{{schedule}}" ngModel>
       </div>
     </div>
     <hr>
