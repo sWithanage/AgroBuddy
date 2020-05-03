@@ -76,7 +76,6 @@ def getBestPlant():
     temperatureArray = getForecast("forecast/temperature")
     logger.progressBar((downloadedData), totalDownloads, "Downloading Data | ")
     rainfallArray = getForecast("forecast/rainfall")
-    rainfallPrevYearAverage = getRainfall("avgrain", "avgRainfall")
     rainfallPrevYearMaximum = getRainfall("maxrain", "maxRainfall")
     logger.progressBar((downloadedData), totalDownloads, "Downloading Data | ")
     ashPlantainMPriceArray = getForecast("forecast/ashPlantainMPrice")
