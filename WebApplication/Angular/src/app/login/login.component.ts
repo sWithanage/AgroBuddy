@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Title} from '@angular/platform-browser';
 import {AuthenticationService} from '../authentication.service';
-import {ActivatedRoute} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import {Router} from '@angular/router';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
