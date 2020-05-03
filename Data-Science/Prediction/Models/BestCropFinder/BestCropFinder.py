@@ -71,7 +71,7 @@ def getBestPlant():
     cultivatedAreaAshPlantain = getCultivatedAreaData("cultivatedarea", "AshPlantain")
     cultivatedAreaBrinjal = getCultivatedAreaData("cultivatedarea", "Brinjals")
     cultivatedAreaCucumber = getCultivatedAreaData("cultivatedarea", "Cucumber")
-    cultivatedAreaLadiesFinger = getCultivatedAreaData("cultivatedarea", "LadiesFinger")
+    cultivatedAreaLadiesFinger = getCultivatedAreaData("cultivatedarea", "LadiesFingers")
     cultivatedAreaPumpkin = getCultivatedAreaData("cultivatedarea", "Pumpkin")
     temperatureArray = getForecast("forecast/temperature")
     logger.progressBar((downloadedData), totalDownloads, "Downloading Data | ")
