@@ -90,6 +90,7 @@ export class ClientWeatherForecastComponent implements OnInit {
         console.log(data);
         // @ts-ignore
         this.rainfallValue = data[0].rain_1h;
+        console.log('Rain fall temp' + this.rainfallValue);
       });
   }
 }

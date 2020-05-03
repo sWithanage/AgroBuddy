@@ -69,8 +69,8 @@ export class CultivatedAreaComponent implements OnInit {
           this.isempty = true;                // display the empty message
         } else {
           this.pieChartData2 = possibilities;          // assign values
-          this.pieChartLabels2 = this.plantName2;   // assign values
         }
       });
+    this.pieChartLabels2 = this.plantName2;   // assign values
   }
 }

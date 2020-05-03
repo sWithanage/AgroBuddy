@@ -72,9 +72,9 @@ export class PlantFinderComponent implements OnInit {
           this.isempty = true;            // display the empty message
         } else {
           this.pieChartData = possibilities;          // assign values
-          this.pieChartLabels = this.plantName;   // assign values
         }
       });
+    this.pieChartLabels = this.plantName;   // assign values
   }
 
   validator(value: any) { // validate the text fields
