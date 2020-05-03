@@ -167,7 +167,7 @@ export class AdminServiceService {
 
   /*------------------------------------get Log details----------------------------------------*/
   getLog(): Observable<Buyers[]> {
-    return this.serviceHttp.get<Buyers[]>('http://localhost:8080/log');
+    return this.serviceHttp.get<Buyers[]>(this.url + 'log');
   }
 
   /*----------------------------get crop details according to crop ID--------------------------*/

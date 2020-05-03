@@ -15,12 +15,12 @@ export class LogComponent implements OnInit {
       data => {
         // @ts-ignore
         // tslint:disable-next-line:forin
-        const dataSize = data.bestcrop.length;
+        const dataSize = data.logdata.length;
         // @ts-ignore
         // tslint:disable-next-line:forin
-        for (const x in data.bestcrop) {
+        for (const x in data.logdata) {
           // @ts-ignore
-          this.temporaryValue.push(data.bestcrop[(dataSize - x)]);
+          this.temporaryValue.push(data.logdata[(dataSize - x)]);
         }
         this.logDetails = this.temporaryValue;
 
