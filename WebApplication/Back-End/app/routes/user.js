@@ -1,15 +1,13 @@
-const express = require("express");
-// router object for express
+const express = require("express");   // router object for express
 const router = express();
-// get database connection
-const mysqlConnection = require("../connection");
+const mysqlConnection = require("../connection");   // get database connection
 const session = require("express-session");
+
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-// import nodemailer 
-const nodemailer = require("nodemailer");
-// genarate random key
-const rand = require("random-key");
+
+const nodemailer = require("nodemailer");   // import nodemailer 
+const rand = require("random-key");   // genarate random key
 
 // for POST-Support
 // access inside request body

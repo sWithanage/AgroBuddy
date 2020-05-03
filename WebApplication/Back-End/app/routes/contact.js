@@ -89,7 +89,7 @@ async function usermail(user) {
   console.log("Message sent: %s", info.messageId);
 }
 
-//inserting a disease
+//inserting a contact message
 router.post("/contact", async (req, res) => {
   let data = {
     id: req.body.id,
@@ -97,7 +97,9 @@ router.post("/contact", async (req, res) => {
     email: req.body.email,
     message: req.body.message,
   };
-  mysqlConnection.query("INSERT INTO contact SET ?", data, (err, rows) => {
+  mysqlConnection.query("INSERT INTO contact SET ?", 
+  data, 
+  (err, rows) => {
     if (!err) {
       res.send(true);
     } else {

@@ -1,8 +1,6 @@
 const express = require("express");
-// get database connection
-const mysqlConnection = require("../connection");
-// router object for express
-const router = express();
+const mysqlConnection = require("../connection"); // get database connection
+const router = express(); // router object for express
 
 const cron = require("node-cron");
 const axios = require("axios");

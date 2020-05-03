@@ -1,6 +1,5 @@
 const express = require("express");
-//router object for express
-const router = express(); 
+const router = express();   //router object for express
 const mysqlConnection = require("../connection");
 
 //get previous rainfall data

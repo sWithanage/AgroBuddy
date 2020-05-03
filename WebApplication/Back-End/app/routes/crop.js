@@ -56,6 +56,7 @@ router.post("/crops", async (req, res) => {
         temperature: req.body.temperature,
         duration: req.body.duration,
         cultivated_area_percentage: req.body.percentage,
+        schedule: req.body.schedule,
     };
     mysqlConnection.query("INSERT INTO crop SET ?", data, (err, rows) => {
         if (!err) {
@@ -79,7 +80,8 @@ router.put("/crops", async (req, res) => {
         " duration='"+req.body.duration+"', " +
         "temperature='"+req.body.temperature+"'," +
         " cultivated_area_percentage='"+req.body.percentage+"'," +
-        " fertilizers='"+req.body.fertilizer+"'" +
+        " fertilizers='"+req.body.fertilizer+"'," +
+        " schedule='"+req.body.schedule+"'" +
         " where crop_Id= '"+req.body.cropId+"'",
         (err, rows,results) => {
             if (!err) {
