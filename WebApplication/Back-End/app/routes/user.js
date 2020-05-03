@@ -1,13 +1,16 @@
-const express = require("express");   // router object for express
+const express = require("express");
+// router object for express
 const router = express();
-const mysqlConnection = require("../connection");   // get database connection
+// get database connection
+const mysqlConnection = require("../connection");
+const axios = require("axios");
 const session = require("express-session");
-
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-
-const nodemailer = require("nodemailer");   // import nodemailer 
-const rand = require("random-key");   // genarate random key
+// import nodemailer
+const nodemailer = require("nodemailer");
+// genarate random key
+const rand = require("random-key");
 
 // for POST-Support
 // access inside request body
@@ -265,11 +268,23 @@ router.post("/logout", (req, res) => {
 // reset password operation
 router.post("/resetpassword", (req, res) => {
   let user = req.body;
-  main(user).catch(console.error);
-  res.send(true);
+  // check email exist in database
+  mysqlConnection.query(
+    "SELECT * FROM user WHERE user_Email = ?",
+    [user.email],
+    (err, result) => {
+      if (result.length > 0) {
+        resetPasswordFunction(user).catch(console.error);
+        res.send(true);
+      } else {
+        res.send(false);
+      }
+    }
+  );
 });
 
-async function main(user) {
+// send reset passwrd confirmation email
+async function resetPasswordFunction(user) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.hostinger.com",
@@ -298,7 +313,7 @@ async function main(user) {
   console.log("Message sent: %s", info.messageId);
 
   mysqlConnection.query(
-    "UPDATE user SET randomKey= ?  where user_Email= ?",
+    "UPDATE user SET randomKey= ?  WHERE user_Email= ?",
     [key, user.email],
     (err, rows) => {
       if (!err) {
@@ -311,21 +326,34 @@ async function main(user) {
 }
 
 // update password after reset
-router.post("/newpassword", async(req, res) => {
+router.post("/newpassword", async (req, res) => {
   const userpassword = req.body.password;
   const hashedPassword = await bcrypt.hash(userpassword, saltRounds);
-  //pin
-  mysqlConnection.query(
-    "UPDATE user SET user_Password=? WHERE user_Email=?",
-    [hashedPassword, req.body.email],
-    (err, rows) => {
-      if (!err) {
-        res.send(true);
+  const getRandomKeyQuery = "SELECT randomKey FROM user WHERE user_Email = ?";
+  // check random key
+  mysqlConnection.query(getRandomKeyQuery, [req.body.email], (err, rows) => {
+    if (!err) {
+      console.log(rows[0]);
+
+      if (rows[0].randomKey === req.body.pin) {
+        mysqlConnection.query(
+          "UPDATE user SET user_Password=? WHERE user_Email=?",
+          [hashedPassword, req.body.email],
+          (err, rows) => {
+            if (!err) {
+              res.send(true);
+            } else {
+              console.log(err);
+            }
+          }
+        );
       } else {
-        console.log(err);
+        res.send(false);
       }
+    } else {
+      console.log(err);
     }
-  );
+  });
 });
 
 module.exports = router;

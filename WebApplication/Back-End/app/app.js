@@ -53,7 +53,7 @@ app.get("/bestcrop", async (req, res) => {
   }
 });
 
-// get best crop
+// get log page details
 app.get("/log", async (req, res) => {
   try {
     const logdata = await axios.get(
@@ -67,10 +67,11 @@ app.get("/log", async (req, res) => {
   }
 });
 
+// client enter location and date pass to datascience project
 app.post("/details", async (req, res) => {
   try {
     const location = await axios.get(req.body.location);
-    const date = await axios.get(req.body.location);
+    const date = await axios.get(req.body.date);
     res.send({
       location: location.data,
       date: date.data,
@@ -79,6 +80,7 @@ app.post("/details", async (req, res) => {
     console.log(error);
   }
 });
+
 //starting the server
 app.listen(PORT, () => {
   console.log("App has started on Port: " + PORT);
