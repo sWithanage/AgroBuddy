@@ -11,5 +11,5 @@ export class BestCropPoints {
   TemperatureBestPlant: any;
   RainfallHighestPoints: any;
   RainfallBestPlant: any;
-  cultivatedAreaHighest: any;
+  CultivatedAreaHighest: any;
 }

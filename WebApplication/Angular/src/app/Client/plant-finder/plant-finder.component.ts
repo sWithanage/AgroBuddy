@@ -26,7 +26,7 @@ export class PlantFinderComponent implements OnInit {
   temperatureBestPlant: any;
   rainfallHighestPoints: any;
   rainfallBestPlant: any;
-  cultivatedAreaHighest: any;
+  CultivatedAreaHighest: any;
   plant: any;
   loaderGif = false;  // hide the loader gif at the beginning of the page
   formContentDisplayStatus = true; // display the form taht get location to predict the best plant
@@ -150,7 +150,7 @@ export class PlantFinderComponent implements OnInit {
           // @ts-ignore
           this.rainfallBestPlant = data.bestcrop.RainfallBestPlant;                // get the rainfall best plant details
           // @ts-ignore
-          this.cultivatedAreaHighest = data.bestcrop.cultivatedAreaHighest;        // get the cultivated area highest point details
+          this.CultivatedAreaHighest = data.bestcrop.CultivatedAreaHighest;        // get the cultivated area highest point details
           this.loaderGif = false; // hide the loader gif
           this.plantDetails = true; // display predicted plant details
         });
