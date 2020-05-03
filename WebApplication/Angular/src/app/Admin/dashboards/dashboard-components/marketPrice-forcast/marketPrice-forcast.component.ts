@@ -8,6 +8,7 @@ declare var require: any;
 
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-marketPrice-forcast',
   templateUrl: './marketPrice-forcast.component.html',
   styleUrls: ['./marketPrice-forcast.component.scss']
@@ -28,6 +29,7 @@ export class MarketPriceForcastComponent implements  OnInit {
   redPumpkinDataArray = ['Red Pumpkin', 0];
   constructor(private connectionService: AdminServiceService) { }
   ngOnInit() {
+    /*----------------get market price data-------------*/
     this.connectionService.getMarketPrice().subscribe(
       data => {
         this.prices = data;

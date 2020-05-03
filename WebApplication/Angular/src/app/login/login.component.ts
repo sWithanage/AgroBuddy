@@ -118,7 +118,7 @@ export class LoginComponent {
   submitProcess(value: any) {
     // tslint:disable-next-line:triple-equals
     if (value == true) {
-      this.topMessage = 'Please check your email address!';
+      this.topMessage = 'Please check your email!';
     } else {
       this.topMessage = 'Your email is not registered with us. Please sign up with us and try again!';
     }

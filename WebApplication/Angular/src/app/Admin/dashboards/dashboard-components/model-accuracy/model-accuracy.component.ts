@@ -16,42 +16,18 @@ import {ActivatedRoute} from '@angular/router';
 export class ModelAccuracyComponent implements OnInit {
   model: any[];
   // options
-  showXAxis = true;
-  showYAxis = true;
   gradient = false;
-  showLegend = false;
-  showXAxisLabel = true;
-  tooltipDisabled = false;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Visits';
-  showGridLines = true;
-  innerPadding = 0;
-  autoScale = true;
   timeline = false;
-  barPadding = 2;
-  groupPadding = 0;
-  roundDomains = false;
-  maxRadius = 10;
-  minRadius = 3;
   view = '';
   showLabels = true;
   explodeSlices = false;
   doughnut = false;
-  arcWidth = 0.25;
-  rangeFillOpacity = 0;
 
 
   variables: string;
   modelDetails: any[];
   modelName: string;
   variable: string;
-  ARIMAmodel: string;
-  ARMAmodel: string;
-  SARIMAmodel: string;
-  RNNmodel: string;
-  ANNmodel: string;
-  activeModel: string;
   id: number;
   value1: any;
   user: any;

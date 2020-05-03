@@ -11,24 +11,29 @@
         <!-- title -->
     </div>
   <div>
-    <select  class="btn btn-success" [(ngModel)]="selectedOption" (change)="setModelData(variable,this.selectedOption)">
+    <div class="row">
+      &nbsp;&nbsp;&nbsp;&nbsp;
+    <select  class="btn btn-success " [(ngModel)]="selectedOption" (change)="setModelData(variable,this.selectedOption)">
       <option   [value]="status_item" *ngFor="let status_item of status_values" >
         {{status_item}}
       </option>
     </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <h5 class="card-subtitle">Training : Testing</h5>
     <select  class="btn btn-success"  [(ngModel)]="selectedOption2" (change)="setRatioData(variable,this.selectedOption2)">
       <option   [value]="status_item2" *ngFor="let status_item2 of status_values2" >
         {{status_item2}}
       </option>
     </select>
-
+    </div>
   </div>
     <div class="table-responsive">
         <table class="table v-middle">
             <thead>
                 <tr class="bg-light">
                     <th class="border-top-0">Models</th>
-                    <th class="border-top-0">Model Id</th>
+                    <th class="border-top-0">variable Id</th>
                     <th class="border-top-0">Accuracy {{noteMessage}}</th>
 
                 </tr>

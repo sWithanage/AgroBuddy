@@ -28,7 +28,7 @@ export class PredictiveDetailsComponent implements OnInit {
   selectedOption: any;
   selectedOption2: any;
   status_values: any = ['ARIMA', 'ARMA', 'SARIMA', 'RNN', 'AR', 'VAR', 'AUTOARIMA'];
-  status_values2: any = ['90%', '80%', '70%', '60%', '50%', '40%'];
+  status_values2: any = ['90:10', '80:20', '70:30', '60:40', '50:50', '40:60'];
   noteMessage = '';
 
   constructor(private connectionService: AdminServiceService, private route: ActivatedRoute) {
@@ -68,22 +68,22 @@ export class PredictiveDetailsComponent implements OnInit {
             this.selectedOption = dataElement.activeModel;
             // tslint:disable-next-line:triple-equals
             if (dataElement.ratio == 0.1) {
-              this.ratio = '90%' ;
+              this.ratio = '90:10' ;
               // tslint:disable-next-line:triple-equals
             } else if (dataElement.ratio == 0.2) {
-              this.ratio = '80%';
+              this.ratio = '80:20';
               // tslint:disable-next-line:triple-equals
             } else if (dataElement.ratio == 0.3) {
-              this.ratio = '70%' ;
+              this.ratio = '70:30' ;
               // tslint:disable-next-line:triple-equals
             } else if (dataElement.ratio == 0.4) {
-              this.ratio = '60%' ;
+              this.ratio = '60:40' ;
               // tslint:disable-next-line:triple-equals
             } else if (dataElement.ratio == 0.5) {
-              this.ratio = '50%' ;
+              this.ratio = '50:50' ;
               // tslint:disable-next-line:triple-equals
             } else if (dataElement.ratio == 0.6) {
-              this.ratio = '40%' ;
+              this.ratio = '40:60' ;
             }
             this.selectedOption2 = this.ratio;
             this.selectedratio = this.ratio;
@@ -101,22 +101,22 @@ export class PredictiveDetailsComponent implements OnInit {
   /*-------- get changed ratio value and variable name and send it to service class to update----------*/
   setRatioData(variable: any, selectedOption2: any) {
     // tslint:disable-next-line:triple-equals
-    if (selectedOption2 == '90%') {
+    if (selectedOption2 == '90:10') {
       selectedOption2 = 0.1;
       // tslint:disable-next-line:triple-equals
-    } else if (selectedOption2 == '80%') {
+    } else if (selectedOption2 == '80:20') {
       selectedOption2 = 0.2;
       // tslint:disable-next-line:triple-equals
-    } else if (selectedOption2 == '70%') {
+    } else if (selectedOption2 == '70:30') {
       selectedOption2 = 0.3;
       // tslint:disable-next-line:triple-equals
-    } else if (selectedOption2 == '60%') {
+    } else if (selectedOption2 == '60:40') {
       selectedOption2 = 0.4;
       // tslint:disable-next-line:triple-equals
-    } else if (selectedOption2 == '50%') {
+    } else if (selectedOption2 == '50:50') {
       selectedOption2 = 0.5;
       // tslint:disable-next-line:triple-equals
-    } else if (selectedOption2 == '40%') {
+    } else if (selectedOption2 == '40:60') {
       selectedOption2 = 0.6;
     }
 

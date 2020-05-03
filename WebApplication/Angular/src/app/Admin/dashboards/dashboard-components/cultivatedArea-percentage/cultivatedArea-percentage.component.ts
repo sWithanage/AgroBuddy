@@ -48,7 +48,7 @@ export class CultivatedAreaPercentageComponent implements OnInit {
         // tslint:disable-next-line:max-line-length
         updatePie(this.brinjalPercentage, this.ashPlantainPecentage, this.ladiesfingersPercentage, this.cucmberPecentage, this.pumpkinPecentage);
       });
-
+    /*-------------------------- Add values to array-----------------------------------------------*/
     function updatePie(brinjalPercentage, ashPlantainPecentage, ladiesfingersPercentage, cucmberPecentage, pumpkinPecentage) {
       const chart = c3.generate({
         bindto: '#visitor',
@@ -61,7 +61,7 @@ export class CultivatedAreaPercentageComponent implements OnInit {
           label: {
             show: false
           },
-          title: 'Sales',
+          title: 'percentage',
           width: 20
         },
 
