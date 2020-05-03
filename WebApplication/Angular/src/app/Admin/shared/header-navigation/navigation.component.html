@@ -1,5 +1,5 @@
 <!-- ============================================================== -->
-<!-- toggle and nav items -->
+<!-- sidebar folding   -->
 <!-- ============================================================== -->
 <ul class="navbar-nav float-left mr-auto">
   <li class="nav-item d-none d-md-block">
@@ -13,21 +13,7 @@
 <!-- ============================================================== -->
 <ul class="navbar-nav float-right">
   <!-- ============================================================== -->
-  <!-- Search -->
-  <!-- ============================================================== -->
-  <li class="nav-item search-box">
-    <a (click)="showSearch = !showSearch" class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-      <i class="ti-search"></i>
-    </a>
-    <form class="app-search position-absolute" [ngClass]="{'show-search': showSearch}">
-      <input type="text" class="form-control" placeholder="Search &amp; enter">
-      <a class="srh-btn" (click)="showSearch = !showSearch">
-        <i class="ti-close font-16"></i>
-      </a>
-    </form>
-  </li>
-  <!-- ============================================================== -->
-  <!-- create new -->
+  <!--language change -->
   <!-- ============================================================== -->
   <li class="nav-item" ngbDropdown placement="bottom-right">
     <a ngbDropdownToggle class="nav-link" href="javascript:void(0)" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -39,7 +25,6 @@
         <i class="flag-icon flag-icon-lk"></i> English</a>
     </div>
   </li>
-
   <!-- ============================================================== -->
   <!-- User profile and search -->
   <!-- ============================================================== -->
@@ -63,7 +48,6 @@
       </div>
       <a class="dropdown-item" (click)="goToProfile()" href="javascript:void(0)">
         <i class="fa fa-user m-r-5 m-l-5"></i> Profile</a>
-
       <a class="dropdown-item" (click)="logOut()" href="javascript:void(0)">
         <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
       <div class="dropdown-divider"></div>

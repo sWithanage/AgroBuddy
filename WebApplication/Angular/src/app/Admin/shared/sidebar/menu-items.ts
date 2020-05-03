@@ -1,7 +1,7 @@
 import { RouteInfo } from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
-
+// navigation bar menu details
   {
     path: '/admin/dashboard',
     title: 'Dashboard',

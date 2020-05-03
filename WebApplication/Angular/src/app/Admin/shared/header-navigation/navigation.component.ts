@@ -22,21 +22,23 @@ export class NavigationComponentAdmin implements AfterViewInit {
 
   constructor(private modalService: NgbModal, private router: Router, private cookie: CookieService) {
     // tslint:disable-next-line:triple-equals
-    if (this.cookie.get('user_Type') != 'admin') {
+    if (this.cookie.get('user_Type') != 'admin') {    // user type validation
       router.navigate(['/login']);
       this.cookie.deleteAll();
     }
 
-    this.name = this.cookie.get('user_Fname') + ' ' + this.cookie.get('user_Lname');
-    this.email = this.cookie.get('user_Email');
+    this.name = this.cookie.get('user_Fname') + ' ' + this.cookie.get('user_Lname');     // get user name
+    this.email = this.cookie.get('user_Email');     // get user email
   }
   ngAfterViewInit() {}
 
+  // log out from the system
   logOut() {
     this.cookie.deleteAll();
     window.location.reload();
   }
 
+  // view profile
   goToProfile() {
     this.router.navigate(['/profile']);
   }

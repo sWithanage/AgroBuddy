@@ -34,13 +34,15 @@ export class SidebarComponentAdmin implements OnInit {
   name: any;
   ngOnInit() {
     this.sidebarnavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
-    this.name = this.cookie.get('user_Fname') + ' ' + this.cookie.get('user_Lname');
+    this.name = this.cookie.get('user_Fname') + ' ' + this.cookie.get('user_Lname');    // get user name
   }
 
+  // log out from the system
   logOut() {
     this.cookie.deleteAll();
     window.location.reload();
   }
+  // view user profile
   goToProfile() {
     this.router.navigate(['/profile']);
   }

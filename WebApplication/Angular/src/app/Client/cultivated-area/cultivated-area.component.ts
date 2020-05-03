@@ -14,6 +14,7 @@ export class CultivatedAreaComponent implements OnInit {
   area1 = [];
   area2 = [];
   userId;
+  isempty = false;
   constructor(private service: ClientServiceService, private cookie: CookieService) { }
 
   public pieChartLabels1: string[];  // array to store the labels for pie chart
@@ -62,8 +63,14 @@ export class CultivatedAreaComponent implements OnInit {
         for (const x of this.area2) {
           possibilities.push(Math.round((x / sum) * 100));
         }
-        this.pieChartData2 = possibilities;          // assign values
+
+        // tslint:disable-next-line:triple-equals
+        if (possibilities.length == 0) {      // check the data array is empty
+          this.isempty = true;                // display the empty message
+        } else {
+          this.pieChartData2 = possibilities;          // assign values
+          this.pieChartLabels2 = this.plantName2;   // assign values
+        }
       });
-    this.pieChartLabels2 = this.plantName2;   // assign values
   }
 }

@@ -14,6 +14,7 @@
       <div class="card-body">
         <h4 class="card-title">Your Cultivated Area</h4>
         <h6 class="card-subtitle">Area that you have cultivated different crops</h6>
+        <h5 [style.display]="isempty ? 'block' : 'none'" >You haven't planted any crop yet</h5>
         <canvas baseChart height="150px" [data]="pieChartData2" [labels]="pieChartLabels2" [chartType]="pieChartType" [colors]="[{backgroundColor: ['#b8e0b8', '#6b2e6b', '#c9f76e','#2dd22d', '#ec9513' ]}]">
         </canvas>
       </div>

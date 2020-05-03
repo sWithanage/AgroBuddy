@@ -45,6 +45,7 @@ export class PlantFinderComponent implements OnInit {
   public pieChartLabels: string[] = this.plantName;
   public pieChartData = [];
   public pieChartType = 'pie';
+  isempty = false;
 
   ngOnInit() {
     this.userId = this.cookie.get('user_Id');
@@ -66,8 +67,13 @@ export class PlantFinderComponent implements OnInit {
           possibilities.push(Math.round((x / sum) * 100));
         }
 
-        this.pieChartData = possibilities;          // assign values
-        this.pieChartLabels = this.plantName;   // assign values
+        // tslint:disable-next-line:triple-equals
+        if (possibilities.length == 0) {  // check the data array is empty
+          this.isempty = true;            // display the empty message
+        } else {
+          this.pieChartData = possibilities;          // assign values
+          this.pieChartLabels = this.plantName;   // assign values
+        }
       });
   }
 
