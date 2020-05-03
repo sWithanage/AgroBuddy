@@ -168,3 +168,4 @@ class TestStringMethods(unittest.TestCase):
 # Testing class main method.
 if __name__ == '__main__':
     unittest.main()
+

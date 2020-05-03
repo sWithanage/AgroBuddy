@@ -20,7 +20,7 @@ periodOfTime, model = "", ""
 # This method can provide accuracy percentages and forecast values.
 # -------------------------------------------------------------------------
 def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfTrainingDataSet=7, getAccuracy=True,
-            logOnTelegram=True):
+            logOnTelegram=True, ratio=0.2):
     global periodOfTime, model
     try:
         # Printing request of user.
@@ -36,7 +36,7 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
         # Set splitting point of the dataset.
         logger.log(logOnTelegram, "Finding splitting point")
         if defaultRatio:
-            split_point = int(len(series) - (len(series) * 0.2))
+            split_point = int(len(series) - (len(series) * ratio))
         elif not getAccuracy:
             split_point = int(len(series))
         else:
@@ -94,19 +94,19 @@ def predict(predictionName, datasetType, modelType=1, defaultRatio=True, sizeOfT
             seasonalDifferenceArray = findSeasonalDifference(trainingDatasetValues, periodOfTime)
 
             # Suitable seasonal order for the rainfall and temperature.
-            model = ARMA(seasonalDifferenceArray, order=(7, 0, 1))
+            model = ARMA(seasonalDifferenceArray, order=(7, 0))
 
-            logger.log(logOnTelegram, "ARMA model set. Order of arma model is 7,0,1 and period is 365")
+            logger.log(logOnTelegram, "ARMA model set. Order of arma model is 7,0 and period is 365")
 
         elif modelType == 2:
             periodOfTime = 48
             seasonalDifferenceArray = findSeasonalDifference(trainingDatasetValues, periodOfTime)
 
             # Suitable seasonal order for the plant price prediction.
-            model = ARMA(seasonalDifferenceArray, order=(2, 0, 0))
+            model = ARMA(seasonalDifferenceArray, order=(2, 0))
 
             logger.log(logOnTelegram,
-                       "ARIMA model set. Order of arima model is 2,0,0 and period is 48. Weekly data sets")
+                       "ARIMA model set. Order of arima model is 2,0 and period is 48. Weekly data sets")
 
         # Training model.
         logger.log(logOnTelegram, "Training model")

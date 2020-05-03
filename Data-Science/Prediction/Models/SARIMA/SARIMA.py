@@ -16,13 +16,13 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 # This method can provide accuracy percentages and forecast values.
 # -------------------------------------------------------------------------
 def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True,
-            logOnTelegram=True):
+            logOnTelegram=True, ratio=0.2):
     try:
         # Printing request of user.
         if getAccuracy:
-            logger.log(logOnTelegram, "Client requested for " + predictionName + " accuracy.")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " accuracy")
         else:
-            logger.log(logOnTelegram, "Client requested for " + predictionName + " forecast.")
+            logger.log(logOnTelegram, "Client requested for " + predictionName + " forecast")
 
         # Import relevant file from the server.
         series = DataRetriever.getFileData(datasetType)
@@ -33,7 +33,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         # Set splitting point of the dataset.
         logger.log(logOnTelegram, "Finding splitting point")
         if defaultRatio:
-            split_point = int(len(series) - (len(series) * 0.2))
+            split_point = int(len(series) - (len(series) * ratio))
         elif not getAccuracy:
             split_point = int(len(series))
         else:

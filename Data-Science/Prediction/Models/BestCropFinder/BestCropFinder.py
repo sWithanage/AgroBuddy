@@ -490,6 +490,3 @@ def getBestPlant():
     }
 
     return json.dumps(pointsString, indent=2)
-
-
-print(getBestPlant())

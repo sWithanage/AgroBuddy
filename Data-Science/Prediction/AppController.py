@@ -41,38 +41,46 @@ def getAccuracyDetails():
     dataType = request.args.get('type', default='', type=str)
     model = request.args.get('model', default='', type=str)
     plant = request.args.get('plant', default='', type=str)
+    requiredRatio = request.args.get('ratio', default='', type=str)
+
+    # Check split point ratio and if there is no requirement set default ratio as 80 : 20
+    if requiredRatio == '':
+        requiredRatio = 0.2
+    else:
+        requiredRatio = float(requiredRatio)
 
     # ======================================== AR Model =====================================================
 
+
     if model == "ar" and dataType == "temp":
         logger.log(True, "Requested for accuracy of AR temperature prediction model")
-        return AR.predict("Temperature", "temp")
+        return AR.predict("Temperature", "temp", ratio=requiredRatio)
 
     elif model == "ar" and dataType == "rain":
         logger.log(True, "Requested for accuracy of AR rainfall prediction model")
-        return AR.predict("Precipitation", "precipitation")
+        return AR.predict("Precipitation", "precipitation", ratio=requiredRatio)
 
     elif model == "ar" and dataType == "market":
         logger.log(True, "Requested for accuracy of AR market price prediction model")
         if plant == "AshPlantain":
             logger.log(True, "Requested accuracy of from AR market price (Ash Plantain) prediction model")
-            return AR.predict("AshPlantain-AR", "AshPlantain")
+            return AR.predict("AshPlantain-AR", "AshPlantain", ratio=requiredRatio)
 
         elif plant == "Brinjal":
             logger.log(True, "Requested for accuracy of AR market price (Brinjal) prediction model")
-            return AR.predict("Brinjal-AR", "Brinjal")
+            return AR.predict("Brinjal-AR", "Brinjal", ratio=requiredRatio)
 
         elif plant == "Cucumber":
             logger.log(True, "Requested for accuracy of AR market price (Cucumber) prediction model")
-            return AR.predict("Cucumber-AR", "Cucumber")
+            return AR.predict("Cucumber-AR", "Cucumber", ratio=requiredRatio)
 
         elif plant == "LadiesFinger":
             logger.log(True, "Requested for accuracy of AR market price (LadiesFinger) prediction model")
-            return AR.predict("LadiesFinger-AR", "LadiesFinger")
+            return AR.predict("LadiesFinger-AR", "LadiesFinger", ratio=requiredRatio)
 
         elif plant == "RedPumpkin":
             logger.log(True, "Requested for accuracy of AR market price (RedPumpkin) prediction model")
-            return AR.predict("RedPumpkin-AR", "RedPumpkin")
+            return AR.predict("RedPumpkin-AR", "RedPumpkin", ratio=requiredRatio)
         else:
             logger.log(True, "Invalid plant name entered")
             return "Please enter valid plant name and try again!"
@@ -81,32 +89,32 @@ def getAccuracyDetails():
 
     if model == "arima" and dataType == "temp":
         logger.log(True, "Requested for accuracy of ARIMA temperature prediction model")
-        return ARIMA.predict("Temperature", "temp")
+        return ARIMA.predict("Temperature", "temp", ratio=requiredRatio)
 
     elif model == "arima" and dataType == "rain":
         logger.log(True, "Requested for accuracy of ARIMA rainfall prediction model")
-        return ARIMA.predict("Precipitation", "precipitation")
+        return ARIMA.predict("Precipitation", "precipitation", ratio=requiredRatio)
 
     elif model == "arima" and dataType == "market":
         if plant == "AshPlantain":
             logger.log(True, "Requested accuracy of from ARIMA market price (Ash Plantain) prediction model")
-            return ARIMA.predict("AshPlantain-ARIMA", "AshPlantain", 2)
+            return ARIMA.predict("AshPlantain-ARIMA", "AshPlantain", 2, ratio=requiredRatio)
 
         elif plant == "Brinjal":
             logger.log(True, "Requested for accuracy of ARIMA market price (Brinjal) prediction model")
-            return ARIMA.predict("Brinjal-ARIMA", "Brinjal", 2)
+            return ARIMA.predict("Brinjal-ARIMA", "Brinjal", 2, ratio=requiredRatio)
 
         elif plant == "Cucumber":
             logger.log(True, "Requested for accuracy of ARIMA market price (Cucumber) prediction model")
-            return ARIMA.predict("Cucumber-ARIMA", "Cucumber", 2)
+            return ARIMA.predict("Cucumber-ARIMA", "Cucumber", 2, ratio=requiredRatio)
 
         elif plant == "LadiesFinger":
             logger.log(True, "Requested for accuracy of ARIMA market price (LadiesFinger) prediction model")
-            return ARIMA.predict("LadiesFinger-ARIMA", "LadiesFinger", 2)
+            return ARIMA.predict("LadiesFinger-ARIMA", "LadiesFinger", 2, ratio=requiredRatio)
 
         elif plant == "RedPumpkin":
             logger.log(True, "Requested for accuracy of ARIMA market price (RedPumpkin) prediction model")
-            return ARIMA.predict("RedPumpkin-ARIMA", "RedPumpkin", 2)
+            return ARIMA.predict("RedPumpkin-ARIMA", "RedPumpkin", 2, ratio=requiredRatio)
         else:
             logger.log(True, "Invalid plant name entered")
             return "Please enter valid plant name and try again!"
@@ -115,32 +123,32 @@ def getAccuracyDetails():
 
     if model == "auto_arima" and dataType == "temp":
         logger.log(True, "Requested for accuracy of Auto Arima temperature prediction model")
-        return Auto_ARIMA.predict("Temperature", "temp")
+        return Auto_ARIMA.predict("Temperature", "temp", ratio=requiredRatio)
 
     elif model == "auto_arima" and dataType == "rain":
         logger.log(True, "Requested for accuracy of Auto Arima rainfall prediction model")
-        return Auto_ARIMA.predict("Precipitation", "precipitation")
+        return Auto_ARIMA.predict("Precipitation", "precipitation", ratio=requiredRatio)
 
     elif model == "auto_arima" and dataType == "market":
         if plant == "AshPlantain":
             logger.log(True, "Requested accuracy of from Auto Arima market price (Ash Plantain) prediction model")
-            return Auto_ARIMA.predict("AshPlantain-Auto_arima", "AshPlantain", 2)
+            return Auto_ARIMA.predict("AshPlantain-Auto_arima", "AshPlantain", 2, ratio=requiredRatio)
 
         elif plant == "Brinjal":
             logger.log(True, "Requested for accuracy of Auto Arima market price (Brinjal) prediction model")
-            return Auto_ARIMA.predict("Brinjal-Auto_arima", "Brinjal", 2)
+            return Auto_ARIMA.predict("Brinjal-Auto_arima", "Brinjal", 2, ratio=requiredRatio)
 
         elif plant == "Cucumber":
             logger.log(True, "Requested for accuracy of Auto Arima market price (Cucumber) prediction model")
-            return Auto_ARIMA.predict("Cucumber-Auto_arima", "Cucumber", 2)
+            return Auto_ARIMA.predict("Cucumber-Auto_arima", "Cucumber", 2, ratio=requiredRatio)
 
         elif plant == "LadiesFinger":
             logger.log(True, "Requested for accuracy of Auto Arima market price (LadiesFinger) prediction model")
-            return Auto_ARIMA.predict("LadiesFinger-Auto_arima", "LadiesFinger", 2)
+            return Auto_ARIMA.predict("LadiesFinger-Auto_arima", "LadiesFinger", 2, ratio=requiredRatio)
 
         elif plant == "RedPumpkin":
             logger.log(True, "Requested for accuracy of Auto Arima market price (RedPumpkin) prediction model")
-            return Auto_ARIMA.predict("RedPumpkin-Auto_arima", "RedPumpkin", 2)
+            return Auto_ARIMA.predict("RedPumpkin-Auto_arima", "RedPumpkin", 2, ratio=requiredRatio)
         else:
             logger.log(True, "Invalid plant name entered")
             return "Please enter valid plant name and try again!"
@@ -149,32 +157,32 @@ def getAccuracyDetails():
 
     elif model == "arma" and dataType == "temp":
         logger.log(True, "Requested for accuracy of ARMA temperature prediction model")
-        return ARMA.predict("Temperature", "temp")
+        return ARMA.predict("Temperature", "temp", ratio=requiredRatio)
 
     elif model == "arma" and dataType == "rain":
         logger.log(True, "Requested for accuracy of ARMA rainfall prediction model")
-        return ARMA.predict("Precipitation", "precipitation")
+        return ARMA.predict("Precipitation", "precipitation", ratio=requiredRatio)
 
     elif model == "arma" and dataType == "market":
         if plant == "AshPlantain":
             logger.log(True, "Requested accuracy of from ARMA market price (Ash Plantain) prediction model")
-            return ARMA.predict("AshPlantain-ARMA", "AshPlantain", 2)
+            return ARMA.predict("AshPlantain-ARMA", "AshPlantain", 2, ratio=requiredRatio)
 
         elif plant == "Brinjal":
             logger.log(True, "Requested for accuracy of ARMA market price (Brinjal) prediction model")
-            return ARMA.predict("Brinjal-ARMA", "Brinjal", 2)
+            return ARMA.predict("Brinjal-ARMA", "Brinjal", 2, ratio=requiredRatio)
 
         elif plant == "Cucumber":
             logger.log(True, "Requested for accuracy of ARMA market price (Cucumber) prediction model")
-            return ARMA.predict("Cucumber-ARMA", "Cucumber", 2)
+            return ARMA.predict("Cucumber-ARMA", "Cucumber", 2,  ratio=requiredRatio)
 
         elif plant == "LadiesFinger":
             logger.log(True, "Requested for accuracy of ARMA market price (LadiesFinger) prediction model")
-            return ARMA.predict("LadiesFinger-ARMA", "LadiesFinger", 2)
+            return ARMA.predict("LadiesFinger-ARMA", "LadiesFinger", 2, ratio=requiredRatio)
 
         elif plant == "RedPumpkin":
             logger.log(True, "Requested for accuracy of ARMA market price (RedPumpkin) prediction model")
-            return ARMA.predict("RedPumpkin-ARMA", "RedPumpkin", 2)
+            return ARMA.predict("RedPumpkin-ARMA", "RedPumpkin", 2, ratio=requiredRatio)
         else:
             logger.log(True, "Invalid plant name entered")
             return "Please enter valid plant name and try again!"
@@ -183,32 +191,32 @@ def getAccuracyDetails():
 
     elif model == "sarima" and dataType == "temp":
         logger.log(True, "Requested for accuracy of SARIMA temperature prediction model")
-        return SARIMA.predict("Temperature", "temp")
+        return SARIMA.predict("Temperature", "temp", ratio=requiredRatio)
 
     elif model == "sarima" and dataType == "rain":
         logger.log(True, "Requested for accuracy of SARIMA rainfall prediction model")
-        return SARIMA.predict("Precipitation", "precipitation")
+        return SARIMA.predict("Precipitation", "precipitation", ratio=requiredRatio)
 
     elif model == "sarima" and dataType == "market":
         if plant == "AshPlantain":
             logger.log(True, "Requested accuracy of from SARIMA market price (Ash Plantain) prediction model")
-            return SARIMA.predict("AshPlantain-ARIMA", "AshPlantain")
+            return SARIMA.predict("AshPlantain-ARIMA", "AshPlantain", ratio=requiredRatio)
 
         elif plant == "Brinjal":
             logger.log(True, "Requested for accuracy of SARIMA market price (Brinjal) prediction model")
-            return SARIMA.predict("Brinjal-ARIMA", "Brinjal")
+            return SARIMA.predict("Brinjal-ARIMA", "Brinjal", ratio=requiredRatio)
 
         elif plant == "Cucumber":
             logger.log(True, "Requested for accuracy of SARIMA market price (Cucumber) prediction model")
-            return SARIMA.predict("Cucumber-ARIMA", "Cucumber")
+            return SARIMA.predict("Cucumber-ARIMA", "Cucumber", ratio=requiredRatio)
 
         elif plant == "LadiesFinger":
             logger.log(True, "Requested for accuracy of SARIMA market price (LadiesFinger) prediction model")
-            return SARIMA.predict("LadiesFinger-ARIMA", "LadiesFinger")
+            return SARIMA.predict("LadiesFinger-ARIMA", "LadiesFinger", ratio=requiredRatio)
 
         elif plant == "RedPumpkin":
             logger.log(True, "Requested for accuracy of SARIMA market price (RedPumpkin) prediction model")
-            return SARIMA.predict("RedPumpkin-ARIMA", "RedPumpkin")
+            return SARIMA.predict("RedPumpkin-ARIMA", "RedPumpkin", ratio=requiredRatio)
         else:
             logger.log(True, "Invalid plant name entered")
             return "Please enter valid plant name and try again!"
@@ -216,32 +224,32 @@ def getAccuracyDetails():
     # ======================================== VAR Model =====================================================
     elif model == "var" and dataType == "temp":
         logger.log(True, "Requested for accuracy from VAR temperature prediction model")
-        return VAR.predict("Temperature", "temp")
+        return VAR.predict("Temperature", "temp", ratio=requiredRatio)
 
     elif model == "var" and dataType == "rain":
         logger.log(True, "Requested for accuracy from VAR rainfall prediction model")
-        return VAR.predict("Precipitation", "precipitation")
+        return VAR.predict("Precipitation", "precipitation", ratio=requiredRatio)
 
     elif model == "var" and dataType == "market":
         if plant == "AshPlantain":
             logger.log(True, "Requested for accuracy from VAR market price (Ash Plantain) prediction model")
-            return VAR.predict("VARAshPlantain", "AshPlantain")
+            return VAR.predict("VARAshPlantain", "AshPlantain", ratio=requiredRatio)
 
         elif plant == "Brinjal":
             logger.log(True, "Requested for accuracy from VAR market price (Brinjal) prediction model")
-            return VAR.predict("VARBrinjal", "Brinjal")
+            return VAR.predict("VARBrinjal", "Brinjal", ratio=requiredRatio)
 
         elif plant == "Cucumber":
             logger.log(True, "Requested for accuracy from VAR market price (Cucumber) prediction model")
-            return VAR.predict("VARCucumber", "Cucumber")
+            return VAR.predict("VARCucumber", "Cucumber", ratio=requiredRatio)
 
         elif plant == "LadiesFinger":
             logger.log(True, "Requested for accuracy from VAR market price (LadiesFinger) prediction model")
-            return VAR.predict("VARLadiesFinger", "LadiesFinger")
+            return VAR.predict("VARLadiesFinger", "LadiesFinger", ratio=requiredRatio)
 
         elif plant == "RedPumpkin":
             logger.log(True, "Requested for accuracy from VAR market price (RedPumpkin) prediction model")
-            return VAR.predict("VARRedPumpkin", "RedPumpkin")
+            return VAR.predict("VARRedPumpkin", "RedPumpkin", ratio=requiredRatio)
         else:
             logger.log(True, "Invalid plant name entered")
             return "Please enter valid plant name and try again!"
@@ -249,36 +257,32 @@ def getAccuracyDetails():
     # ======================================== RNN Model =====================================================
     elif model == "rnn" and dataType == "temp":
         logger.log(True, "Requested for accuracy from RNN temperature prediction model")
-        return RNN.predict("Temperature", "temp", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
+        return RNN.predict("Temperature", "temp", ratio=requiredRatio)
 
     elif model == "rnn" and dataType == "rain":
         logger.log(True, "Requested for accuracy from RNN rainfall prediction model")
-        return RNN.predict("Precipitation", "precipitation", defaultRatio=True, sizeOfTrainingDataSet=90,
-                           getAccuracy=True)
+        return RNN.predict("Precipitation", "precipitation", ratio=requiredRatio)
 
     elif model == "rnn" and dataType == "market":
         if plant == "AshPlantain":
             logger.log(True, "Requested for accuracy from RNN market price (Ash Plantain) prediction model")
-            return RNN.predict("RNNAshPlantain", "AshPlantain", defaultRatio=True, sizeOfTrainingDataSet=90,
-                               getAccuracy=True)
+            return RNN.predict("RNNAshPlantain", "AshPlantain", ratio=requiredRatio)
 
         elif plant == "Brinjal":
             logger.log(True, "Requested for accuracy from RNN market price (Brinjal) prediction model")
-            return RNN.predict("RNNBrinjal", "Brinjal", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
+            return RNN.predict("RNNBrinjal", "Brinjal", ratio=requiredRatio)
 
         elif plant == "Cucumber":
             logger.log(True, "Requested for accuracy from RNN market price (Cucumber) prediction model")
-            return RNN.predict("RNNCucumber", "Cucumber", defaultRatio=True, sizeOfTrainingDataSet=90, getAccuracy=True)
+            return RNN.predict("RNNCucumber", "Cucumber", ratio=requiredRatio)
 
         elif plant == "LadiesFinger":
             logger.log(True, "Requested for accuracy from RNN market price (LadiesFinger) prediction model")
-            return RNN.predict("RNNLadiesFinger", "LadiesFinger", defaultRatio=True, sizeOfTrainingDataSet=90,
-                               getAccuracy=True)
+            return RNN.predict("RNNLadiesFinger", "LadiesFinger", ratio=requiredRatio)
 
         elif plant == "RedPumpkin":
             logger.log(True, "Requested for accuracy from RNN market price (RedPumpkin) prediction model")
-            return RNN.predict("RNNRedPumpkin", "RedPumpkin", defaultRatio=True, sizeOfTrainingDataSet=90,
-                               getAccuracy=True)
+            return RNN.predict("RNNRedPumpkin", "RedPumpkin", ratio=requiredRatio)
         else:
             logger.log(True, "Invalid plant name entered")
             return "Please enter valid plant name and try again!"

@@ -24,8 +24,8 @@ import numpy
 # This method can provide accuracy percentages and forecast values.
 # -------------------------------------------------------------------------
 def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSet=2, getAccuracy=True,
-            futureRequirement=90, logOnTelegram=True):
-    try:
+            futureRequirement=90, logOnTelegram=True, ratio=0.2):
+    # try:
         # Printing request of user.
         if getAccuracy:
             logger.log(logOnTelegram, "Client requested for " + predictionName + " accuracy")
@@ -142,7 +142,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             keras.backend.clear_session()
 
             # Dividing data into input and output values.
-            inputsValues, outputValues = currentTrainingDataSet[:, 0:-1], currentTrainingDataSet[:, -1]
+            inputsValues, output = currentTrainingDataSet[:, 0:-1], currentTrainingDataSet[:, -1]
 
             # Reshape the input values.
             inputsValues = inputsValues.reshape(inputsValues.shape[0], 1, inputsValues.shape[1])
@@ -170,7 +170,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                                    "Model Training | " + str(numberOfEpochs) + " Epochs ")
 
                 # Fit the model with data set.
-                LSTMModel.fit(inputsValues, outputValues, epochs=1, batch_size=batchSize, verbose=0, shuffle=False)
+                LSTMModel.fit(inputsValues, output, epochs=1, batch_size=batchSize, verbose=0, shuffle=False)
 
                 # Clears hidden status of networks.
                 LSTMModel.reset_states()
@@ -220,7 +220,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         logger.log(logOnTelegram, "Finding splitting point")
         if defaultRatio:
             # Split into 80% to 20% ratio.
-            splittingPoint = int(len(series) - (len(series) * 0.2))
+            splittingPoint = int(len(series) - (len(series) * ratio))
         else:
             # Set user defined testing data set size.
             splittingPoint = len(series) - sizeOfTrainingDataSet
@@ -231,6 +231,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                                                                    splittingPoint:]
         logger.log(logOnTelegram, "Data splitting successful")
 
+
         # Transform data into proper scale.
         scaleConfig, trainingDataSet, testingDataSet = scaleDataSets(rawTrainingDataSet, rawTestingDataSet)
 
@@ -239,6 +240,15 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
 
         # Reshape training values.
         reshapedTrainingData = trainingDataSet[:, 0].reshape(len(trainingDataSet), 1, 1)
+
+        # Initializing batch size.
+        if datasetType == 'temp' or datasetType == 'precipitation':
+            # Daily data has 365 rows for a year.
+            sizeOfBatch = 365
+        else:
+            # Weekly data has 48 rows for a year.
+            sizeOfBatch = 48
+
 
         # Predict using reshaped past data set. Model will train with this.
         fittedModel.predict(reshapedTrainingData, batch_size=1)
@@ -254,20 +264,27 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             # List to hold expected data temporarily.
             expectations = list()
 
+            # Get the first index of the testing dataset.
+            inputValues, outputValues = testingDataSet[0, 0:-1], testingDataSet[0, -1]
+
             # Get forecast value for size of the testing dataset.
             for countInForecast in range(len(testingDataSet)):
-                # Get the last index of the testing dataset.
-                xInputValues, yInputValues = testingDataSet[countInForecast, 0:-1], testingDataSet[countInForecast, -1]
 
                 # Single prediction step using model and last step.
-                singlePredictedOutput = forecastFutureStep(fittedModel, 1, xInputValues)
+                singlePredictedOutput = forecastFutureStep(LSTMModel=fittedModel, batchSize=sizeOfBatch, lastStepValue=inputValues)
+
+                # Store last predicted binary value in the variable.
+                lastPredictedValue = singlePredictedOutput
 
                 # Invert binary single predicted output into true decimal value.
-                invertedScaledPredictionValue = invertScaledDataSets(scaleConfig, xInputValues, singlePredictedOutput)
+                invertedScaledPredictionValue = invertScaledDataSets(currentScaleConfig=scaleConfig, lastIndexInArray=inputValues, valueToInvert=singlePredictedOutput)
+
+                # Format the last predicted value into required numpy array format.
+                inputValues = numpy.array([lastPredictedValue])
 
                 # Invert values from inverted scaled prediction value.
-                finalProcessedForecastValue = invertSeasonalDifference(dataInRawFormat, invertedScaledPredictionValue,
-                                                                       len(testingDataSet) + 1 - countInForecast)
+                finalProcessedForecastValue = invertSeasonalDifference(previousValue=dataInRawFormat, newDifferenceValue=invertedScaledPredictionValue,
+                                                                       interval=len(testingDataSet) + 1 - countInForecast)
 
                 # Append predicted data into list.
                 predictions.append(finalProcessedForecastValue)
@@ -307,31 +324,31 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
                 # Make one-step forecast.
                 if countInForecast < len(testingDataSet):
                     # Get the last value of the array.
-                    xInputValues, yInputValues = testingDataSet[countInForecast, 0:-1], testingDataSet[
+                    inputValues, outputValues = testingDataSet[countInForecast, 0:-1], testingDataSet[
                         countInForecast, -1]
                 else:
                     # Get the last value of the array.
-                    xInputValues = lastPredictedValueInBinary
-                    xInputValues = numpy.array([xInputValues])
+                    inputValues = lastPredictedValueInBinary
+                    inputValues = numpy.array([inputValues])
 
                 # Single prediction step using model and last step.
-                singlePredictedOutput = forecastFutureStep(fittedModel, 1, xInputValues)
+                singlePredictedOutput = forecastFutureStep(LSTMModel=fittedModel, batchSize=sizeOfBatch, lastStepValue=inputValues)
 
                 # Set single predicted output as last predicted output.
                 lastPredictedValueInBinary = singlePredictedOutput
 
                 # Invert binary single predicted output into true decimal value.
-                invertedScaledPredictionValue = invertScaledDataSets(scaleConfig, xInputValues, singlePredictedOutput)
+                invertedScaledPredictionValue = invertScaledDataSets(currentScaleConfig=scaleConfig, lastIndexInArray=inputValues, valueToInvert=singlePredictedOutput)
 
                 # Invert values from inverted scaled prediction value.
-                finalProcessedForecastValue = invertSeasonalDifference(dataInRawFormat, invertedScaledPredictionValue,
-                                                                       countInForecast + 1)
+                finalProcessedForecastValue = invertSeasonalDifference(previousValue=dataInRawFormat, newDifferenceValue=invertedScaledPredictionValue,
+                                                                       interval=countInForecast + 1)
 
                 # Append to the array if the testing data is higher than
                 if countInForecast > len(testingDataSet):
                     futureForecastArray.append(finalProcessedForecastValue)
 
-            # Generate json array with future forecasted values.
+            # Generate json array with future forecast values.
             jsonForecastedArray = str(AccuracyCalculator.jsonConverter(futureForecastArray, "rnn"))
 
             logger.log(logOnTelegram, "Predicted forecast " + jsonForecastedArray)
@@ -339,13 +356,13 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
             # Return json array.
             return jsonForecastedArray
 
-    except Exception:
-        # Display proper error message with error and error line.
-        exc_type, exc_obj, exc_tb = sys.exc_info()
-        exceptionDetails = str(exc_type) + " error occurred in '" + str(
-            exc_tb.tb_frame.f_code.co_filename) + "' Line : " + str(exc_tb.tb_lineno)
-        logger.log(logOnTelegram, exceptionDetails, "ERROR")
-        return "Error occurred in the source code"
+    # except Exception:
+    #     # Display proper error message with error and error line.
+    #     exc_type, exc_obj, exc_tb = sys.exc_info()
+    #     exceptionDetails = str(exc_type) + " error occurred in '" + str(
+    #         exc_tb.tb_frame.f_code.co_filename) + "' Line : " + str(exc_tb.tb_lineno)
+    #     logger.log(logOnTelegram, exceptionDetails, "ERROR")
+    #     return "Error occurred in the source code"
 
 # Model Training callers with out Api
 

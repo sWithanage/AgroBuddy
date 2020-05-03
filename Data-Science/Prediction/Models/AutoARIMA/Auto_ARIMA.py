@@ -18,7 +18,7 @@ testingDataSetSize = 0
 # This method can provide accuracy percentages and forecast values.
 # -------------------------------------------------------------------------
 def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSet=7, getAccuracy=True,
-            logOnTelegram=True):
+            logOnTelegram=True, ratio=0.2):
     global testingDataSetSize
     try:
         # Printing request of user.
@@ -34,7 +34,7 @@ def predict(predictionName, datasetType, defaultRatio=True, sizeOfTrainingDataSe
         # Set splitting point of the dataset.
         logger.log(logOnTelegram, "Finding splitting point")
         if defaultRatio:
-            split_point = int(len(series) - (len(series) * 0.2))
+            split_point = int(len(series) - (len(series) * ratio))
         elif not getAccuracy:
             split_point = int(len(series))
         else:

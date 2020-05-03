@@ -21,7 +21,7 @@ def getFileData(variable, varModel=False, logOnTelegram=True):
     while attemptCount != 11:
         try:
             # Log the data receiving details.
-            logger.log(logOnTelegram, 'Attempt number ' + str(attemptCount) + 'of data retrieving deployed')
+            logger.log(logOnTelegram, 'Attempt number ' + str(attemptCount) + ' of data retrieving deployed')
 
             # Retrieve data from allocated url.
             with urllib.request.urlopen(
