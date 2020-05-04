@@ -1,13 +1,7 @@
 const express = require("express");
-const fileUpload = require("express-fileupload");
-const bodyParser = require("body-parser");
-const mysql = require("mysql");
-const path = require("path");
 const cors = require("cors");
 const axios = require("axios");
 
-// const cron = require("node-cron");
-//const mysqlConnection = require("./connection");
 const PORT = 8080;
 
 // routing of all js file in the routes folder
