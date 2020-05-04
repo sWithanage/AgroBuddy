@@ -45,7 +45,7 @@ router.post("/buyers", async (req, res) => {
   });
 });
 
-// delete selected user details
+// delete selected buyer details
 router.post("/deleteBuyer/:id", async (req, res) => {
   console.log(req.params.id);
   mysqlConnection.query(

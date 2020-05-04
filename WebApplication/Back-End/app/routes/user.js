@@ -3,10 +3,12 @@ const express = require("express");
 const router = express();
 // get database connection
 const mysqlConnection = require("../connection");
+
 const axios = require("axios");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+
 // import nodemailer
 const nodemailer = require("nodemailer");
 // genarate random key
@@ -202,6 +204,7 @@ router.post("/authentication", (req, res) => {
         "'",
       async (error, results) => {
         if (results.length > 0) {
+          // comparing password
           const comparision = await bcrypt.compare(
             password,
             results[0].user_Password

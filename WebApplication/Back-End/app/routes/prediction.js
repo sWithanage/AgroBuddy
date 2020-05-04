@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router(); //router object for express
 const mysqlConnection = require("../agroDataConnection");
 
-//get current market price prediction
+//get last 5 days market price prediction
 router.get("/prediction/marketprice", (req, res) => {
   mysqlConnection.query(
     "SELECT * FROM marketprice ORDER BY yearWithWeek DESC limit 5",
@@ -114,7 +114,7 @@ router.get("/prediction/temperature", (req, res) => {
   );
 });
 
-//get average temperature of last year
+//get average rainfall of last year
 router.get("/prediction/avgrain", (req, res) => {
   mysqlConnection.query(
     "SELECT AVG(rainFall) AS avgRainfall FROM weatherdata ORDER BY date DESC limit 365",
@@ -128,7 +128,7 @@ router.get("/prediction/avgrain", (req, res) => {
   );
 });
 
-//get max temperature of last year
+//get max rainfall of last year
 router.get("/prediction/maxrain", (req, res) => {
   mysqlConnection.query(
     "SELECT MAX(rainFall) AS maxRainfall FROM weatherdata ORDER BY date DESC limit 365",
@@ -142,7 +142,7 @@ router.get("/prediction/maxrain", (req, res) => {
   );
 });
 
-//get min temperature of last year
+//get min rainall of last year
 router.get("/prediction/minrain", (req, res) => {
   mysqlConnection.query(
     "SELECT MIN(rainFall) AS minRainfall FROM weatherdata ORDER BY date DESC limit 365",
@@ -172,7 +172,6 @@ router.get("/prediction/weather", (req, res) => {
 
 //get yesterday weather data
 router.get("/weatherdata", (req, res) => {
-  //SELECT * FROM weatherdata WHERE DATE(date) = CURDATE()
   mysqlConnection.query(
     "SELECT date ,avgPres,avgHumidity,avgWindSpeed,cloudCover,avgTemp,maxTemp,minTemp FROM weatherdata WHERE DATE(date) = SUBDATE(CURDATE(),1)",
     (err, rows, fields) => {
